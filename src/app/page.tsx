@@ -1,71 +1,69 @@
 import { ClientEnhancements } from '@/components/ClientEnhancements';
 
-/* ─── Data ──────────────────────────────────────────────────── */
-
 const audienceCards = [
   {
     title: 'For IT Services Firms',
-    text: 'Strengthen delivery positioning, modernize operating assumptions, and respond to AI-driven margin and pricing pressure with a credible leadership agenda.',
+    text: 'Respond to AI-driven pressure on delivery economics, client expectations, differentiation, and margin structure.',
   },
   {
-    title: 'For Enterprise Software Teams',
-    text: 'Turn uneven AI experimentation into a workable delivery model that engineering leaders can support and governance leaders can trust.',
+    title: 'For Enterprise Technology Organizations',
+    text: 'Adopt AI-enabled delivery without losing control over quality, accountability, governance, or engineering discipline.',
   },
   {
-    title: 'For Executive and Delivery Leadership',
-    text: 'Align strategic ambition, delivery realities, and competitive response before fragmented adoption turns into structural drag.',
+    title: 'For Executive and Engineering Leadership',
+    text: 'Create alignment between top-level ambition and delivery-level reality before fragmented AI adoption becomes structural drag.',
   },
 ] as const;
 
-const clientNeeds = [
-  'Bring structure to AI-enabled software delivery',
-  'Move beyond scattered experimentation',
-  'Create measurable productivity gains',
-  'Reduce delivery risk as AI usage scales',
-  'Equip teams and leadership with a credible transformation path',
+const marketQuestions = [
+  'How should software delivery evolve as coding agents become part of the production system?',
+  'Where can AI create real delivery advantage, and where does it create noise or risk?',
+  'How should leadership, engineering, and governance align around a shared model?',
+  'What must change in workflows, supervision, and operating assumptions to scale credibly?',
 ] as const;
 
 const painPoints = [
   {
-    title: 'Adoption is happening, but not coherently',
-    text: 'Teams are trying tools, leaders are setting ambition, and delivery keeps moving — but the organization lacks a shared model for what good looks like.',
+    title: 'Adoption is accelerating, but unevenly',
+    text: 'Teams experiment, leaders push, and delivery evolves, but without a shared model for how AI should actually change the work.',
   },
   {
-    title: 'Productivity gains are unclear',
-    text: 'Signals are inconsistent, narratives are inflated, and few organizations can translate isolated wins into a disciplined view of value.',
+    title: 'Value is discussed more than it is measured',
+    text: 'Organizations see local wins, but often lack a disciplined view of where AI is truly improving delivery.',
   },
   {
-    title: 'Risk grows as velocity increases',
-    text: 'As AI enters engineering workflows, governance, quality, and accountability questions become more urgent, not less.',
+    title: 'Risk rises when velocity outruns supervision',
+    text: 'As coding agents enter production workflows, quality, accountability, governance, and client trust become more, not less, important.',
   },
 ] as const;
 
-const bridgeTopics = [
-  'AI-enabled delivery',
-  'Operating model redesign',
-  'Software engineering workflows',
-  'Governance',
-  'Competitive positioning',
+const helpCards = [
+  {
+    title: 'Diagnose the real challenge',
+    text: 'Clarify where leadership ambition, engineering reality, and delivery constraints are misaligned.',
+  },
+  {
+    title: 'Prioritize where the shift matters',
+    text: 'Identify the highest-value transformation questions across delivery model, workflows, governance, and positioning.',
+  },
+  {
+    title: 'Build a credible execution path',
+    text: 'Define a practical path forward that leadership can support and engineering teams can actually use.',
+  },
 ] as const;
 
 const outcomes = [
   'Clarify the transformation agenda',
-  'Prioritize the right opportunities',
+  'Focus on the right opportunities',
   'Reduce execution risk',
-  'Structure internal traction',
-  'Strengthen competitive positioning',
+  'Build internal traction',
+  'Strengthen strategic positioning',
 ] as const;
-
-/* ─── Page ──────────────────────────────────────────────────── */
 
 export default function HomePage() {
   return (
     <main id="top">
-
-      {/* ═══ HERO ═══════════════════════════════════════════════ */}
       <section className="s-hero">
-
-        {/* Nav */}
         <header className="site-header">
           <a href="#top" className="logo" aria-label="Agentic SDLC home">
             <span className="logo-tag">Consulting boutique</span>
@@ -73,58 +71,51 @@ export default function HomePage() {
           </a>
           <nav className="header-nav" aria-label="Primary">
             <a href="#why-now">Why now</a>
-            <a href="#bridge">What we bring</a>
+            <a href="#how-we-help">How we help</a>
             <a href="#contact">Contact</a>
           </nav>
         </header>
 
-        {/* Body */}
         <div className="hero-body">
           <div className="hero-left">
-            <span className="hero-kicker">AI-enabled software delivery transformation</span>
-            <h1 className="hero-h1">
-              Bridging executive<br />
-              strategy and<br />
-              engineering delivery.
-            </h1>
+            <span className="hero-kicker">Agentic SDLC · Consulting boutique for AI-enabled software delivery</span>
+            <h1 className="hero-h1">Align executive ambition and engineering reality as AI reshapes software delivery.</h1>
           </div>
           <div className="hero-right">
             <p className="hero-sub">
-              Agentic SDLC helps IT services firms and software organizations
-              align <strong>leadership ambition</strong>, <strong>engineering reality</strong>,
-              and delivery execution as AI reshapes how software is built,
-              governed, priced, and scaled.
+              Agentic SDLC helps IT services firms and software organizations redesign software delivery as AI changes how software is built,
+              supervised, governed, and scaled.
+            </p>
+            <p className="hero-support">
+              We work where leadership priorities, engineering constraints, and competitive pressure collide, turning fragmented experimentation into
+              a credible delivery model.
             </p>
             <div className="hero-actions">
-              <a href="#contact" className="btn btn-primary">Book an intro call</a>
-              <a href="#why-now" className="btn btn-ghost">Why this matters now</a>
+              <a href="#contact" className="btn btn-primary">
+                Book an intro call
+              </a>
+              <a href="#how-we-help" className="btn btn-ghost">
+                See where we help
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Bridge connector */}
         <div className="hero-connector" aria-hidden="true">
           <div className="connector-side">
             <span className="connector-label">Executive ambition</span>
-            <p className="connector-desc">
-              Strategy, investment logic, competitive response, and governance expectations.
-            </p>
+            <p className="connector-desc">Strategy, competitiveness, pricing logic, governance expectations.</p>
           </div>
-          <div className="connector-center">Agentic SDLC — the bridge</div>
+          <div className="connector-center connector-center-long">Translate ambition into an executable delivery model</div>
           <div className="connector-side connector-side-right">
             <span className="connector-label">Engineering reality</span>
-            <p className="connector-desc">
-              Delivery systems, workflow change, execution risk, and operating model design.
-            </p>
+            <p className="connector-desc">Workflows, supervision, execution risk, operating model change.</p>
           </div>
         </div>
-
       </section>
 
-      {/* ═══ AUDIENCE ═══════════════════════════════════════════ */}
       <section className="section s-white" aria-labelledby="audience-heading">
         <div className="section-inner">
-
           <div className="section-intro" data-reveal="">
             <div className="intro-heading-col">
               <span className="eyebrow">Where the work matters</span>
@@ -134,8 +125,8 @@ export default function HomePage() {
             </div>
             <div className="intro-text-col">
               <p>
-                Agentic SDLC sits at the intersection of executive strategy and engineering leadership —
-                sharp enough for C-suite conversations, grounded enough for delivery teams.
+                Agentic SDLC sits between executive strategy and engineering delivery, credible for leadership teams, grounded for software and
+                delivery leaders, and focused on operating model transformation rather than generic AI commentary.
               </p>
             </div>
           </div>
@@ -148,63 +139,53 @@ export default function HomePage() {
               </article>
             ))}
           </div>
-
         </div>
       </section>
 
-      {/* ═══ WHY NOW ════════════════════════════════════════════ */}
       <section className="section s-dark" id="why-now" aria-labelledby="why-now-heading">
         <div className="section-inner">
           <div className="why-now-grid">
-
             <div data-reveal="">
               <span className="eyebrow eyebrow-dark">Why now</span>
               <h2 id="why-now-heading" className="why-now-heading">
-                Software delivery is entering a new operating era.
+                Software delivery is entering a new economic and operating era.
               </h2>
               <div className="why-now-prose">
                 <p>
-                  AI is not just changing the tooling layer. It is reshaping engineering productivity,
-                  governance expectations, pricing logic, and the competitive dynamics around
-                  software delivery.
+                  AI is not only changing the tooling layer. It is reshaping software production, productivity expectations, governance requirements,
+                  pricing logic, and competitive dynamics across the software and IT services market.
                 </p>
                 <p>
-                  The organizations that win will not simply be the ones using more AI tools.
-                  They will be the ones aligning executive priorities, engineering leadership,
-                  and delivery execution faster and more credibly than the market.
+                  The winners will not simply be the organizations using more AI tools. They will be the ones redesigning their delivery model
+                  faster and aligning leadership and engineering more credibly than the market.
                 </p>
               </div>
             </div>
 
             <aside className="aside-card" data-reveal="">
-              <span className="aside-label">What clients typically need</span>
+              <span className="aside-label">What this shift forces organizations to confront</span>
               <ul className="dot-list">
-                {clientNeeds.map((need) => (
-                  <li key={need}>{need}</li>
+                {marketQuestions.map((question) => (
+                  <li key={question}>{question}</li>
                 ))}
               </ul>
             </aside>
-
           </div>
         </div>
       </section>
 
-      {/* ═══ PROBLEM ════════════════════════════════════════════ */}
       <section className="section s-canvas" aria-labelledby="friction-heading">
         <div className="section-inner">
-
           <div className="problem-lead" data-reveal="">
             <div>
               <span className="eyebrow">The real issue</span>
               <h2 id="friction-heading" className="problem-statement">
-                Most organizations do not have a tooling problem.
-                They have an alignment problem.
+                Most organizations do not have a tooling problem. They have an alignment problem.
               </h2>
             </div>
             <p className="problem-sub">
-              AI adoption is often fragmented, uneven, and difficult to scale. The challenge is not
-              access to tools. It is redesigning the delivery model so leadership ambition and
-              engineering execution can move together — credibly and at pace.
+              AI adoption is often fragmented, uneven, and difficult to scale. The challenge is not access to tools. It is redesigning the delivery
+              model so leadership ambition and engineering execution can move together, credibly and at pace.
             </p>
           </div>
 
@@ -216,45 +197,76 @@ export default function HomePage() {
               </article>
             ))}
           </div>
-
         </div>
       </section>
 
-      {/* ═══ WHAT WE BRING ══════════════════════════════════════ */}
-      <section className="section s-white" id="bridge" aria-labelledby="bring-heading">
+      <section className="section s-white" id="how-we-help" aria-labelledby="help-heading">
         <div className="section-inner">
-          <div className="bring-grid">
-
-            <div data-reveal="">
-              <span className="eyebrow">What Agentic SDLC brings</span>
-              <h2 id="bring-heading" className="bring-heading">
-                Strategic clarity, engineering credibility, and an execution path.
+          <div className="section-intro" data-reveal="">
+            <div className="intro-heading-col">
+              <span className="eyebrow">How we help</span>
+              <h2 id="help-heading" className="section-heading">
+                Focused advisory and transformation support for AI-enabled software delivery.
               </h2>
-              <div className="bring-prose">
-                <p>
-                  Agentic SDLC helps software organizations make sense of the shift, identify
-                  where value is real, and define a path that works for both leadership teams
-                  and engineering leaders.
-                </p>
-                <p>
-                  The work is high-value advisory with practical transformation support:
-                  disciplined enough for governance, grounded enough for delivery, and focused
-                  on outcomes rather than theatrical AI narratives.
-                </p>
+            </div>
+            <div className="intro-text-col">
+              <p>
+                We help clients move from fragmented experimentation to a more coherent delivery model, one that leadership can support,
+                engineering can work with, and governance can trust.
+              </p>
+            </div>
+          </div>
+
+          <div className="card-grid" data-reveal-stagger="">
+            {helpCards.map((card) => (
+              <article key={card.title} className="card card-accent">
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section s-canvas" id="bridge" aria-labelledby="engagement-heading">
+        <div className="section-inner">
+          <div className="engage-grid">
+            <div data-reveal="">
+              <span className="eyebrow">Typical engagement</span>
+              <h2 id="engagement-heading" className="engage-heading">
+                One focused sprint. Clear thinking. Practical outputs.
+              </h2>
+              <p className="engage-body">
+                Agentic SDLC typically works through focused engagements designed to help clients clarify the transformation agenda, align leadership
+                and engineering, and define a credible next step.
+              </p>
+              <div className="chip-row">
+                <span className="chip">Executive alignment</span>
+                <span className="chip">Delivery model transformation</span>
+                <span className="chip">Practical next-step roadmap</span>
               </div>
             </div>
 
-            <div className="bring-lists" data-reveal-stagger="">
+            <blockquote className="pull-quote" data-reveal="">
+              Limited number of clients. High-value advisory. Practical transformation support.
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section className="section s-white" aria-labelledby="outcomes-heading">
+        <div className="section-inner">
+          <div className="bring-grid">
+            <div data-reveal="">
+              <span className="eyebrow">What clients are trying to achieve</span>
+              <h2 id="outcomes-heading" className="bring-heading">
+                Better alignment, stronger execution, and clearer strategic footing.
+              </h2>
+            </div>
+
+            <div className="bring-lists" data-reveal="">
               <div className="list-card">
-                <span className="list-label">Where we engage</span>
-                <ul className="plain-list">
-                  {bridgeTopics.map((topic) => (
-                    <li key={topic}>{topic}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="list-card">
-                <span className="list-label">What the work enables</span>
+                <span className="list-label">Outcomes</span>
                 <ul className="plain-list">
                   {outcomes.map((outcome) => (
                     <li key={outcome}>{outcome}</li>
@@ -262,57 +274,58 @@ export default function HomePage() {
                 </ul>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* ═══ WHY CLIENTS ENGAGE ═════════════════════════════════ */}
-      <section className="section s-canvas" aria-labelledby="engage-heading">
+      <section className="section s-canvas" aria-labelledby="about-heading">
         <div className="section-inner">
-          <div className="engage-grid">
-
+          <div className="engage-grid founder-grid">
             <div data-reveal="">
-              <span className="eyebrow">Why clients engage us</span>
-              <h2 id="engage-heading" className="engage-heading">
-                A bridge between strategic intent and engineering execution.
+              <span className="eyebrow">About</span>
+              <h2 id="about-heading" className="engage-heading">
+                Led by Nicolas Boitout.
               </h2>
               <p className="engage-body">
-                Agentic SDLC works at the intersection where executive leadership and engineering
-                leadership need to align on consequential questions — how AI-enabled delivery
-                should evolve, how operating models should adapt, and how credibility is maintained
-                while the organization changes.
+                Agentic SDLC is built around the belief that AI-enabled software delivery needs both strategic clarity and delivery-level
+                credibility. The work sits between the executive agenda and engineering reality, helping leadership teams make sharper decisions
+                about how software delivery should evolve.
               </p>
             </div>
 
-            <blockquote className="pull-quote" data-reveal="">
-              From experimentation to a credible operating model.
-            </blockquote>
-
+            <div className="founder-card" data-reveal="">
+              <p className="founder-copy">
+                Nicolas works with leaders navigating the commercial, operating, and engineering consequences of AI in software delivery.
+              </p>
+              <a
+                href="https://www.linkedin.com/in/nicolas-boitout-phd-8677842/"
+                target="_blank"
+                rel="noreferrer"
+                className="profile-link"
+              >
+                View LinkedIn profile
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ CTA ════════════════════════════════════════════════ */}
       <section className="section s-dark" id="contact" aria-labelledby="contact-heading">
         <div className="section-inner">
           <div className="cta-inner" data-reveal="">
             <span className="eyebrow eyebrow-brass">Start the conversation</span>
             <h2 id="contact-heading" className="cta-heading">
-              Need a credible bridge between AI strategy and engineering execution?
+              Need a credible path between AI strategy and delivery execution?
             </h2>
             <p className="cta-sub">
-              Let&apos;s discuss the pressure points you are seeing, where executive ambition and
-              engineering realities are diverging, and what a credible path forward could look like.
+              Let&apos;s discuss where AI is creating pressure in your delivery model, where alignment is breaking down, and what a credible path
+              forward could look like.
             </p>
             <div className="cta-actions">
               <a href="mailto:hello@agenticsdlc.com" className="btn btn-dark">
                 Book an intro call
               </a>
-              <a
-                href="mailto:hello@agenticsdlc.com?subject=Agentic%20SDLC%20conversation"
-                className="btn btn-outline-dark"
-              >
+              <a href="mailto:hello@agenticsdlc.com?subject=Agentic%20SDLC%20conversation" className="btn btn-outline-dark">
                 hello@agenticsdlc.com
               </a>
             </div>
@@ -320,7 +333,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ FOOTER ═════════════════════════════════════════════ */}
       <footer className="site-footer">
         <div className="footer-inner">
           <div className="footer-brand">
@@ -329,7 +341,7 @@ export default function HomePage() {
           </div>
           <nav className="footer-links" aria-label="Footer">
             <a href="#why-now">Why now</a>
-            <a href="#bridge">What we bring</a>
+            <a href="#how-we-help">How we help</a>
             <a href="#contact">Contact</a>
             <a href="mailto:hello@agenticsdlc.com">hello@agenticsdlc.com</a>
           </nav>
