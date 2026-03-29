@@ -42,8 +42,8 @@ export function ClientEnhancements() {
       <div className="sticky-inner">
         <a href="#top" className="sticky-logo">Agentic SDLC</a>
         <div className="sticky-menu">
-          <a href="#why-now">Why now</a>
-          <a href="#how-we-help">How we help</a>
+          <a href="#sandbox-factory">Sandbox / Factory</a>
+          <a href="#blueprint">Blueprint</a>
           <a href="#contact" className="sticky-btn">Book a call</a>
         </div>
       </div>
