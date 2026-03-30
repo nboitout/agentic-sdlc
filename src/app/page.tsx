@@ -69,7 +69,7 @@ export default function HomePage() {
               The point is not more experimentation. It is building a delivery system that leadership can trust and engineering can actually run.
             </p>
             <div className="hero-actions">
-              <a href="#contact" className="btn btn-primary">
+              <a href="https://calendly.com/nicolasboitout/30min" className="btn btn-primary" data-calendly-link="true">
                 Book an intro call
               </a>
               <a href="#sandbox-factory" className="btn btn-ghost">
@@ -264,7 +264,7 @@ export default function HomePage() {
               measurable execution.
             </p>
             <div className="cta-actions">
-              <a href="mailto:hello@agenticsdlc.com" className="btn btn-dark">
+              <a href="https://calendly.com/nicolasboitout/30min" className="btn btn-dark" data-calendly-link="true">
                 Book an intro call
               </a>
               <a href="mailto:hello@agenticsdlc.com?subject=Agentic%20SDLC%20conversation" className="btn btn-outline-dark">

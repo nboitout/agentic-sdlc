@@ -1,6 +1,15 @@
 'use client';
 
 import { useEffect } from 'react';
+import Script from 'next/script';
+
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (options: { url: string }) => void;
+    };
+  }
+}
 
 export function ClientEnhancements() {
   // Sticky nav: reveal after hero scrolls out of view
@@ -37,16 +46,30 @@ export function ClientEnhancements() {
     return () => obs.disconnect();
   }, []);
 
+  useEffect(() => {
+    const links = Array.from(document.querySelectorAll('[data-calendly-link="true"]'));
+    const handleClick = (event: Event) => {
+      event.preventDefault();
+      window.Calendly?.initPopupWidget({ url: 'https://calendly.com/nicolasboitout/30min' });
+    };
+
+    links.forEach((link) => link.addEventListener('click', handleClick));
+    return () => links.forEach((link) => link.removeEventListener('click', handleClick));
+  }, []);
+
   return (
-    <nav id="sticky-nav" className="sticky-nav" aria-label="Site navigation">
-      <div className="sticky-inner">
-        <a href="#top" className="sticky-logo">Agentic SDLC</a>
-        <div className="sticky-menu">
-          <a href="#sandbox-factory">Sandbox / Factory</a>
-          <a href="#blueprint">Blueprint</a>
-          <a href="#contact" className="sticky-btn">Book a call</a>
+    <>
+      <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
+      <nav id="sticky-nav" className="sticky-nav" aria-label="Site navigation">
+        <div className="sticky-inner">
+          <a href="#top" className="sticky-logo">Agentic SDLC</a>
+          <div className="sticky-menu">
+            <a href="#sandbox-factory">Sandbox / Factory</a>
+            <a href="#blueprint">Blueprint</a>
+            <a href="https://calendly.com/nicolasboitout/30min" className="sticky-btn" data-calendly-link="true">Book a call</a>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }
