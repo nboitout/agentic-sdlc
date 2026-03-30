@@ -47,8 +47,7 @@ export default function HomePage() {
       <section className="s-hero">
         <header className="site-header">
           <a href="#top" className="logo" aria-label="Agentic SDLC home">
-            <span className="logo-tag">Consulting boutique</span>
-            <span className="logo-name">Agentic SDLC</span>
+            <span className="logo-name">Agentic SDLC | Consulting boutique for a new software delivery</span>
           </a>
           <nav className="header-nav" aria-label="Primary">
             <a href="#sandbox-factory">Sandbox / Factory</a>
@@ -59,8 +58,7 @@ export default function HomePage() {
 
         <div className="hero-body">
           <div className="hero-left">
-            <span className="hero-kicker">Agentic SDLC | Consulting boutique for AI-enabled software delivery</span>
-            <h1 className="hero-h1">From AI experimentation to a controlled software delivery model.</h1>
+            <h1 className="hero-h1">Become a true software factory.</h1>
           </div>
           <div className="hero-right">
             <p className="hero-sub">
@@ -128,7 +126,7 @@ export default function HomePage() {
             <div data-reveal="">
               <span className="eyebrow eyebrow-dark">Problem</span>
               <h2 id="problem-heading" className="why-now-heading">
-                Tool adoption is not a delivery model.
+                AI Tool adoption is not a delivery model.
               </h2>
               <div className="why-now-prose">
                 <p>
@@ -157,7 +155,7 @@ export default function HomePage() {
             <div>
               <span className="eyebrow">Core shift</span>
               <h2 id="friction-heading" className="problem-statement">
-                From creator to supervisor.
+                Core shift of the developer&apos;s role.
               </h2>
             </div>
             <p className="problem-sub">
