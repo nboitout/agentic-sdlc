@@ -1,5 +1,7 @@
 import { ClientEnhancements } from '@/components/ClientEnhancements';
 
+import { MetricsCharts } from '@/components/MetricsCharts';
+
 const comparisonCards = [
   {
     title: 'Today: the sandbox',
@@ -199,6 +201,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+          <MetricsCharts />
         </div>
       </section>
 
