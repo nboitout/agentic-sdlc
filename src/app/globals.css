@@ -830,3 +830,105 @@ a { color: inherit; text-decoration: none; }
     text-align: left;
   }
 }
+
+/* ── Metrics Charts ────────────────────────────────────────── */
+.metrics-charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px,2vw,22px);
+  margin-top: clamp(40px,5vw,64px);
+}
+
+.chart-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--border);
+  border-radius: var(--r-card);
+  padding: clamp(28px,3vw,38px);
+  transition: border-top-color 240ms ease, box-shadow 240ms ease;
+}
+
+.chart-card:hover {
+  border-top-color: var(--brass);
+  box-shadow: 0 12px 32px rgba(15,19,25,.07);
+}
+
+.chart-card-header {
+  margin-bottom: 28px;
+}
+
+.chart-eyebrow {
+  display: block;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 10px;
+}
+
+.chart-title {
+  font-family: var(--display);
+  font-size: 1.12rem;
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+
+.chart-sub {
+  font-size: .88rem;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.6;
+  max-width: 44ch;
+}
+
+/* Custom legend for pie chart */
+.chart-legend {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+.chart-legend li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: .78rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.legend-pct {
+  margin-left: auto;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  font-size: .8rem;
+}
+
+@media (max-width: 1080px) {
+  .metrics-charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .chart-legend {
+    grid-template-columns: 1fr;
+  }
+}
