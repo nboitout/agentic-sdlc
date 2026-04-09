@@ -37,17 +37,17 @@ const sandboxTimeData = [
 const RADIAN = Math.PI / 180
 
 function PieLabel({
-  cx, cy, midAngle, innerRadius, outerRadius, percent, index,
+  cx = 0, cy = 0, midAngle = 0, innerRadius = 0, outerRadius = 0, percent = 0, index = 0,
 }: {
-  cx: number; cy: number; midAngle: number
-  innerRadius: number; outerRadius: number
-  percent: number; index: number
+  cx?: number; cy?: number; midAngle?: number
+  innerRadius?: number; outerRadius?: number
+  percent?: number; index?: number
 }) {
   if (percent < 0.09) return null
   const radius = innerRadius + (outerRadius - innerRadius) * 0.58
   const x = cx + radius * Math.cos(-midAngle * RADIAN)
   const y = cy + radius * Math.sin(-midAngle * RADIAN)
-  const lightSlice = index >= 3 // border / brassLight slices
+  const lightSlice = index >= 3
   return (
     <text
       x={x} y={y}
@@ -61,7 +61,6 @@ function PieLabel({
     </text>
   )
 }
-
 // ─── Bar chart — sandbox vs factory metric uplift ─────────────────────────────
 const upliftData = [
   { metric: "Supervision coverage", sandbox: 18,  factory: 85  },
