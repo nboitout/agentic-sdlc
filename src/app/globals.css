@@ -28,6 +28,19 @@
   --brass-light: #B49470;
   --brass-pale:  rgba(155,125,92,.11);
 
+  /* Blog-inspired brand colors */
+  --vp-c-brand-1: #6366f1;
+  --vp-c-brand-2: #4f46e5;
+  --vp-c-brand-3: #818cf8;
+  --vp-c-brand-soft: rgba(99, 102, 241, 0.14);
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: #ffffff;
+  --vp-button-brand-bg: var(--vp-c-brand-1);
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-hover-text: #ffffff;
+  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
+  --vp-button-brand-active-bg: var(--vp-c-brand-2);
+
   /* Typography */
   --display: var(--font-display), Georgia, 'Times New Roman', serif;
   --sans:    var(--font-body), system-ui, -apple-system, sans-serif;
@@ -43,6 +56,13 @@
 
   /* Transitions */
   --ease:  cubic-bezier(.2,.8,.2,1);
+}
+
+.dark {
+  --vp-c-brand-1: #818cf8;
+  --vp-c-brand-2: #6366f1;
+  --vp-c-brand-3: #a5b4fc;
+  --vp-c-brand-soft: rgba(129, 140, 248, 0.16);
 }
 
 /* ── Reset ─────────────────────────────────────────────────── */
@@ -233,14 +253,14 @@ a { color: inherit; text-decoration: none; }
   height: 42px;
   padding: 0 20px;
   font-size: .87rem;
-  color: var(--dark-ink);
-  border-color: rgba(234,230,220,.32);
-  background: rgba(155,125,92,.16);
+  color: #fff;
+  border-color: transparent;
+  background: var(--vp-c-brand-1);
 }
 
 .btn-blog:hover {
-  background: rgba(155,125,92,.28);
-  border-color: rgba(234,230,220,.46);
+  background: var(--vp-c-brand-2);
+  border-color: transparent;
   box-shadow: 0 10px 24px rgba(0,0,0,.2);
 }
 
@@ -403,6 +423,20 @@ a { color: inherit; text-decoration: none; }
   animation: fade-in 700ms var(--ease) both;
 }
 .hero-left {}
+.hero-left::before {
+  content: 'PRACTICAL COURSE · 8 LECTURES · EN / FR';
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 16px;
+  padding: 4px 16px;
+  border-radius: var(--r-pill);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+}
 .hero-kicker {
   display: inline-block;
   margin-bottom: 20px;
@@ -429,12 +463,21 @@ a { color: inherit; text-decoration: none; }
   padding-bottom: 6px;
 }
 .hero-sub {
-  font-size: 1.04rem;
+  font-size: 1.05rem;
   line-height: 1.74;
   color: var(--dark-muted);
-  max-width: 48ch;
+  max-width: 38rem;
+  opacity: .8;
 }
 .hero-sub strong { color: var(--dark-ink); font-weight: 500; }
+.hero-sub::after {
+  content: 'For software engineers, engineering leads, and CTOs navigating AI-native delivery.';
+  display: block;
+  font-size: .82rem;
+  color: rgba(234,230,220,.65);
+  margin-top: 8px;
+  font-style: italic;
+}
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -456,12 +499,12 @@ a { color: inherit; text-decoration: none; }
 }
 .btn:hover { transform: translateY(-2px); }
 .btn-primary {
-  background: var(--dark-ink);
-  color: var(--dark);
+  background: var(--vp-button-brand-bg);
+  color: var(--vp-button-brand-text);
   box-shadow: 0 8px 24px rgba(0,0,0,.22);
 }
 .btn-primary:hover {
-  background: #fff;
+  background: var(--vp-button-brand-hover-bg);
   box-shadow: 0 14px 36px rgba(0,0,0,.28);
 }
 .btn-ghost {
@@ -908,6 +951,7 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 1080px) {
   .hero-body        { grid-template-columns: 1fr; gap: 36px; align-items: start; padding-bottom: 72px; }
   .hero-h1          { font-size: clamp(2.4rem, 7vw, 3.6rem); }
+  .hero-sub         { max-width: 100%; }
   .hero-connector   { grid-template-columns: 1fr; gap: 16px; }
   .connector-center { align-self: start; }
   .connector-side-right { text-align: left; }
