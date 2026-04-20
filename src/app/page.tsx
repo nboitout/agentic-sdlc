@@ -1,5 +1,7 @@
 import { ClientEnhancements } from '@/components/ClientEnhancements';
 
+import { BrochureSignup } from '@/components/BrochureSignup';
+
 import { MetricsCharts } from '@/components/MetricsCharts';
 
 const comparisonCards = [
@@ -69,6 +71,8 @@ export default function HomePage() {
             Read the related blog
           </a>
         </div>
+
+        <BrochureSignup />
 
         <div className="hero-body">
           <div className="hero-left">
