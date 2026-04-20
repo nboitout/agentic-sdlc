@@ -1,5 +1,7 @@
 import { ClientEnhancements } from '@/components/ClientEnhancements';
 
+import { BrochureSignup } from '@/components/BrochureSignup';
+
 import { MetricsCharts } from '@/components/MetricsCharts';
 
 const comparisonCards = [
@@ -57,6 +59,20 @@ export default function HomePage() {
             <a href="#contact">Contact</a>
           </nav>
         </header>
+
+        <div className="blog-cta-banner">
+          <p className="blog-cta-copy">Get the full playbook and practical examples on the Agentic SDLC blog.</p>
+          <a
+            href="https://nboitout.github.io/Blog-Agentic-SDLC/en/"
+            className="btn btn-blog"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Read the related blog
+          </a>
+        </div>
+
+        <BrochureSignup />
 
         <div className="hero-body">
           <div className="hero-left">
