@@ -22,12 +22,39 @@ const FREE_EMAIL_DOMAINS = new Set([
   'qq.com',
 ]);
 
+const ROLE_BASED_LOCAL_PARTS = new Set([
+  'admin',
+  'contact',
+  'hello',
+  'info',
+  'marketing',
+  'noreply',
+  'no-reply',
+  'sales',
+  'support',
+  'team',
+]);
+
+const PROFESSIONAL_EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
+
 function isProfessionalEmail(email: string) {
   const normalized = email.trim().toLowerCase();
-  const atIndex = normalized.lastIndexOf('@');
-  if (atIndex <= 0 || atIndex === normalized.length - 1) return false;
-  const domain = normalized.slice(atIndex + 1);
-  return !FREE_EMAIL_DOMAINS.has(domain);
+  if (!PROFESSIONAL_EMAIL_PATTERN.test(normalized)) return false;
+
+  const [localPart, domain] = normalized.split('@');
+  if (!localPart || !domain) return false;
+
+  if (ROLE_BASED_LOCAL_PARTS.has(localPart)) return false;
+
+  const domainParts = domain.split('.');
+  if (domainParts.length < 2) return false;
+
+  const baseDomain = domainParts.slice(-2).join('.');
+  if (FREE_EMAIL_DOMAINS.has(domain) || FREE_EMAIL_DOMAINS.has(baseDomain)) return false;
+
+  if (domainParts.some((part) => part.length < 2)) return false;
+
+  return true;
 }
 
 export function BrochureSignup() {
@@ -113,7 +140,7 @@ export function BrochureSignup() {
               />
               {showProfessionalEmailError ? (
                 <p id="brochure-email-error" className="brochure-error">
-                  Please enter a professional email address (no personal mailbox providers).
+                  Use your work email address (no personal/free providers or role-based aliases).
                 </p>
               ) : null}
 
