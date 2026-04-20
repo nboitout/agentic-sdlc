@@ -45,6 +45,13 @@ const metricsItems = [
   'Supervision',
 ] as const;
 
+const bibliographyItems = [
+  {
+    label: 'Anthropic Engineering — Harness design for long-running apps',
+    href: 'https://www.anthropic.com/engineering/harness-design-long-running-apps',
+  },
+] as const;
+
 export default function HomePage() {
   return (
     <main id="top">
@@ -293,6 +300,28 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section s-white" id="biblio" aria-labelledby="biblio-heading">
+        <div className="section-inner">
+          <div className="section-intro section-intro-stacked" data-reveal="">
+            <div className="intro-heading-col">
+              <span className="eyebrow">Bibliography</span>
+              <h2 id="biblio-heading" className="section-heading">
+                Selected references
+              </h2>
+            </div>
+          </div>
+          <ul className="biblio-list" data-reveal-stagger="">
+            {bibliographyItems.map((item) => (
+              <li key={item.href} className="biblio-item">
+                <a href={item.href} target="_blank" rel="noreferrer" className="biblio-link">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <footer className="site-footer">
         <div className="footer-inner">
           <div className="footer-brand">
@@ -303,6 +332,7 @@ export default function HomePage() {
             <a href="#sandbox-factory">Sandbox / Factory</a>
             <a href="#blueprint">Blueprint</a>
             <a href="#contact">Contact</a>
+            <a href="#biblio">Bibliography</a>
             <a href="mailto:hello@agenticsdlc.com">hello@agenticsdlc.com</a>
           </nav>
           <p className="footer-copy">&copy; {new Date().getFullYear()} Agentic SDLC</p>
