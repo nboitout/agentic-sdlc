@@ -89,7 +89,7 @@ export default function HomePage() {
             </p>
             <div className="hero-actions">
               <a href="https://calendly.com/nicolasboitout/30min" className="btn btn-primary" data-calendly-link="true">
-                Start learning
+                Book an intro call
               </a>
               <BrochureSignup />
             </div>
