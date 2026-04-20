@@ -1,5 +1,7 @@
 import { ClientEnhancements } from '@/components/ClientEnhancements';
 
+import { BrochureSignup } from '@/components/BrochureSignup';
+
 import { MetricsCharts } from '@/components/MetricsCharts';
 
 const comparisonCards = [
@@ -58,25 +60,38 @@ export default function HomePage() {
           </nav>
         </header>
 
+        <div className="blog-cta-banner">
+          <p className="blog-cta-copy">Get the full playbook and practical examples on the Agentic SDLC blog.</p>
+          <a
+            href="https://nboitout.github.io/Blog-Agentic-SDLC/en/"
+            className="btn btn-blog"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Read the related blog
+          </a>
+        </div>
+
         <div className="hero-body">
           <div className="hero-left">
-            <h1 className="hero-h1">Become a true software factory.</h1>
+            <h1 className="hero-h1">
+              <span className="hero-h1-accent">Agentic SDLC</span>
+              <br />
+              From AI coding tools to reliable delivery systems
+            </h1>
           </div>
           <div className="hero-right">
             <p className="hero-sub">
-              Most software organizations are still in sandbox mode: fragmented usage, unclear supervision, weak metrics, no real operating model.
-              Agentic SDLC helps move delivery toward factory mode: structured, measurable, and scalable.
+              A practical course on coding agents, loops, harnesses, and governance patterns that make a software factory possible.
             </p>
             <p className="hero-support">
-              The point is not more experimentation. It is building a delivery system that leadership can trust and engineering can actually run.
+              Move from AI coding experimentation to operationally reliable delivery.
             </p>
             <div className="hero-actions">
               <a href="https://calendly.com/nicolasboitout/30min" className="btn btn-primary" data-calendly-link="true">
-                Book an intro call
+                Start learning
               </a>
-              <a href="#sandbox-factory" className="btn btn-ghost">
-                See the shift
-              </a>
+              <BrochureSignup />
             </div>
           </div>
         </div>
