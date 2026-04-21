@@ -951,6 +951,7 @@ a { color: inherit; text-decoration: none; }
   gap: clamp(16px, 2vw, 22px);
 }
 .card-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.card-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
 .card {
   background: var(--white);
@@ -1490,6 +1491,18 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -.025em;
   color: var(--ink);
 }
+.outputs-card {
+  margin-top: clamp(28px, 4vw, 44px);
+  background: var(--white);
+  border: 1px solid rgba(199,196,215,.45);
+  border-radius: var(--r-card);
+  padding: clamp(22px, 3vw, 30px);
+  box-shadow: 0 8px 24px rgba(20,27,43,.05);
+}
+.plain-list-compact {
+  margin-top: 12px;
+  gap: 8px;
+}
 
 .founder-grid { align-items: center; }
 .founder-card {
@@ -1800,6 +1813,7 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 800px) {
   .card-grid     { grid-template-columns: 1fr; }
   .card-grid-2   { grid-template-columns: 1fr; }
+  .card-grid-3   { grid-template-columns: 1fr; }
   .hero-h1       { font-size: clamp(2.1rem, 9vw, 3rem); }
   .sticky-menu a:not(.sticky-btn) { display: none; }
   .role-grid     { grid-template-columns: 1fr; }
