@@ -206,6 +206,7 @@ a { color: inherit; text-decoration: none; }
   width: 28px;
   height: 28px;
   background: url('/agentic-sdlc-mark.svg') center / contain no-repeat;
+  filter: drop-shadow(0 1px 1px rgba(20, 27, 43, 0.2));
   flex-shrink: 0;
 }
 .sticky-menu { display: flex; align-items: center; gap: 8px 24px; }
@@ -281,6 +282,7 @@ a { color: inherit; text-decoration: none; }
   width: 34px;
   height: 34px;
   background: url('/agentic-sdlc-mark.svg') center / contain no-repeat;
+  filter: drop-shadow(0 1px 1px rgba(20, 27, 43, 0.2));
   flex-shrink: 0;
 }
 .logo-tag {
