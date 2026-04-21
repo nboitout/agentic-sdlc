@@ -59,6 +59,31 @@ const metricsItems = [
   'Supervision',
 ] as const;
 
+const audienceCards = [
+  {
+    icon: 'manufacturing',
+    title: 'Engineering leaders',
+    text: 'Need delivery speed from agents without losing quality, ownership, or operational control.',
+  },
+  {
+    icon: 'business_center',
+    title: 'Product & delivery teams',
+    text: 'Need shared operating rules so AI usage supports outcomes instead of creating coordination drag.',
+  },
+  {
+    icon: 'assured_workload',
+    title: 'CTOs & transformation sponsors',
+    text: 'Need a measurable path from pilot energy to a repeatable software delivery system.',
+  },
+] as const;
+
+const sprintOutputs = [
+  'Current-state map of where agents create value and where they add risk',
+  'Prioritized workflow opportunities with owner, expected ROI, and first milestone',
+  'Supervision model: delegation, review gates, escalation, and accountability',
+  'Baseline scorecard to track quality, rework, throughput, and AI contribution',
+] as const;
+
 const bibliographyItems = [
   {
     label: 'Anthropic Engineering — Harness design for long-running apps',
@@ -94,19 +119,19 @@ export default function HomePage() {
         </header>
 
         <div className="hero-body">
-          <div className="hero-left">
-            <h1 className="hero-h1">
-              <span className="hero-h1-accent">Agentic SDLC:</span>
-              <br />
-              From AI coding tools to reliable delivery systems.
-            </h1>
-            <p className="hero-sub">
-              A practical course on coding agents, loops, harnesses, and governance patterns that
-              make a software factory possible.
-            </p>
-            <p className="hero-support">
-              Move from AI coding experimentation to operationally reliable delivery.
-            </p>
+            <div className="hero-left">
+              <h1 className="hero-h1">
+                <span className="hero-h1-accent">Agentic SDLC:</span>
+                <br />
+                From AI coding tools to reliable delivery systems.
+              </h1>
+              <p className="hero-sub">
+                Strategic and hands-on support to design operating rules, supervision loops, and
+                measurable workflows for AI-enabled software delivery.
+              </p>
+              <p className="hero-support">
+                Move from AI experimentation to a delivery model your leadership team can trust.
+              </p>
             <div className="hero-actions">
               <a
                 href="https://calendly.com/nicolasboitout/30min"
@@ -454,6 +479,39 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
+          WHO IT'S FOR
+          ══════════════════════════════════════════════════════════════ */}
+      <section className="section s-canvas" id="who-its-for" aria-labelledby="audience-heading">
+        <div className="section-inner">
+          <div className="section-intro" data-reveal="">
+            <div className="intro-heading-col">
+              <span className="eyebrow">Who this is for</span>
+              <h2 id="audience-heading" className="section-heading">
+                Built for teams that need AI speed with delivery accountability.
+              </h2>
+            </div>
+            <div className="intro-text-col">
+              <p>
+                This engagement is for organizations already experimenting with AI coding tools and
+                now looking for a durable operating model.
+              </p>
+            </div>
+          </div>
+          <div className="card-grid card-grid-3" data-reveal-stagger="">
+            {audienceCards.map((card) => (
+              <article key={card.title} className="card card-accent">
+                <div className="icon-tile" aria-hidden="true">
+                  <span className="material-symbols-outlined">{card.icon}</span>
+                </div>
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
           ENGAGEMENT
           ══════════════════════════════════════════════════════════════ */}
       <section className="section s-canvas" id="engagement" aria-labelledby="engagement-heading">
@@ -462,11 +520,11 @@ export default function HomePage() {
             <div data-reveal="">
               <span className="eyebrow">Engagement</span>
               <h2 id="engagement-heading" className="engage-heading">
-                One sprint. Ground truth, priorities, operating rules, metrics.
+                One sprint to define the operating model.
               </h2>
               <p className="engage-body">
-                The objective is simple: move from scattered experimentation to a controlled next
-                step.
+                In a focused working sprint, we align leadership and engineering around a practical
+                next step with clear priorities, governance, and measurement.
               </p>
             </div>
 
@@ -474,6 +532,14 @@ export default function HomePage() {
               One focused engagement to define the ground truth, the priorities, and the operating
               rules that make AI supervision real.
             </blockquote>
+          </div>
+          <div className="outputs-card" data-reveal="">
+            <span className="list-label">What you leave with</span>
+            <ul className="plain-list plain-list-compact">
+              {sprintOutputs.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
