@@ -165,12 +165,7 @@ a { color: inherit; text-decoration: none; }
   position: fixed;
   inset: 0 0 auto;
   z-index: 100;
-  padding: 0 var(--px);
-  background: rgba(255,255,255,.82);
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  border-bottom: 1px solid rgba(20,27,43,.06);
-  box-shadow: 0 8px 30px rgba(20,27,43,.05);
+  padding: 14px var(--px) 0;
   transform: translateY(-110%);
   opacity: 0;
   transition: transform 340ms var(--ease), opacity 340ms ease;
@@ -186,20 +181,26 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  height: 64px;
-  max-width: var(--w);
+  width: min(var(--w), 100%);
   margin: 0 auto;
+  padding: 12px 18px 12px 20px;
+  border: 1px solid rgba(199,196,215,.45);
+  border-radius: 14px;
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  box-shadow: 0 8px 30px rgba(20,27,43,.05);
 }
 .sticky-logo {
   font-family: var(--display);
   font-size: 1rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -.025em;
-  color: var(--primary);
+  color: var(--ink);
   transition: color 160ms ease;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 .sticky-logo::before {
   content: '';
@@ -211,27 +212,30 @@ a { color: inherit; text-decoration: none; }
 }
 .sticky-menu { display: flex; align-items: center; gap: 8px 24px; }
 .sticky-menu a {
-  font-size: .82rem;
-  font-weight: 600;
-  letter-spacing: .02em;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--muted);
-  transition: color 160ms ease;
-  padding: 3px 0;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition: color 160ms ease, border-color 160ms ease;
 }
-.sticky-menu a:not(.sticky-btn):hover { color: var(--primary); }
+.sticky-menu a:not(.sticky-btn):hover { color: var(--primary); border-bottom-color: var(--primary); }
 .sticky-btn {
   display: inline-flex;
   align-items: center;
-  height: 38px;
-  padding: 0 18px;
+  height: 40px;
+  padding: 0 20px;
   border-radius: 10px;
   background: var(--primary);
   color: #fff !important;
-  font-size: .82rem !important;
+  font-size: .86rem !important;
   font-weight: 700;
   text-transform: none !important;
   letter-spacing: 0 !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
   transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease !important;
 }
 .sticky-btn:hover {

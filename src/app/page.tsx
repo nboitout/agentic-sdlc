@@ -533,14 +533,6 @@ export default function HomePage() {
               rules that make AI supervision real.
             </blockquote>
           </div>
-          <div className="outputs-card" data-reveal="">
-            <span className="list-label">What you leave with</span>
-            <ul className="plain-list plain-list-compact">
-              {sprintOutputs.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
         </div>
       </section>
 
