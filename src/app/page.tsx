@@ -448,6 +448,39 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
+          WHO IT'S FOR
+          ══════════════════════════════════════════════════════════════ */}
+      <section className="section s-canvas" id="who-its-for" aria-labelledby="audience-heading">
+        <div className="section-inner">
+          <div className="section-intro" data-reveal="">
+            <div className="intro-heading-col">
+              <span className="eyebrow">Who this is for</span>
+              <h2 id="audience-heading" className="section-heading">
+                Built for teams that need AI speed with delivery accountability.
+              </h2>
+            </div>
+            <div className="intro-text-col">
+              <p>
+                This engagement is for organizations already experimenting with AI coding tools and
+                now looking for a durable operating model.
+              </p>
+            </div>
+          </div>
+          <div className="card-grid card-grid-3" data-reveal-stagger="">
+            {audienceCards.map((card) => (
+              <article key={card.title} className="card card-accent">
+                <div className="icon-tile" aria-hidden="true">
+                  <span className="material-symbols-outlined">{card.icon}</span>
+                </div>
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
           ENGAGEMENT
           ══════════════════════════════════════════════════════════════ */}
       <section className="section s-canvas" id="engagement" aria-labelledby="engagement-heading">
@@ -456,11 +489,11 @@ export default function HomePage() {
             <div data-reveal="">
               <span className="eyebrow">Engagement</span>
               <h2 id="engagement-heading" className="engage-heading">
-                One sprint. Ground truth, priorities, operating rules, metrics.
+                One sprint to define the operating model.
               </h2>
               <p className="engage-body">
-                The objective is simple: move from scattered experimentation to a controlled next
-                step.
+                In a focused working sprint, we align leadership and engineering around a practical
+                next step with clear priorities, governance, and measurement.
               </p>
             </div>
 
