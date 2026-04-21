@@ -545,38 +545,6 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          ABOUT
-          ══════════════════════════════════════════════════════════════ */}
-      <section className="section s-white" aria-labelledby="about-heading">
-        <div className="section-inner">
-          <div className="engage-grid founder-grid">
-            <div data-reveal="">
-              <span className="eyebrow">About</span>
-              <h2 id="about-heading" className="engage-heading">
-                Led by Nicolas Boitout.
-              </h2>
-              <p className="engage-body">Built by Nicolas Boitout.</p>
-            </div>
-
-            <div className="founder-card" data-reveal="">
-              <p className="founder-copy">
-                Operator, advisor, and builder working on the shift from software teams to
-                AI-supervised delivery systems.
-              </p>
-              <a
-                href="https://www.linkedin.com/in/nicolas-boitout-phd-8677842/"
-                target="_blank"
-                rel="noreferrer"
-                className="profile-link"
-              >
-                View LinkedIn profile
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════
           CONTACT (dark)
           ══════════════════════════════════════════════════════════════ */}
       <section className="section s-dark" id="contact" aria-labelledby="contact-heading">
