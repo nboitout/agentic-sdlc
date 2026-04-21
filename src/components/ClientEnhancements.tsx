@@ -62,11 +62,20 @@ export function ClientEnhancements() {
       <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
       <nav id="sticky-nav" className="sticky-nav" aria-label="Site navigation">
         <div className="sticky-inner">
-          <a href="#top" className="sticky-logo">Agentic SDLC</a>
+          <a href="#top" className="sticky-logo">
+            <img src="/agentic-sdlc-mark.svg" alt="" className="sticky-logo-mark" aria-hidden="true" />
+            Agentic SDLC
+          </a>
           <div className="sticky-menu">
             <a href="#sandbox-factory">Sandbox / Factory</a>
             <a href="#blueprint">Blueprint</a>
-            <a href="https://calendly.com/nicolasboitout/30min" className="sticky-btn" data-calendly-link="true">Book a call</a>
+            <a
+              href="https://calendly.com/nicolasboitout/30min"
+              className="sticky-btn"
+              data-calendly-link="true"
+            >
+              Book a call
+            </a>
           </div>
         </div>
       </nav>

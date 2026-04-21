@@ -100,6 +100,7 @@ export default function HomePage() {
       <section className="s-hero">
         <header className="site-header">
           <a href="#top" className="logo" aria-label="Agentic SDLC home">
+            <img src="/agentic-sdlc-mark.svg" alt="" className="logo-mark" aria-hidden="true" />
             <span className="logo-name">Agentic SDLC</span>
           </a>
           <nav className="header-nav" aria-label="Primary">
