@@ -131,9 +131,9 @@ export function BrochureSignup() {
 
     const subject = encodeURIComponent('Agentic SDLC brochure request');
     const body = encodeURIComponent(
-      `Please send the Agentic SDLC brochure to:\n${email.trim()}\n\nFirst name: ${firstName.trim()}\nFamily name: ${familyName.trim()}\nConsent accepted for communications from agentic-sdlc.it.`
+      `Please send the Agentic SDLC brochure to:\n${email.trim()}\n\nFirst name: ${firstName.trim()}\nFamily name: ${familyName.trim()}\nConsent accepted for communications from agentic-sdlc.com.`
     );
-    window.location.href = `mailto:nicolas@agentic-sdlc.it?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:nicolas@agentic-sdlc.com?subject=${subject}&body=${body}`;
     setIsSubmitting(false);
     setIsOpen(false);
   };
@@ -226,7 +226,7 @@ export function BrochureSignup() {
                   aria-invalid={showConsentError}
                 />
                 <span>
-                  I would like to receive communications from <strong>agentic-sdlc.it</strong> related to services, events, and updates.
+                  I would like to receive communications from <strong>agentic-sdlc.com</strong> related to services, events, and updates.
                   For more information, please see our Privacy Policy.
                 </span>
               </label>

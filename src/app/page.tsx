@@ -599,10 +599,10 @@ export default function HomePage() {
                 Book an intro call
               </a>
               <a
-                href="mailto:hello@agenticsdlc.com?subject=Agentic%20SDLC%20conversation"
+                href="mailto:nicolas@agentic-sdlc.com?subject=Agentic%20SDLC%20conversation"
                 className="btn btn-outline-dark"
               >
-                hello@agenticsdlc.com
+                nicolas@agentic-sdlc.com
               </a>
             </div>
           </div>
@@ -651,7 +651,7 @@ export default function HomePage() {
             <a href="#how-we-help">Metrics</a>
             <a href="#contact">Contact</a>
             <a href="#biblio">Bibliography</a>
-            <a href="mailto:hello@agenticsdlc.com">hello@agenticsdlc.com</a>
+            <a href="mailto:nicolas@agentic-sdlc.com">nicolas@agentic-sdlc.com</a>
           </nav>
           <p className="footer-copy">&copy; {new Date().getFullYear()} Agentic SDLC</p>
         </div>
