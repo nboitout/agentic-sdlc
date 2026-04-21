@@ -107,22 +107,16 @@ export default function HomePage() {
             <a href="#blueprint">Blueprint</a>
             <a href="#how-we-help">Metrics</a>
             <a href="#contact">Contact</a>
+            <a
+              href="https://nboitout.github.io/Blog-Agentic-SDLC/en/"
+              className="btn btn-blog header-blog-btn"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Our Blog: Learn &amp; Project
+            </a>
           </nav>
         </header>
-
-        <div className="blog-cta-banner">
-          <p className="blog-cta-copy">
-            Get the full playbook and practical examples on the Agentic SDLC blog.
-          </p>
-          <a
-            href="https://nboitout.github.io/Blog-Agentic-SDLC/en/"
-            className="btn btn-blog"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Read the related blog
-          </a>
-        </div>
 
         <div className="hero-body">
             <div className="hero-left">
