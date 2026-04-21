@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Instrument_Sans, Libre_Baskerville } from 'next/font/google';
+import { Instrument_Sans, Manrope } from 'next/font/google';
 import './globals.css';
 
-const libreBaskerville = Libre_Baskerville({
+const manrope = Manrope({
   subsets: ['latin'],
   variable: '--font-display',
-  weight: ['400', '700'],
+  weight: ['300', '400', '500', '600', '700', '800'],
 });
 
 const instrumentSans = Instrument_Sans({
@@ -25,9 +25,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <head>
         <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+        {/* Material Symbols Outlined — used for icon tiles across the site */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          rel="stylesheet"
+        />
       </head>
-      <body className={`${libreBaskerville.variable} ${instrumentSans.variable}`}>{children}</body>
+      <body className={`${manrope.variable} ${instrumentSans.variable}`}>{children}</body>
     </html>
   );
 }
-
