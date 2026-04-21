@@ -100,14 +100,18 @@ export function BrochureSignup() {
 
     setIsSubmitting(true);
 
+    const submittedAt = new Date().toISOString();
+
     const payload = {
       first_name: firstName.trim(),
       family_name: familyName.trim(),
       name: `${firstName.trim()} ${familyName.trim()}`.trim(),
       email: email.trim().toLowerCase(),
       consent: true,
+      form_name: 'brochure_download',
       source: 'agenticsdlc-homepage-brochure-modal',
-      requested_at: new Date().toISOString(),
+      submitted_at: submittedAt,
+      requested_at: submittedAt,
       page_url: window.location.href,
       user_agent: navigator.userAgent,
     };
