@@ -119,19 +119,19 @@ export default function HomePage() {
         </header>
 
         <div className="hero-body">
-            <div className="hero-left">
-              <h1 className="hero-h1">
-                <span className="hero-h1-accent">Agentic SDLC:</span>
-                <br />
-                From AI coding tools to reliable delivery systems.
-              </h1>
-              <p className="hero-sub">
-                Strategic and hands-on support to design operating rules, supervision loops, and
-                measurable workflows for AI-enabled software delivery.
-              </p>
-              <p className="hero-support">
-                Move from AI experimentation to a delivery model your leadership team can trust.
-              </p>
+          <div className="hero-left">
+            <h1 className="hero-h1">
+              <span className="hero-h1-accent">Agentic SDLC:</span>
+              <br />
+              From AI coding tools to reliable delivery systems.
+            </h1>
+            <p className="hero-sub">
+              A practical course on coding agents, loops, harnesses, and governance patterns that
+              make a software factory possible.
+            </p>
+            <p className="hero-support">
+              Move from AI experimentation to a delivery model your clients can trust.
+            </p>
             <div className="hero-actions">
               <a
                 href="https://calendly.com/nicolasboitout/30min"
