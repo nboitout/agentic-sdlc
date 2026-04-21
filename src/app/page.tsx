@@ -52,6 +52,24 @@ const supervisionCards = [
   },
 ] as const;
 
+const audienceCards = [
+  {
+    icon: 'apartment',
+    title: 'Engineering leaders',
+    text: 'Teams moving from ad-hoc AI usage to governed delivery with measurable outcomes.',
+  },
+  {
+    icon: 'terminal',
+    title: 'Product & platform teams',
+    text: 'Organizations standardizing AI-assisted workflows across planning, build, review, and release.',
+  },
+  {
+    icon: 'handshake',
+    title: 'Consultancies & service firms',
+    text: 'Delivery groups that need speed gains without sacrificing supervision, quality, or accountability.',
+  },
+] as const;
+
 const metricsItems = [
   'AI contribution',
   'Rework',
