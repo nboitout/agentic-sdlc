@@ -59,7 +59,8 @@ function isProfessionalEmail(email: string) {
 
 export function BrochureSignup() {
   const [isOpen, setIsOpen] = useState(false);
-  const [fullName, setFullName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [familyName, setFamilyName] = useState('');
   const [email, setEmail] = useState('');
   const [consent, setConsent] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -76,8 +77,8 @@ export function BrochureSignup() {
   );
 
   const showNameError = useMemo(
-    () => hasSubmitted && fullName.trim().length < 2,
-    [fullName, hasSubmitted]
+    () => hasSubmitted && (firstName.trim().length < 2 || familyName.trim().length < 2),
+    [firstName, familyName, hasSubmitted]
   );
 
   useEffect(() => {
@@ -95,16 +96,22 @@ export function BrochureSignup() {
     event.preventDefault();
     setHasSubmitted(true);
 
-    if (fullName.trim().length < 2 || !isProfessionalEmail(email) || !consent) return;
+    if (firstName.trim().length < 2 || familyName.trim().length < 2 || !isProfessionalEmail(email) || !consent) return;
 
     setIsSubmitting(true);
 
+    const submittedAt = new Date().toISOString();
+
     const payload = {
-      name: fullName.trim(),
+      first_name: firstName.trim(),
+      family_name: familyName.trim(),
+      name: `${firstName.trim()} ${familyName.trim()}`.trim(),
       email: email.trim().toLowerCase(),
       consent: true,
+      form_name: 'brochure_download',
       source: 'agenticsdlc-homepage-brochure-modal',
-      requested_at: new Date().toISOString(),
+      submitted_at: submittedAt,
+      requested_at: submittedAt,
       page_url: window.location.href,
       user_agent: navigator.userAgent,
     };
@@ -124,7 +131,7 @@ export function BrochureSignup() {
 
     const subject = encodeURIComponent('Agentic SDLC brochure request');
     const body = encodeURIComponent(
-      `Please send the Agentic SDLC brochure to:\n${email.trim()}\n\nName: ${fullName.trim()}\nConsent accepted for communications from agentic-sdlc.it.`
+      `Please send the Agentic SDLC brochure to:\n${email.trim()}\n\nFirst name: ${firstName.trim()}\nFamily name: ${familyName.trim()}\nConsent accepted for communications from agentic-sdlc.it.`
     );
     window.location.href = `mailto:nicolas@agentic-sdlc.it?subject=${subject}&body=${body}`;
     setIsSubmitting(false);
@@ -157,23 +164,37 @@ export function BrochureSignup() {
             </p>
 
             <form className="brochure-form" onSubmit={handleSubmit} noValidate>
-              <label className="sr-only" htmlFor="brochure-name">
-                Full name
+              <label className="sr-only" htmlFor="brochure-first-name">
+                First name
               </label>
               <input
-                id="brochure-name"
+                id="brochure-first-name"
                 type="text"
                 className="brochure-input"
-                placeholder="Your full name"
-                value={fullName}
-                onChange={(event) => setFullName(event.target.value)}
+                placeholder="Your first name"
+                value={firstName}
+                onChange={(event) => setFirstName(event.target.value)}
+                aria-invalid={showNameError}
+                required
+              />
+
+              <label className="sr-only" htmlFor="brochure-family-name">
+                Family name
+              </label>
+              <input
+                id="brochure-family-name"
+                type="text"
+                className="brochure-input"
+                placeholder="Your family name"
+                value={familyName}
+                onChange={(event) => setFamilyName(event.target.value)}
                 aria-invalid={showNameError}
                 aria-describedby={showNameError ? 'brochure-name-error' : undefined}
                 required
               />
               {showNameError ? (
                 <p id="brochure-name-error" className="brochure-error">
-                  Please enter your full name.
+                  Please enter your first name and family name.
                 </p>
               ) : null}
 
