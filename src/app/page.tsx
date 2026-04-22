@@ -6,17 +6,47 @@ import { MetricsCharts } from '@/components/MetricsCharts';
 
 /* ── Content data ─────────────────────────────────────────────────── */
 
-const comparisonCards = [
+const augmentationCards = [
   {
-    icon: 'science',
-    title: 'Today: the sandbox',
-    text: 'Scattered copilots. Local experiments. Unclear value. No shared rules. No real metrics.',
+    icon: 'groups_3',
+    title: 'Classical T&M',
+    text: 'Buy stable teams for long project horizons. Scale by adding people. Optimize for utilization and cost per FTE.',
   },
   {
-    icon: 'precision_manufacturing',
-    title: 'Tomorrow: the factory',
-    text: 'Structured workflows. Explicit supervision. Measurable outcomes. Governed delivery. Scalable execution.',
+    icon: 'lan',
+    title: 'Programmable execution',
+    text: 'Buy targeted execution bandwidth. Add parallel streams for short bursts. Optimize for throughput, cycle time, and speed of adaptation.',
   },
+] as const;
+
+const programmableExecutionCards = [
+  {
+    icon: 'call_split',
+    title: 'Divisible',
+    text: 'You do not buy a team. You allocate execution to a migration stream, a testing loop, a refactoring wave, or a delivery surge.',
+  },
+  {
+    icon: 'timelapse',
+    title: 'Time-compressed',
+    text: 'Delivery units shrink into short bursts. What used to take quarters gets reorganized into targeted 2 to 8 week interventions.',
+  },
+  {
+    icon: 'tune',
+    title: 'Elastic',
+    text: 'Execution scales up when pressure rises, shuts down when the job is done, and restarts when priorities change.',
+  },
+  {
+    icon: 'alt_route',
+    title: 'Schedulable',
+    text: 'Execution is routed across priorities. Clients decide where bandwidth goes instead of statically staffing one project for years.',
+  },
+] as const;
+
+const bandwidthItems = [
+  'Accelerate a critical initiative without rebuilding the org chart',
+  'Run several validated workstreams in parallel',
+  'Absorb peak demand without locking into 2-3 year staffing',
+  'Shift external support toward bottlenecks, not generic headcount',
 ] as const;
 
 const blueprintSteps = [
@@ -90,7 +120,7 @@ export default function HomePage() {
             <span className="logo-name">Agentic SDLC</span>
           </a>
           <nav className="header-nav" aria-label="Primary">
-            <a href="#sandbox-factory">Sandbox / Factory</a>
+            <a href="#sandbox-factory">Beyond T&amp;M</a>
             <a href="#blueprint">Blueprint</a>
             <a href="#how-we-help">Metrics</a>
             <a href="#contact">Contact</a>
@@ -267,42 +297,80 @@ export default function HomePage() {
 
         <div className="hero-connector" aria-hidden="true">
           <div className="connector-side">
-            <span className="connector-label">Sandbox mode</span>
-            <p className="connector-desc">Fragmented usage, unclear supervision, anecdotal value.</p>
+            <span className="connector-label">Classical T&amp;M</span>
+            <p className="connector-desc">Stable teams, long horizons, sequential execution.</p>
           </div>
           <div className="connector-center connector-center-long">
-            Agentic SDLC moves delivery from experimentation to control
+            Agentic SDLC helps teams move from staffing projects to routing execution
           </div>
           <div className="connector-side connector-side-right">
-            <span className="connector-label">Factory mode</span>
-            <p className="connector-desc">Structured workflows, explicit supervision, measurable execution.</p>
+            <span className="connector-label">Programmable execution</span>
+            <p className="connector-desc">Targeted bursts, parallel streams, elastic execution bandwidth.</p>
           </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          SANDBOX / FACTORY
+          BEYOND TIME & MATERIALS
           ══════════════════════════════════════════════════════════════ */}
       <section className="section s-white" id="sandbox-factory" aria-labelledby="comparison-heading">
         <div className="section-inner">
           <div className="section-intro" data-reveal="">
             <div className="intro-heading-col">
-              <span className="eyebrow">Sandbox / Factory</span>
-              <h2 id="comparison-heading" className="section-heading">
-                Most software organizations are still in sandbox mode.
+              <span className="eyebrow">Beyond Time &amp; Materials</span>
+              <h2 id="comparison-heading" className="section-heading section-heading-wide">
+                The new model of team augmentation is execution bandwidth.
               </h2>
             </div>
             <div className="intro-text-col">
               <p>
-                Tool usage is appearing everywhere, but a real delivery model is still missing. The
-                shift is from scattered experimentation to a controlled system that can be
-                supervised, measured, and scaled.
+                Classical team augmentation was built for a world where execution was scarce and
+                projects consumed years. With coding agents, delivery compresses, parallelism rises,
+                and clients can absorb more execution internally. External teams do not disappear.
+                Their role changes.
               </p>
             </div>
           </div>
 
           <div className="card-grid card-grid-2" data-reveal-stagger="">
-            {comparisonCards.map((card) => (
+            {augmentationCards.map((card) => (
+              <article key={card.title} className="card card-accent">
+                <div className="icon-tile" aria-hidden="true">
+                  <span className="material-symbols-outlined">{card.icon}</span>
+                </div>
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="bring-grid programmable-band" data-reveal="">
+            <div>
+              <span className="eyebrow">What changes for clients</span>
+              <h3 className="bring-heading programmable-heading">
+                Projects used to consume time. Now they consume execution bandwidth.
+              </h3>
+              <p className="engage-body">
+                Instead of staffing one project for 2 to 3 years, clients can allocate short,
+                targeted bursts of execution where bottlenecks are highest and validated
+                throughput matters most.
+              </p>
+            </div>
+
+            <div className="bring-lists">
+              <div className="list-card">
+                <span className="list-label">Programmable execution lets teams</span>
+                <ul className="plain-list">
+                  {bandwidthItems.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="card-grid card-grid-4" data-reveal-stagger="">
+            {programmableExecutionCards.map((card) => (
               <article key={card.title} className="card card-accent">
                 <div className="icon-tile" aria-hidden="true">
                   <span className="material-symbols-outlined">{card.icon}</span>
@@ -531,11 +599,11 @@ export default function HomePage() {
           <div className="cta-inner" data-reveal="">
             <span className="eyebrow eyebrow-brass">Start the conversation</span>
             <h2 id="contact-heading" className="cta-heading">
-              Still in sandbox mode?
+              Still scaling by adding people?
             </h2>
             <p className="cta-sub">
               If AI is already entering your delivery workflows, the next step is not more
-              experimentation. It is control, supervision, and measurable execution.
+              staffing. It is a delivery model built around supervision, parallelism, and measurable execution.
             </p>
             <div className="cta-actions">
               <a
@@ -568,7 +636,7 @@ export default function HomePage() {
             <p className="footer-tagline">AI-enabled software delivery transformation</p>
           </div>
           <nav className="footer-links" aria-label="Footer">
-            <a href="#sandbox-factory">Sandbox / Factory</a>
+            <a href="#sandbox-factory">Beyond T&amp;M</a>
             <a href="#blueprint">Blueprint</a>
             <a href="#how-we-help">Metrics</a>
             <a href="#contact">Contact</a>
