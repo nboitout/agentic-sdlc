@@ -948,6 +948,22 @@ a { color: inherit; text-decoration: none; }
 .card-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .card-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
+.card-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.programmable-band {
+  margin-top: clamp(28px, 4vw, 40px);
+  margin-bottom: clamp(28px, 4vw, 40px);
+  padding: clamp(28px, 4vw, 40px);
+  border: 1px solid rgba(199,196,215,.5);
+  border-radius: calc(var(--r-card) + 4px);
+  background: linear-gradient(180deg, rgba(241,243,255,.72), rgba(255,255,255,.96));
+  box-shadow: 0 10px 28px rgba(20,27,43,.05);
+}
+.programmable-heading {
+  max-width: 14ch;
+  margin-bottom: 20px;
+}
+
 .card {
   background: var(--white);
   border: 1px solid rgba(199,196,215,.4);
