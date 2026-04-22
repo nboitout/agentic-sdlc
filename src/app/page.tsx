@@ -332,7 +332,7 @@ export default function HomePage() {
           </div>
 
           <div className="btm-shift" data-reveal="">
-            <div className="btm-shift-card">
+            <div className="btm-shift-card btm-shift-card-before">
               <span className="btm-shift-label">Before</span>
               <p>people × time</p>
               <span>billable days · stable staffing · long projects</span>
@@ -349,10 +349,18 @@ export default function HomePage() {
             <div>
               <span className="btm-example-label">Classical T&amp;M</span>
               <strong>5 engineers for 18 months</strong>
+              <div className="btm-capacity-track btm-capacity-track-before" aria-hidden="true">
+                <span className="btm-capacity-bar btm-capacity-bar-before" />
+              </div>
             </div>
             <div>
               <span className="btm-example-label">Programmable execution</span>
               <strong>3 execution streams for 4–6 weeks</strong>
+              <div className="btm-capacity-track" aria-hidden="true">
+                <span className="btm-capacity-bar btm-capacity-stream" />
+                <span className="btm-capacity-bar btm-capacity-stream" />
+                <span className="btm-capacity-bar btm-capacity-stream" />
+              </div>
             </div>
           </div>
 
@@ -372,22 +380,18 @@ export default function HomePage() {
           </div>
 
           <div className="btm-grid" data-reveal-stagger="">
-            <article className="btm-card">
-              <h3>Divisible</h3>
-              <p>Execution splits into targeted streams: migration, testing, refactoring.</p>
-            </article>
-            <article className="btm-card">
-              <h3>Time-compressed</h3>
-              <p>Work lands in weeks, not in multi-year staffing cycles.</p>
-            </article>
-            <article className="btm-card">
-              <h3>Elastic</h3>
-              <p>Ramp up fast, shut down cleanly, restart when priorities change.</p>
-            </article>
-            <article className="btm-card">
-              <h3>Schedulable</h3>
-              <p>Execution is routed across priorities, not statically assigned to teams.</p>
-            </article>
+            {([
+              { title: 'Divisible',        text: 'Execution splits into targeted streams: migration, testing, refactoring.', num: '01' },
+              { title: 'Time-compressed',  text: 'Work lands in weeks, not in multi-year staffing cycles.',                    num: '02' },
+              { title: 'Elastic',          text: 'Ramp up fast, shut down cleanly, restart when priorities change.',           num: '03' },
+              { title: 'Schedulable',      text: 'Execution is routed across priorities, not statically assigned to teams.',   num: '04' },
+            ] as const).map(({ title, text, num }) => (
+              <article key={title} className="btm-card">
+                <span className="btm-card-num" aria-hidden="true">{num}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
           </div>
 
           <p className="btm-close" data-reveal="">
@@ -449,9 +453,20 @@ export default function HomePage() {
             <div className="bring-lists" data-reveal="">
               <div className="list-card">
                 <span className="list-label">What must be measured</span>
-                <ul className="plain-list">
-                  {metricsItems.map((item) => (
-                    <li key={item}>{item}</li>
+                <ul className="metric-pill-list">
+                  {([
+                    { name: 'AI contribution', desc: 'Share of work authored by coding agents per sprint' },
+                    { name: 'Rework',          desc: 'PRs that revisit already-reviewed code paths' },
+                    { name: 'Quality',         desc: 'Coverage score, lint pass rate, and test health' },
+                    { name: 'Supervision',     desc: 'Human review coverage across all agent-merged PRs' },
+                  ] as const).map(({ name, desc }) => (
+                    <li key={name} className="metric-pill">
+                      <span className="metric-pill-dot" aria-hidden="true" />
+                      <div>
+                        <strong className="metric-pill-name">{name}</strong>
+                        <p className="metric-pill-desc">{desc}</p>
+                      </div>
+                    </li>
                   ))}
                 </ul>
               </div>
