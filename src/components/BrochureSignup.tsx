@@ -85,11 +85,11 @@ function buildPayload(
 /* ── Component ────────────────────────────────────────────────────── */
 
 export function BrochureSignup() {
-  const [isOpen,       setIsOpen]       = useState(false);
-  const [firstName,    setFirstName]    = useState('');
-  const [familyName,   setFamilyName]   = useState('');
-  const [email,        setEmail]        = useState('');
-  const [consent,      setConsent]      = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [familyName, setFamilyName] = useState('');
+  const [email, setEmail] = useState('');
+  const [consent, setConsent] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -122,7 +122,7 @@ export function BrochureSignup() {
 
   const showNameError = useMemo(
     () => hasSubmitted && (firstName.trim().length < 2 || familyName.trim().length < 2),
-    [firstName, familyName, hasSubmitted],
+    [firstName, familyName, hasSubmitted]
   );
 
   /* ── Close handler — captures partial lead if email was entered ─── */
@@ -162,20 +162,26 @@ export function BrochureSignup() {
     event.preventDefault();
     setHasSubmitted(true);
 
-    if (
-      firstName.trim().length < 2 ||
-      familyName.trim().length < 2 ||
-      !isProfessionalEmail(email) ||
-      !consent
-    ) return;
+    if (firstName.trim().length < 2 || familyName.trim().length < 2 || !isProfessionalEmail(email) || !consent) return;
 
     setIsSubmitting(true);
     const submittedAt = new Date().toISOString();
 
-    /* 1 ─ Sheet write: complete status.
-          Mark guard so handleClose does NOT send a duplicate partial row. */
-    sheetSentRef.current = true;
-    void sendToSheet(buildPayload(firstName, familyName, email, consent, 'complete'));
+    const submittedAtIso = new Date().toISOString();
+
+    const payload = {
+      first_name: firstName.trim(),
+      family_name: familyName.trim(),
+      name: `${firstName.trim()} ${familyName.trim()}`.trim(),
+      email: email.trim().toLowerCase(),
+      consent: true,
+      form_name: 'brochure_download',
+      source: 'agenticsdlc-homepage-brochure-modal',
+      submitted_at: submittedAtIso,
+      requested_at: submittedAtIso,
+      page_url: window.location.href,
+      user_agent: navigator.userAgent,
+    };
 
     /* 2 ─ Existing webhook (unchanged behaviour) */
     const webhookUrl = process.env.NEXT_PUBLIC_BROCHURE_WEBHOOK_URL;
@@ -205,14 +211,10 @@ export function BrochureSignup() {
 
     /* 3 ─ Mailto fallback (unchanged) */
     const subject = encodeURIComponent('Agentic SDLC brochure request');
-    const body    = encodeURIComponent(
-      `Please send the Agentic SDLC brochure to:\n${email.trim()}\n\n` +
-      `First name: ${firstName.trim()}\n` +
-      `Family name: ${familyName.trim()}\n` +
-      `Consent accepted for communications from agentic-sdlc.com.`,
+    const body = encodeURIComponent(
+      `Please send the Agentic SDLC brochure to:\n${email.trim()}\n\nFirst name: ${firstName.trim()}\nFamily name: ${familyName.trim()}\nConsent accepted for communications from agentic-sdlc.com.`
     );
     window.location.href = `mailto:nicolas@agentic-sdlc.com?subject=${subject}&body=${body}`;
-
     setIsSubmitting(false);
     setIsOpen(false);
   };
@@ -260,7 +262,9 @@ export function BrochureSignup() {
             </p>
 
             <form className="brochure-form" onSubmit={handleSubmit} noValidate>
-              <label className="sr-only" htmlFor="brochure-first-name">First name</label>
+              <label className="sr-only" htmlFor="brochure-first-name">
+                First name
+              </label>
               <input
                 id="brochure-first-name"
                 type="text"
@@ -272,7 +276,9 @@ export function BrochureSignup() {
                 required
               />
 
-              <label className="sr-only" htmlFor="brochure-family-name">Family name</label>
+              <label className="sr-only" htmlFor="brochure-family-name">
+                Family name
+              </label>
               <input
                 id="brochure-family-name"
                 type="text"
@@ -316,8 +322,7 @@ export function BrochureSignup() {
                   aria-invalid={showConsentError}
                 />
                 <span>
-                  I would like to receive communications from{' '}
-                  <strong>agentic-sdlc.com</strong> related to services, events, and updates.
+                  I would like to receive communications from <strong>agentic-sdlc.com</strong> related to services, events, and updates.
                   For more information, please see our Privacy Policy.
                 </span>
               </label>

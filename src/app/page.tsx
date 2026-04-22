@@ -132,9 +132,10 @@ export default function HomePage() {
             </p>
             <div className="hero-actions">
               <a
-                href="https://calendly.com/nicolasboitout/30min"
+                href="https://calendly.com/nicolasboitout/new-meeting/"
                 className="btn btn-primary"
-                data-calendly-link="true"
+                target="_blank"
+                rel="noreferrer"
               >
                 Book an intro call
               </a>
@@ -551,59 +552,9 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          BLUEPRINT / THREE LEVELS (dark)
-          ══════════════════════════════════════════════════════════════ */}
-      <section className="section s-dark" id="blueprint" aria-labelledby="problem-heading">
-        <div className="section-inner">
-          <div className="why-now-grid why-now-grid-wide">
-            <div data-reveal="">
-              <span className="eyebrow eyebrow-dark">Blueprint</span>
-              <h2 id="problem-heading" className="why-now-heading why-now-heading-wide">
-                AI tool adoption is not a delivery model.
-              </h2>
-              <div className="why-now-prose">
-                <p>
-                  Buying licenses and rolling out coding assistants does not tell a company how to
-                  deliver differently. The real challenge is to turn rising productivity and time
-                  compression into a new operating model.
-                </p>
-                <p>
-                  As delivery cycles shrink, the allocation of people becomes more dynamic. The
-                  question is no longer who sits on a project for 18 months. It becomes: what kind
-                  of execution system are we actually building?
-                </p>
-              </div>
-            </div>
-
-            <div className="levels-panel" data-reveal="">
-              <span className="levels-label">Three levels</span>
-              <div className="levels-list">
-                {levelsCards.map((item) => (
-                  <article key={item.title} className="levels-item">
-                    <h3>{item.title}</h3>
-                    <p>{item.text}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="blueprint-grid" data-reveal-stagger="">
-            {blueprintCards.map((item) => (
-              <article key={item.title} className="blueprint-card">
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-      {/* ══════════════════════════════════════════════════════════════
           ENGAGEMENT
           ══════════════════════════════════════════════════════════════ */}
-      <section className="section s-canvas" id="engagement" aria-labelledby="engagement-heading">
+      <section className="section s-canvas" id="who-its-for" aria-labelledby="audience-heading">
         <div className="section-inner">
           <div className="engage-grid">
             <div data-reveal="">
@@ -616,11 +567,17 @@ export default function HomePage() {
                 next step with clear priorities, governance, and measurement.
               </p>
             </div>
-
-            <blockquote className="pull-quote" data-reveal="">
-              One focused engagement to define the ground truth, the priorities, and the operating
-              rules that make AI supervision real.
-            </blockquote>
+          </div>
+          <div className="card-grid card-grid-3" data-reveal-stagger="">
+            {audienceCards.map((card) => (
+              <article key={card.title} className="card card-accent">
+                <div className="icon-tile" aria-hidden="true">
+                  <span className="material-symbols-outlined">{card.icon}</span>
+                </div>
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -641,9 +598,10 @@ export default function HomePage() {
             </p>
             <div className="cta-actions">
               <a
-                href="https://calendly.com/nicolasboitout/30min"
+                href="https://calendly.com/nicolasboitout/new-meeting/"
                 className="btn btn-dark"
-                data-calendly-link="true"
+                target="_blank"
+                rel="noreferrer"
               >
                 Book an intro call
               </a>
