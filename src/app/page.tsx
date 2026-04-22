@@ -132,7 +132,7 @@ export default function HomePage() {
             </p>
             <div className="hero-actions">
               <a
-                href="https://calendly.com/nicolasboitout/30min"
+                href="https://calendly.com/nicolasboitout/new-meeting"
                 className="btn btn-primary"
                 data-calendly-link="true"
               >
@@ -146,7 +146,7 @@ export default function HomePage() {
               >
                 Self-Assessment for Executives
               </a>
-              <BrochureSignup />
+              
             </div>
           </div>
 
@@ -641,7 +641,7 @@ export default function HomePage() {
             </p>
             <div className="cta-actions">
               <a
-                href="https://calendly.com/nicolasboitout/30min"
+                href="https://calendly.com/nicolasboitout/new-meeting"
                 className="btn btn-dark"
                 data-calendly-link="true"
               >

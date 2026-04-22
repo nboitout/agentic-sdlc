@@ -50,7 +50,7 @@ export function ClientEnhancements() {
     const links = Array.from(document.querySelectorAll('[data-calendly-link="true"]'));
     const handleClick = (event: Event) => {
       event.preventDefault();
-      window.Calendly?.initPopupWidget({ url: 'https://calendly.com/nicolasboitout/30min' });
+      window.Calendly?.initPopupWidget({ url: 'https://calendly.com/nicolasboitout/new-meeting' });
     };
 
     links.forEach((link) => link.addEventListener('click', handleClick));

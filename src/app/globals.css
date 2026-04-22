@@ -361,7 +361,7 @@ a { color: inherit; text-decoration: none; }
 }
 .hero-left { display: flex; flex-direction: column; gap: 24px; }
 .hero-left::before {
-  content: 'THE FUTURE OF ENGINEERING';
+  content: 'THE FUTURE OF SOFTWARE ENGINEERING';
   display: inline-flex;
   width: fit-content;
   padding: 5px 14px;
