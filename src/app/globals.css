@@ -2121,3 +2121,219 @@ a { color: inherit; text-decoration: none; }
     grid-template-columns: 1fr;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   REDESIGN v3 — Beyond Time & Materials · Metrics · Blueprint
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── BTM: "Before" shift card — muted / legacy treatment ─────────── */
+.btm-shift-card-before {
+  background: var(--surface-container-low);
+  border-color: var(--outline-variant);
+  opacity: 0.72;
+}
+.btm-shift-card-before .btm-shift-label { color: var(--outline); }
+.btm-shift-card-before p              { color: var(--muted) !important; }
+.btm-shift-card-before span:last-child { color: var(--outline) !important; }
+
+/* "Before" card gets a single muted bar showing long single-thread work */
+.btm-shift-card-before::after {
+  content: '';
+  display: block;
+  margin-top: 18px;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--outline-variant) 0 100%, transparent 100%);
+}
+
+/* ── BTM: "Now" shift card — full indigo with white text ─────────── */
+.btm-shift-card-accent {
+  background: var(--hero-gradient);
+  border-color: transparent;
+  box-shadow: 0 20px 48px rgba(70,72,212,.30);
+}
+.btm-shift-card-accent .btm-shift-label { color: rgba(255,255,255,.68); }
+.btm-shift-card-accent p               { color: #fff !important; }
+.btm-shift-card-accent span:last-child  { color: rgba(255,255,255,.76) !important; }
+
+/* "Now" card gets 3 parallel shorter bars to show concurrent streams */
+.btm-shift-card-accent::after {
+  content: '';
+  display: block;
+  margin-top: 18px;
+  height: 20px;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.88) 28%, transparent 28%) 0    0  / 100% 6px no-repeat,
+    linear-gradient(90deg, rgba(255,255,255,.62) 34%, transparent 34%) 0    7px / 100% 6px no-repeat,
+    linear-gradient(90deg, rgba(255,255,255,.42) 22%, transparent 22%) 0   14px / 100% 6px no-repeat;
+}
+
+/* ── BTM: Example section capacity-track bars ────────────────────── */
+.btm-capacity-track {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 16px;
+}
+.btm-capacity-bar {
+  height: 7px;
+  border-radius: 4px;
+}
+.btm-capacity-bar-before {
+  width: 100%;
+  background: linear-gradient(90deg, var(--outline-variant), rgba(199,196,215,.35));
+}
+.btm-capacity-stream       { background: var(--primary); }
+.btm-capacity-stream:nth-child(1) { width: 30%; opacity: 0.95; }
+.btm-capacity-stream:nth-child(2) { width: 36%; opacity: 0.70; }
+.btm-capacity-stream:nth-child(3) { width: 24%; opacity: 0.50; }
+
+/* ── BTM: Property cards — left accent border + step number ─────── */
+.btm-card {
+  border-left: 3px solid var(--primary);
+  padding-left: 28px;
+}
+.btm-card-num {
+  display: block;
+  font-family: var(--display);
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  color: var(--primary);
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+
+/* ── Metrics: Enriched metric pills with description ─────────────── */
+.metric-pill-list {
+  display: grid;
+  gap: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.metric-pill {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--outline-variant);
+}
+.metric-pill:last-child  { border-bottom: none; padding-bottom: 0; }
+.metric-pill:first-child { padding-top: 0; }
+.metric-pill-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary);
+  flex-shrink: 0;
+  margin-top: 5px;
+  box-shadow: 0 0 0 4px rgba(70,72,212,.12);
+}
+.metric-pill-name {
+  display: block;
+  font-family: var(--display);
+  font-size: .97rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.02em;
+  line-height: 1.2;
+}
+.metric-pill-desc {
+  font-size: .84rem;
+  color: var(--muted);
+  line-height: 1.45;
+  margin-top: 3px !important;
+}
+/* Hover: dot activates on list-card hover */
+.list-card:hover .metric-pill-dot {
+  background: var(--primary-light);
+  box-shadow: 0 0 0 5px rgba(70,72,212,.18);
+}
+
+/* ── Blueprint: Sequential step numbers via CSS counters ─────────── */
+.blueprint-grid {
+  counter-reset: blueprint-step;
+}
+.blueprint-card {
+  counter-increment: blueprint-step;
+}
+.blueprint-card::before {
+  content: '0' counter(blueprint-step);
+  display: block;
+  font-family: var(--display);
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  color: var(--primary-fixed-dim);
+  opacity: 0.6;
+  margin-bottom: 16px;
+}
+
+/* ── Blueprint: Levels panel — integrated dark treatment ─────────── */
+.levels-panel {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.12);
+  border-top: 3px solid var(--primary-fixed-dim);
+  box-shadow: 0 16px 40px rgba(0,0,0,.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.levels-label            { color: var(--dark-ink); }
+.levels-item h3          { color: var(--dark-ink); }
+.levels-item p           { color: var(--dark-muted); }
+.levels-item             { border-top-color: rgba(255,255,255,.1); }
+
+/* ── Blueprint: Numbered level items via CSS counters ────────────── */
+.levels-list { counter-reset: level-step; }
+.levels-item {
+  counter-increment: level-step;
+  position: relative;
+  padding-left: 42px;
+}
+.levels-item::after {
+  content: '0' counter(level-step);
+  position: absolute;
+  left: 0;
+  top: 18px;
+  font-family: var(--display);
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  color: var(--primary-fixed-dim);
+  opacity: 0.65;
+}
+
+/* ── Blueprint: Connecting progress track below blueprint grid ───── */
+.blueprint-grid {
+  position: relative;
+}
+.blueprint-grid::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  left: calc(10% + 10px);
+  right: calc(10% + 10px);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(192,193,255,.25) 10%,
+    rgba(192,193,255,.25) 90%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.blueprint-card { position: relative; z-index: 1; }
+
+/* Responsive: hide connecting line below 2-col breakpoint */
+@media (max-width: 800px) {
+  .blueprint-grid::before { display: none; }
+}
+
+/* ── BTM: Responsive adjustments ────────────────────────────────── */
+@media (max-width: 720px) {
+  .btm-card { padding-left: 22px; }
+}
