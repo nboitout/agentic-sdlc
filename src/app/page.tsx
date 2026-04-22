@@ -6,32 +6,43 @@ import { MetricsCharts } from '@/components/MetricsCharts';
 
 /* ── Content data ─────────────────────────────────────────────────── */
 
-const comparisonCards = [
+
+const blueprintCards = [
   {
-    icon: 'science',
-    title: 'Today: the sandbox',
-    text: 'Scattered copilots. Local experiments. Unclear value. No shared rules. No real metrics.',
+    title: 'Ground truth first',
+    text: 'Separate real adoption from demo culture, isolated prompting, and AI theater.',
   },
   {
-    icon: 'precision_manufacturing',
-    title: 'Tomorrow: the factory',
-    text: 'Structured workflows. Explicit supervision. Measurable outcomes. Governed delivery. Scalable execution.',
+    title: 'Prioritize the bottlenecks',
+    text: 'Focus on where agentic workflows remove waiting time, handoffs, and rework.',
+  },
+  {
+    title: 'Redesign supervision',
+    text: 'Clarify what agents can do alone, what must be reviewed, and where escalation starts.',
+  },
+  {
+    title: 'Instrument the system',
+    text: 'Measure AI contribution, throughput, rework, quality, and supervision coverage.',
+  },
+  {
+    title: 'Launch the next operating model',
+    text: 'Turn the blueprint into a concrete sprint, pilot, or delivery transformation path.',
   },
 ] as const;
 
-const blueprintSteps = [
-  'Establish ground truth',
-  'Pinpoint the highest ROI actions',
-  'Shift from creator to supervisor',
-  'Put metrics in place',
-  'Move to immediate action',
-] as const;
-
-const roleCards = [
-  { icon: 'rule', label: 'Policy Design' },
-  { icon: 'model_training', label: 'Intent Mapping' },
-  { icon: 'reviews', label: 'Formal Review' },
-  { icon: 'rocket_launch', label: 'Delivery Launch' },
+const levelsCards = [
+  {
+    title: 'Agentic SDLC',
+    text: 'How software delivery changes',
+  },
+  {
+    title: 'Agentic engineering',
+    text: 'How engineers work inside that model',
+  },
+  {
+    title: 'Harness engineering',
+    text: 'How agents are made reliable enough to participate',
+  },
 ] as const;
 
 const supervisionCards = [
@@ -90,7 +101,7 @@ export default function HomePage() {
             <span className="logo-name">Agentic SDLC</span>
           </a>
           <nav className="header-nav" aria-label="Primary">
-            <a href="#sandbox-factory">Sandbox / Factory</a>
+            <a href="#sandbox-factory">Beyond T&amp;M</a>
             <a href="#blueprint">Blueprint</a>
             <a href="#how-we-help">Metrics</a>
             <a href="#contact">Contact</a>
@@ -275,15 +286,15 @@ export default function HomePage() {
 
         <div className="hero-connector" aria-hidden="true">
           <div className="connector-side">
-            <span className="connector-label">Sandbox mode</span>
-            <p className="connector-desc">Fragmented usage, unclear supervision, anecdotal value.</p>
+            <span className="connector-label">Classical T&amp;M</span>
+            <p className="connector-desc">Body shopping, billable days, long staffing cycles.</p>
           </div>
           <div className="connector-center connector-center-long">
-            Agentic SDLC moves delivery from experimentation to control
+            Agentic SDLC also changes the business model of software delivery
           </div>
           <div className="connector-side connector-side-right">
-            <span className="connector-label">Factory mode</span>
-            <p className="connector-desc">Structured workflows, explicit supervision, measurable execution.</p>
+            <span className="connector-label">Programmable execution</span>
+            <p className="connector-desc">Short bursts, parallel streams, dynamic allocation.</p>
           </div>
         </div>
       </section>
@@ -291,79 +302,97 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════════════
           SANDBOX / FACTORY
           ══════════════════════════════════════════════════════════════ */}
-      <section className="section s-white" id="sandbox-factory" aria-labelledby="comparison-heading">
-        <div className="section-inner">
-          <div className="section-intro" data-reveal="">
-            <div className="intro-heading-col">
-              <span className="eyebrow">Sandbox / Factory</span>
-              <h2 id="comparison-heading" className="section-heading">
-                Most software organizations are still in sandbox mode.
-              </h2>
+      <section className="section s-white btm-shell" id="sandbox-factory" aria-labelledby="comparison-heading">
+        <div className="section-inner btm-inner">
+          <div className="btm-head" data-reveal="">
+            <span className="eyebrow">Beyond Time &amp; Materials</span>
+            <h2 id="comparison-heading" className="btm-heading">
+              Beyond Time &amp; Materials
+            </h2>
+            <p className="btm-subtitle">
+              Staffing sold time. The next model sells execution bursts.
+            </p>
+          </div>
+
+          <div className="btm-prose" data-reveal="">
+            <p>
+              Classical team augmentation was built for a world where execution was scarce and
+              projects consumed years. You staffed teams, sold billable days, and scaled with
+              headcount.
+            </p>
+            <p>
+              With coding agents, productivity rises, delivery compresses, and parallelism
+              increases. Clients can absorb more execution internally, which means people are no
+              longer allocated to projects in the same static way.
+            </p>
+            <p className="btm-emphasis">
+              External teams do not disappear. But they stop being long staffing commitments. They
+              become short, targeted execution bursts.
+            </p>
+          </div>
+
+          <div className="btm-shift" data-reveal="">
+            <div className="btm-shift-card">
+              <span className="btm-shift-label">Before</span>
+              <p>people × time</p>
+              <span>billable days · stable staffing · long projects</span>
             </div>
-            <div className="intro-text-col">
-              <p>
-                Tool usage is appearing everywhere, but a real delivery model is still missing. The
-                shift is from scattered experimentation to a controlled system that can be
-                supervised, measured, and scaled.
-              </p>
+            <div className="btm-shift-arrow" aria-hidden="true">→</div>
+            <div className="btm-shift-card btm-shift-card-accent">
+              <span className="btm-shift-label">Now</span>
+              <p>execution bursts</p>
+              <span>parallel streams · short cycles · dynamic allocation</span>
             </div>
           </div>
 
-          <div className="card-grid card-grid-2" data-reveal-stagger="">
-            {comparisonCards.map((card) => (
-              <article key={card.title} className="card card-accent">
-                <div className="icon-tile" aria-hidden="true">
-                  <span className="material-symbols-outlined">{card.icon}</span>
-                </div>
-                <h3>{card.title}</h3>
-                <p>{card.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════
-          BLUEPRINT (dark)
-          ══════════════════════════════════════════════════════════════ */}
-      <section className="section s-dark" id="blueprint" aria-labelledby="problem-heading">
-        <div className="section-inner">
-          <div className="why-now-grid">
-            <div data-reveal="">
-              <span className="eyebrow eyebrow-dark">Problem</span>
-              <h2 id="problem-heading" className="why-now-heading">
-                AI tool adoption is not a delivery model.
-              </h2>
-              <div className="why-now-prose">
-                <p>
-                  The problem is not access to AI tools. The problem is turning isolated usage into
-                  a system that leadership can trust and engineering can run.
-                </p>
-              </div>
+          <div className="btm-example" data-reveal="">
+            <div>
+              <span className="btm-example-label">Classical T&amp;M</span>
+              <strong>5 engineers for 18 months</strong>
             </div>
-
-            <aside className="aside-card" data-reveal="">
-              <span className="aside-label">Blueprint</span>
-              <p className="aside-copy">A practical blueprint for AI supervision in software delivery.</p>
-              <ul className="dot-list">
-                {blueprintSteps.map((step) => (
-                  <li key={step}>{step}</li>
-                ))}
-              </ul>
-            </aside>
+            <div>
+              <span className="btm-example-label">Programmable execution</span>
+              <strong>3 execution streams for 4–6 weeks</strong>
+            </div>
           </div>
 
-          {/* 4-col role-row (from inspiration "Elevating the Architect") */}
-          <div className="role-grid" data-reveal-stagger="">
-            {roleCards.map((role) => (
-              <div key={role.label} className="role-card">
-                <div className="icon-tile icon-tile-dark" aria-hidden="true">
-                  <span className="material-symbols-outlined">{role.icon}</span>
-                </div>
-                <h4>{role.label}</h4>
-              </div>
-            ))}
+          <div className="btm-clients" data-reveal="">
+            <div>
+              <span className="eyebrow">What changes for clients</span>
+              <h3 className="btm-clients-title">
+                The decision is no longer how many people to staff for how many months.
+              </h3>
+            </div>
+            <ul className="btm-list">
+              <li>How much execution should we inject right now?</li>
+              <li>Which initiatives deserve short bursts of acceleration?</li>
+              <li>Where do we need parallel streams instead of more billable days?</li>
+              <li>When should capacity ramp up, shut down, or restart?</li>
+            </ul>
           </div>
+
+          <div className="btm-grid" data-reveal-stagger="">
+            <article className="btm-card">
+              <h3>Divisible</h3>
+              <p>Execution splits into targeted streams: migration, testing, refactoring.</p>
+            </article>
+            <article className="btm-card">
+              <h3>Time-compressed</h3>
+              <p>Work lands in weeks, not in multi-year staffing cycles.</p>
+            </article>
+            <article className="btm-card">
+              <h3>Elastic</h3>
+              <p>Ramp up fast, shut down cleanly, restart when priorities change.</p>
+            </article>
+            <article className="btm-card">
+              <h3>Schedulable</h3>
+              <p>Execution is routed across priorities, not statically assigned to teams.</p>
+            </article>
+          </div>
+
+          <p className="btm-close" data-reveal="">
+            Projects used to consume billable days. Now they consume execution bursts.
+          </p>
         </div>
       </section>
 
@@ -507,6 +536,56 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
+          BLUEPRINT / THREE LEVELS (dark)
+          ══════════════════════════════════════════════════════════════ */}
+      <section className="section s-dark" id="blueprint" aria-labelledby="problem-heading">
+        <div className="section-inner">
+          <div className="why-now-grid why-now-grid-wide">
+            <div data-reveal="">
+              <span className="eyebrow eyebrow-dark">Blueprint</span>
+              <h2 id="problem-heading" className="why-now-heading why-now-heading-wide">
+                AI tool adoption is not a delivery model.
+              </h2>
+              <div className="why-now-prose">
+                <p>
+                  Buying licenses and rolling out coding assistants does not tell a company how to
+                  deliver differently. The real challenge is to turn rising productivity and time
+                  compression into a new operating model.
+                </p>
+                <p>
+                  As delivery cycles shrink, the allocation of people becomes more dynamic. The
+                  question is no longer who sits on a project for 18 months. It becomes: what kind
+                  of execution system are we actually building?
+                </p>
+              </div>
+            </div>
+
+            <div className="levels-panel" data-reveal="">
+              <span className="levels-label">Three levels</span>
+              <div className="levels-list">
+                {levelsCards.map((item) => (
+                  <article key={item.title} className="levels-item">
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="blueprint-grid" data-reveal-stagger="">
+            {blueprintCards.map((item) => (
+              <article key={item.title} className="blueprint-card">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* ══════════════════════════════════════════════════════════════
           ENGAGEMENT
           ══════════════════════════════════════════════════════════════ */}
       <section className="section s-canvas" id="engagement" aria-labelledby="engagement-heading">
@@ -576,7 +655,7 @@ export default function HomePage() {
             <p className="footer-tagline">AI-enabled software delivery transformation</p>
           </div>
           <nav className="footer-links" aria-label="Footer">
-            <a href="#sandbox-factory">Sandbox / Factory</a>
+            <a href="#sandbox-factory">Beyond T&amp;M</a>
             <a href="#blueprint">Blueprint</a>
             <a href="#how-we-help">Metrics</a>
             <a href="#contact">Contact</a>
