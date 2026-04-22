@@ -946,6 +946,7 @@ a { color: inherit; text-decoration: none; }
   gap: clamp(16px, 2vw, 22px);
 }
 .card-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.card-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
 .card {
   background: var(--white);
@@ -1118,45 +1119,86 @@ a { color: inherit; text-decoration: none; }
   top: -2px;
 }
 
-/* Role-row — 4-col icon cards on dark background (from inspiration) */
-.role-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(12px, 1.4vw, 16px);
-  margin-top: clamp(40px, 5vw, 64px);
+/* Three levels + blueprint cards */
+.why-now-grid-wide {
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 420px);
 }
-.role-card {
-  padding: clamp(22px, 2.6vw, 30px);
+.why-now-heading-wide {
+  max-width: 13ch;
+}
+
+.levels-panel {
+  background: #F8FAFF;
+  border: 1px solid rgba(199,196,215,.5);
+  border-radius: 18px;
+  padding: 22px 24px 14px;
+  box-shadow: 0 10px 30px rgba(20,27,43,.14);
+}
+.levels-label {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.levels-list {
+  display: grid;
+}
+.levels-item {
+  padding: 18px 0 16px;
+  border-top: 1px solid rgba(118,117,134,.18);
+}
+.levels-item:first-child {
+  border-top: none;
+}
+.levels-item h3 {
+  font-family: var(--display);
+  font-size: 1.32rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+.levels-item p {
+  font-size: .98rem;
+  line-height: 1.45;
+  color: var(--body);
+}
+
+.blueprint-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: clamp(36px, 5vw, 56px);
+}
+.blueprint-card {
+  padding: 22px 20px;
   border-radius: var(--r-card);
   background: rgba(255,255,255,.04);
   border: 1px solid rgba(255,255,255,.1);
+  min-height: 210px;
   transition: background 200ms ease, border-color 200ms ease, transform 240ms var(--ease);
 }
-.role-card:hover {
+.blueprint-card:hover {
   background: rgba(255,255,255,.08);
   border-color: rgba(255,255,255,.18);
   transform: translateY(-2px);
 }
-.role-card .icon-tile {
-  background: rgba(192,193,255,.14);
-  border: 1px solid rgba(192,193,255,.2);
-  margin-bottom: 18px;
-}
-.role-card .icon-tile .material-symbols-outlined {
-  color: var(--primary-fixed-dim);
-}
-.role-card h4 {
+.blueprint-card h3 {
   font-family: var(--display);
-  font-size: 1.02rem;
-  font-weight: 700;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -.025em;
   color: var(--dark-ink);
-  letter-spacing: -.02em;
-  margin: 0 0 6px;
+  margin: 0 0 10px;
 }
-.role-card p {
-  font-size: .88rem;
+.blueprint-card p {
+  font-size: .94rem;
+  line-height: 1.6;
   color: var(--dark-muted);
-  line-height: 1.55;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -1485,6 +1527,18 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -.025em;
   color: var(--ink);
 }
+.outputs-card {
+  margin-top: clamp(28px, 4vw, 44px);
+  background: var(--white);
+  border: 1px solid rgba(199,196,215,.45);
+  border-radius: var(--r-card);
+  padding: clamp(22px, 3vw, 30px);
+  box-shadow: 0 8px 24px rgba(20,27,43,.05);
+}
+.plain-list-compact {
+  margin-top: 12px;
+  gap: 8px;
+}
 
 .founder-grid { align-items: center; }
 .founder-card {
@@ -1785,7 +1839,7 @@ a { color: inherit; text-decoration: none; }
   .engage-grid     { grid-template-columns: 1fr; }
   .section-intro   { grid-template-columns: 1fr; }
   .problem-lead    { grid-template-columns: 1fr; }
-  .role-grid       { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .blueprint-grid  { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .bento           { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .bento-hero      { grid-column: span 2; grid-row: auto; }
   .bento-wide      { grid-column: span 2; }
@@ -1795,9 +1849,10 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 800px) {
   .card-grid     { grid-template-columns: 1fr; }
   .card-grid-2   { grid-template-columns: 1fr; }
+  .card-grid-3   { grid-template-columns: 1fr; }
   .hero-h1       { font-size: clamp(2.1rem, 9vw, 3rem); }
   .sticky-menu a:not(.sticky-btn) { display: none; }
-  .role-grid     { grid-template-columns: 1fr; }
+  .blueprint-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {
