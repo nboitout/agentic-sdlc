@@ -169,6 +169,8 @@ export function BrochureSignup() {
 
     const submittedAtIso = new Date().toISOString();
 
+    const payloadTimestamp = new Date().toISOString();
+
     const payload = {
       first_name: firstName.trim(),
       family_name: familyName.trim(),
@@ -177,8 +179,8 @@ export function BrochureSignup() {
       consent: true,
       form_name: 'brochure_download',
       source: 'agenticsdlc-homepage-brochure-modal',
-      submitted_at: submittedAtIso,
-      requested_at: submittedAtIso,
+      submitted_at: payloadTimestamp,
+      requested_at: payloadTimestamp,
       page_url: window.location.href,
       user_agent: navigator.userAgent,
     };
