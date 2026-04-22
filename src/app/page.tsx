@@ -6,48 +6,6 @@ import { MetricsCharts } from '@/components/MetricsCharts';
 
 /* ── Content data ─────────────────────────────────────────────────── */
 
-const augmentationCards = [
-  {
-    icon: 'groups_3',
-    title: 'Classical T&M',
-    text: 'Buy stable teams for long project horizons. Scale by adding people. Optimize for utilization and cost per FTE.',
-  },
-  {
-    icon: 'lan',
-    title: 'Programmable execution',
-    text: 'Buy targeted execution bandwidth. Add parallel streams for short bursts. Optimize for throughput, cycle time, and speed of adaptation.',
-  },
-] as const;
-
-const programmableExecutionCards = [
-  {
-    icon: 'call_split',
-    title: 'Divisible',
-    text: 'You do not buy a team. You allocate execution to a migration stream, a testing loop, a refactoring wave, or a delivery surge.',
-  },
-  {
-    icon: 'timelapse',
-    title: 'Time-compressed',
-    text: 'Delivery units shrink into short bursts. What used to take quarters gets reorganized into targeted 2 to 8 week interventions.',
-  },
-  {
-    icon: 'tune',
-    title: 'Elastic',
-    text: 'Execution scales up when pressure rises, shuts down when the job is done, and restarts when priorities change.',
-  },
-  {
-    icon: 'alt_route',
-    title: 'Schedulable',
-    text: 'Execution is routed across priorities. Clients decide where bandwidth goes instead of statically staffing one project for years.',
-  },
-] as const;
-
-const bandwidthItems = [
-  'Accelerate a critical initiative without rebuilding the org chart',
-  'Run several validated workstreams in parallel',
-  'Absorb peak demand without locking into 2-3 year staffing',
-  'Shift external support toward bottlenecks, not generic headcount',
-] as const;
 
 const blueprintSteps = [
   'Establish ground truth',
@@ -298,88 +256,112 @@ export default function HomePage() {
         <div className="hero-connector" aria-hidden="true">
           <div className="connector-side">
             <span className="connector-label">Classical T&amp;M</span>
-            <p className="connector-desc">Stable teams, long horizons, sequential execution.</p>
+            <p className="connector-desc">Body shopping, billable days, long staffing cycles.</p>
           </div>
           <div className="connector-center connector-center-long">
-            Agentic SDLC helps teams move from staffing projects to routing execution
+            Agentic SDLC also changes the business model of software delivery
           </div>
           <div className="connector-side connector-side-right">
             <span className="connector-label">Programmable execution</span>
-            <p className="connector-desc">Targeted bursts, parallel streams, elastic execution bandwidth.</p>
+            <p className="connector-desc">Short bursts, parallel streams, dynamic allocation.</p>
           </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          BEYOND TIME & MATERIALS
+          SANDBOX / FACTORY
           ══════════════════════════════════════════════════════════════ */}
-      <section className="section s-white" id="sandbox-factory" aria-labelledby="comparison-heading">
-        <div className="section-inner">
-          <div className="section-intro" data-reveal="">
-            <div className="intro-heading-col">
-              <span className="eyebrow">Beyond Time &amp; Materials</span>
-              <h2 id="comparison-heading" className="section-heading section-heading-wide">
-                The new model of team augmentation is execution bandwidth.
-              </h2>
+      <section className="section s-white btm-shell" id="sandbox-factory" aria-labelledby="comparison-heading">
+        <div className="section-inner btm-inner">
+          <div className="btm-head" data-reveal="">
+            <span className="eyebrow">Beyond Time &amp; Materials</span>
+            <h2 id="comparison-heading" className="btm-heading">
+              Beyond Time &amp; Materials
+            </h2>
+            <p className="btm-subtitle">
+              Staffing sold time. The next model sells execution bursts.
+            </p>
+          </div>
+
+          <div className="btm-prose" data-reveal="">
+            <p>
+              Classical team augmentation was built for a world where execution was scarce and
+              projects consumed years. You staffed teams, sold billable days, and scaled with
+              headcount.
+            </p>
+            <p>
+              With coding agents, productivity rises, delivery compresses, and parallelism
+              increases. Clients can absorb more execution internally, which means people are no
+              longer allocated to projects in the same static way.
+            </p>
+            <p className="btm-emphasis">
+              External teams do not disappear. But they stop being long staffing commitments. They
+              become short, targeted execution bursts.
+            </p>
+          </div>
+
+          <div className="btm-shift" data-reveal="">
+            <div className="btm-shift-card">
+              <span className="btm-shift-label">Before</span>
+              <p>people × time</p>
+              <span>billable days · stable staffing · long projects</span>
             </div>
-            <div className="intro-text-col">
-              <p>
-                Classical team augmentation was built for a world where execution was scarce and
-                projects consumed years. With coding agents, delivery compresses, parallelism rises,
-                and clients can absorb more execution internally. External teams do not disappear.
-                Their role changes.
-              </p>
+            <div className="btm-shift-arrow" aria-hidden="true">→</div>
+            <div className="btm-shift-card btm-shift-card-accent">
+              <span className="btm-shift-label">Now</span>
+              <p>execution bursts</p>
+              <span>parallel streams · short cycles · dynamic allocation</span>
             </div>
           </div>
 
-          <div className="card-grid card-grid-2" data-reveal-stagger="">
-            {augmentationCards.map((card) => (
-              <article key={card.title} className="card card-accent">
-                <div className="icon-tile" aria-hidden="true">
-                  <span className="material-symbols-outlined">{card.icon}</span>
-                </div>
-                <h3>{card.title}</h3>
-                <p>{card.text}</p>
-              </article>
-            ))}
+          <div className="btm-example" data-reveal="">
+            <div>
+              <span className="btm-example-label">Classical T&amp;M</span>
+              <strong>5 engineers for 18 months</strong>
+            </div>
+            <div>
+              <span className="btm-example-label">Programmable execution</span>
+              <strong>3 execution streams for 4–6 weeks</strong>
+            </div>
           </div>
 
-          <div className="bring-grid programmable-band" data-reveal="">
+          <div className="btm-clients" data-reveal="">
             <div>
               <span className="eyebrow">What changes for clients</span>
-              <h3 className="bring-heading programmable-heading">
-                Projects used to consume time. Now they consume execution bandwidth.
+              <h3 className="btm-clients-title">
+                The decision is no longer how many people to staff for how many months.
               </h3>
-              <p className="engage-body">
-                Instead of staffing one project for 2 to 3 years, clients can allocate short,
-                targeted bursts of execution where bottlenecks are highest and validated
-                throughput matters most.
-              </p>
             </div>
-
-            <div className="bring-lists">
-              <div className="list-card">
-                <span className="list-label">Programmable execution lets teams</span>
-                <ul className="plain-list">
-                  {bandwidthItems.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            <ul className="btm-list">
+              <li>How much execution should we inject right now?</li>
+              <li>Which initiatives deserve short bursts of acceleration?</li>
+              <li>Where do we need parallel streams instead of more billable days?</li>
+              <li>When should capacity ramp up, shut down, or restart?</li>
+            </ul>
           </div>
 
-          <div className="card-grid card-grid-4" data-reveal-stagger="">
-            {programmableExecutionCards.map((card) => (
-              <article key={card.title} className="card card-accent">
-                <div className="icon-tile" aria-hidden="true">
-                  <span className="material-symbols-outlined">{card.icon}</span>
-                </div>
-                <h3>{card.title}</h3>
-                <p>{card.text}</p>
-              </article>
-            ))}
+          <div className="btm-grid" data-reveal-stagger="">
+            <article className="btm-card">
+              <h3>Divisible</h3>
+              <p>Execution splits into targeted streams: migration, testing, refactoring.</p>
+            </article>
+            <article className="btm-card">
+              <h3>Time-compressed</h3>
+              <p>Work lands in weeks, not in multi-year staffing cycles.</p>
+            </article>
+            <article className="btm-card">
+              <h3>Elastic</h3>
+              <p>Ramp up fast, shut down cleanly, restart when priorities change.</p>
+            </article>
+            <article className="btm-card">
+              <h3>Schedulable</h3>
+              <p>Execution is routed across priorities, not statically assigned to teams.</p>
+            </article>
           </div>
+
+          <p className="btm-close" data-reveal="">
+            Projects used to consume billable days. Now they consume execution bursts.
+          </p>
         </div>
       </section>
 
@@ -599,11 +581,11 @@ export default function HomePage() {
           <div className="cta-inner" data-reveal="">
             <span className="eyebrow eyebrow-brass">Start the conversation</span>
             <h2 id="contact-heading" className="cta-heading">
-              Still scaling by adding people?
+              Still in sandbox mode?
             </h2>
             <p className="cta-sub">
               If AI is already entering your delivery workflows, the next step is not more
-              staffing. It is a delivery model built around supervision, parallelism, and measurable execution.
+              experimentation. It is control, supervision, and measurable execution.
             </p>
             <div className="cta-actions">
               <a
