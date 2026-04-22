@@ -124,8 +124,7 @@ export default function HomePage() {
               From AI coding tools to reliable delivery systems.
             </h1>
             <p className="hero-sub">
-              A practical course on coding agents, loops, harnesses, and governance patterns that
-              make a software factory possible.
+              
             </p>
             <p className="hero-support">
               Move from AI experimentation to a delivery model your clients can trust.
