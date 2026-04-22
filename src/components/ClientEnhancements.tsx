@@ -50,7 +50,7 @@ export function ClientEnhancements() {
     const links = Array.from(document.querySelectorAll('[data-calendly-link="true"]'));
     const handleClick = (event: Event) => {
       event.preventDefault();
-      window.Calendly?.initPopupWidget({ url: 'https://calendly.com/nicolasboitout/30min' });
+      window.Calendly?.initPopupWidget({ url: 'https://calendly.com/nicolasboitout/new-meeting' });
     };
 
     links.forEach((link) => link.addEventListener('click', handleClick));
@@ -62,11 +62,20 @@ export function ClientEnhancements() {
       <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
       <nav id="sticky-nav" className="sticky-nav" aria-label="Site navigation">
         <div className="sticky-inner">
-          <a href="#top" className="sticky-logo">Agentic SDLC</a>
+          <a href="#top" className="sticky-logo">
+            <img src="/agentic-sdlc-mark.svg" alt="" className="sticky-logo-mark" aria-hidden="true" />
+            Agentic SDLC
+          </a>
           <div className="sticky-menu">
             <a href="#sandbox-factory">Sandbox / Factory</a>
             <a href="#blueprint">Blueprint</a>
-            <a href="https://calendly.com/nicolasboitout/30min" className="sticky-btn" data-calendly-link="true">Book a call</a>
+            <a
+              href="https://calendly.com/nicolasboitout/new-meeting"
+              className="sticky-btn"
+              data-calendly-link="true"
+            >
+              Book a call
+            </a>
           </div>
         </div>
       </nav>
