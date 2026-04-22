@@ -7,19 +7,42 @@ import { MetricsCharts } from '@/components/MetricsCharts';
 /* ── Content data ─────────────────────────────────────────────────── */
 
 
-const blueprintSteps = [
-  'Establish ground truth',
-  'Pinpoint the highest ROI actions',
-  'Shift from creator to supervisor',
-  'Put metrics in place',
-  'Move to immediate action',
+const blueprintCards = [
+  {
+    title: 'Ground truth first',
+    text: 'Separate real adoption from demo culture, isolated prompting, and AI theater.',
+  },
+  {
+    title: 'Prioritize the bottlenecks',
+    text: 'Focus on where agentic workflows remove waiting time, handoffs, and rework.',
+  },
+  {
+    title: 'Redesign supervision',
+    text: 'Clarify what agents can do alone, what must be reviewed, and where escalation starts.',
+  },
+  {
+    title: 'Instrument the system',
+    text: 'Measure AI contribution, throughput, rework, quality, and supervision coverage.',
+  },
+  {
+    title: 'Launch the next operating model',
+    text: 'Turn the blueprint into a concrete sprint, pilot, or delivery transformation path.',
+  },
 ] as const;
 
-const roleCards = [
-  { icon: 'rule', label: 'Policy Design' },
-  { icon: 'model_training', label: 'Intent Mapping' },
-  { icon: 'reviews', label: 'Formal Review' },
-  { icon: 'rocket_launch', label: 'Delivery Launch' },
+const levelsCards = [
+  {
+    title: 'Agentic SDLC',
+    text: 'How software delivery changes',
+  },
+  {
+    title: 'Agentic engineering',
+    text: 'How engineers work inside that model',
+  },
+  {
+    title: 'Harness engineering',
+    text: 'How agents are made reliable enough to participate',
+  },
 ] as const;
 
 const supervisionCards = [
@@ -366,50 +389,6 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          BLUEPRINT (dark)
-          ══════════════════════════════════════════════════════════════ */}
-      <section className="section s-dark" id="blueprint" aria-labelledby="problem-heading">
-        <div className="section-inner">
-          <div className="why-now-grid">
-            <div data-reveal="">
-              <span className="eyebrow eyebrow-dark">Problem</span>
-              <h2 id="problem-heading" className="why-now-heading">
-                AI tool adoption is not a delivery model.
-              </h2>
-              <div className="why-now-prose">
-                <p>
-                  The problem is not access to AI tools. The problem is turning isolated usage into
-                  a system that leadership can trust and engineering can run.
-                </p>
-              </div>
-            </div>
-
-            <aside className="aside-card" data-reveal="">
-              <span className="aside-label">Blueprint</span>
-              <p className="aside-copy">A practical blueprint for AI supervision in software delivery.</p>
-              <ul className="dot-list">
-                {blueprintSteps.map((step) => (
-                  <li key={step}>{step}</li>
-                ))}
-              </ul>
-            </aside>
-          </div>
-
-          {/* 4-col role-row (from inspiration "Elevating the Architect") */}
-          <div className="role-grid" data-reveal-stagger="">
-            {roleCards.map((role) => (
-              <div key={role.label} className="role-card">
-                <div className="icon-tile icon-tile-dark" aria-hidden="true">
-                  <span className="material-symbols-outlined">{role.icon}</span>
-                </div>
-                <h4>{role.label}</h4>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════
           CORE SHIFT / SUPERVISION
           ══════════════════════════════════════════════════════════════ */}
       <section className="section s-canvas" aria-labelledby="friction-heading">
@@ -547,6 +526,56 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          BLUEPRINT / THREE LEVELS (dark)
+          ══════════════════════════════════════════════════════════════ */}
+      <section className="section s-dark" id="blueprint" aria-labelledby="problem-heading">
+        <div className="section-inner">
+          <div className="why-now-grid why-now-grid-wide">
+            <div data-reveal="">
+              <span className="eyebrow eyebrow-dark">Blueprint</span>
+              <h2 id="problem-heading" className="why-now-heading why-now-heading-wide">
+                AI tool adoption is not a delivery model.
+              </h2>
+              <div className="why-now-prose">
+                <p>
+                  Buying licenses and rolling out coding assistants does not tell a company how to
+                  deliver differently. The real challenge is to turn rising productivity and time
+                  compression into a new operating model.
+                </p>
+                <p>
+                  As delivery cycles shrink, the allocation of people becomes more dynamic. The
+                  question is no longer who sits on a project for 18 months. It becomes: what kind
+                  of execution system are we actually building?
+                </p>
+              </div>
+            </div>
+
+            <div className="levels-panel" data-reveal="">
+              <span className="levels-label">Three levels</span>
+              <div className="levels-list">
+                {levelsCards.map((item) => (
+                  <article key={item.title} className="levels-item">
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="blueprint-grid" data-reveal-stagger="">
+            {blueprintCards.map((item) => (
+              <article key={item.title} className="blueprint-card">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* ══════════════════════════════════════════════════════════════
           ENGAGEMENT
