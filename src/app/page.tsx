@@ -1,141 +1,72 @@
-import { ClientEnhancements } from '@/components/ClientEnhancements';
+'use client';
 
-import { BrochureSignup } from '@/components/BrochureSignup';
-
+import { useEffect, useMemo, useState, type CSSProperties } from 'react';
+import { ClientEnhancements, LanguageSelector } from '@/components/ClientEnhancements';
 import { MetricsCharts } from '@/components/MetricsCharts';
+import { copy, defaultLanguage, languages, type LanguageCode } from '@/lib/i18n';
 
-/* ── Content data ─────────────────────────────────────────────────── */
+const storageKey = 'agentic-sdlc-language';
 
-
-const blueprintCards = [
-  {
-    title: 'Ground truth first',
-    text: 'Separate real adoption from demo culture, isolated prompting, and AI theater.',
-  },
-  {
-    title: 'Prioritize the bottlenecks',
-    text: 'Focus on where agentic workflows remove waiting time, handoffs, and rework.',
-  },
-  {
-    title: 'Redesign supervision',
-    text: 'Clarify what agents can do alone, what must be reviewed, and where escalation starts.',
-  },
-  {
-    title: 'Instrument the system',
-    text: 'Measure AI contribution, throughput, rework, quality, and supervision coverage.',
-  },
-  {
-    title: 'Launch the next operating model',
-    text: 'Turn the blueprint into a concrete sprint, pilot, or delivery transformation path.',
-  },
-] as const;
-
-const levelsCards = [
-  {
-    title: 'Agentic SDLC',
-    text: 'How software delivery changes',
-  },
-  {
-    title: 'Agentic engineering',
-    text: 'How engineers work inside that model',
-  },
-  {
-    title: 'Harness engineering',
-    text: 'How agents are made reliable enough to participate',
-  },
-] as const;
-
-const supervisionCards = [
-  {
-    icon: 'hub',
-    title: 'What to delegate',
-    text: 'Decide where coding agents can move fast without creating hidden operational debt.',
-  },
-  {
-    icon: 'fact_check',
-    title: 'What to review',
-    text: 'Make supervision explicit so validation, approval, and escalation are built into the workflow.',
-  },
-  {
-    icon: 'shield_person',
-    title: 'What not to automate blindly',
-    text: 'Protect quality, accountability, and client trust where human judgment still matters most.',
-  },
-] as const;
-
-const audienceCards = [
-  {
-    icon: 'apartment',
-    title: 'Engineering leaders',
-    text: 'Teams moving from ad-hoc AI usage to governed delivery with measurable outcomes.',
-  },
-  {
-    icon: 'terminal',
-    title: 'Product & platform teams',
-    text: 'Organizations standardizing AI-assisted workflows across planning, build, review, and release.',
-  },
-  {
-    icon: 'handshake',
-    title: 'Consultancies & service firms',
-    text: 'Delivery groups that need speed gains without sacrificing supervision, quality, or accountability.',
-  },
-] as const;
-
-const metricsItems = [
-  'AI contribution',
-  'Rework',
-  'Quality',
-  'Supervision',
-] as const;
+function getInitialLanguage(): LanguageCode {
+  if (typeof window === 'undefined') return defaultLanguage;
+  const stored = window.localStorage.getItem(storageKey);
+  return languages.some((language) => language.code === stored) ? stored as LanguageCode : defaultLanguage;
+}
 
 export default function HomePage() {
+  const [language, setLanguage] = useState<LanguageCode>(getInitialLanguage);
+  const t = useMemo(() => copy[language], [language]);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.title = t.meta.title;
+    window.localStorage.setItem(storageKey, language);
+  }, [language, t.meta.title]);
+
   return (
     <main id="top">
-      {/* ══════════════════════════════════════════════════════════════
-          HERO
-          ══════════════════════════════════════════════════════════════ */}
       <section className="s-hero">
         <header className="site-header">
           <a href="#top" className="logo" aria-label="Agentic SDLC home">
             <img src="/agentic-sdlc-mark.svg" alt="" className="logo-mark" aria-hidden="true" />
             <span className="logo-name">Agentic SDLC</span>
           </a>
-          <nav className="header-nav" aria-label="Primary">
-            <a href="#sandbox-factory">Beyond T&amp;M</a>
-            <a href="#blueprint">Blueprint</a>
-            <a href="#how-we-help">Metrics</a>
-            <a href="#contact">Contact</a>
+          <nav className="header-nav" aria-label={t.nav.primaryLabel}>
+            <a href="#sandbox-factory">{t.nav.beyond}</a>
+            <a href="#blueprint">{t.nav.blueprint}</a>
+            <a href="#how-we-help">{t.nav.metrics}</a>
+            <a href="#contact">{t.nav.contact}</a>
             <a
               href="https://nboitout.github.io/Blog-Agentic-SDLC/en/"
               className="btn btn-blog header-blog-btn"
               target="_blank"
               rel="noreferrer"
             >
-              Our Blog: Learn &amp; Project
+              {t.nav.blog}
             </a>
+            <LanguageSelector
+              currentLanguage={language}
+              onLanguageChange={setLanguage}
+              label={t.nav.language}
+            />
           </nav>
         </header>
 
         <div className="hero-body">
-          <div className="hero-left">
+          <div className="hero-left" style={{ '--hero-eyebrow': `"${t.hero.eyebrow}"` } as CSSProperties}>
             <h1 className="hero-h1">
-              <span className="hero-h1-accent">Agentic SDLC:</span>
+              <span className="hero-h1-accent">{t.hero.h1Prefix}</span>
               <br />
-              From AI coding tools to reliable delivery systems.
+              {t.hero.h1Rest}
             </h1>
-            <p className="hero-sub">
-              
-            </p>
-            <p className="hero-support">
-              Move from AI experimentation to a delivery model your clients can trust.
-            </p>
+            <p className="hero-support">{t.hero.subtitle}</p>
             <div className="hero-actions">
               <a
                 href="https://calendly.com/nicolasboitout/new-meeting"
                 className="btn btn-primary"
                 data-calendly-link="true"
               >
-                Book an intro call
+                {t.hero.primaryCta}
               </a>
               <a
                 href="https://nboitout.github.io/Blog-Agentic-SDLC/en/executive-self-assessment/"
@@ -143,140 +74,97 @@ export default function HomePage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Self-Assessment for Executives
+                {t.hero.secondaryCta}
               </a>
-              
             </div>
           </div>
 
-          {/* Right column: software-factory control tower */}
           <div className="hero-right">
             <div className="hero-visual" aria-hidden="true">
               <div className="hero-console">
-                {/* Dark chrome strip */}
                 <div className="console-top">
                   <span className="dot" />
-                  <span className="live">LIVE</span>
-                  <span className="title">Control · Agentic SDLC</span>
+                  <span className="title">{t.hero.liveLabel}</span>
                   <span className="time">14:02 UTC</span>
                 </div>
 
                 <div className="console-body">
-                  {/* Pipeline stages */}
                   <div>
-                    <span className="console-label">Delivery pipeline</span>
+                    <span className="console-label">{t.hero.pipeline}</span>
                     <div className="pipeline">
-                      <div className="stage done"><span className="pip" />Plan</div>
-                      <div className="stage done"><span className="pip" />Build</div>
-                      <div className="stage active"><span className="pip" />Review</div>
-                      <div className="stage"><span className="pip" />Ship</div>
-                      <div className="stage"><span className="pip" />Measure</div>
+                      {t.hero.steps.map((step, index) => (
+                        <div
+                          key={step}
+                          className={`stage ${index < 2 ? 'done' : ''} ${index === 2 ? 'active' : ''}`}
+                        >
+                          <span className="pip" />
+                          {step}
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  {/* Split row: events + gauge */}
                   <div className="console-split">
                     <div className="console-card">
-                      <span className="console-label">Live events</span>
+                      <span className="console-label">{t.hero.eventsLabel}</span>
                       <ul className="events">
-                        <li>
-                          <span className="ts">14:02</span>
-                          <span className="msg">agent-04 · merged PR #182</span>
-                          <span className="ok">✓</span>
-                        </li>
-                        <li>
-                          <span className="ts">14:01</span>
-                          <span className="msg">review queue · 2 items</span>
-                          <span className="warn">!</span>
-                        </li>
-                        <li>
-                          <span className="ts">13:57</span>
-                          <span className="msg">policy check · passed</span>
-                          <span className="ok">✓</span>
-                        </li>
-                        <li>
-                          <span className="ts">13:54</span>
-                          <span className="msg">agent-02 · scaffolded module</span>
-                          <span className="ok">✓</span>
-                        </li>
+                        {t.hero.events.map((event) => (
+                          <li key={`${event.time}-${event.message}`}>
+                            <span className="ts">{event.time}</span>
+                            <span className="msg">{event.message}</span>
+                            <span className={event.status}>{event.status === 'ok' ? '✓' : '!'}</span>
+                          </li>
+                        ))}
                       </ul>
                     </div>
 
                     <div className="console-card">
-                      <span className="console-label">Supervision</span>
+                      <span className="console-label">{t.hero.supervision}</span>
                       <div className="gauge-wrap">
-                        <svg
-                          className="gauge-svg"
-                          viewBox="0 0 120 70"
-                          preserveAspectRatio="xMidYMid meet"
-                        >
+                        <svg className="gauge-svg" viewBox="0 0 120 70" preserveAspectRatio="xMidYMid meet">
                           <defs>
                             <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0">
                               <stop offset="0" stopColor="#4648D4" />
                               <stop offset="1" stopColor="#6063EE" />
                             </linearGradient>
                           </defs>
-                          {/* track */}
-                          <path
-                            d="M 10 60 A 50 50 0 0 1 110 60"
-                            stroke="#E3E1D8"
-                            strokeWidth="8"
-                            fill="none"
-                            strokeLinecap="round"
-                          />
-                          {/* fill (92% of ~157 arc length) */}
-                          <path
-                            d="M 10 60 A 50 50 0 0 1 110 60"
-                            stroke="url(#gaugeGrad)"
-                            strokeWidth="8"
-                            fill="none"
-                            strokeLinecap="round"
-                            strokeDasharray="157"
-                            strokeDashoffset="13"
-                          />
+                          <path d="M 10 60 A 50 50 0 0 1 110 60" stroke="#E3E1D8" strokeWidth="8" fill="none" strokeLinecap="round" />
+                          <path d="M 10 60 A 50 50 0 0 1 110 60" stroke="url(#gaugeGrad)" strokeWidth="8" fill="none" strokeLinecap="round" strokeDasharray="157" strokeDashoffset="13" />
                         </svg>
                         <span className="gauge-val">92%</span>
-                        <span className="gauge-sub">coverage</span>
+                        <span className="gauge-sub">{t.hero.coverage}</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Mini metric trio */}
                   <div className="console-metrics">
-                    <div className="mini">
-                      <div className="mini-top">
-                        <span className="mini-k">AI contrib.</span>
-                        <span className="mini-v">68%</span>
+                    {[
+                      { label: t.hero.aiContribution, value: '68%', width: '68%' },
+                      { label: t.hero.rework, value: '14%', width: '14%', warn: true },
+                      { label: t.hero.quality, value: '91%', width: '91%' },
+                    ].map((metric) => (
+                      <div className="mini" key={metric.label}>
+                        <div className="mini-top">
+                          <span className="mini-k">{metric.label}</span>
+                          <span className="mini-v">{metric.value}</span>
+                        </div>
+                        <div className="mini-bar">
+                          <span className={metric.warn ? 'warn' : undefined} style={{ width: metric.width }} />
+                        </div>
                       </div>
-                      <div className="mini-bar"><span style={{ width: '68%' }} /></div>
-                    </div>
-                    <div className="mini">
-                      <div className="mini-top">
-                        <span className="mini-k">Rework</span>
-                        <span className="mini-v">14%</span>
-                      </div>
-                      <div className="mini-bar"><span className="warn" style={{ width: '14%' }} /></div>
-                    </div>
-                    <div className="mini">
-                      <div className="mini-top">
-                        <span className="mini-k">Quality</span>
-                        <span className="mini-v">91%</span>
-                      </div>
-                      <div className="mini-bar"><span style={{ width: '91%' }} /></div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
 
-              {/* Floating "Agent pool" peek card */}
               <div className="hero-visual-card">
                 <div className="hero-visual-card-head">
                   <span className="dot" />
-                  <span className="hero-visual-card-title">Agent pool</span>
+                  <span className="hero-visual-card-title">{t.hero.agentPool}</span>
                 </div>
                 <div className="hero-visual-card-row">
                   <span className="hero-visual-card-num">4 / 4</span>
-                  <span className="hero-visual-card-sub">online · 0 stalled</span>
+                  <span className="hero-visual-card-sub">{t.hero.agentPoolStatus}</span>
                 </div>
               </div>
             </div>
@@ -285,76 +173,56 @@ export default function HomePage() {
 
         <div className="hero-connector" aria-hidden="true">
           <div className="connector-side">
-            <span className="connector-label">Classical T&amp;M</span>
-            <p className="connector-desc">Body shopping, billable days, long staffing cycles.</p>
+            <span className="connector-label">{t.hero.connectorLeftLabel}</span>
+            <p className="connector-desc">{t.hero.connectorLeftDesc}</p>
           </div>
-          <div className="connector-center connector-center-long">
-            Agentic SDLC also changes the business model of software delivery
-          </div>
+          <div className="connector-center connector-center-long">{t.hero.connectorCenter}</div>
           <div className="connector-side connector-side-right">
-            <span className="connector-label">Programmable execution</span>
-            <p className="connector-desc">Short bursts, parallel streams, dynamic allocation.</p>
+            <span className="connector-label">{t.hero.connectorRightLabel}</span>
+            <p className="connector-desc">{t.hero.connectorRightDesc}</p>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          SANDBOX / FACTORY
-          ══════════════════════════════════════════════════════════════ */}
       <section className="section s-white btm-shell" id="sandbox-factory" aria-labelledby="comparison-heading">
         <div className="section-inner btm-inner">
           <div className="btm-head" data-reveal="">
-            <span className="eyebrow">Beyond Time &amp; Materials</span>
-            <h2 id="comparison-heading" className="btm-heading">
-              Beyond Time &amp; Materials
-            </h2>
-            <p className="btm-subtitle">
-              Staffing sold time. The next model sells execution bursts.
-            </p>
+            <span className="eyebrow">{t.beyond.eyebrow}</span>
+            <h2 id="comparison-heading" className="btm-heading">{t.beyond.heading}</h2>
+            <p className="btm-subtitle">{t.beyond.lead}</p>
           </div>
 
           <div className="btm-prose" data-reveal="">
-            <p>
-              Classical team augmentation was built for a world where execution was scarce and
-              projects consumed years. You staffed teams, sold billable days, and scaled with
-              headcount.
-            </p>
-            <p>
-              With coding agents, productivity rises, delivery compresses, and parallelism
-              increases. Clients can absorb more execution internally, which means people are no
-              longer allocated to projects in the same static way.
-            </p>
-            <p className="btm-emphasis">
-              External teams do not disappear. But they stop being long staffing commitments. They
-              become short, targeted execution bursts.
-            </p>
+            {t.beyond.paragraphs.map((paragraph, index) => (
+              <p key={paragraph} className={index === 2 ? 'btm-emphasis' : undefined}>{paragraph}</p>
+            ))}
           </div>
 
           <div className="btm-shift" data-reveal="">
             <div className="btm-shift-card btm-shift-card-before">
-              <span className="btm-shift-label">Before</span>
-              <p>people × time</p>
-              <span>billable days · stable staffing · long projects</span>
+              <span className="btm-shift-label">{t.beyond.before}</span>
+              <p>{t.beyond.beforeValue}</p>
+              <span>{t.beyond.beforeCaption}</span>
             </div>
             <div className="btm-shift-arrow" aria-hidden="true">→</div>
             <div className="btm-shift-card btm-shift-card-accent">
-              <span className="btm-shift-label">Now</span>
-              <p>execution bursts</p>
-              <span>parallel streams · short cycles · dynamic allocation</span>
+              <span className="btm-shift-label">{t.beyond.now}</span>
+              <p>{t.beyond.nowValue}</p>
+              <span>{t.beyond.nowCaption}</span>
             </div>
           </div>
 
           <div className="btm-example" data-reveal="">
             <div>
-              <span className="btm-example-label">Classical T&amp;M</span>
-              <strong>5 engineers for 18 months</strong>
+              <span className="btm-example-label">{t.beyond.exampleLeftLabel}</span>
+              <strong>{t.beyond.exampleLeftValue}</strong>
               <div className="btm-capacity-track btm-capacity-track-before" aria-hidden="true">
                 <span className="btm-capacity-bar btm-capacity-bar-before" />
               </div>
             </div>
             <div>
-              <span className="btm-example-label">Programmable execution</span>
-              <strong>3 execution streams for 4–6 weeks</strong>
+              <span className="btm-example-label">{t.beyond.exampleRightLabel}</span>
+              <strong>{t.beyond.exampleRightValue}</strong>
               <div className="btm-capacity-track" aria-hidden="true">
                 <span className="btm-capacity-bar btm-capacity-stream" />
                 <span className="btm-capacity-bar btm-capacity-stream" />
@@ -365,26 +233,16 @@ export default function HomePage() {
 
           <div className="btm-clients" data-reveal="">
             <div>
-              <span className="eyebrow">What changes for clients</span>
-              <h3 className="btm-clients-title">
-                The decision is no longer how many people to staff for how many months.
-              </h3>
+              <span className="eyebrow">{t.beyond.clientsEyebrow}</span>
+              <h3 className="btm-clients-title">{t.beyond.clientsTitle}</h3>
             </div>
             <ul className="btm-list">
-              <li>How much execution should we inject right now?</li>
-              <li>Which initiatives deserve short bursts of acceleration?</li>
-              <li>Where do we need parallel streams instead of more billable days?</li>
-              <li>When should capacity ramp up, shut down, or restart?</li>
+              {t.beyond.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
             </ul>
           </div>
 
           <div className="btm-grid" data-reveal-stagger="">
-            {([
-              { title: 'Divisible',        text: 'Execution splits into targeted streams: migration, testing, refactoring.', num: '01' },
-              { title: 'Time-compressed',  text: 'Work lands in weeks, not in multi-year staffing cycles.',                    num: '02' },
-              { title: 'Elastic',          text: 'Ramp up fast, shut down cleanly, restart when priorities change.',           num: '03' },
-              { title: 'Schedulable',      text: 'Execution is routed across priorities, not statically assigned to teams.',   num: '04' },
-            ] as const).map(({ title, text, num }) => (
+            {t.beyond.cards.map(({ title, text, num }) => (
               <article key={title} className="btm-card">
                 <span className="btm-card-num" aria-hidden="true">{num}</span>
                 <h3>{title}</h3>
@@ -393,33 +251,22 @@ export default function HomePage() {
             ))}
           </div>
 
-          <p className="btm-close" data-reveal="">
-            Projects used to consume billable days. Now they consume execution bursts.
-          </p>
+          <p className="btm-close" data-reveal="">{t.beyond.closing}</p>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          CORE SHIFT / SUPERVISION
-          ══════════════════════════════════════════════════════════════ */}
       <section className="section s-canvas" aria-labelledby="friction-heading">
         <div className="section-inner">
           <div className="problem-lead" data-reveal="">
             <div>
-              <span className="eyebrow">Core shift</span>
-              <h2 id="friction-heading" className="problem-statement">
-                Core shift of the developer&apos;s role.
-              </h2>
+              <span className="eyebrow">{t.core.eyebrow}</span>
+              <h2 id="friction-heading" className="problem-statement">{t.core.heading}</h2>
             </div>
-            <p className="problem-sub">
-              As coding agents take on more work, developers do not disappear. Their role changes.
-              The new challenge is supervision: what to delegate, what to review, what to validate,
-              and what not to automate blindly.
-            </p>
+            <p className="problem-sub">{t.core.body}</p>
           </div>
 
           <div className="card-grid" data-reveal-stagger="">
-            {supervisionCards.map((item) => (
+            {t.core.cards.map((item) => (
               <article key={item.title} className="card card-accent">
                 <div className="icon-tile" aria-hidden="true">
                   <span className="material-symbols-outlined">{item.icon}</span>
@@ -432,33 +279,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          METRICS — bento + existing charts
-          ══════════════════════════════════════════════════════════════ */}
       <section className="section s-white" id="how-we-help" aria-labelledby="metrics-heading">
         <div className="section-inner">
           <div className="bring-grid">
             <div data-reveal="">
-              <span className="eyebrow">Metrics</span>
-              <h2 id="metrics-heading" className="bring-heading">
-                Without metrics, there is no transformation.
-              </h2>
-              <p className="engage-body">
-                If AI contribution, rework, quality, and supervision are not measured, adoption
-                stays anecdotal and cannot scale.
-              </p>
+              <span className="eyebrow">{t.metrics.eyebrow}</span>
+              <h2 id="metrics-heading" className="bring-heading">{t.metrics.heading}</h2>
+              <p className="engage-body">{t.metrics.body}</p>
             </div>
 
             <div className="bring-lists" data-reveal="">
               <div className="list-card">
-                <span className="list-label">What must be measured</span>
+                <span className="list-label">{t.metrics.measuredLabel}</span>
                 <ul className="metric-pill-list">
-                  {([
-                    { name: 'AI contribution', desc: 'Share of work authored by coding agents per sprint' },
-                    { name: 'Rework',          desc: 'PRs that revisit already-reviewed code paths' },
-                    { name: 'Quality',         desc: 'Coverage score, lint pass rate, and test health' },
-                    { name: 'Supervision',     desc: 'Human review coverage across all agent-merged PRs' },
-                  ] as const).map(({ name, desc }) => (
+                  {t.metrics.items.map(({ name, desc }) => (
                     <li key={name} className="metric-pill">
                       <span className="metric-pill-dot" aria-hidden="true" />
                       <div>
@@ -472,23 +306,20 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Bento grid summary — headline metrics, then the detailed charts */}
           <div className="bento" data-reveal-stagger="">
             <article className="bento-hero">
               <div>
-                <h3>Measurement over anecdote.</h3>
-                <p>
-                  What gets measured gets governed. The factory runs on numbers, not narrative.
-                </p>
+                <h3>{t.metrics.statement}</h3>
+                <p>{t.metrics.statementBody}</p>
               </div>
               <div className="bento-hero-stats">
                 <div className="bento-hero-row">
-                  <span className="bento-hero-row-label">Supervision coverage</span>
+                  <span className="bento-hero-row-label">{t.metrics.supervisionCoverage}</span>
                   <span className="bento-hero-row-value">92%</span>
                 </div>
                 <div className="bento-hero-row">
-                  <span className="bento-hero-row-label">Rework reduction</span>
-                  <span className="bento-hero-row-value">4×</span>
+                  <span className="bento-hero-row-label">{t.metrics.reworkReduction}</span>
+                  <span className="bento-hero-row-value">×4</span>
                 </div>
               </div>
             </article>
@@ -497,46 +328,38 @@ export default function HomePage() {
               <div className="icon-tile" aria-hidden="true">
                 <span className="material-symbols-outlined">speed</span>
               </div>
-              <h4>Velocity with control</h4>
-              <p>Agent loops ship faster only when supervision, review, and escalation are measured in the same run.</p>
+              <h4>{t.metrics.velocityTitle}</h4>
+              <p>{t.metrics.velocityText}</p>
             </article>
 
             <article className="bento-tile">
               <span className="num">100%</span>
-              <span className="label">Traceability</span>
+              <span className="label">{t.metrics.traceability}</span>
             </article>
 
             <article className="bento-tile bento-tile-variant">
               <span className="num">0</span>
-              <span className="label">Unreviewed merges</span>
+              <span className="label">{t.metrics.unreviewedMerges}</span>
             </article>
           </div>
 
-          <MetricsCharts />
+          <MetricsCharts charts={t.metrics.charts} />
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          WHO IT'S FOR
-          ══════════════════════════════════════════════════════════════ */}
       <section className="section s-canvas" id="who-its-for" aria-labelledby="audience-heading">
         <div className="section-inner">
           <div className="section-intro" data-reveal="">
             <div className="intro-heading-col">
-              <span className="eyebrow">Who this is for</span>
-              <h2 id="audience-heading" className="section-heading">
-                Built for teams that need AI speed with delivery accountability.
-              </h2>
+              <span className="eyebrow">{t.audience.eyebrow}</span>
+              <h2 id="audience-heading" className="section-heading">{t.audience.heading}</h2>
             </div>
             <div className="intro-text-col">
-              <p>
-                This engagement is for organizations already experimenting with AI coding tools and
-                now looking for a durable operating model.
-              </p>
+              <p>{t.audience.body}</p>
             </div>
           </div>
           <div className="card-grid card-grid-3" data-reveal-stagger="">
-            {audienceCards.map((card) => (
+            {t.audience.cards.map((card) => (
               <article key={card.title} className="card card-accent">
                 <div className="icon-tile" aria-hidden="true">
                   <span className="material-symbols-outlined">{card.icon}</span>
@@ -549,35 +372,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          BLUEPRINT / THREE LEVELS (dark)
-          ══════════════════════════════════════════════════════════════ */}
       <section className="section s-dark" id="blueprint" aria-labelledby="problem-heading">
         <div className="section-inner">
           <div className="why-now-grid why-now-grid-wide">
             <div data-reveal="">
-              <span className="eyebrow eyebrow-dark">Blueprint</span>
-              <h2 id="problem-heading" className="why-now-heading why-now-heading-wide">
-                AI tool adoption is not a delivery model.
-              </h2>
+              <span className="eyebrow eyebrow-dark">{t.blueprint.eyebrow}</span>
+              <h2 id="problem-heading" className="why-now-heading why-now-heading-wide">{t.blueprint.heading}</h2>
               <div className="why-now-prose">
-                <p>
-                  Buying licenses and rolling out coding assistants does not tell a company how to
-                  deliver differently. The real challenge is to turn rising productivity and time
-                  compression into a new operating model.
-                </p>
-                <p>
-                  As delivery cycles shrink, the allocation of people becomes more dynamic. The
-                  question is no longer who sits on a project for 18 months. It becomes: what kind
-                  of execution system are we actually building?
-                </p>
+                {t.blueprint.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </div>
             </div>
 
             <div className="levels-panel" data-reveal="">
-              <span className="levels-label">Three levels</span>
+              <span className="levels-label">{t.blueprint.levelsLabel}</span>
               <div className="levels-list">
-                {levelsCards.map((item) => (
+                {t.blueprint.levels.map((item) => (
                   <article key={item.title} className="levels-item">
                     <h3>{item.title}</h3>
                     <p>{item.text}</p>
@@ -588,7 +397,7 @@ export default function HomePage() {
           </div>
 
           <div className="blueprint-grid" data-reveal-stagger="">
-            {blueprintCards.map((item) => (
+            {t.blueprint.cards.map((item) => (
               <article key={item.title} className="blueprint-card">
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
@@ -598,88 +407,68 @@ export default function HomePage() {
         </div>
       </section>
 
-
-      {/* ══════════════════════════════════════════════════════════════
-          ENGAGEMENT
-          ══════════════════════════════════════════════════════════════ */}
       <section className="section s-canvas" id="engagement" aria-labelledby="engagement-heading">
         <div className="section-inner">
           <div className="engage-grid">
             <div data-reveal="">
-              <span className="eyebrow">Engagement</span>
-              <h2 id="engagement-heading" className="engage-heading">
-                One sprint to define the operating model.
-              </h2>
-              <p className="engage-body">
-                In a focused working sprint, we align leadership and engineering around a practical
-                next step with clear priorities, governance, and measurement.
-              </p>
+              <span className="eyebrow">{t.engagement.eyebrow}</span>
+              <h2 id="engagement-heading" className="engage-heading">{t.engagement.heading}</h2>
+              <p className="engage-body">{t.engagement.body}</p>
             </div>
 
-            <blockquote className="pull-quote" data-reveal="">
-              One focused engagement to define the ground truth, the priorities, and the operating
-              rules that make AI supervision real.
-            </blockquote>
+            <blockquote className="pull-quote" data-reveal="">{t.engagement.quote}</blockquote>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          CONTACT (dark)
-          ══════════════════════════════════════════════════════════════ */}
       <section className="section s-dark" id="contact" aria-labelledby="contact-heading">
         <div className="section-inner">
           <div className="cta-inner" data-reveal="">
-            <span className="eyebrow eyebrow-brass">Start the conversation</span>
-            <h2 id="contact-heading" className="cta-heading">
-              Still in sandbox mode?
-            </h2>
-            <p className="cta-sub">
-              If AI is already entering your delivery workflows, the next step is not more
-              experimentation. It is control, supervision, and measurable execution.
-            </p>
+            <span className="eyebrow eyebrow-brass">{t.contact.eyebrow}</span>
+            <h2 id="contact-heading" className="cta-heading">{t.contact.heading}</h2>
+            <p className="cta-sub">{t.contact.body}</p>
             <div className="cta-actions">
               <a
                 href="https://calendly.com/nicolasboitout/new-meeting"
                 className="btn btn-dark"
                 data-calendly-link="true"
               >
-                Book an intro call
+                {t.contact.cta}
               </a>
               <a
                 href="mailto:nicolas@agentic-sdlc.com?subject=Agentic%20SDLC%20conversation"
                 className="btn btn-outline-dark"
               >
-                nicolas@agentic-sdlc.com
+                {t.contact.email}
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          FOOTER
-          ══════════════════════════════════════════════════════════════ */}
       <footer className="site-footer">
         <div className="footer-inner">
           <div className="footer-brand">
-            <a href="#top" className="footer-name">
-              Agentic SDLC
-            </a>
-            <p className="footer-tagline">AI-enabled software delivery transformation</p>
+            <a href="#top" className="footer-name">{t.footer.brand}</a>
+            <p className="footer-tagline">{t.footer.tagline}</p>
           </div>
           <nav className="footer-links" aria-label="Footer">
-            <a href="#sandbox-factory">Beyond T&amp;M</a>
-            <a href="#blueprint">Blueprint</a>
-            <a href="#how-we-help">Metrics</a>
-            <a href="#contact">Contact</a>
-            <a href="mailto:nicolas@agentic-sdlc.com">nicolas@agentic-sdlc.com</a>
+            <a href="#sandbox-factory">{t.nav.beyond}</a>
+            <a href="#blueprint">{t.nav.blueprint}</a>
+            <a href="#how-we-help">{t.nav.metrics}</a>
+            <a href="#contact">{t.nav.contact}</a>
+            <a href="mailto:nicolas@agentic-sdlc.com">{t.contact.email}</a>
           </nav>
           <p className="footer-copy">&copy; {new Date().getFullYear()} Agentic SDLC</p>
         </div>
       </footer>
 
-      <ClientEnhancements />
+      <ClientEnhancements
+        nav={t.nav}
+        cta={t.contact.cta}
+        currentLanguage={language}
+        onLanguageChange={setLanguage}
+      />
     </main>
   );
 }

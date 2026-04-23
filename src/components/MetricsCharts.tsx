@@ -12,8 +12,8 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts"
+import type { SiteCopy } from "@/lib/i18n"
 
-// ─── Design tokens (mirrors globals.css) ─────────────────────────────────────
 const T = {
   ink:        "#0F1319",
   brass:      "#9B7D5C",
@@ -25,15 +25,7 @@ const T = {
   body:       "#1C2130",
 }
 
-// ─── Pie chart — where developer time goes in sandbox mode ────────────────────
-const sandboxTimeData = [
-  { name: "Unplanned debugging",  value: 30, color: T.ink },
-  { name: "Manual coding",        value: 28, color: T.brass },
-  { name: "Context switching",    value: 22, color: T.muted },
-  { name: "Documentation",        value: 12, color: T.brassLight },
-  { name: "Supervision overhead", value: 8,  color: T.border },
-]
-
+const pieColors = [T.ink, T.brass, T.muted, T.brassLight, T.border]
 const RADIAN = Math.PI / 180
 
 function PieLabel({
@@ -61,16 +53,7 @@ function PieLabel({
     </text>
   )
 }
-// ─── Bar chart — sandbox vs factory metric uplift ─────────────────────────────
-const upliftData = [
-  { metric: "Supervision coverage", sandbox: 18,  factory: 85  },
-  { metric: "AI contribution",      sandbox: 12,  factory: 68  },
-  { metric: "Delivery speed",       sandbox: 100, factory: 155 },
-  { metric: "Quality score",        sandbox: 62,  factory: 88  },
-  { metric: "Rework reduction",     sandbox: 100, factory: 152 },
-]
 
-// ─── Shared tooltip ───────────────────────────────────────────────────────────
 const tipBox: React.CSSProperties = {
   background: T.white,
   border: `1px solid ${T.border}`,
@@ -105,19 +88,23 @@ function BarTooltip({ active, payload, label }: { active?: boolean; payload?: { 
   )
 }
 
-// ─── Component ────────────────────────────────────────────────────────────────
-export function MetricsCharts() {
+type MetricsChartsProps = {
+  charts: SiteCopy["metrics"]["charts"]
+}
+
+export function MetricsCharts({ charts }: MetricsChartsProps) {
+  const sandboxTimeData = charts.sandboxData.map((item, index) => ({
+    ...item,
+    color: pieColors[index] ?? T.ink,
+  }))
+
   return (
     <div className="metrics-charts-grid">
-
-      {/* ── Pie ── */}
       <div className="chart-card">
         <div className="chart-card-header">
-          <span className="chart-eyebrow">Today — Sandbox mode</span>
-          <h3 className="chart-title">Where developer time actually goes</h3>
-          <p className="chart-sub">
-            Most time is consumed by unplanned work and context switching — not delivery.
-          </p>
+          <span className="chart-eyebrow">{charts.sandboxEyebrow}</span>
+          <h3 className="chart-title">{charts.sandboxTitle}</h3>
+          <p className="chart-sub">{charts.sandboxBody}</p>
         </div>
 
         <ResponsiveContainer width="100%" height={220}>
@@ -152,19 +139,16 @@ export function MetricsCharts() {
         </ul>
       </div>
 
-      {/* ── Bar ── */}
       <div className="chart-card">
         <div className="chart-card-header">
-          <span className="chart-eyebrow">Target — Factory mode</span>
-          <h3 className="chart-title">Metric uplift: sandbox vs factory</h3>
-          <p className="chart-sub">
-            What structured supervision and measurement actually moves.
-          </p>
+          <span className="chart-eyebrow">{charts.factoryEyebrow}</span>
+          <h3 className="chart-title">{charts.factoryTitle}</h3>
+          <p className="chart-sub">{charts.factoryBody}</p>
         </div>
 
         <ResponsiveContainer width="100%" height={260}>
           <BarChart
-            data={upliftData}
+            data={charts.upliftData}
             layout="vertical"
             margin={{ top: 0, right: 16, left: 0, bottom: 0 }}
             barCategoryGap="30%"
@@ -187,15 +171,15 @@ export function MetricsCharts() {
               axisLine={false}
             />
             <Tooltip content={<BarTooltip />} cursor={{ fill: T.canvas }} />
-            <Bar dataKey="sandbox" name="Sandbox" fill={T.border} radius={[0, 3, 3, 0]} />
-            <Bar dataKey="factory" name="Factory" fill={T.ink}    radius={[0, 3, 3, 0]} />
+            <Bar dataKey="sandbox" name={charts.sandboxLegend} fill={T.border} radius={[0, 3, 3, 0]} />
+            <Bar dataKey="factory" name={charts.factoryLegend} fill={T.ink} radius={[0, 3, 3, 0]} />
           </BarChart>
         </ResponsiveContainer>
 
         <div style={{ display: "flex", gap: 20, paddingTop: 14, borderTop: `1px solid ${T.border}`, marginTop: 8 }}>
           {[
-            { label: "Sandbox", bg: T.border, outline: true },
-            { label: "Factory", bg: T.ink,    outline: false },
+            { label: charts.sandboxLegend, bg: T.border, outline: true },
+            { label: charts.factoryLegend, bg: T.ink, outline: false },
           ].map((l) => (
             <div key={l.label} style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 12, color: T.muted, fontWeight: 600 }}>
               <span style={{
@@ -207,7 +191,6 @@ export function MetricsCharts() {
           ))}
         </div>
       </div>
-
     </div>
   )
 }
