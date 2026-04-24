@@ -1,13 +1,25 @@
 export const languages = [
   { code: 'en', label: 'EN', name: 'English' },
-  { code: 'fr', label: 'FR', name: 'Francais' },
+  { code: 'fr', label: 'FR', name: 'Français' },
   { code: 'de', label: 'DE', name: 'Deutsch' },
-  { code: 'ro', label: 'RO', name: 'Română' },
-  { code: 'bg', label: 'BG', name: 'Български' },
-  { code: 'pl', label: 'PL', name: 'Polski' },
-  { code: 'uk', label: 'UA', name: 'Українська' },
   { code: 'es', label: 'ES', name: 'Español' },
+  { code: 'it', label: 'IT', name: 'Italiano' },
+  { code: 'pt', label: 'PT', name: 'Português' },
+  { code: 'nl', label: 'NL', name: 'Nederlands' },
+  { code: 'pl', label: 'PL', name: 'Polski' },
+  { code: 'sv', label: 'SV', name: 'Svenska' },
+  { code: 'da', label: 'DA', name: 'Dansk' },
+  { code: 'fi', label: 'FI', name: 'Suomi' },
+  { code: 'ro', label: 'RO', name: 'Română' },
+  { code: 'cs', label: 'CS', name: 'Čeština' },
+  { code: 'hu', label: 'HU', name: 'Magyar' },
+  { code: 'hr', label: 'HR', name: 'Hrvatski' },
   { code: 'ru', label: 'RU', name: 'Русский' },
+  { code: 'uk', label: 'UA', name: 'Українська' },
+  { code: 'bg', label: 'BG', name: 'Български' },
+  { code: 'sr', label: 'SR', name: 'Српски' },
+  { code: 'el', label: 'EL', name: 'Ελληνικά' },
+  { code: 'tr', label: 'TR', name: 'Türkçe' },
 ] as const;
 
 export type LanguageCode = (typeof languages)[number]['code'];
@@ -139,7 +151,34 @@ export type SiteCopy = {
   };
 };
 
-export const copy: Record<LanguageCode, SiteCopy> = {
+type DeepPartial<T> = {
+  [K in keyof T]?: T[K] extends Array<infer U>
+    ? T[K]
+    : T[K] extends object
+      ? DeepPartial<T[K]>
+      : T[K];
+};
+
+function mergeCopy(base: SiteCopy, overrides: DeepPartial<SiteCopy>): SiteCopy {
+  const merge = <T,>(source: T, patch: DeepPartial<T>): T => {
+    if (Array.isArray(source) || Array.isArray(patch) || typeof source !== 'object' || source === null) {
+      return (patch ?? source) as T;
+    }
+
+    return Object.fromEntries(
+      Object.entries(source).map(([key, value]) => [
+        key,
+        key in patch
+          ? merge(value, (patch as Record<string, unknown>)[key] as DeepPartial<typeof value>)
+          : value,
+      ]),
+    ) as T;
+  };
+
+  return merge(base, overrides);
+}
+
+export const copy = {
   en: {
     meta: {
       title: 'Agentic SDLC | AI-Enabled Software Delivery Transformation',
@@ -337,7 +376,7 @@ export const copy: Record<LanguageCode, SiteCopy> = {
     hero: {
       eyebrow: 'LE FUTUR DU SOFTWARE ENGINEERING',
       h1Prefix: 'Agentic SDLC :',
-      h1Rest: 'Des outils de code IA vers des systèmes de delivery fiables.',
+      h1Rest: 'Des outils de développement IA aux systèmes de delivery fiables.',
       subtitle: 'Passez de l’expérimentation IA à un modèle de delivery auquel vos clients peuvent faire confiance.',
       primaryCta: 'Réserver un appel découverte',
       secondaryCta: 'Auto-évaluation pour dirigeants',
@@ -518,7 +557,7 @@ export const copy: Record<LanguageCode, SiteCopy> = {
     hero: {
       eyebrow: 'VIITORUL SOFTWARE ENGINEERING',
       h1Prefix: 'Agentic SDLC:',
-      h1Rest: 'De la unelte AI de cod la sisteme de livrare fiabile.',
+      h1Rest: 'De la instrumente AI pentru dezvoltare la sisteme fiabile de livrare software.',
       subtitle: 'Treci de la experimentare AI la un model de livrare în care clienții pot avea încredere.',
       primaryCta: 'Programează o discuție',
       secondaryCta: 'Auto-evaluare pentru executivi',
@@ -699,7 +738,7 @@ export const copy: Record<LanguageCode, SiteCopy> = {
     hero: {
       eyebrow: 'DIE ZUKUNFT DES SOFTWARE ENGINEERING',
       h1Prefix: 'Agentic SDLC:',
-      h1Rest: 'Von KI-Coding-Tools zu verlässlichen Delivery-Systemen.',
+      h1Rest: 'Von KI-Coding-Tools zu verlässlichen Systemen für Software-Delivery.',
       subtitle: 'Gehen Sie von KI-Experimenten zu einem Delivery-Modell über, dem Ihre Kunden vertrauen können.',
       primaryCta: 'Ein Kennenlerngespräch buchen',
       secondaryCta: 'Selbstbewertung für Führungskräfte',
@@ -880,7 +919,7 @@ export const copy: Record<LanguageCode, SiteCopy> = {
     hero: {
       eyebrow: 'БЪДЕЩЕТО НА SOFTWARE ENGINEERING',
       h1Prefix: 'Agentic SDLC:',
-      h1Rest: 'От AI инструменти за код към надеждни системи за доставка.',
+      h1Rest: 'От AI инструменти за разработка към надеждни системи за софтуерна доставка.',
       subtitle: 'Преминете от AI експерименти към модел на доставка, на който клиентите могат да се доверят.',
       primaryCta: 'Запазете среща',
       secondaryCta: 'Самооценка за ръководители',
@@ -1061,7 +1100,7 @@ export const copy: Record<LanguageCode, SiteCopy> = {
     hero: {
       eyebrow: 'PRZYSZŁOŚĆ SOFTWARE ENGINEERING',
       h1Prefix: 'Agentic SDLC:',
-      h1Rest: 'Od narzędzi AI do kodowania do niezawodnych systemów delivery.',
+      h1Rest: 'Od narzędzi AI dla programistów do niezawodnych systemów dostarczania oprogramowania.',
       subtitle: 'Przejdź od eksperymentów z AI do modelu delivery, któremu mogą zaufać Twoi klienci.',
       primaryCta: 'Umów rozmowę',
       secondaryCta: 'Samoocena dla kadry zarządzającej',
@@ -1242,7 +1281,7 @@ export const copy: Record<LanguageCode, SiteCopy> = {
     hero: {
       eyebrow: 'МАЙБУТНЄ SOFTWARE ENGINEERING',
       h1Prefix: 'Agentic SDLC:',
-      h1Rest: 'Від AI-інструментів для коду до надійних систем delivery.',
+      h1Rest: 'Від AI-інструментів для розробки до надійних систем доставки програмного забезпечення.',
       subtitle: 'Перейдіть від експериментів з AI до моделі delivery, якій ваші клієнти можуть довіряти.',
       primaryCta: 'Запланувати розмову',
       secondaryCta: 'Самооцінка для керівників',
@@ -1423,7 +1462,7 @@ export const copy: Record<LanguageCode, SiteCopy> = {
     hero: {
       eyebrow: 'EL FUTURO DEL SOFTWARE ENGINEERING',
       h1Prefix: 'Agentic SDLC:',
-      h1Rest: 'De herramientas de código con IA a sistemas de delivery fiables.',
+      h1Rest: 'De herramientas de desarrollo con IA a sistemas fiables de entrega de software.',
       subtitle: 'Pasa de la experimentación con IA a un modelo de delivery en el que tus clientes pueden confiar.',
       primaryCta: 'Reservar una llamada',
       secondaryCta: 'Autoevaluación para directivos',
@@ -1604,7 +1643,7 @@ export const copy: Record<LanguageCode, SiteCopy> = {
     hero: {
       eyebrow: 'БУДУЩЕЕ SOFTWARE ENGINEERING',
       h1Prefix: 'Agentic SDLC:',
-      h1Rest: 'От AI-инструментов для кода к надежным системам delivery.',
+      h1Rest: 'От AI-инструментов для разработки к надежным системам доставки ПО.',
       subtitle: 'Перейдите от экспериментов с ИИ к модели delivery, которой ваши клиенты могут доверять.',
       primaryCta: 'Записаться на звонок',
       secondaryCta: 'Самооценка для руководителей',
@@ -1769,4 +1808,204 @@ export const copy: Record<LanguageCode, SiteCopy> = {
       tagline: 'Трансформация доставки ПО с ИИ',
     },
   },
-};
+} as Record<LanguageCode, SiteCopy>;
+
+Object.assign(copy, {
+  it: mergeCopy(copy.en, {
+    meta: { title: 'Agentic SDLC | Trasformazione della delivery software con AI' },
+    nav: { primaryLabel: 'Navigazione principale', beyond: 'Oltre il T&M', blueprint: 'Blueprint', metrics: 'Metriche', contact: 'Contatto', blog: 'Il nostro blog: Learn & Project', language: 'Lingua' },
+    hero: {
+      eyebrow: 'IL FUTURO DEL SOFTWARE ENGINEERING',
+      h1Rest: 'Dagli strumenti di sviluppo AI a sistemi affidabili di delivery software.',
+      subtitle: 'Passa dalla sperimentazione AI a un modello di delivery di cui i clienti possono fidarsi.',
+      primaryCta: 'Prenota una call introduttiva',
+      secondaryCta: 'Autovalutazione per executive',
+      liveLabel: 'Controllo LIVE · Agentic SDLC',
+      pipeline: 'Pipeline di delivery',
+      steps: ['Pianifica', 'Costruisci', 'Rivedi', 'Rilascia', 'Misura'],
+      eventsLabel: 'Eventi live',
+      events: [
+        { time: '14:02', message: 'agent-04 · PR #182 unita', status: 'ok' },
+        { time: '14:01', message: 'coda review · 2 elementi', status: 'warn' },
+        { time: '13:57', message: 'controllo policy · superato', status: 'ok' },
+        { time: '13:54', message: 'agent-02 · modulo generato', status: 'ok' },
+      ],
+      supervision: 'Supervisione',
+      coverage: 'copertura',
+      aiContribution: 'Contributo AI',
+      rework: 'Rilavorazione',
+      quality: 'Qualità',
+      agentPool: 'Pool di agenti',
+      agentPoolStatus: 'online · 0 bloccati',
+      connectorLeftLabel: 'T&M classico',
+      connectorLeftDesc: 'Body shopping, giorni fatturabili, lunghi cicli di staffing.',
+      connectorCenter: 'Agentic SDLC cambia anche il modello economico della delivery software',
+      connectorRightLabel: 'Esecuzione programmabile',
+      connectorRightDesc: 'Burst brevi, flussi paralleli, allocazione dinamica.',
+    },
+    beyond: {
+      eyebrow: 'Oltre Time & Materials',
+      heading: 'Oltre Time & Materials',
+      lead: 'Lo staffing vendeva tempo. Il prossimo modello vende burst di esecuzione.',
+      before: 'Prima',
+      beforeValue: 'persone × tempo',
+      beforeCaption: 'giorni fatturabili · staffing stabile · progetti lunghi',
+      now: 'Ora',
+      nowValue: 'burst di esecuzione',
+      nowCaption: 'flussi paralleli · cicli brevi · allocazione dinamica',
+      clientsEyebrow: 'Cosa cambia per i clienti',
+      clientsTitle: 'La decisione non è più quante persone allocare e per quanti mesi.',
+      closing: 'Prima i progetti consumavano giorni fatturabili. Ora consumano burst di esecuzione.',
+    },
+    core: { eyebrow: 'Cambio di ruolo', heading: 'Evoluzione del ruolo dello sviluppatore.', body: 'Quando gli agenti di coding assumono più lavoro, gli sviluppatori non scompaiono. Il loro ruolo cambia: supervisione, review, validazione e giudizio su cosa non automatizzare alla cieca.' },
+    metrics: { eyebrow: 'Metriche', heading: 'Senza metriche non c’è trasformazione.', body: 'Se contributo AI, rilavorazione, qualità e supervisione non sono misurati, l’adozione resta aneddotica e non scala.', measuredLabel: 'Cosa misurare', statement: 'Misurare, non raccontare.', statementBody: 'Ciò che viene misurato può essere governato.', supervisionCoverage: 'Copertura di supervisione', reworkReduction: 'Riduzione rilavorazione', velocityTitle: 'Velocità sotto controllo', traceability: 'Tracciabilità', unreviewedMerges: 'Merge non revisionati' },
+    audience: { eyebrow: 'Per chi', heading: 'Per team che hanno bisogno della velocità dell’AI con responsabilità di delivery.', body: 'Per organizzazioni che stanno già sperimentando strumenti di coding AI e cercano un modello operativo duraturo.' },
+    blueprint: { eyebrow: 'Blueprint', heading: 'Adottare strumenti AI non è un modello di delivery.', levelsLabel: 'Tre livelli' },
+    engagement: { eyebrow: 'Engagement', heading: 'Uno sprint per definire il modello operativo.', body: 'In uno sprint focalizzato allineiamo leadership e engineering su priorità, governance e misurazione.', quote: 'Un engagement focalizzato per definire realtà, priorità e regole operative che rendono reale la supervisione AI.' },
+    contact: { eyebrow: 'Inizia la conversazione', heading: 'Ancora in modalità sandbox?', body: 'Se l’AI è già nei workflow di delivery, il passo successivo è controllo, supervisione ed esecuzione misurabile.', cta: 'Prenota una call introduttiva' },
+    footer: { tagline: 'Trasformazione della delivery software con AI' },
+  }),
+  pt: mergeCopy(copy.en, {
+    meta: { title: 'Agentic SDLC | Transformação da entrega de software com IA' },
+    nav: { primaryLabel: 'Navegação principal', beyond: 'Além de T&M', blueprint: 'Blueprint', metrics: 'Métricas', contact: 'Contato', blog: 'Nosso blog: Learn & Project', language: 'Idioma' },
+    hero: { eyebrow: 'O FUTURO DA ENGENHARIA DE SOFTWARE', h1Rest: 'De ferramentas de desenvolvimento com IA a sistemas confiáveis de entrega de software.', subtitle: 'Passe da experimentação com IA para um modelo de entrega em que seus clientes possam confiar.', primaryCta: 'Agendar chamada inicial', secondaryCta: 'Autoavaliação para executivos', liveLabel: 'Controle LIVE · Agentic SDLC', pipeline: 'Pipeline de entrega', steps: ['Planejar', 'Construir', 'Revisar', 'Enviar', 'Medir'], eventsLabel: 'Eventos ao vivo', supervision: 'Supervisão', coverage: 'cobertura', aiContribution: 'Contribuição IA', rework: 'Retrabalho', quality: 'Qualidade', agentPool: 'Pool de agentes', agentPoolStatus: 'online · 0 bloqueados', connectorLeftLabel: 'T&M clássico', connectorLeftDesc: 'Body shopping, dias faturáveis, longos ciclos de staffing.', connectorCenter: 'Agentic SDLC também muda o modelo de negócio da entrega de software', connectorRightLabel: 'Execução programável', connectorRightDesc: 'Bursts curtos, fluxos paralelos, alocação dinâmica.' },
+    beyond: { eyebrow: 'Além de Time & Materials', heading: 'Além de Time & Materials', lead: 'Staffing vendia tempo. O próximo modelo vende bursts de execução.', before: 'Antes', beforeValue: 'pessoas × tempo', beforeCaption: 'dias faturáveis · staffing estável · projetos longos', now: 'Agora', nowValue: 'bursts de execução', nowCaption: 'fluxos paralelos · ciclos curtos · alocação dinâmica', clientsEyebrow: 'O que muda para os clientes', clientsTitle: 'A decisão não é mais quantas pessoas alocar por quantos meses.', closing: 'Projetos antes consumiam dias faturáveis. Agora consomem bursts de execução.' },
+    core: { eyebrow: 'Mudança central', heading: 'Mudança central no papel do desenvolvedor.', body: 'À medida que agentes de coding assumem mais trabalho, desenvolvedores não desaparecem. O papel muda para supervisão, revisão, validação e julgamento sobre o que não automatizar cegamente.' },
+    metrics: { eyebrow: 'Métricas', heading: 'Sem métricas, não há transformação.', body: 'Se contribuição da IA, retrabalho, qualidade e supervisão não são medidos, a adoção fica anedótica e não escala.', measuredLabel: 'O que medir', statement: 'Medição acima de narrativa.', statementBody: 'O que é medido pode ser governado.', supervisionCoverage: 'Cobertura de supervisão', reworkReduction: 'Redução de retrabalho', velocityTitle: 'Velocidade com controle', traceability: 'Rastreabilidade', unreviewedMerges: 'Merges sem revisão' },
+    audience: { eyebrow: 'Para quem', heading: 'Para equipes que precisam da velocidade da IA com responsabilidade de entrega.', body: 'Para organizações que já experimentam ferramentas de coding com IA e buscam um modelo operacional durável.' },
+    blueprint: { eyebrow: 'Blueprint', heading: 'Adotar ferramentas de IA não é um modelo de entrega.', levelsLabel: 'Três níveis' },
+    engagement: { eyebrow: 'Engagement', heading: 'Um sprint para definir o modelo operacional.', body: 'Em um sprint focado, alinhamos liderança e engenharia em prioridades, governança e medição.', quote: 'Um engagement focado para definir realidade, prioridades e regras operacionais que tornam real a supervisão da IA.' },
+    contact: { eyebrow: 'Comece a conversa', heading: 'Ainda em modo sandbox?', body: 'Se a IA já está nos seus workflows de entrega, o próximo passo é controle, supervisão e execução mensurável.', cta: 'Agendar chamada inicial' },
+    footer: { tagline: 'Transformação da entrega de software com IA' },
+  }),
+  nl: mergeCopy(copy.en, {
+    meta: { title: 'Agentic SDLC | Transformatie van softwaredelivery met AI' },
+    nav: { primaryLabel: 'Hoofdnavigatie', beyond: 'Voorbij T&M', blueprint: 'Blueprint', metrics: 'Metrics', contact: 'Contact', blog: 'Onze blog: Learn & Project', language: 'Taal' },
+    hero: { eyebrow: 'DE TOEKOMST VAN SOFTWARE ENGINEERING', h1Rest: 'Van AI-ontwikkeltools naar betrouwbare systemen voor softwaredelivery.', subtitle: 'Ga van AI-experimenten naar een deliverymodel dat klanten kunnen vertrouwen.', primaryCta: 'Plan een kennismaking', secondaryCta: 'Zelfscan voor executives', liveLabel: 'LIVE controle · Agentic SDLC', pipeline: 'Delivery pipeline', steps: ['Plannen', 'Bouwen', 'Reviewen', 'Shippen', 'Meten'], eventsLabel: 'Live events', supervision: 'Supervisie', coverage: 'dekking', aiContribution: 'AI-bijdrage', rework: 'Herwerk', quality: 'Kwaliteit', agentPool: 'Agentpool', agentPoolStatus: 'online · 0 vastgelopen', connectorLeftLabel: 'Klassiek T&M', connectorLeftDesc: 'Body shopping, factureerbare dagen, lange staffingcycli.', connectorCenter: 'Agentic SDLC verandert ook het businessmodel van softwaredelivery', connectorRightLabel: 'Programmeerbare uitvoering', connectorRightDesc: 'Korte bursts, parallelle stromen, dynamische allocatie.' },
+    beyond: { eyebrow: 'Voorbij Time & Materials', heading: 'Voorbij Time & Materials', lead: 'Staffing verkocht tijd. Het volgende model verkoopt uitvoeringsbursts.', before: 'Vroeger', beforeValue: 'mensen × tijd', beforeCaption: 'factureerbare dagen · stabiele staffing · lange projecten', now: 'Nu', nowValue: 'uitvoeringsbursts', nowCaption: 'parallelle stromen · korte cycli · dynamische allocatie', clientsEyebrow: 'Wat verandert voor klanten', clientsTitle: 'De beslissing is niet langer hoeveel mensen voor hoeveel maanden.', closing: 'Projecten verbruikten factureerbare dagen. Nu verbruiken ze uitvoeringsbursts.' },
+    core: { eyebrow: 'Kernverschuiving', heading: 'Kernverschuiving in de rol van de developer.', body: 'Naarmate coding agents meer werk overnemen, verdwijnen developers niet. Hun rol verschuift naar supervisie, review, validatie en oordeel over wat niet blind geautomatiseerd mag worden.' },
+    metrics: { eyebrow: 'Metrics', heading: 'Zonder metrics is er geen transformatie.', body: 'Als AI-bijdrage, herwerk, kwaliteit en supervisie niet worden gemeten, blijft adoptie anekdotisch en schaalt ze niet.', measuredLabel: 'Wat gemeten moet worden', statement: 'Meten boven anekdotes.', statementBody: 'Wat gemeten wordt, kan bestuurd worden.', supervisionCoverage: 'Supervisiedekking', reworkReduction: 'Minder herwerk', velocityTitle: 'Snelheid met controle', traceability: 'Traceerbaarheid', unreviewedMerges: 'Merges zonder review' },
+    audience: { eyebrow: 'Voor wie', heading: 'Voor teams die AI-snelheid nodig hebben met deliveryverantwoordelijkheid.', body: 'Voor organisaties die al experimenteren met AI-codingtools en nu een duurzaam operationeel model zoeken.' },
+    blueprint: { eyebrow: 'Blueprint', heading: 'Adoptie van AI-tools is nog geen deliverymodel.', levelsLabel: 'Drie niveaus' },
+    engagement: { eyebrow: 'Engagement', heading: 'Eén sprint om het operationele model te definiëren.', body: 'In een gefocuste werksprint brengen we leiderschap en engineering op één lijn rond prioriteiten, governance en meting.', quote: 'Een gefocust engagement om realiteit, prioriteiten en werkregels vast te leggen die AI-supervisie echt maken.' },
+    contact: { eyebrow: 'Start het gesprek', heading: 'Nog steeds in sandboxmodus?', body: 'Als AI al in je deliveryworkflows zit, is de volgende stap controle, supervisie en meetbare uitvoering.', cta: 'Plan een kennismaking' },
+    footer: { tagline: 'Transformatie van softwaredelivery met AI' },
+  }),
+  sv: mergeCopy(copy.en, {
+    meta: { title: 'Agentic SDLC | AI-driven transformation av mjukvaruleverans' },
+    nav: { primaryLabel: 'Huvudnavigering', beyond: 'Bortom T&M', blueprint: 'Blueprint', metrics: 'Mätetal', contact: 'Kontakt', blog: 'Vår blogg: Learn & Project', language: 'Språk' },
+    hero: { eyebrow: 'FRAMTIDEN FÖR SOFTWARE ENGINEERING', h1Rest: 'Från AI-verktyg för utveckling till tillförlitliga system för mjukvaruleverans.', subtitle: 'Gå från AI-experiment till en leveransmodell som kunder kan lita på.', primaryCta: 'Boka ett intro-samtal', secondaryCta: 'Självutvärdering för ledare', liveLabel: 'LIVE-kontroll · Agentic SDLC', pipeline: 'Leveranspipeline', steps: ['Planera', 'Bygg', 'Granska', 'Leverera', 'Mät'], eventsLabel: 'Livehändelser', supervision: 'Övervakning', coverage: 'täckning', aiContribution: 'AI-bidrag', rework: 'Omarbete', quality: 'Kvalitet', agentPool: 'Agentpool', agentPoolStatus: 'online · 0 stoppade', connectorLeftLabel: 'Klassisk T&M', connectorLeftDesc: 'Body shopping, fakturerbara dagar, långa staffingcykler.', connectorCenter: 'Agentic SDLC förändrar också affärsmodellen för mjukvaruleverans', connectorRightLabel: 'Programmerbar exekvering', connectorRightDesc: 'Korta bursts, parallella flöden, dynamisk allokering.' },
+    beyond: { eyebrow: 'Bortom Time & Materials', heading: 'Bortom Time & Materials', lead: 'Staffing sålde tid. Nästa modell säljer exekveringsbursts.', before: 'Förr', beforeValue: 'människor × tid', beforeCaption: 'fakturerbara dagar · stabil staffing · långa projekt', now: 'Nu', nowValue: 'exekveringsbursts', nowCaption: 'parallella flöden · korta cykler · dynamisk allokering', clientsEyebrow: 'Vad som förändras för kunder', clientsTitle: 'Beslutet handlar inte längre om hur många personer i hur många månader.', closing: 'Projekt brukade förbruka fakturerbara dagar. Nu förbrukar de exekveringsbursts.' },
+    core: { eyebrow: 'Kärnförändring', heading: 'Utvecklarrollens kärnförändring.', body: 'När coding agents tar över mer arbete försvinner inte utvecklare. Rollen förändras mot övervakning, granskning, validering och omdöme kring vad som inte ska automatiseras blint.' },
+    metrics: { eyebrow: 'Mätetal', heading: 'Utan mätetal finns ingen transformation.', body: 'Om AI-bidrag, omarbete, kvalitet och övervakning inte mäts förblir adoptionen anekdotisk och kan inte skala.', measuredLabel: 'Vad som måste mätas', statement: 'Mätning framför anekdoter.', statementBody: 'Det som mäts kan styras.', supervisionCoverage: 'Övervakningstäckning', reworkReduction: 'Minskat omarbete', velocityTitle: 'Hastighet med kontroll', traceability: 'Spårbarhet', unreviewedMerges: 'Ogranskade merges' },
+    audience: { eyebrow: 'För vem', heading: 'För team som behöver AI-hastighet med leveransansvar.', body: 'För organisationer som redan experimenterar med AI-codingverktyg och söker en hållbar operativ modell.' },
+    blueprint: { eyebrow: 'Blueprint', heading: 'Att införa AI-verktyg är inte en leveransmodell.', levelsLabel: 'Tre nivåer' },
+    engagement: { eyebrow: 'Engagement', heading: 'En sprint för att definiera den operativa modellen.', body: 'I en fokuserad arbetssprint linjerar vi ledning och engineering kring prioriteringar, governance och mätning.', quote: 'Ett fokuserat engagement för att definiera verklighet, prioriteringar och arbetsregler som gör AI-övervakning verklig.' },
+    contact: { eyebrow: 'Starta samtalet', heading: 'Fortfarande i sandboxläge?', body: 'Om AI redan finns i era leveransflöden är nästa steg kontroll, övervakning och mätbar exekvering.', cta: 'Boka ett intro-samtal' },
+    footer: { tagline: 'AI-driven transformation av mjukvaruleverans' },
+  }),
+  da: mergeCopy(copy.en, {
+    meta: { title: 'Agentic SDLC | AI-drevet transformation af softwareleverance' },
+    nav: { primaryLabel: 'Primær navigation', beyond: 'Ud over T&M', blueprint: 'Blueprint', metrics: 'Målinger', contact: 'Kontakt', blog: 'Vores blog: Learn & Project', language: 'Sprog' },
+    hero: { eyebrow: 'FREMTIDEN FOR SOFTWARE ENGINEERING', h1Rest: 'Fra AI-udviklingsværktøjer til pålidelige systemer for softwareleverance.', subtitle: 'Gå fra AI-eksperimenter til en leverancemodel, som kunder kan stole på.', primaryCta: 'Book et introopkald', secondaryCta: 'Selvevaluering for ledere', liveLabel: 'LIVE-kontrol · Agentic SDLC', pipeline: 'Leverancepipeline', steps: ['Planlæg', 'Byg', 'Review', 'Ship', 'Mål'], eventsLabel: 'Live events', supervision: 'Supervision', coverage: 'dækning', aiContribution: 'AI-bidrag', rework: 'Omarbejde', quality: 'Kvalitet', agentPool: 'Agentpool', agentPoolStatus: 'online · 0 stoppet', connectorLeftLabel: 'Klassisk T&M', connectorLeftDesc: 'Body shopping, fakturerbare dage, lange staffingcyklusser.', connectorCenter: 'Agentic SDLC ændrer også forretningsmodellen for softwareleverance', connectorRightLabel: 'Programmerbar eksekvering', connectorRightDesc: 'Korte bursts, parallelle strømme, dynamisk allokering.' },
+    beyond: { eyebrow: 'Ud over Time & Materials', heading: 'Ud over Time & Materials', lead: 'Staffing solgte tid. Den næste model sælger eksekveringsbursts.', before: 'Før', beforeValue: 'mennesker × tid', beforeCaption: 'fakturerbare dage · stabil staffing · lange projekter', now: 'Nu', nowValue: 'eksekveringsbursts', nowCaption: 'parallelle strømme · korte cyklusser · dynamisk allokering', clientsEyebrow: 'Hvad ændrer sig for kunder', clientsTitle: 'Beslutningen handler ikke længere om hvor mange mennesker i hvor mange måneder.', closing: 'Projekter brugte før fakturerbare dage. Nu bruger de eksekveringsbursts.' },
+    core: { eyebrow: 'Kerneskift', heading: 'Kerneskiftet i udviklerens rolle.', body: 'Når coding agents overtager mere arbejde, forsvinder udviklere ikke. Rollen flytter sig mod supervision, review, validering og dømmekraft om, hvad der ikke må automatiseres blindt.' },
+    metrics: { eyebrow: 'Målinger', heading: 'Uden målinger er der ingen transformation.', body: 'Hvis AI-bidrag, omarbejde, kvalitet og supervision ikke måles, forbliver adoptionen anekdotisk og kan ikke skaleres.', measuredLabel: 'Hvad skal måles', statement: 'Måling over anekdoter.', statementBody: 'Det, der måles, kan styres.', supervisionCoverage: 'Supervisionsdækning', reworkReduction: 'Reduceret omarbejde', velocityTitle: 'Hastighed med kontrol', traceability: 'Sporbarhed', unreviewedMerges: 'Ureviewede merges' },
+    audience: { eyebrow: 'Hvem det er for', heading: 'For teams der har brug for AI-hastighed med leveranceansvar.', body: 'For organisationer der allerede eksperimenterer med AI-codingværktøjer og nu søger en holdbar driftsmodel.' },
+    blueprint: { eyebrow: 'Blueprint', heading: 'Adoption af AI-værktøjer er ikke en leverancemodel.', levelsLabel: 'Tre niveauer' },
+    engagement: { eyebrow: 'Engagement', heading: 'Én sprint til at definere driftsmodellen.', body: 'I en fokuseret arbejdssprint samler vi ledelse og engineering om prioriteter, governance og måling.', quote: 'Et fokuseret engagement til at definere virkelighed, prioriteter og arbejdsregler, der gør AI-supervision reel.' },
+    contact: { eyebrow: 'Start samtalen', heading: 'Stadig i sandbox-tilstand?', body: 'Hvis AI allerede er i jeres delivery workflows, er næste skridt kontrol, supervision og målbar eksekvering.', cta: 'Book et introopkald' },
+    footer: { tagline: 'AI-drevet transformation af softwareleverance' },
+  }),
+  fi: mergeCopy(copy.en, {
+    meta: { title: 'Agentic SDLC | AI-pohjainen ohjelmistotoimituksen muutos' },
+    nav: { primaryLabel: 'Päänavigaatio', beyond: 'T&M:n yli', blueprint: 'Blueprint', metrics: 'Mittarit', contact: 'Yhteys', blog: 'Blogimme: Learn & Project', language: 'Kieli' },
+    hero: { eyebrow: 'OHJELMISTOKEHITYKSEN TULEVAISUUS', h1Rest: 'AI-kehitystyökaluista luotettaviin ohjelmistotoimituksen järjestelmiin.', subtitle: 'Siirry AI-kokeiluista toimitusmalliin, johon asiakkaat voivat luottaa.', primaryCta: 'Varaa esittelypuhelu', secondaryCta: 'Johdon itsearviointi', liveLabel: 'LIVE-ohjaus · Agentic SDLC', pipeline: 'Toimitusputki', steps: ['Suunnittele', 'Rakenna', 'Tarkista', 'Julkaise', 'Mittaa'], eventsLabel: 'Live-tapahtumat', supervision: 'Valvonta', coverage: 'kattavuus', aiContribution: 'AI-osuus', rework: 'Uudelleentyö', quality: 'Laatu', agentPool: 'Agenttipooli', agentPoolStatus: 'online · 0 jumissa', connectorLeftLabel: 'Klassinen T&M', connectorLeftDesc: 'Body shopping, laskutettavat päivät, pitkät staffing-syklit.', connectorCenter: 'Agentic SDLC muuttaa myös ohjelmistotoimituksen liiketoimintamallia', connectorRightLabel: 'Ohjelmoitava suoritus', connectorRightDesc: 'Lyhyet burst-jaksot, rinnakkaiset virrat, dynaaminen allokointi.' },
+    beyond: { eyebrow: 'Time & Materialsin yli', heading: 'Time & Materialsin yli', lead: 'Staffing myi aikaa. Seuraava malli myy suoritusbursteja.', before: 'Ennen', beforeValue: 'ihmiset × aika', beforeCaption: 'laskutettavat päivät · vakaa staffing · pitkät projektit', now: 'Nyt', nowValue: 'suoritusburstit', nowCaption: 'rinnakkaiset virrat · lyhyet syklit · dynaaminen allokointi', clientsEyebrow: 'Mikä muuttuu asiakkaille', clientsTitle: 'Päätös ei enää ole montako ihmistä ja kuinka moniksi kuukausiksi.', closing: 'Projektit kuluttivat ennen laskutettavia päiviä. Nyt ne kuluttavat suoritusbursteja.' },
+    core: { eyebrow: 'Roolin muutos', heading: 'Kehittäjän roolin keskeinen muutos.', body: 'Kun coding agents ottavat enemmän työtä, kehittäjät eivät katoa. Rooli muuttuu valvonnaksi, reviewksi, validoinniksi ja harkinnaksi siitä, mitä ei saa automatisoida sokeasti.' },
+    metrics: { eyebrow: 'Mittarit', heading: 'Ilman mittareita ei ole transformaatiota.', body: 'Jos AI-osuutta, uudelleentyötä, laatua ja valvontaa ei mitata, käyttöönotto jää anekdoottiseksi eikä skaalaudu.', measuredLabel: 'Mitä pitää mitata', statement: 'Mittaaminen ennen anekdootteja.', statementBody: 'Mitä mitataan, sitä voidaan hallita.', supervisionCoverage: 'Valvonnan kattavuus', reworkReduction: 'Uudelleentyön vähennys', velocityTitle: 'Nopeus hallinnassa', traceability: 'Jäljitettävyys', unreviewedMerges: 'Reviewtta mergetyt' },
+    audience: { eyebrow: 'Kenelle', heading: 'Tiimeille, jotka tarvitsevat AI-nopeutta ja toimitusvastuuta.', body: 'Organisaatioille, jotka jo kokeilevat AI-codingtyökaluja ja etsivät kestävää toimintamallia.' },
+    blueprint: { eyebrow: 'Blueprint', heading: 'AI-työkalujen käyttöönotto ei ole toimitusmalli.', levelsLabel: 'Kolme tasoa' },
+    engagement: { eyebrow: 'Engagement', heading: 'Yksi sprintti toimintamallin määrittelyyn.', body: 'Fokusoidussa työsprintissä linjaamme johdon ja engineeringin prioriteettien, governancen ja mittaamisen ympärille.', quote: 'Fokusoitu engagement, joka määrittää todellisuuden, prioriteetit ja toimintaperiaatteet, jotka tekevät AI-valvonnasta todellista.' },
+    contact: { eyebrow: 'Aloita keskustelu', heading: 'Vielä sandbox-tilassa?', body: 'Jos AI on jo toimitusworkflowsi sisällä, seuraava askel on kontrolli, valvonta ja mitattava suoritus.', cta: 'Varaa esittelypuhelu' },
+    footer: { tagline: 'AI-pohjainen ohjelmistotoimituksen muutos' },
+  }),
+  cs: mergeCopy(copy.en, {
+    meta: { title: 'Agentic SDLC | Transformace dodávky softwaru pomocí AI' },
+    nav: { primaryLabel: 'Hlavní navigace', beyond: 'Za hranice T&M', blueprint: 'Blueprint', metrics: 'Metriky', contact: 'Kontakt', blog: 'Náš blog: Learn & Project', language: 'Jazyk' },
+    hero: { eyebrow: 'BUDOUCNOST SOFTWARE ENGINEERINGU', h1Rest: 'Od AI nástrojů pro vývoj k spolehlivým systémům dodávky softwaru.', subtitle: 'Přejděte od AI experimentů k modelu dodávky, kterému mohou klienti věřit.', primaryCta: 'Rezervovat úvodní hovor', secondaryCta: 'Sebehodnocení pro vedení', liveLabel: 'LIVE kontrola · Agentic SDLC', pipeline: 'Delivery pipeline', steps: ['Plán', 'Build', 'Review', 'Release', 'Měření'], eventsLabel: 'Živé události', supervision: 'Dohled', coverage: 'pokrytí', aiContribution: 'AI příspěvek', rework: 'Přepracování', quality: 'Kvalita', agentPool: 'Pool agentů', agentPoolStatus: 'online · 0 zaseknuto', connectorLeftLabel: 'Klasické T&M', connectorLeftDesc: 'Body shopping, fakturovatelné dny, dlouhé staffing cykly.', connectorCenter: 'Agentic SDLC mění i obchodní model dodávky softwaru', connectorRightLabel: 'Programovatelná exekuce', connectorRightDesc: 'Krátké bursty, paralelní proudy, dynamická alokace.' },
+    beyond: { eyebrow: 'Za hranice Time & Materials', heading: 'Za hranice Time & Materials', lead: 'Staffing prodával čas. Další model prodává exekuční bursty.', before: 'Dříve', beforeValue: 'lidé × čas', beforeCaption: 'fakturovatelné dny · stabilní staffing · dlouhé projekty', now: 'Nyní', nowValue: 'exekuční bursty', nowCaption: 'paralelní proudy · krátké cykly · dynamická alokace', clientsEyebrow: 'Co se mění pro klienty', clientsTitle: 'Rozhodnutí už není kolik lidí obsadit na kolik měsíců.', closing: 'Projekty dříve spotřebovávaly fakturovatelné dny. Teď spotřebovávají exekuční bursty.' },
+    core: { eyebrow: 'Změna role', heading: 'Zásadní změna role vývojáře.', body: 'Jak coding agents přebírají více práce, vývojáři nemizí. Role se mění směrem k dohledu, review, validaci a úsudku, co neautomatizovat naslepo.' },
+    metrics: { eyebrow: 'Metriky', heading: 'Bez metrik není transformace.', body: 'Pokud se AI příspěvek, přepracování, kvalita a dohled neměří, adopce zůstává anekdotická a nelze ji škálovat.', measuredLabel: 'Co měřit', statement: 'Měření místo anekdot.', statementBody: 'Co se měří, to lze řídit.', supervisionCoverage: 'Pokrytí dohledu', reworkReduction: 'Snížení přepracování', velocityTitle: 'Rychlost pod kontrolou', traceability: 'Trasovatelnost', unreviewedMerges: 'Merge bez review' },
+    audience: { eyebrow: 'Pro koho', heading: 'Pro týmy, které potřebují rychlost AI s odpovědností za delivery.', body: 'Pro organizace, které už experimentují s AI coding nástroji a hledají trvalý operační model.' },
+    blueprint: { eyebrow: 'Blueprint', heading: 'Adopce AI nástrojů není model delivery.', levelsLabel: 'Tři úrovně' },
+    engagement: { eyebrow: 'Engagement', heading: 'Jeden sprint pro definici operačního modelu.', body: 'Ve fokusovaném pracovním sprintu sladíme leadership a engineering kolem priorit, governance a měření.', quote: 'Fokusovaný engagement pro definici reality, priorit a pravidel, která dělají AI dohled skutečným.' },
+    contact: { eyebrow: 'Začněte rozhovor', heading: 'Stále v sandbox módu?', body: 'Pokud AI už vstupuje do vašich delivery workflow, dalším krokem je kontrola, dohled a měřitelná exekuce.', cta: 'Rezervovat úvodní hovor' },
+    footer: { tagline: 'Transformace dodávky softwaru pomocí AI' },
+  }),
+  hu: mergeCopy(copy.en, {
+    meta: { title: 'Agentic SDLC | AI-alapú szoftverszállítási transzformáció' },
+    nav: { primaryLabel: 'Fő navigáció', beyond: 'T&M-en túl', blueprint: 'Blueprint', metrics: 'Mérőszámok', contact: 'Kapcsolat', blog: 'Blogunk: Learn & Project', language: 'Nyelv' },
+    hero: { eyebrow: 'A SOFTWARE ENGINEERING JÖVŐJE', h1Rest: 'AI fejlesztőeszközöktől megbízható szoftverszállítási rendszerekig.', subtitle: 'Lépjen túl az AI-kísérletezésen egy olyan delivery modell felé, amelyben az ügyfelek megbíznak.', primaryCta: 'Foglaljon bevezető hívást', secondaryCta: 'Önértékelés vezetőknek', liveLabel: 'LIVE kontroll · Agentic SDLC', pipeline: 'Delivery pipeline', steps: ['Tervezés', 'Építés', 'Review', 'Kiadás', 'Mérés'], eventsLabel: 'Élő események', supervision: 'Felügyelet', coverage: 'lefedettség', aiContribution: 'AI-hozzájárulás', rework: 'Újramunka', quality: 'Minőség', agentPool: 'Agent pool', agentPoolStatus: 'online · 0 elakadt', connectorLeftLabel: 'Klasszikus T&M', connectorLeftDesc: 'Body shopping, számlázható napok, hosszú staffing ciklusok.', connectorCenter: 'Az Agentic SDLC a szoftverszállítás üzleti modelljét is megváltoztatja', connectorRightLabel: 'Programozható végrehajtás', connectorRightDesc: 'Rövid burstök, párhuzamos folyamok, dinamikus allokáció.' },
+    beyond: { eyebrow: 'Time & Materials után', heading: 'Time & Materials után', lead: 'A staffing időt adott el. A következő modell végrehajtási burstöket ad el.', before: 'Korábban', beforeValue: 'emberek × idő', beforeCaption: 'számlázható napok · stabil staffing · hosszú projektek', now: 'Most', nowValue: 'végrehajtási burstök', nowCaption: 'párhuzamos folyamok · rövid ciklusok · dinamikus allokáció', clientsEyebrow: 'Mi változik az ügyfeleknek', clientsTitle: 'A döntés már nem az, hány embert hány hónapra állítsunk rá.', closing: 'A projektek régen számlázható napokat fogyasztottak. Most végrehajtási burstöket.' },
+    core: { eyebrow: 'Szerepváltozás', heading: 'A fejlesztői szerep alapvető változása.', body: 'Ahogy a coding agentek több munkát vesznek át, a fejlesztők nem tűnnek el. A szerep a felügyelet, review, validáció és annak megítélése felé mozdul, mit nem szabad vakon automatizálni.' },
+    metrics: { eyebrow: 'Mérőszámok', heading: 'Mérőszámok nélkül nincs transzformáció.', body: 'Ha az AI-hozzájárulást, újramunkát, minőséget és felügyeletet nem mérjük, az adaptáció anekdotikus marad és nem skálázódik.', measuredLabel: 'Mit kell mérni', statement: 'Mérés a történetek helyett.', statementBody: 'Ami mérhető, az irányítható.', supervisionCoverage: 'Felügyeleti lefedettség', reworkReduction: 'Újramunka csökkentése', velocityTitle: 'Sebesség kontrollal', traceability: 'Nyomon követhetőség', unreviewedMerges: 'Review nélküli merge-ek' },
+    audience: { eyebrow: 'Kinek szól', heading: 'Csapatoknak, akik AI-sebességet akarnak delivery felelősséggel.', body: 'Olyan szervezeteknek, amelyek már kísérleteznek AI coding eszközökkel, és tartós működési modellt keresnek.' },
+    blueprint: { eyebrow: 'Blueprint', heading: 'Az AI-eszközök bevezetése még nem delivery modell.', levelsLabel: 'Három szint' },
+    engagement: { eyebrow: 'Engagement', heading: 'Egy sprint a működési modell meghatározására.', body: 'Egy fókuszált munkasprintben összehangoljuk a leadershipet és engineeringet a prioritások, governance és mérés körül.', quote: 'Fókuszált engagement a valóság, prioritások és működési szabályok meghatározására, amelyek valódivá teszik az AI-felügyeletet.' },
+    contact: { eyebrow: 'Kezdjük a beszélgetést', heading: 'Még sandbox módban?', body: 'Ha az AI már belépett a delivery workflow-kba, a következő lépés a kontroll, felügyelet és mérhető végrehajtás.', cta: 'Foglaljon bevezető hívást' },
+    footer: { tagline: 'AI-alapú szoftverszállítási transzformáció' },
+  }),
+  hr: mergeCopy(copy.en, {
+    meta: { title: 'Agentic SDLC | Transformacija isporuke softvera uz AI' },
+    nav: { primaryLabel: 'Glavna navigacija', beyond: 'Iza T&M-a', blueprint: 'Blueprint', metrics: 'Metrike', contact: 'Kontakt', blog: 'Naš blog: Learn & Project', language: 'Jezik' },
+    hero: { eyebrow: 'BUDUĆNOST SOFTWARE ENGINEERINGA', h1Rest: 'Od AI alata za razvoj do pouzdanih sustava za isporuku softvera.', subtitle: 'Prijeđite s AI eksperimentiranja na model isporuke kojem klijenti mogu vjerovati.', primaryCta: 'Rezerviraj uvodni poziv', secondaryCta: 'Samoprocjena za voditelje', liveLabel: 'LIVE kontrola · Agentic SDLC', pipeline: 'Pipeline isporuke', steps: ['Plan', 'Build', 'Review', 'Isporuka', 'Mjerenje'], eventsLabel: 'Live događaji', supervision: 'Nadzor', coverage: 'pokrivenost', aiContribution: 'AI doprinos', rework: 'Dorade', quality: 'Kvaliteta', agentPool: 'Pool agenata', agentPoolStatus: 'online · 0 blokirano', connectorLeftLabel: 'Klasični T&M', connectorLeftDesc: 'Body shopping, naplativi dani, dugi staffing ciklusi.', connectorCenter: 'Agentic SDLC mijenja i poslovni model isporuke softvera', connectorRightLabel: 'Programabilna izvedba', connectorRightDesc: 'Kratki burstovi, paralelni tokovi, dinamička alokacija.' },
+    beyond: { eyebrow: 'Iza Time & Materials', heading: 'Iza Time & Materials', lead: 'Staffing je prodavao vrijeme. Sljedeći model prodaje burstove izvedbe.', before: 'Prije', beforeValue: 'ljudi × vrijeme', beforeCaption: 'naplativi dani · stabilan staffing · dugi projekti', now: 'Sada', nowValue: 'burstovi izvedbe', nowCaption: 'paralelni tokovi · kratki ciklusi · dinamička alokacija', clientsEyebrow: 'Što se mijenja za klijente', clientsTitle: 'Odluka više nije koliko ljudi angažirati i na koliko mjeseci.', closing: 'Projekti su nekad trošili naplative dane. Sada troše burstove izvedbe.' },
+    core: { eyebrow: 'Promjena uloge', heading: 'Ključna promjena uloge developera.', body: 'Kako coding agenti preuzimaju više posla, developeri ne nestaju. Uloga se mijenja prema nadzoru, reviewu, validaciji i prosudbi što ne automatizirati naslijepo.' },
+    metrics: { eyebrow: 'Metrike', heading: 'Bez metrika nema transformacije.', body: 'Ako se AI doprinos, dorade, kvaliteta i nadzor ne mjere, adopcija ostaje anegdotalna i ne može skalirati.', measuredLabel: 'Što treba mjeriti', statement: 'Mjerenje umjesto anegdota.', statementBody: 'Ono što se mjeri može se upravljati.', supervisionCoverage: 'Pokrivenost nadzorom', reworkReduction: 'Smanjenje dorada', velocityTitle: 'Brzina pod kontrolom', traceability: 'Sljedivost', unreviewedMerges: 'Mergevi bez reviewa' },
+    audience: { eyebrow: 'Za koga', heading: 'Za timove kojima treba AI brzina uz odgovornost isporuke.', body: 'Za organizacije koje već eksperimentiraju s AI coding alatima i sada traže održiv operativni model.' },
+    blueprint: { eyebrow: 'Blueprint', heading: 'Uvođenje AI alata nije model isporuke.', levelsLabel: 'Tri razine' },
+    engagement: { eyebrow: 'Engagement', heading: 'Jedan sprint za definiranje operativnog modela.', body: 'U fokusiranom radnom sprintu usklađujemo leadership i engineering oko prioriteta, governancea i mjerenja.', quote: 'Fokusirani engagement za definiranje stvarnosti, prioriteta i radnih pravila koja AI nadzor čine stvarnim.' },
+    contact: { eyebrow: 'Započnite razgovor', heading: 'Još uvijek u sandbox modu?', body: 'Ako AI već ulazi u vaše delivery workflowe, sljedeći korak je kontrola, nadzor i mjerljiva izvedba.', cta: 'Rezerviraj uvodni poziv' },
+    footer: { tagline: 'Transformacija isporuke softvera uz AI' },
+  }),
+  sr: mergeCopy(copy.en, {
+    meta: { title: 'Agentic SDLC | Трансформација испоруке софтвера уз AI' },
+    nav: { primaryLabel: 'Главна навигација', beyond: 'Изван T&M', blueprint: 'Blueprint', metrics: 'Метрике', contact: 'Контакт', blog: 'Наш блог: Learn & Project', language: 'Језик' },
+    hero: { eyebrow: 'БУДУЋНОСТ SOFTWARE ENGINEERING-А', h1Rest: 'Од AI алата за развој до поузданих система за испоруку софтвера.', subtitle: 'Пређите са AI експериментисања на модел испоруке коме клијенти могу да верују.', primaryCta: 'Закажите уводни позив', secondaryCta: 'Самопроцена за руководиоце', liveLabel: 'LIVE контрола · Agentic SDLC', pipeline: 'Pipeline испоруке', steps: ['План', 'Build', 'Review', 'Испорука', 'Мерење'], eventsLabel: 'Live догађаји', supervision: 'Надзор', coverage: 'покривеност', aiContribution: 'AI допринос', rework: 'Дораде', quality: 'Квалитет', agentPool: 'Пул агената', agentPoolStatus: 'online · 0 блокирано', connectorLeftLabel: 'Класични T&M', connectorLeftDesc: 'Body shopping, наплативи дани, дуги staffing циклуси.', connectorCenter: 'Agentic SDLC мења и пословни модел испоруке софтвера', connectorRightLabel: 'Програмабилна изведба', connectorRightDesc: 'Кратки burst-ови, паралелни токови, динамичка алокација.' },
+    beyond: { eyebrow: 'Изван Time & Materials', heading: 'Изван Time & Materials', lead: 'Staffing је продавао време. Следећи модел продаје burst-ове изведбе.', before: 'Раније', beforeValue: 'људи × време', beforeCaption: 'наплативи дани · стабилан staffing · дуги пројекти', now: 'Сада', nowValue: 'burst-ови изведбе', nowCaption: 'паралелни токови · кратки циклуси · динамичка алокација', clientsEyebrow: 'Шта се мења за клијенте', clientsTitle: 'Одлука више није колико људи ангажовати и на колико месеци.', closing: 'Пројекти су некад трошили наплативе дане. Сада троше burst-ове изведбе.' },
+    core: { eyebrow: 'Промена улоге', heading: 'Кључна промена улоге програмера.', body: 'Како coding agents преузимају више посла, програмери не нестају. Улога се помера ка надзору, review-у, валидацији и процени шта не треба слепо аутоматизовати.' },
+    metrics: { eyebrow: 'Метрике', heading: 'Без метрика нема трансформације.', body: 'Ако се AI допринос, дораде, квалитет и надзор не мере, усвајање остаје анегдотско и не може да скалира.', measuredLabel: 'Шта треба мерити', statement: 'Мерење уместо анегдота.', statementBody: 'Оним што се мери може се управљати.', supervisionCoverage: 'Покривеност надзором', reworkReduction: 'Смањење дорада', velocityTitle: 'Брзина под контролом', traceability: 'Следљивост', unreviewedMerges: 'Merge без review-а' },
+    audience: { eyebrow: 'За кога', heading: 'За тимове којима треба AI брзина уз одговорност испоруке.', body: 'За организације које већ експериментишу са AI coding алатима и траже одржив оперативни модел.' },
+    blueprint: { eyebrow: 'Blueprint', heading: 'Увођење AI алата није модел испоруке.', levelsLabel: 'Три нивоа' },
+    engagement: { eyebrow: 'Engagement', heading: 'Један sprint за дефинисање оперативног модела.', body: 'У фокусираном радном sprint-у усклађујемо leadership и engineering око приоритета, governance-а и мерења.', quote: 'Фокусиран engagement за дефинисање реалности, приоритета и правила рада која AI надзор чине стварним.' },
+    contact: { eyebrow: 'Започните разговор', heading: 'Још увек у sandbox режиму?', body: 'Ако AI већ улази у ваше delivery workflow-е, следећи корак је контрола, надзор и мерљива изведба.', cta: 'Закажите уводни позив' },
+    footer: { tagline: 'Трансформација испоруке софтвера уз AI' },
+  }),
+  el: mergeCopy(copy.en, {
+    meta: { title: 'Agentic SDLC | Μετασχηματισμός παράδοσης λογισμικού με AI' },
+    nav: { primaryLabel: 'Κύρια πλοήγηση', beyond: 'Πέρα από T&M', blueprint: 'Blueprint', metrics: 'Μετρικές', contact: 'Επικοινωνία', blog: 'Το blog μας: Learn & Project', language: 'Γλώσσα' },
+    hero: { eyebrow: 'ΤΟ ΜΕΛΛΟΝ ΤΟΥ SOFTWARE ENGINEERING', h1Rest: 'Από AI εργαλεία ανάπτυξης σε αξιόπιστα συστήματα παράδοσης λογισμικού.', subtitle: 'Περάστε από τον πειραματισμό με AI σε ένα μοντέλο delivery που οι πελάτες μπορούν να εμπιστευτούν.', primaryCta: 'Κλείστε εισαγωγική κλήση', secondaryCta: 'Αυτοαξιολόγηση για στελέχη', liveLabel: 'LIVE έλεγχος · Agentic SDLC', pipeline: 'Pipeline παράδοσης', steps: ['Σχέδιο', 'Build', 'Review', 'Ship', 'Μέτρηση'], eventsLabel: 'Live γεγονότα', supervision: 'Επίβλεψη', coverage: 'κάλυψη', aiContribution: 'Συνεισφορά AI', rework: 'Επανεργασία', quality: 'Ποιότητα', agentPool: 'Pool agents', agentPoolStatus: 'online · 0 κολλημένα', connectorLeftLabel: 'Κλασικό T&M', connectorLeftDesc: 'Body shopping, χρεώσιμες ημέρες, μακριοί κύκλοι staffing.', connectorCenter: 'Το Agentic SDLC αλλάζει και το επιχειρηματικό μοντέλο της παράδοσης λογισμικού', connectorRightLabel: 'Προγραμματίσιμη εκτέλεση', connectorRightDesc: 'Σύντομα bursts, παράλληλες ροές, δυναμική κατανομή.' },
+    beyond: { eyebrow: 'Πέρα από Time & Materials', heading: 'Πέρα από Time & Materials', lead: 'Το staffing πουλούσε χρόνο. Το επόμενο μοντέλο πουλά bursts εκτέλεσης.', before: 'Πριν', beforeValue: 'άνθρωποι × χρόνος', beforeCaption: 'χρεώσιμες ημέρες · σταθερό staffing · μεγάλα έργα', now: 'Τώρα', nowValue: 'bursts εκτέλεσης', nowCaption: 'παράλληλες ροές · σύντομοι κύκλοι · δυναμική κατανομή', clientsEyebrow: 'Τι αλλάζει για τους πελάτες', clientsTitle: 'Η απόφαση δεν είναι πια πόσους ανθρώπους για πόσους μήνες.', closing: 'Τα έργα κατανάλωναν χρεώσιμες ημέρες. Τώρα καταναλώνουν bursts εκτέλεσης.' },
+    core: { eyebrow: 'Κεντρική αλλαγή', heading: 'Η κεντρική αλλαγή στον ρόλο του developer.', body: 'Καθώς τα coding agents αναλαμβάνουν περισσότερη δουλειά, οι developers δεν εξαφανίζονται. Ο ρόλος μετακινείται στην επίβλεψη, το review, την επικύρωση και την κρίση για το τι δεν αυτοματοποιείται τυφλά.' },
+    metrics: { eyebrow: 'Μετρικές', heading: 'Χωρίς μετρικές δεν υπάρχει μετασχηματισμός.', body: 'Αν η συνεισφορά AI, η επανεργασία, η ποιότητα και η επίβλεψη δεν μετρώνται, η υιοθέτηση μένει ανεκδοτική και δεν κλιμακώνεται.', measuredLabel: 'Τι πρέπει να μετρηθεί', statement: 'Μέτρηση αντί για ανεκδοτολογία.', statementBody: 'Ό,τι μετριέται μπορεί να διοικηθεί.', supervisionCoverage: 'Κάλυψη επίβλεψης', reworkReduction: 'Μείωση επανεργασίας', velocityTitle: 'Ταχύτητα με έλεγχο', traceability: 'Ιχνηλασιμότητα', unreviewedMerges: 'Merges χωρίς review' },
+    audience: { eyebrow: 'Για ποιους', heading: 'Για ομάδες που χρειάζονται ταχύτητα AI με ευθύνη delivery.', body: 'Για οργανισμούς που ήδη πειραματίζονται με AI coding tools και αναζητούν ένα βιώσιμο λειτουργικό μοντέλο.' },
+    blueprint: { eyebrow: 'Blueprint', heading: 'Η υιοθέτηση AI εργαλείων δεν είναι μοντέλο delivery.', levelsLabel: 'Τρία επίπεδα' },
+    engagement: { eyebrow: 'Engagement', heading: 'Ένα sprint για να οριστεί το λειτουργικό μοντέλο.', body: 'Σε ένα εστιασμένο sprint ευθυγραμμίζουμε leadership και engineering γύρω από προτεραιότητες, governance και μέτρηση.', quote: 'Ένα εστιασμένο engagement για να οριστούν η πραγματικότητα, οι προτεραιότητες και οι κανόνες που κάνουν την AI επίβλεψη πραγματική.' },
+    contact: { eyebrow: 'Ξεκινήστε τη συζήτηση', heading: 'Ακόμα σε sandbox mode;', body: 'Αν το AI έχει ήδη μπει στα delivery workflows σας, το επόμενο βήμα είναι έλεγχος, επίβλεψη και μετρήσιμη εκτέλεση.', cta: 'Κλείστε εισαγωγική κλήση' },
+    footer: { tagline: 'Μετασχηματισμός παράδοσης λογισμικού με AI' },
+  }),
+  tr: mergeCopy(copy.en, {
+    meta: { title: 'Agentic SDLC | AI destekli yazılım teslimatı dönüşümü' },
+    nav: { primaryLabel: 'Birincil navigasyon', beyond: 'T&M ötesi', blueprint: 'Blueprint', metrics: 'Metrikler', contact: 'İletişim', blog: 'Blogumuz: Learn & Project', language: 'Dil' },
+    hero: { eyebrow: 'SOFTWARE ENGINEERING’İN GELECEĞİ', h1Rest: 'AI geliştirme araçlarından güvenilir yazılım teslimat sistemlerine.', subtitle: 'AI denemelerinden müşterilerinizin güvenebileceği bir teslimat modeline geçin.', primaryCta: 'Tanışma görüşmesi ayır', secondaryCta: 'Yöneticiler için öz değerlendirme', liveLabel: 'LIVE kontrol · Agentic SDLC', pipeline: 'Teslimat pipeline’ı', steps: ['Planla', 'Geliştir', 'Review', 'Yayınla', 'Ölç'], eventsLabel: 'Canlı olaylar', supervision: 'Gözetim', coverage: 'kapsam', aiContribution: 'AI katkısı', rework: 'Yeniden iş', quality: 'Kalite', agentPool: 'Agent havuzu', agentPoolStatus: 'online · 0 takıldı', connectorLeftLabel: 'Klasik T&M', connectorLeftDesc: 'Body shopping, faturalandırılabilir günler, uzun staffing döngüleri.', connectorCenter: 'Agentic SDLC yazılım teslimatının iş modelini de değiştirir', connectorRightLabel: 'Programlanabilir yürütme', connectorRightDesc: 'Kısa burstler, paralel akışlar, dinamik tahsis.' },
+    beyond: { eyebrow: 'Time & Materials ötesi', heading: 'Time & Materials ötesi', lead: 'Staffing zaman satıyordu. Yeni model yürütme burstleri satar.', before: 'Önce', beforeValue: 'insan × zaman', beforeCaption: 'faturalandırılabilir günler · stabil staffing · uzun projeler', now: 'Şimdi', nowValue: 'yürütme burstleri', nowCaption: 'paralel akışlar · kısa döngüler · dinamik tahsis', clientsEyebrow: 'Müşteriler için ne değişiyor', clientsTitle: 'Karar artık kaç kişiyi kaç ay görevlendirmek değil.', closing: 'Projeler eskiden faturalandırılabilir günler tüketirdi. Şimdi yürütme burstleri tüketiyor.' },
+    core: { eyebrow: 'Temel değişim', heading: 'Geliştirici rolündeki temel değişim.', body: 'Coding agent’lar daha fazla işi üstlendikçe geliştiriciler ortadan kaybolmaz. Rol; gözetim, review, doğrulama ve neyin körlemesine otomatikleştirilmeyeceğine karar verme yönüne kayar.' },
+    metrics: { eyebrow: 'Metrikler', heading: 'Metrik yoksa dönüşüm yoktur.', body: 'AI katkısı, yeniden iş, kalite ve gözetim ölçülmezse benimseme anekdot düzeyinde kalır ve ölçeklenemez.', measuredLabel: 'Ne ölçülmeli', statement: 'Anekdot yerine ölçüm.', statementBody: 'Ölçülen şey yönetilebilir.', supervisionCoverage: 'Gözetim kapsamı', reworkReduction: 'Yeniden iş azaltımı', velocityTitle: 'Kontrollü hız', traceability: 'İzlenebilirlik', unreviewedMerges: 'Review edilmemiş merge’ler' },
+    audience: { eyebrow: 'Kimler için', heading: 'AI hızına delivery sorumluluğuyla ihtiyaç duyan ekipler için.', body: 'AI coding araçlarını zaten deneyen ve kalıcı bir işletim modeli arayan organizasyonlar için.' },
+    blueprint: { eyebrow: 'Blueprint', heading: 'AI araçlarını benimsemek bir delivery modeli değildir.', levelsLabel: 'Üç seviye' },
+    engagement: { eyebrow: 'Engagement', heading: 'İşletim modelini tanımlamak için bir sprint.', body: 'Odaklı bir çalışma sprintinde leadership ve engineering’i öncelikler, governance ve ölçüm etrafında hizalarız.', quote: 'AI gözetimini gerçek kılan gerçekliği, öncelikleri ve işletim kurallarını tanımlamak için odaklı bir engagement.' },
+    contact: { eyebrow: 'Sohbeti başlatın', heading: 'Hâlâ sandbox modunda mısınız?', body: 'AI teslimat workflow’larınıza zaten giriyorsa sonraki adım kontrol, gözetim ve ölçülebilir yürütmedir.', cta: 'Tanışma görüşmesi ayır' },
+    footer: { tagline: 'AI destekli yazılım teslimatı dönüşümü' },
+  }),
+} satisfies Partial<Record<LanguageCode, SiteCopy>>);
