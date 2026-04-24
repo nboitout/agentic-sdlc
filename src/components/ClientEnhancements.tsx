@@ -81,7 +81,6 @@ export function LanguageSelector({
                   setIsOpen(false);
                 }}
               >
-                <span className="language-menu-code">{language.label}</span>
                 <span className="language-menu-name">{language.name}</span>
                 <span className="language-menu-check" aria-hidden="true">{isActive ? '✓' : ''}</span>
               </button>
