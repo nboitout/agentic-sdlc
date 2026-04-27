@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { ClientEnhancements, LanguageSelector } from '@/components/ClientEnhancements';
+import { MaturityIndex } from '@/components/MaturityIndex';
 import { MetricsCharts } from '@/components/MetricsCharts';
 import { copy, defaultLanguage, languages, type LanguageCode } from '@/lib/i18n';
 
@@ -183,6 +184,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <MaturityIndex />
 
       <section className="section s-white btm-shell" id="sandbox-factory" aria-labelledby="comparison-heading">
         <div className="section-inner btm-inner">
