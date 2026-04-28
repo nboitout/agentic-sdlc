@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
-import type { LanguageCode, SiteCopy } from '@/lib/i18n';
+import type { LanguageCode } from '@/lib/i18n';
 import { languages } from '@/lib/i18n';
 
 declare global {
@@ -93,31 +93,14 @@ export function LanguageSelector({
 }
 
 type ClientEnhancementsProps = {
-  nav: SiteCopy['nav'];
-  cta: string;
   currentLanguage: LanguageCode;
   onLanguageChange: (language: LanguageCode) => void;
 };
 
 export function ClientEnhancements({
-  nav,
-  cta,
   currentLanguage,
-  onLanguageChange,
+  onLanguageChange
 }: ClientEnhancementsProps) {
-  useEffect(() => {
-    const hero = document.querySelector('.s-hero') as HTMLElement | null;
-    const stickyNav = document.getElementById('sticky-nav') as HTMLElement | null;
-    if (!hero || !stickyNav) return;
-
-    const obs = new IntersectionObserver(
-      ([entry]) => stickyNav.setAttribute('data-visible', entry.isIntersecting ? 'false' : 'true'),
-      { threshold: 0, rootMargin: '-56px 0px 0px 0px' }
-    );
-    obs.observe(hero);
-    return () => obs.disconnect();
-  }, []);
-
   useEffect(() => {
     const els = document.querySelectorAll('[data-reveal], [data-reveal-stagger]');
 
@@ -153,32 +136,6 @@ export function ClientEnhancements({
   return (
     <>
       <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />
-      <nav id="sticky-nav" className="sticky-nav" aria-label="Site navigation">
-        <div className="sticky-inner">
-          <a href="#top" className="sticky-logo">
-            <img src="/agentic-sdlc-mark.svg" alt="" className="sticky-logo-mark" aria-hidden="true" />
-            Agentic SDLC
-          </a>
-          <div className="sticky-menu">
-            <a href="#sandbox-factory">{nav.beyond}</a>
-            <a href="#blueprint">{nav.blueprint}</a>
-            <a href="#how-we-help">{nav.metrics}</a>
-            <a
-              href="https://calendly.com/nicolasboitout/30min"
-              className="sticky-btn"
-              data-calendly-link="true"
-            >
-              {cta}
-            </a>
-            <LanguageSelector
-              currentLanguage={currentLanguage}
-              onLanguageChange={onLanguageChange}
-              label={nav.language}
-              variant="sticky"
-            />
-          </div>
-        </div>
-      </nav>
     </>
   );
 }

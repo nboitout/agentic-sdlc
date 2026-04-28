@@ -467,8 +467,6 @@ export default function HomePage() {
       </footer>
 
       <ClientEnhancements
-        nav={t.nav}
-        cta={t.contact.cta}
         currentLanguage={language}
         onLanguageChange={setLanguage}
       />
