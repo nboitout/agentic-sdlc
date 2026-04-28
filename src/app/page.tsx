@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { ClientEnhancements, LanguageSelector } from '@/components/ClientEnhancements';
+import { HeroDashboard } from '@/components/HeroDashboard';
 import { MaturityIndex } from '@/components/MaturityIndex';
 import { MetricsCharts } from '@/components/MetricsCharts';
 import { copy, defaultLanguage, languages, type LanguageCode } from '@/lib/i18n';
@@ -81,94 +82,7 @@ export default function HomePage() {
           </div>
 
           <div className="hero-right">
-            <div className="hero-visual" aria-hidden="true">
-              <div className="hero-console">
-                <div className="console-top">
-                  <span className="dot" />
-                  <span className="title">{t.hero.liveLabel}</span>
-                  <span className="time">14:02 UTC</span>
-                </div>
-
-                <div className="console-body">
-                  <div>
-                    <span className="console-label">{t.hero.pipeline}</span>
-                    <div className="pipeline">
-                      {t.hero.steps.map((step, index) => (
-                        <div
-                          key={step}
-                          className={`stage ${index < 2 ? 'done' : ''} ${index === 2 ? 'active' : ''}`}
-                        >
-                          <span className="pip" />
-                          {step}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="console-split">
-                    <div className="console-card">
-                      <span className="console-label">{t.hero.eventsLabel}</span>
-                      <ul className="events">
-                        {t.hero.events.map((event) => (
-                          <li key={`${event.time}-${event.message}`}>
-                            <span className="ts">{event.time}</span>
-                            <span className="msg">{event.message}</span>
-                            <span className={event.status}>{event.status === 'ok' ? '✓' : '!'}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="console-card">
-                      <span className="console-label">{t.hero.supervision}</span>
-                      <div className="gauge-wrap">
-                        <svg className="gauge-svg" viewBox="0 0 120 70" preserveAspectRatio="xMidYMid meet">
-                          <defs>
-                            <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0">
-                              <stop offset="0" stopColor="#4648D4" />
-                              <stop offset="1" stopColor="#6063EE" />
-                            </linearGradient>
-                          </defs>
-                          <path d="M 10 60 A 50 50 0 0 1 110 60" stroke="#E3E1D8" strokeWidth="8" fill="none" strokeLinecap="round" />
-                          <path d="M 10 60 A 50 50 0 0 1 110 60" stroke="url(#gaugeGrad)" strokeWidth="8" fill="none" strokeLinecap="round" strokeDasharray="157" strokeDashoffset="13" />
-                        </svg>
-                        <span className="gauge-val">92%</span>
-                        <span className="gauge-sub">{t.hero.coverage}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="console-metrics">
-                    {[
-                      { label: t.hero.aiContribution, value: '68%', width: '68%' },
-                      { label: t.hero.rework, value: '14%', width: '14%', warn: true },
-                      { label: t.hero.quality, value: '91%', width: '91%' },
-                    ].map((metric) => (
-                      <div className="mini" key={metric.label}>
-                        <div className="mini-top">
-                          <span className="mini-k">{metric.label}</span>
-                          <span className="mini-v">{metric.value}</span>
-                        </div>
-                        <div className="mini-bar">
-                          <span className={metric.warn ? 'warn' : undefined} style={{ width: metric.width }} />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="hero-visual-card">
-                <div className="hero-visual-card-head">
-                  <span className="dot" />
-                  <span className="hero-visual-card-title">{t.hero.agentPool}</span>
-                </div>
-                <div className="hero-visual-card-row">
-                  <span className="hero-visual-card-num">4 / 4</span>
-                  <span className="hero-visual-card-sub">{t.hero.agentPoolStatus}</span>
-                </div>
-              </div>
-            </div>
+            <HeroDashboard hero={t.hero} />
           </div>
         </div>
 
