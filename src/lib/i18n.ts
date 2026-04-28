@@ -223,11 +223,11 @@ export const copy = {
       connectorRightDesc: 'Short bursts, parallel streams, dynamic allocation.',
     },
     beyond: {
-      eyebrow: 'Bench Management becomed critical',
-      heading: 'Beyond Time & Materials: From Staffing Capacity to Outcome Delivery',
+      eyebrow: 'Bench Management is now critical',
+      heading: 'Beyond Time & Materials: From Staffing to Outcome Delivery',
       lead: 'Staffing sold time. The next model sells outcome delivery.',
       paragraphs: [
-        'Classical team augmentation was built for a world where execution was scarce and projects consumed years. You staffed teams, sold billable days, and scaled delivery by adding headcount.',
+        'Classical team augmentation was built for a world where execution was scarce and projects consumed years. You staffed teams, sold billable days (read: billable months), and scaled delivery by adding headcount.',
         'Agentic software delivery changes that equation. With coding agents, execution becomes more programmable, parallel, and time-compressed. But the real shift is not just speed.',
         'External teams do not disappear. But they stop being long staffing commitments measured mainly in days consumed. They become targeted, cross-functional delivery systems: short, focused, and accountable for business outcomes.',
       ],
