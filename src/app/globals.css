@@ -1653,14 +1653,13 @@ a { color: inherit; text-decoration: none; }
 }
 .bring-heading {
   font-family: var(--display);
-  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-size: clamp(2.2rem, 3.2vw, 3.4rem);
   font-weight: 800;
   line-height: 1.04;
   letter-spacing: -.035em;
   color: var(--ink);
-  max-width: 18ch;
+  white-space: nowrap;
   margin-bottom: 24px;
-  text-wrap: balance;
 }
 .engage-body {
   font-size: 1.1rem;
@@ -1840,7 +1839,7 @@ a { color: inherit; text-decoration: none; }
    METRICS — dual monitoring planes
    ═══════════════════════════════════════════════════════════════════ */
 .metrics-intro {
-  max-width: 78ch;
+  max-width: none;
   margin-bottom: clamp(40px, 5vw, 56px);
 }
 .metrics-intro .engage-body { max-width: 70ch; }
@@ -2743,44 +2742,46 @@ a { color: inherit; text-decoration: none; }
 }
 .btm-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 18px;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 16px;
 }
 .btm-card {
-  min-height: 180px;
-  padding: 24px;
+  padding: 22px 20px;
   border: 1px solid var(--border);
   border-radius: 22px;
   background: linear-gradient(180deg, #fff 0%, var(--surface-container-low) 100%);
   box-shadow: 0 10px 24px rgba(20,27,43,.045);
 }
 .btm-card h3 {
-  font-size: clamp(1.45rem, 2.4vw, 2rem);
-  line-height: 1.02;
-  letter-spacing: -.04em;
+  font-size: clamp(1.2rem, 1.7vw, 1.5rem);
+  line-height: 1.04;
+  letter-spacing: -.03em;
   color: var(--ink);
 }
 .btm-card p {
-  margin-top: 12px;
-  font-size: 1rem;
-  line-height: 1.65;
+  margin-top: 10px;
+  font-size: .95rem;
+  line-height: 1.6;
   color: var(--body);
 }
 .btm-close {
-  max-width: 1180px;
+  max-width: none;
   font-family: var(--display);
-  font-size: clamp(1.45rem, 2.4vw, 2rem);
-  line-height: 1.12;
-  letter-spacing: -.035em;
+  font-size: clamp(.9rem, 1.1vw, 1.08rem);
+  white-space: nowrap;
+  line-height: 1.5;
+  letter-spacing: -.02em;
   color: var(--ink);
 }
 
 @media (max-width: 980px) {
   .btm-clients,
   .btm-shift,
-  .btm-example,
-  .btm-grid {
+  .btm-example {
     grid-template-columns: 1fr;
+  }
+  .btm-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr));
   }
   .btm-shift-arrow {
     justify-self: center;
@@ -2804,9 +2805,13 @@ a { color: inherit; text-decoration: none; }
   .btm-example > div {
     padding: 20px;
   }
+  .btm-grid {
+    grid-template-columns: 1fr;
+  }
   .btm-subtitle {
     max-width: 22ch;
   }
+  .mi-sub, .btm-close, .bring-heading { white-space: normal; }
 }
 
 
@@ -3075,9 +3080,10 @@ a { color: inherit; text-decoration: none; }
   max-width: 28ch;
 }
 .mi-sub {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--body);
-  max-width: 80ch;
+  max-width: none;
+  white-space: nowrap;
   line-height: 1.68;
   margin: 0;
 }
@@ -3395,9 +3401,9 @@ a { color: inherit; text-decoration: none; }
   margin-top: 24px;
   padding-top: 16px;
   border-top: 1px solid var(--outline-variant);
-  font-size: 1.02rem;
+  font-size: clamp(1.2rem, 1.6vw, 1.45rem);
   color: var(--body);
-  line-height: 1.62;
+  line-height: 1.58;
   margin-bottom: 0;
 }
 .mi-takeaway strong { color: var(--ink); font-weight: 700; }
