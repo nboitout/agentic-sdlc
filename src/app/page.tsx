@@ -86,17 +86,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="hero-connector" aria-hidden="true">
-          <div className="connector-side">
-            <span className="connector-label">{t.hero.connectorLeftLabel}</span>
-            <p className="connector-desc">{t.hero.connectorLeftDesc}</p>
-          </div>
-          <div className="connector-center connector-center-long">{t.hero.connectorCenter}</div>
-          <div className="connector-side connector-side-right">
-            <span className="connector-label">{t.hero.connectorRightLabel}</span>
-            <p className="connector-desc">{t.hero.connectorRightDesc}</p>
-          </div>
-        </div>
       </section>
 
       <MaturityIndex />
