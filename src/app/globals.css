@@ -3075,7 +3075,7 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--outline-variant);
   border-top: 3px solid transparent;
   border-radius: var(--r-card);
-  padding: 14px 12px 12px;
+  padding: 16px 14px 14px;
   cursor: pointer;
   font-family: var(--sans);
   text-align: left;
@@ -3084,7 +3084,7 @@ a { color: inherit; text-decoration: none; }
     box-shadow 200ms ease,
     transform 200ms var(--ease),
     opacity 200ms ease;
-  opacity: 0.65;
+  opacity: 0.82;
 }
 .mi-node:hover {
   opacity: 1;
@@ -3098,43 +3098,44 @@ a { color: inherit; text-decoration: none; }
 }
 .mi-node-id {
   display: block;
-  font-size: .64rem;
-  font-weight: 700;
+  font-size: .74rem;
+  font-weight: 800;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--mi-accent, var(--muted));
-  margin-bottom: 3px;
+  color: var(--mi-accent, var(--ink));
+  margin-bottom: 4px;
 }
 .mi-node-name {
   display: block;
   font-family: var(--display);
-  font-size: .92rem;
-  font-weight: 700;
+  font-size: 1.08rem;
+  font-weight: 800;
   color: var(--ink);
-  letter-spacing: -.01em;
+  letter-spacing: -.015em;
   line-height: 1.2;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 .mi-node-extra {
   display: block;
-  font-size: .72rem;
-  color: var(--muted);
+  font-size: .82rem;
+  color: var(--body);
+  font-weight: 500;
   margin-bottom: 4px;
 }
 .mi-node-mult {
   display: block;
   font-family: var(--display);
-  font-size: 1.45rem;
+  font-size: 1.7rem;
   font-weight: 800;
   line-height: 1;
   color: var(--mi-accent, var(--ink));
-  margin: 8px 0 7px;
+  margin: 10px 0 8px;
 }
 .mi-badge {
   display: inline-block;
-  font-size: .64rem;
+  font-size: .72rem;
   font-weight: 700;
-  padding: 2px 7px;
+  padding: 3px 9px;
   border-radius: 999px;
   letter-spacing: .03em;
   white-space: nowrap;
@@ -3143,10 +3144,10 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: .64rem;
-  color: #16a34a;
-  font-weight: 600;
-  margin-top: 7px;
+  font-size: .74rem;
+  color: #15803d;
+  font-weight: 700;
+  margin-top: 8px;
   letter-spacing: .01em;
 }
 .mi-here-dot {
@@ -3204,15 +3205,15 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.6;
 }
 .mi-trap-title {
-  font-size: .86rem;
-  font-weight: 700;
-  color: #92400E;
-  margin-bottom: 3px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #78350F;
+  margin-bottom: 4px;
   font-family: var(--display);
 }
 .mi-trap-body {
-  font-size: .86rem;
-  color: #92400E;
+  font-size: .98rem;
+  color: #78350F;
   line-height: 1.55;
   margin: 0;
 }
@@ -3236,25 +3237,25 @@ a { color: inherit; text-decoration: none; }
 }
 .mi-detail-left { flex: 1; min-width: 0; }
 .mi-detail-id {
-  font-size: .68rem;
-  font-weight: 700;
+  font-size: .8rem;
+  font-weight: 800;
   letter-spacing: .12em;
   text-transform: uppercase;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 .mi-detail-name {
   font-family: var(--display);
-  font-size: 1.65rem;
+  font-size: 2.05rem;
   font-weight: 800;
   letter-spacing: -.03em;
   line-height: 1.1;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   color: var(--ink);
 }
 .mi-detail-extra {
-  font-weight: 400;
-  font-size: 1.1rem;
-  color: var(--muted);
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--body);
 }
 .mi-detail-right {
   text-align: right;
@@ -3263,27 +3264,29 @@ a { color: inherit; text-decoration: none; }
 }
 .mi-detail-mult {
   font-family: var(--display);
-  font-size: 2.6rem;
+  font-size: 3.1rem;
   font-weight: 800;
   line-height: 1;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .mi-detail-mult-desc {
-  font-size: .72rem;
-  color: var(--muted);
+  font-size: .82rem;
+  color: var(--body);
+  font-weight: 500;
   margin-bottom: 4px;
 }
 .mi-detail-timeframe {
-  font-size: .7rem;
-  color: var(--outline);
+  font-size: .8rem;
+  color: var(--muted);
+  font-weight: 500;
 }
 .mi-detail-desc {
-  font-size: 1.04rem;
-  color: var(--body);
-  line-height: 1.68;
+  font-size: 1.18rem;
+  color: var(--ink);
+  line-height: 1.65;
   border-top: 1px solid var(--outline-variant);
-  padding-top: 14px;
-  margin-bottom: 18px;
+  padding-top: 16px;
+  margin-bottom: 22px;
 }
 .mi-detail-cols {
   display: grid;
@@ -3292,29 +3295,29 @@ a { color: inherit; text-decoration: none; }
 }
 .mi-section-label {
   display: block;
-  font-size: .72rem;
-  font-weight: 700;
+  font-size: .82rem;
+  font-weight: 800;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--outline);
-  margin-bottom: 10px;
+  color: var(--ink);
+  margin-bottom: 12px;
 }
 .mi-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 7px;
 }
 .mi-tag {
-  font-size: .78rem;
+  font-size: .9rem;
   font-weight: 600;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: 6px;
   border: 1px solid;
 }
 .mi-what {
-  font-size: .97rem;
-  color: var(--body);
-  line-height: 1.62;
+  font-size: 1.08rem;
+  color: var(--ink);
+  line-height: 1.6;
   margin: 0;
 }
 .mi-advance {
@@ -3322,44 +3325,46 @@ a { color: inherit; text-decoration: none; }
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 8px;
+  gap: 10px;
 }
 .mi-advance li {
-  font-size: .97rem;
-  color: var(--body);
+  font-size: 1.08rem;
+  color: var(--ink);
   line-height: 1.55;
-  padding-left: 18px;
+  padding-left: 20px;
   position: relative;
 }
 .mi-advance li::before {
   content: '→';
   position: absolute;
   left: 0;
-  color: var(--outline);
-  font-size: .82rem;
+  color: var(--mi-accent, var(--primary));
+  font-size: .95rem;
+  font-weight: 700;
   top: 1px;
 }
 
 /* ── Takeaway ────────────────────────────────────────────────────── */
 .mi-takeaway {
-  margin-top: 20px;
-  padding-top: 14px;
+  margin-top: 24px;
+  padding-top: 16px;
   border-top: 1px solid var(--outline-variant);
-  font-size: .9rem;
-  color: var(--muted);
+  font-size: 1.02rem;
+  color: var(--body);
   line-height: 1.62;
   margin-bottom: 0;
 }
-.mi-takeaway strong { color: var(--ink); font-weight: 600; }
+.mi-takeaway strong { color: var(--ink); font-weight: 700; }
 
 /* ── Responsive ──────────────────────────────────────────────────── */
 @media (max-width: 720px) {
   .mi-head { flex-direction: column; gap: 16px; }
   .mi-kpi  { text-align: left; }
   .mi-detail-cols { grid-template-columns: 1fr; }
-  .mi-detail-mult { font-size: 2rem; }
-  .mi-node-name   { font-size: .82rem; }
-  .mi-node-mult   { font-size: 1.2rem; }
+  .mi-detail-mult { font-size: 2.4rem; }
+  .mi-detail-name { font-size: 1.7rem; }
+  .mi-node-name   { font-size: .96rem; }
+  .mi-node-mult   { font-size: 1.4rem; }
 }
 @media (max-width: 480px) {
   .mi-node-extra { display: none; }

@@ -101,7 +101,7 @@ export function MaturityIndex() {
         {/* Header */}
         <div className="mi-head" data-reveal="">
           <div className="mi-head-left">
-            <span className="eyebrow">AI Engineering Maturity Index</span>
+            <span className="eyebrow">AI Engineering Maturity Scale</span>
             <h2 id="mi-heading" className="mi-heading">Where does your team stand?</h2>
             <p className="mi-sub">
               5 stages from ad-hoc AI usage to full fleet orchestration.
