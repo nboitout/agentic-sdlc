@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { SiteCopy } from '@/lib/i18n';
 
 type HeroCopy = SiteCopy['hero'];
@@ -45,11 +45,27 @@ const INITIAL_AGENTS: Agent[] = [
   { id: 'agent-04', stage: 0.72, target: 0.96, status: 'active', task: 'Telemetry hooks' },
 ];
 
-const INITIAL_KPIS: MetricState = {
-  coverage: genSeries(91, 1.4, 24),
-  ai: genSeries(67, 2.0, 24),
-  rework: genSeries(15, 1.6, 24),
-  quality: genSeries(90, 1.2, 24),
+// Deterministic seed used for SSR and first hydration render — a flat series
+// keyed off the displayed base value. This avoids server/client mismatch on
+// the kpi numbers and sparklines. Replaced with a randomized series on mount.
+const KPI_BASELINES: Record<MetricKey, number> = {
+  coverage: 91,
+  ai: 67,
+  rework: 15,
+  quality: 90,
+};
+const KPI_RANGES: Record<MetricKey, number> = {
+  coverage: 1.4,
+  ai: 2.0,
+  rework: 1.6,
+  quality: 1.2,
+};
+const KPI_SERIES_LENGTH = 24;
+const FLAT_KPIS: MetricState = {
+  coverage: Array(KPI_SERIES_LENGTH).fill(KPI_BASELINES.coverage),
+  ai: Array(KPI_SERIES_LENGTH).fill(KPI_BASELINES.ai),
+  rework: Array(KPI_SERIES_LENGTH).fill(KPI_BASELINES.rework),
+  quality: Array(KPI_SERIES_LENGTH).fill(KPI_BASELINES.quality),
 };
 
 function genSeries(base: number, range: number, count: number) {
@@ -98,15 +114,36 @@ function buildSparklinePoints(values: number[]) {
 }
 
 export function HeroDashboard({ hero }: { hero: HeroCopy }) {
-  const [clock, setClock] = useState(formatUtcClock);
+  // `mounted` gates anything that reads Date.now() / Math.random() so that
+  // SSR + first hydration render are fully deterministic. After mount the
+  // dashboard is hydrated and we can safely show live values.
+  const [mounted, setMounted] = useState(false);
+  const [clock, setClock] = useState('--:--:-- UTC');
   const [agents, setAgents] = useState(INITIAL_AGENTS);
   const [eventIndex, setEventIndex] = useState(4);
+  const eventUidRef = useRef(0);
   const [events, setEvents] = useState(() => {
     const seeded = hero.events.slice(0, MAX_EVENTS);
     const ages = [0, 60, 240, 540];
-    return seeded.map((event, index) => ({ ...event, ageSeconds: ages[index] ?? 0 }));
+    return seeded.map((event, index) => ({
+      ...event,
+      ageSeconds: ages[index] ?? 0,
+      uid: eventUidRef.current++,
+    }));
   });
-  const [kpis, setKpis] = useState<MetricState>(INITIAL_KPIS);
+  const [kpis, setKpis] = useState<MetricState>(FLAT_KPIS);
+
+  // Once on mount: flip the gate, seed live time + randomized kpi series.
+  useEffect(() => {
+    setMounted(true);
+    setClock(formatUtcClock());
+    setKpis({
+      coverage: genSeries(KPI_BASELINES.coverage, KPI_RANGES.coverage, KPI_SERIES_LENGTH),
+      ai: genSeries(KPI_BASELINES.ai, KPI_RANGES.ai, KPI_SERIES_LENGTH),
+      rework: genSeries(KPI_BASELINES.rework, KPI_RANGES.rework, KPI_SERIES_LENGTH),
+      quality: genSeries(KPI_BASELINES.quality, KPI_RANGES.quality, KPI_SERIES_LENGTH),
+    });
+  }, []);
 
   useEffect(() => {
     const timer = window.setInterval(() => setClock(formatUtcClock()), 1000);
@@ -117,7 +154,13 @@ export function HeroDashboard({ hero }: { hero: HeroCopy }) {
     setAgents(INITIAL_AGENTS);
     const seeded = hero.events.slice(0, MAX_EVENTS);
     const ages = [0, 60, 240, 540];
-    setEvents(seeded.map((event, index) => ({ ...event, ageSeconds: ages[index] ?? 0 })));
+    setEvents(
+      seeded.map((event, index) => ({
+        ...event,
+        ageSeconds: ages[index] ?? 0,
+        uid: eventUidRef.current++,
+      })),
+    );
     setEventIndex(4);
   }, [hero.events]);
 
@@ -154,7 +197,10 @@ export function HeroDashboard({ hero }: { hero: HeroCopy }) {
       setEvents((current) => {
         const nextEvent = hero.events[eventIndex % hero.events.length];
         setEventIndex((value) => value + 1);
-        return [{ ...nextEvent, ageSeconds: 0 }, ...current].slice(0, MAX_EVENTS);
+        return [
+          { ...nextEvent, ageSeconds: 0, uid: eventUidRef.current++ },
+          ...current,
+        ].slice(0, MAX_EVENTS);
       });
     }, EVENT_TICK_MS);
 
@@ -269,8 +315,8 @@ export function HeroDashboard({ hero }: { hero: HeroCopy }) {
             </div>
             <div>
               {events.map((event) => (
-                <div key={`${event.ageSeconds}-${event.message}`} className="as-event">
-                  <span className="as-event-time">{formatUtcHourMinute(event.ageSeconds)}</span>
+                <div key={event.uid} className="as-event">
+                  <span className="as-event-time">{mounted ? formatUtcHourMinute(event.ageSeconds) : '--:--'}</span>
                   <span className="as-event-text">{event.message}</span>
                   <span className={`as-event-icon as-event-icon-${event.status}`}>
                     {event.status === 'ok' ? '✓' : '!'}

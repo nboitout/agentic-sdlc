@@ -97,6 +97,26 @@ export type SiteCopy = {
     body: string;
     measuredLabel: string;
     items: { name: string; desc: string }[];
+    planes: {
+      quant: {
+        tag: string;
+        title: string;
+        body: string;
+        familiesLabel: string;
+        families: { num: string; title: string; summary: string; signals: string[] }[];
+      };
+      perception: {
+        tag: string;
+        title: string;
+        body: string;
+        baselineLabel: string;
+        baselineCount: string;
+        baselineSummary: string;
+        branchesLabel: string;
+        branches: { icon: string; title: string; count: string; summary: string }[];
+        note: string;
+      };
+    };
     statement: string;
     statementBody: string;
     supervisionCoverage: string;
@@ -271,7 +291,7 @@ export const copy = {
     metrics: {
       eyebrow: 'Metrics',
       heading: 'Without metrics, there is no transformation.',
-      body: 'If AI contribution, rework, quality, and supervision are not measured, adoption stays anecdotal and cannot scale.',
+      body: 'Adoption only scales when both planes are observed: what the system produces, and how the people inside it experience it. We instrument both — continuously and quarterly — so the operating model has ground truth instead of anecdote.',
       measuredLabel: 'What must be measured',
       items: [
         { name: 'AI contribution', desc: 'Share of work authored by coding agents per sprint' },
@@ -279,6 +299,76 @@ export const copy = {
         { name: 'Quality', desc: 'Coverage score, lint pass rate, and test health' },
         { name: 'Supervision', desc: 'Human review coverage across all agent-merged PRs' },
       ],
+      planes: {
+        quant: {
+          tag: 'Plane 01 · Quantitative · continuous',
+          title: 'What the system produces',
+          body: 'Telemetry from the agentic factory. Five signal families, instrumented in the pipeline, refreshed on every run.',
+          familiesLabel: 'Signal families',
+          families: [
+            {
+              num: '01',
+              title: 'Adoption surface',
+              summary: 'Who is using AI, where, and how often.',
+              signals: ['Active users', 'Phase coverage', 'Tool penetration', 'Session depth'],
+            },
+            {
+              num: '02',
+              title: 'Acceptance & quality',
+              summary: 'Whether the output is trusted enough to ship.',
+              signals: ['Acceptance rate', 'Review cycles', 'Defect rate', 'Coverage delta'],
+            },
+            {
+              num: '03',
+              title: 'Velocity (DORA, segmented)',
+              summary: 'DORA metrics, split by agent involvement.',
+              signals: ['Lead time', 'Deploy frequency', 'Change-failure rate', 'MTTR'],
+            },
+            {
+              num: '04',
+              title: 'Agent behavior',
+              summary: 'How well agents calibrate to their guardrails.',
+              signals: ['Escalation quality', 'Supervision burden', 'Iteration depth', 'Goal completion'],
+            },
+            {
+              num: '05',
+              title: 'Cost & return',
+              summary: 'Whether the math is moving in the right direction.',
+              signals: ['Token spend', 'Cost per accepted change', 'ROI proxy', 'Wallet anomalies'],
+            },
+          ],
+        },
+        perception: {
+          tag: 'Plane 02 · Perception · quarterly',
+          title: 'What people experience',
+          body: 'A proprietary quarterly survey. A common baseline for everyone, then a role-specific branch routed automatically.',
+          baselineLabel: 'Common baseline',
+          baselineCount: 'For every respondent',
+          baselineSummary: 'Calibrates role, engagement model, AI usage frequency, autonomy level, and learning posture — the context every other answer is read against.',
+          branchesLabel: 'Role branches',
+          branches: [
+            {
+              icon: 'code',
+              title: 'Developer',
+              count: 'Coding-side branch',
+              summary: 'Covers how AI shows up across the day-to-day developer loop, from authoring to verification, and how agentic tooling is adopted.',
+            },
+            {
+              icon: 'rule',
+              title: 'QA · Automation · Release Quality',
+              count: 'Quality-side branch',
+              summary: 'Covers AI in the test lifecycle — from scenario generation through maintenance, flakiness, and release-readiness decisions.',
+            },
+            {
+              icon: 'lan',
+              title: 'PM · PO · BA · Ops',
+              count: 'Delivery-side branch',
+              summary: 'Covers AI across planning, documentation, reporting, risk, and operational signals — the work around the code.',
+            },
+          ],
+          note: 'Survey instrument is proprietary. Question set shared under engagement.',
+        },
+      },
       statement: 'Measurement over anecdote.',
       statementBody: 'What gets measured gets governed. The factory runs on numbers, not narrative.',
       supervisionCoverage: 'Supervision coverage',

@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { ClientEnhancements, LanguageSelector } from '@/components/ClientEnhancements';
 import { HeroDashboard } from '@/components/HeroDashboard';
 import { MaturityIndex } from '@/components/MaturityIndex';
-import { MetricsCharts } from '@/components/MetricsCharts';
 import { copy, defaultLanguage, languages, type LanguageCode } from '@/lib/i18n';
 
 const storageKey = 'agentic-sdlc-language';
@@ -187,69 +186,73 @@ export default function HomePage() {
 
       <section className="section s-white" id="how-we-help" aria-labelledby="metrics-heading">
         <div className="section-inner">
-          <div className="bring-grid">
-            <div data-reveal="">
-              <span className="eyebrow">{t.metrics.eyebrow}</span>
-              <h2 id="metrics-heading" className="bring-heading">{t.metrics.heading}</h2>
-              <p className="engage-body">{t.metrics.body}</p>
-            </div>
+          <div className="metrics-intro" data-reveal="">
+            <span className="eyebrow">{t.metrics.eyebrow}</span>
+            <h2 id="metrics-heading" className="bring-heading">{t.metrics.heading}</h2>
+            <p className="engage-body">{t.metrics.body}</p>
+          </div>
 
-            <div className="bring-lists" data-reveal="">
-              <div className="list-card">
-                <span className="list-label">{t.metrics.measuredLabel}</span>
-                <ul className="metric-pill-list">
-                  {t.metrics.items.map(({ name, desc }) => (
-                    <li key={name} className="metric-pill">
-                      <span className="metric-pill-dot" aria-hidden="true" />
-                      <div>
-                        <strong className="metric-pill-name">{name}</strong>
-                        <p className="metric-pill-desc">{desc}</p>
+          <div className="planes-grid" data-reveal-stagger="">
+            <article className="plane plane-quant">
+              <header className="plane-header">
+                <span className="plane-tag">{t.metrics.planes.quant.tag}</span>
+                <h3 className="plane-title">{t.metrics.planes.quant.title}</h3>
+                <p className="plane-body">{t.metrics.planes.quant.body}</p>
+              </header>
+              <span className="plane-section-label">{t.metrics.planes.quant.familiesLabel}</span>
+              <ol className="family-list">
+                {t.metrics.planes.quant.families.map((f) => (
+                  <li key={f.num} className="family-item">
+                    <span className="family-num" aria-hidden="true">{f.num}</span>
+                    <div className="family-body">
+                      <strong className="family-title">{f.title}</strong>
+                      <p className="family-summary">{f.summary}</p>
+                      <ul className="family-signals">
+                        {f.signals.map((s) => (
+                          <li key={s} className="signal-chip">{s}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </article>
+
+            <article className="plane plane-perception">
+              <header className="plane-header">
+                <span className="plane-tag">{t.metrics.planes.perception.tag}</span>
+                <h3 className="plane-title">{t.metrics.planes.perception.title}</h3>
+                <p className="plane-body">{t.metrics.planes.perception.body}</p>
+              </header>
+
+              <div className="baseline-card">
+                <div className="baseline-head">
+                  <span className="baseline-label">{t.metrics.planes.perception.baselineLabel}</span>
+                  <span className="baseline-count">{t.metrics.planes.perception.baselineCount}</span>
+                </div>
+                <p className="baseline-summary">{t.metrics.planes.perception.baselineSummary}</p>
+              </div>
+
+              <span className="plane-section-label">{t.metrics.planes.perception.branchesLabel}</span>
+              <ul className="branch-list">
+                {t.metrics.planes.perception.branches.map((b) => (
+                  <li key={b.title} className="branch-item">
+                    <span className="branch-icon material-symbols-outlined" aria-hidden="true">{b.icon}</span>
+                    <div className="branch-body">
+                      <div className="branch-head">
+                        <strong className="branch-title">{b.title}</strong>
+                        <span className="branch-count">{b.count}</span>
                       </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
+                      <p className="branch-summary">{b.summary}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
 
-          <div className="bento" data-reveal-stagger="">
-            <article className="bento-hero">
-              <div>
-                <h3>{t.metrics.statement}</h3>
-                <p>{t.metrics.statementBody}</p>
-              </div>
-              <div className="bento-hero-stats">
-                <div className="bento-hero-row">
-                  <span className="bento-hero-row-label">{t.metrics.supervisionCoverage}</span>
-                  <span className="bento-hero-row-value">92%</span>
-                </div>
-                <div className="bento-hero-row">
-                  <span className="bento-hero-row-label">{t.metrics.reworkReduction}</span>
-                  <span className="bento-hero-row-value">×4</span>
-                </div>
-              </div>
-            </article>
-
-            <article className="bento-wide">
-              <div className="icon-tile" aria-hidden="true">
-                <span className="material-symbols-outlined">speed</span>
-              </div>
-              <h4>{t.metrics.velocityTitle}</h4>
-              <p>{t.metrics.velocityText}</p>
-            </article>
-
-            <article className="bento-tile">
-              <span className="num">100%</span>
-              <span className="label">{t.metrics.traceability}</span>
-            </article>
-
-            <article className="bento-tile bento-tile-variant">
-              <span className="num">0</span>
-              <span className="label">{t.metrics.unreviewedMerges}</span>
+              <p className="plane-note">{t.metrics.planes.perception.note}</p>
             </article>
           </div>
 
-          <MetricsCharts charts={t.metrics.charts} />
         </div>
       </section>
 
