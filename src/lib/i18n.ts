@@ -69,6 +69,16 @@ export type SiteCopy = {
     heading: string;
     lead: string;
     paragraphs: string[];
+    triplet: string[];
+    bridge: string;
+    postEquationLead: string;
+    disclaimer: string;
+    implication: string;
+    challengeIntro: string;
+    strategicCallout: string;
+    challengeBody: string;
+    answerLead: string;
+    answerBody: string;
     before: string;
     beforeValue: string;
     beforeCaption: string;
@@ -257,14 +267,26 @@ export const copy = {
       connectorRightDesc: 'Short bursts, parallel streams, dynamic allocation.',
     },
     beyond: {
-      eyebrow: 'Bench Management is now critical',
+      eyebrow: 'Bench Management Becomes Critical',
       heading: 'Beyond Time & Materials: From Staffing to Outcome Delivery',
-      lead: 'Staffing sold time. The next model sells outcome delivery.',
+      lead: 'Staffing sold time. The next model sells reusable delivery capability.',
       paragraphs: [
-        'Classical team augmentation was built for a world where execution was scarce and projects consumed years. You staffed teams, sold billable days (read: billable months), and scaled delivery by adding headcount.',
-        'Agentic software delivery changes that equation. With coding agents, execution becomes more programmable, parallel, and time-compressed. But the real shift is not just speed.',
-        'External teams do not disappear. But they stop being long staffing commitments measured mainly in months consumed. They become targeted, cross-functional delivery systems: short, focused, and accountable for business outcomes.',
+        'Classical team augmentation was built for a world where execution was scarce, projects lasted years, and revenue scaled by keeping people staffed for as long as possible.',
       ],
+      triplet: [
+        'You sold profiles.',
+        'You billed months.',
+        'You grew by adding headcount.',
+      ],
+      bridge: 'Agentic software delivery changes that equation.',
+      postEquationLead: 'With coding agents, software execution becomes more programmable, parallel, and time-compressed. The same delivery scope may require fewer people, shorter cycles, and more dynamic allocation of expertise.',
+      disclaimer: 'This does not mean external teams disappear.',
+      implication: 'But it does mean that long, static staffing commitments become harder to defend. Clients will increasingly ask for smaller, sharper teams that can enter a workflow, deliver a measurable outcome, and move on.',
+      challengeIntro: 'For IT services firms, this creates a new operational challenge:',
+      strategicCallout: 'bench management becomes strategic.',
+      challengeBody: 'When missions get shorter, rotation increases. When rotation increases, unused capacity becomes more visible. And when clients buy outcomes instead of months, the provider can no longer rely only on long-duration staffing to absorb its workforce.',
+      answerLead: 'The answer is not simply to reduce headcount.',
+      answerBody: 'The answer is to build a delivery model where talent can be rapidly assembled, deployed, governed, measured, and redeployed across outcome-based missions.',
       before: 'Before',
       beforeValue: 'people × time',
       beforeCaption: 'billable days · stable staffing · long projects',
@@ -290,7 +312,7 @@ export const copy = {
         { title: 'Production-oriented', text: 'The goal is not a demo or a proof of concept. The goal is a usable system connected to real workflows, with supervision, observability, and escalation paths.', num: '03' },
         { title: 'Outcome-measured', text: 'Success is measured through business impact, adoption, quality, cycle time, risk reduction, and operational reliability, not only billable days consumed.', num: '04' },
       ],
-      closing: 'Projects used to consume people and time. Agentic delivery consumes focused pods, governed workflows, and measurable outcomes.',
+      closing: 'That is where a dedicated Software Engineering Practice becomes critical.',
       equation: {
         eyebrow: 'Bench Management is now critical',
         heading: 'The Legacy Equation of Classical Augmentation',

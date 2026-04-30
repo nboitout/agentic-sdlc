@@ -93,10 +93,18 @@ export default function HomePage() {
           </div>
 
           <div className="btm-prose" data-reveal="">
-            {t.beyond.paragraphs.map((paragraph, index) => (
-              <p key={paragraph} className={index === 2 ? 'btm-emphasis' : undefined}>{paragraph}</p>
+            {t.beyond.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
+
+          <ul className="btm-triplet" data-reveal-stagger="">
+            {t.beyond.triplet.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+
+          <p className="btm-bridge" data-reveal="">{t.beyond.bridge}</p>
 
           <div className="legacy-equation" data-reveal="" aria-labelledby="legacy-equation-heading">
             <header className="legacy-equation-head">
@@ -167,57 +175,19 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="btm-shift" data-reveal="">
-            <div className="btm-shift-card btm-shift-card-before">
-              <span className="btm-shift-label">{t.beyond.before}</span>
-              <p>{t.beyond.beforeValue}</p>
-              <span>{t.beyond.beforeCaption}</span>
-            </div>
-            <div className="btm-shift-arrow" aria-hidden="true">→</div>
-            <div className="btm-shift-card btm-shift-card-accent">
-              <span className="btm-shift-label">{t.beyond.now}</span>
-              <p>{t.beyond.nowValue}</p>
-              <span>{t.beyond.nowCaption}</span>
-            </div>
+          <div className="btm-prose" data-reveal="">
+            <p>{t.beyond.postEquationLead}</p>
+            <p className="btm-emphasis">{t.beyond.disclaimer}</p>
+            <p>{t.beyond.implication}</p>
+            <p className="btm-prose-lede">{t.beyond.challengeIntro}</p>
           </div>
 
-          <div className="btm-example" data-reveal="">
-            <div>
-              <span className="btm-example-label">{t.beyond.exampleLeftLabel}</span>
-              <strong>{t.beyond.exampleLeftValue}</strong>
-              <div className="btm-capacity-track btm-capacity-track-before" aria-hidden="true">
-                <span className="btm-capacity-bar btm-capacity-bar-before" />
-              </div>
-            </div>
-            <div>
-              <span className="btm-example-label">{t.beyond.exampleRightLabel}</span>
-              <strong>{t.beyond.exampleRightValue}</strong>
-              <div className="btm-capacity-track" aria-hidden="true">
-                <span className="btm-capacity-bar btm-capacity-stream" />
-                <span className="btm-capacity-bar btm-capacity-stream" />
-                <span className="btm-capacity-bar btm-capacity-stream" />
-              </div>
-            </div>
-          </div>
+          <p className="btm-strategic-callout" data-reveal="">{t.beyond.strategicCallout}</p>
 
-          <div className="btm-clients" data-reveal="">
-            <div>
-              <span className="eyebrow">{t.beyond.clientsEyebrow}</span>
-              <h3 className="btm-clients-title">{t.beyond.clientsTitle}</h3>
-            </div>
-            <ul className="btm-list">
-              {t.beyond.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
-            </ul>
-          </div>
-
-          <div className="btm-grid" data-reveal-stagger="">
-            {t.beyond.cards.map(({ title, text, num }) => (
-              <article key={title} className="btm-card">
-                <span className="btm-card-num" aria-hidden="true">{num}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            ))}
+          <div className="btm-prose" data-reveal="">
+            <p>{t.beyond.challengeBody}</p>
+            <p className="btm-emphasis">{t.beyond.answerLead}</p>
+            <p>{t.beyond.answerBody}</p>
           </div>
 
           <p className="btm-close" data-reveal="">{t.beyond.closing}</p>
