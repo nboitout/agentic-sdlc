@@ -102,7 +102,17 @@ export function MaturityIndex() {
         <div className="mi-head" data-reveal="">
           <div className="mi-head-left">
             <span className="eyebrow">AI Engineering Maturity Scale</span>
-            <h2 id="mi-heading" className="mi-heading">Where does your team stand?</h2>
+            <div className="mi-heading-row">
+              <h2 id="mi-heading" className="mi-heading">Where does your team stand?</h2>
+              <a
+                href="https://nboitout.github.io/Blog-Agentic-SDLC/en/executive-self-assessment/"
+                className="btn btn-ghost mi-cta"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Self-Assessment for Executives
+              </a>
+            </div>
             <p className="mi-sub">
               5 stages from ad-hoc AI usage to full fleet orchestration.
               Click any level to explore what it means and how to advance.
