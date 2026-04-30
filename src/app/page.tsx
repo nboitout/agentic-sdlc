@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState, type CSSProperties } from 'react';
-import { ClientEnhancements, LanguageSelector } from '@/components/ClientEnhancements';
+import { ClientEnhancements } from '@/components/ClientEnhancements';
 import { HeroDashboard } from '@/components/HeroDashboard';
 import { MaturityIndex } from '@/components/MaturityIndex';
 import { copy, defaultLanguage, languages, type LanguageCode } from '@/lib/i18n';
@@ -45,11 +45,6 @@ export default function HomePage() {
             >
               {t.nav.blog}
             </a>
-            <LanguageSelector
-              currentLanguage={language}
-              onLanguageChange={setLanguage}
-              label={t.nav.language}
-            />
           </nav>
         </header>
 
