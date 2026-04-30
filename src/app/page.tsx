@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { ClientEnhancements } from '@/components/ClientEnhancements';
 import { HeroDashboard } from '@/components/HeroDashboard';
 import { MaturityIndex } from '@/components/MaturityIndex';
+import { MobileCtaBar } from '@/components/MobileCtaBar';
 import { copy, defaultLanguage, languages, type LanguageCode } from '@/lib/i18n';
 
 const storageKey = 'agentic-sdlc-language';
@@ -423,6 +424,13 @@ export default function HomePage() {
           <p className="footer-copy">&copy; {new Date().getFullYear()} Agentic SDLC</p>
         </div>
       </footer>
+
+      <MobileCtaBar
+        primaryLabel={t.hero.primaryCta}
+        primaryHref="https://calendly.com/nicolasboitout/new-meeting"
+        secondaryLabel={t.hero.secondaryCta}
+        secondaryHref="https://nboitout.github.io/Blog-Agentic-SDLC/en/executive-self-assessment/"
+      />
 
       <ClientEnhancements
         currentLanguage={language}
