@@ -345,7 +345,7 @@ export const copy = {
     metrics: {
       eyebrow: 'Metrics',
       heading: 'Without metrics, there is no transformation.',
-      body: 'Adoption only scales when both planes are observed: what the system produces, and how the people inside it experience it. We instrument both — continuously and quarterly — so the operating model has ground truth instead of anecdote.',
+      body: 'Adoption only scales when both planes are measured: what coding agents produce in production, and how the engineers working alongside them actually experience the change. We set up and run the monitoring for you — a continuous feed of agent-related production metrics, paired with a recurring employee survey — so the operating model is steered by evidence rather than anecdote.',
       measuredLabel: 'What must be measured',
       items: [
         { name: 'AI contribution', desc: 'Share of work authored by coding agents per sprint' },
