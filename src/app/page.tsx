@@ -103,6 +103,75 @@ export default function HomePage() {
             ))}
           </div>
 
+          <div className="legacy-equation" data-reveal="" aria-labelledby="legacy-equation-heading">
+            <header className="legacy-equation-head">
+              <span className="eyebrow">{t.beyond.equation.eyebrow}</span>
+              <h3 id="legacy-equation-heading" className="legacy-equation-heading">{t.beyond.equation.heading}</h3>
+            </header>
+
+            <div className="legacy-equation-row" role="img" aria-label={`${t.beyond.equation.termOne} times ${t.beyond.equation.termTwo} equals ${t.beyond.equation.result}`}>
+              <div className="legacy-term legacy-term-input" data-anchor="term-1">
+                <span className="legacy-bracket legacy-bracket-left" aria-hidden="true" />
+                <div className="legacy-term-body">
+                  <span className="legacy-term-label">{t.beyond.equation.termOneLabel}</span>
+                  <span className="legacy-term-word">{t.beyond.equation.termOne}</span>
+                </div>
+                <span className="legacy-bracket legacy-bracket-right" aria-hidden="true" />
+              </div>
+
+              <span className="legacy-op" aria-hidden="true" data-anchor="op">×</span>
+
+              <div className="legacy-term legacy-term-input" data-anchor="term-2">
+                <span className="legacy-bracket legacy-bracket-left" aria-hidden="true" />
+                <div className="legacy-term-body">
+                  <span className="legacy-term-label">{t.beyond.equation.termTwoLabel}</span>
+                  <span className="legacy-term-word">{t.beyond.equation.termTwo}</span>
+                </div>
+                <span className="legacy-bracket legacy-bracket-right" aria-hidden="true" />
+              </div>
+
+              <span className="legacy-op" aria-hidden="true">=</span>
+
+              <div className="legacy-term legacy-term-result">
+                <div className="legacy-term-body">
+                  <span className="legacy-term-label">Result</span>
+                  <span className="legacy-term-word">{t.beyond.equation.result}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="legacy-callouts" data-reveal-stagger="">
+              {t.beyond.equation.annotations.map((annotation, idx) => (
+                <div key={annotation} className="legacy-callout" data-callout={idx}>
+                  <span className="legacy-callout-connector" aria-hidden="true" />
+                  <p>{annotation}</p>
+                </div>
+              ))}
+
+              <div className="legacy-chart-card" data-reveal="">
+                <svg className="legacy-chart-svg" viewBox="0 0 220 140" role="img" aria-label={t.beyond.equation.chartLabel}>
+                  <defs>
+                    <pattern id="legacyGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeOpacity="0.08" strokeWidth="1" />
+                    </pattern>
+                    <marker id="legacyArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                      <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
+                    </marker>
+                  </defs>
+                  <rect x="24" y="10" width="186" height="106" fill="url(#legacyGrid)" />
+                  <line x1="24" y1="116" x2="214" y2="116" stroke="currentColor" strokeOpacity="0.45" strokeWidth="1.25" markerEnd="url(#legacyArrow)" />
+                  <line x1="24" y1="116" x2="24" y2="6" stroke="currentColor" strokeOpacity="0.45" strokeWidth="1.25" markerEnd="url(#legacyArrow)" />
+                  <line x1="32" y1="106" x2="200" y2="60" stroke="var(--legacy-accent)" strokeWidth="3.5" strokeLinecap="round" />
+                  <text x="206" y="132" textAnchor="end" fontSize="9" fill="currentColor" opacity="0.55">{t.beyond.equation.chartXLabel}</text>
+                  <text x="14" y="14" fontSize="9" fill="currentColor" opacity="0.55">{t.beyond.equation.chartYLabel}</text>
+                </svg>
+                <span className="legacy-chart-caption">{t.beyond.equation.chartLabel}</span>
+              </div>
+
+              <p className="legacy-chart-note">{t.beyond.equation.note}</p>
+            </div>
+          </div>
+
           <div className="btm-shift" data-reveal="">
             <div className="btm-shift-card btm-shift-card-before">
               <span className="btm-shift-label">{t.beyond.before}</span>

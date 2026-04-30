@@ -3422,3 +3422,254 @@ a { color: inherit; text-decoration: none; }
   .mi-badge      { display: none; }
   .mi-conn       { width: 14px; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   Legacy Equation — diagrammatic block inside Beyond T&M section
+   ═══════════════════════════════════════════════════════════════════ */
+.legacy-equation {
+  --legacy-accent: var(--primary);
+  --legacy-bracket: var(--primary);
+  --legacy-grid: rgba(15, 21, 32, 0.06);
+  margin: 56px 0 0;
+  padding: clamp(28px, 4vw, 44px) clamp(20px, 3vw, 36px) clamp(32px, 4vw, 48px);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--r-xl);
+  background:
+    linear-gradient(180deg, #fff 0%, #fafbff 100%);
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(250,251,255,.92) 100%),
+    linear-gradient(var(--legacy-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--legacy-grid) 1px, transparent 1px);
+  background-size: auto, 32px 32px, 32px 32px;
+  background-position: 0 0, 0 0, 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.legacy-equation-head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: clamp(28px, 4vw, 44px);
+  max-width: 880px;
+}
+.legacy-equation-heading {
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* ── Equation row ─────────────────────────────────────────────────── */
+.legacy-equation-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2.4vw, 32px);
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+.legacy-equation-row > .legacy-term {
+  flex: 0 1 auto;
+}
+.legacy-equation-row > .legacy-op {
+  flex: 0 0 auto;
+  min-width: 1.2em;
+}
+
+.legacy-term {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(8px, 1.2vw, 14px);
+  min-height: clamp(96px, 12vw, 132px);
+}
+.legacy-term-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  padding: 0 clamp(4px, 1vw, 10px);
+}
+.legacy-term-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--outline);
+}
+.legacy-term-word {
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 3.4vw, 2.85rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.legacy-term-result {
+  grid-template-columns: 1fr;
+}
+.legacy-term-result .legacy-term-body { padding: 0; }
+.legacy-term-result .legacy-term-label { color: var(--primary); }
+.legacy-term-result .legacy-term-word {
+  color: var(--primary);
+  white-space: normal;
+  letter-spacing: -0.045em;
+}
+
+.legacy-bracket {
+  width: clamp(12px, 1.2vw, 18px);
+  height: clamp(80px, 10vw, 116px);
+  border: 3.5px solid var(--legacy-bracket);
+  flex: 0 0 auto;
+}
+.legacy-bracket-left  { border-right: none; border-radius: 6px 0 0 6px; }
+.legacy-bracket-right { border-left:  none; border-radius: 0 6px 6px 0; }
+
+.legacy-op {
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 3.4vw, 2.85rem);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--outline);
+  text-align: center;
+}
+
+/* ── Callouts row (3 tiles + chart card + side note) ──────────────── */
+.legacy-callouts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr)) clamp(220px, 22vw, 280px) minmax(0,1fr);
+  gap: clamp(14px, 2vw, 24px);
+  align-items: start;
+}
+
+.legacy-callout {
+  position: relative;
+  padding: 22px 22px 20px;
+  border: 1px solid var(--outline-variant);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(20,27,43,.05);
+  min-height: 96px;
+  display: flex;
+  align-items: flex-start;
+}
+.legacy-callout p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--body);
+  font-weight: 500;
+}
+.legacy-callout-connector {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  width: 1px;
+  height: 28px;
+  background: var(--legacy-accent);
+  transform: translateX(-0.5px);
+}
+.legacy-callout-connector::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-top: 1.5px solid var(--legacy-accent);
+  border-right: 1.5px solid var(--legacy-accent);
+  transform: translateX(-50%) rotate(135deg);
+}
+
+.legacy-chart-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 14px 14px 10px;
+  border: 1px solid var(--outline-variant);
+  border-radius: 16px;
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 10px 24px rgba(20,27,43,.05);
+  max-width: 280px;
+  width: 100%;
+  justify-self: end;
+}
+.legacy-chart-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.legacy-chart-caption {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--outline);
+  text-align: center;
+}
+
+.legacy-chart-note {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--muted);
+  align-self: center;
+  max-width: 28ch;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .legacy-callouts {
+    grid-template-columns: repeat(3, minmax(0,1fr));
+  }
+  .legacy-chart-card {
+    grid-column: 1 / 3;
+  }
+  .legacy-chart-note {
+    grid-column: 3 / 4;
+  }
+}
+
+@media (max-width: 720px) {
+  .legacy-equation-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .legacy-op {
+    font-size: 2.4rem;
+  }
+  .legacy-term {
+    min-height: 0;
+    justify-self: center;
+  }
+  .legacy-bracket {
+    height: 92px;
+  }
+  .legacy-callouts {
+    grid-template-columns: 1fr;
+  }
+  .legacy-callout {
+    min-height: 0;
+  }
+  .legacy-callout-connector {
+    top: -22px;
+    height: 18px;
+  }
+  .legacy-chart-card {
+    grid-column: auto;
+  }
+  .legacy-chart-note {
+    grid-column: auto;
+    max-width: none;
+    text-align: center;
+  }
+}

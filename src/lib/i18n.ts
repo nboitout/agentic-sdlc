@@ -84,6 +84,20 @@ export type SiteCopy = {
     bullets: string[];
     cards: { title: string; text: string; num: string }[];
     closing: string;
+    equation: {
+      eyebrow: string;
+      heading: string;
+      termOneLabel: string;
+      termOne: string;
+      termTwoLabel: string;
+      termTwo: string;
+      result: string;
+      annotations: string[];
+      chartLabel: string;
+      chartXLabel: string;
+      chartYLabel: string;
+      note: string;
+    };
   };
   core: {
     eyebrow: string;
@@ -249,7 +263,7 @@ export const copy = {
       paragraphs: [
         'Classical team augmentation was built for a world where execution was scarce and projects consumed years. You staffed teams, sold billable days (read: billable months), and scaled delivery by adding headcount.',
         'Agentic software delivery changes that equation. With coding agents, execution becomes more programmable, parallel, and time-compressed. But the real shift is not just speed.',
-        'External teams do not disappear. But they stop being long staffing commitments measured mainly in days consumed. They become targeted, cross-functional delivery systems: short, focused, and accountable for business outcomes.',
+        'External teams do not disappear. But they stop being long staffing commitments measured mainly in months consumed. They become targeted, cross-functional delivery systems: short, focused, and accountable for business outcomes.',
       ],
       before: 'Before',
       beforeValue: 'people × time',
@@ -277,6 +291,24 @@ export const copy = {
         { title: 'Outcome-measured', text: 'Success is measured through business impact, adoption, quality, cycle time, risk reduction, and operational reliability, not only billable days consumed.', num: '04' },
       ],
       closing: 'Projects used to consume people and time. Agentic delivery consumes focused pods, governed workflows, and measurable outcomes.',
+      equation: {
+        eyebrow: 'Bench Management is now critical',
+        heading: 'The Legacy Equation of Classical Augmentation',
+        termOneLabel: 'Term 01',
+        termOne: 'Headcount',
+        termTwoLabel: 'Term 02',
+        termTwo: 'Billable Months',
+        result: 'Legacy Capacity',
+        annotations: [
+          'Assumes execution is scarce.',
+          'Requires stable, long-term staffing.',
+          'Sells time, not results.',
+        ],
+        chartLabel: 'Linear scaling',
+        chartXLabel: 'headcount',
+        chartYLabel: 'capacity',
+        note: 'Scaling delivery relies entirely on adding headcount or more billable months.',
+      },
     },
     core: {
       eyebrow: 'Core shift',
