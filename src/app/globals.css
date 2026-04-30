@@ -2851,17 +2851,16 @@ a { color: inherit; text-decoration: none; }
 .sprint-head {
   display: grid;
   gap: 12px;
-  max-width: 24ch;
 }
 .sprint-heading {
   font-family: var(--display);
-  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-size: clamp(1.4rem, 2.6vw, 2.6rem);
   font-weight: 800;
-  line-height: 1.04;
+  line-height: 1.08;
   letter-spacing: -.035em;
   color: var(--ink);
   margin: 0;
-  text-wrap: balance;
+  white-space: nowrap;
 }
 .sprint-context {
   display: grid;
@@ -2973,6 +2972,13 @@ a { color: inherit; text-decoration: none; }
   }
   .sprint-steps {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  .sprint-heading {
+    white-space: normal;
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    text-wrap: balance;
   }
 }
 @media (max-width: 640px) {
