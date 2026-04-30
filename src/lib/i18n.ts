@@ -181,6 +181,12 @@ export type SiteCopy = {
     heading: string;
     body: string;
     quote: string;
+    leadPrimary: string;
+    leadSecondary: string;
+    pressure: string;
+    bridge: string;
+    combinesLabel: string;
+    steps: { num: string; title: string; text: string }[];
   };
   contact: {
     eyebrow: string;
@@ -489,9 +495,22 @@ export const copy = {
     },
     engagement: {
       eyebrow: 'Engagement',
-      heading: 'One sprint to define the operating model.',
+      heading: 'One sprint to launch the AI–Software Engineering Practice.',
       body: 'In a focused working sprint, we align leadership and engineering around a practical next step with clear priorities, governance, and measurement.',
       quote: 'One focused engagement to define the ground truth, the priorities, and the operating rules that make AI supervision real.',
+      leadPrimary: 'AI is not only changing software engineering productivity.',
+      leadSecondary: 'It is changing the economics of IT services.',
+      pressure: 'For firms built on team augmentation, T&M, and long staffing cycles, coding agents bring a new challenge: shorter cycles, higher rotation, more pressure on bench management, and growing client demand for measurable outcomes.',
+      bridge: 'This focused sprint helps leadership, commercial, and engineering teams move from scattered AI experimentation to a structured AI–Software Engineering Practice.',
+      combinesLabel: 'The sprint combines',
+      steps: [
+        { num: '01', title: 'Maturity assessment', text: 'Survey and interviews to map current AI usage, engineering practices, tooling, blockers, and readiness by role and team.' },
+        { num: '02', title: 'Leadership alignment', text: 'Clarify the strategic ambition: productivity, delivery differentiation, new offers, bench optimization, or client-facing AI transformation.' },
+        { num: '03', title: 'Training & awareness', text: 'Practical sessions for engineers, tech leads, QA, PMs, and delivery managers on agentic SDLC, harness engineering, and validation loops.' },
+        { num: '04', title: 'Practice design', text: 'Scope, roles, standards, governance, expert community, reusable assets, and delivery patterns of the target operating model.' },
+        { num: '05', title: 'Offer & pilot design', text: 'First outcome-based offers, priority client segments, pod models, success metrics, and pilot missions.' },
+        { num: '06', title: '30 / 60 / 90-day roadmap', text: 'A clear path from experimentation to repeatable delivery capability.' },
+      ],
     },
     contact: {
       eyebrow: 'Start the conversation',

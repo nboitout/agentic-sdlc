@@ -351,15 +351,33 @@ export default function HomePage() {
       </section>
 
       <section className="section s-canvas" id="engagement" aria-labelledby="engagement-heading">
-        <div className="section-inner">
-          <div className="engage-grid">
-            <div data-reveal="">
-              <span className="eyebrow">{t.engagement.eyebrow}</span>
-              <h2 id="engagement-heading" className="engage-heading">{t.engagement.heading}</h2>
-              <p className="engage-body">{t.engagement.body}</p>
-            </div>
+        <div className="section-inner sprint-inner">
+          <div className="sprint-head" data-reveal="">
+            <span className="eyebrow">{t.engagement.eyebrow}</span>
+            <h2 id="engagement-heading" className="sprint-heading">{t.engagement.heading}</h2>
+          </div>
 
-            <blockquote className="pull-quote" data-reveal="">{t.engagement.quote}</blockquote>
+          <div className="sprint-context" data-reveal="">
+            <p className="sprint-lead">
+              <span>{t.engagement.leadPrimary}</span>
+              <span>{t.engagement.leadSecondary}</span>
+            </p>
+            <p className="sprint-pressure">{t.engagement.pressure}</p>
+          </div>
+
+          <p className="sprint-bridge" data-reveal="">{t.engagement.bridge}</p>
+
+          <div className="sprint-steps-block" data-reveal="">
+            <span className="sprint-steps-label">{t.engagement.combinesLabel}</span>
+            <ol className="sprint-steps" data-reveal-stagger="">
+              {t.engagement.steps.map((step) => (
+                <li key={step.num} className="sprint-step">
+                  <span className="sprint-step-num" aria-hidden="true">{step.num}</span>
+                  <h3 className="sprint-step-title">{step.title}</h3>
+                  <p className="sprint-step-text">{step.text}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
