@@ -83,6 +83,32 @@ export default function HomePage() {
 
       </section>
 
+      <section className="section s-dark" id="blueprint" aria-labelledby="problem-heading">
+        <div className="section-inner">
+          <div className="why-now-grid why-now-grid-wide">
+            <div data-reveal="">
+              <span className="eyebrow eyebrow-dark">{t.blueprint.eyebrow}</span>
+              <h2 id="problem-heading" className="why-now-heading why-now-heading-wide">{t.blueprint.heading}</h2>
+              <div className="why-now-prose">
+                {t.blueprint.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              </div>
+            </div>
+
+            <div className="levels-panel" data-reveal="">
+              <span className="levels-label">{t.blueprint.levelsLabel}</span>
+              <div className="levels-list">
+                {t.blueprint.levels.map((item) => (
+                  <article key={item.title} className="levels-item">
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <MaturityIndex />
 
       <section className="section s-white btm-shell" id="sandbox-factory" aria-labelledby="comparison-heading">
@@ -310,41 +336,6 @@ export default function HomePage() {
                 </div>
                 <h3>{card.title}</h3>
                 <p>{card.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section s-dark" id="blueprint" aria-labelledby="problem-heading">
-        <div className="section-inner">
-          <div className="why-now-grid why-now-grid-wide">
-            <div data-reveal="">
-              <span className="eyebrow eyebrow-dark">{t.blueprint.eyebrow}</span>
-              <h2 id="problem-heading" className="why-now-heading why-now-heading-wide">{t.blueprint.heading}</h2>
-              <div className="why-now-prose">
-                {t.blueprint.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-              </div>
-            </div>
-
-            <div className="levels-panel" data-reveal="">
-              <span className="levels-label">{t.blueprint.levelsLabel}</span>
-              <div className="levels-list">
-                {t.blueprint.levels.map((item) => (
-                  <article key={item.title} className="levels-item">
-                    <h3>{item.title}</h3>
-                    <p>{item.text}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="blueprint-grid" data-reveal-stagger="">
-            {t.blueprint.cards.map((item) => (
-              <article key={item.title} className="blueprint-card">
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
               </article>
             ))}
           </div>
