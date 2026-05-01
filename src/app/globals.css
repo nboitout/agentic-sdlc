@@ -3673,6 +3673,88 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════
+   Mobile horizontal carousels (sprint steps + maturity nodes)
+   Uses CSS scroll-snap on touch viewports; no behavior change on desktop.
+   ═══════════════════════════════════════════════════════════════════ */
+.carousel-dots {
+  display: none;
+}
+@media (max-width: 720px) {
+  /* ── Sprint steps as carousel ─────────────────────────────────── */
+  .sprint-steps {
+    grid-template-columns: none;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--px, 24px);
+    scroll-behavior: smooth;
+    padding: 4px var(--px, 24px) 12px;
+    margin-left: calc(-1 * var(--px, 24px));
+    margin-right: calc(-1 * var(--px, 24px));
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .sprint-steps::-webkit-scrollbar { display: none; }
+  .sprint-steps .sprint-step {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+    min-height: 200px;
+  }
+
+  /* ── Maturity nodes as carousel ───────────────────────────────── */
+  .mi-nodes {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--px, 24px);
+    scroll-behavior: smooth;
+    padding: 4px var(--px, 24px) 12px;
+    margin-left: calc(-1 * var(--px, 24px));
+    margin-right: calc(-1 * var(--px, 24px));
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .mi-nodes::-webkit-scrollbar { display: none; }
+  .mi-node-wrap {
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+  }
+  .mi-node-wrap .mi-conn { display: none; }
+  .mi-node {
+    width: 100%;
+  }
+
+  /* ── Shared dot indicators ───────────────────────────────────── */
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 0;
+  }
+  .carousel-dot {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: var(--outline-variant);
+    cursor: pointer;
+    transition: background-color 0.2s var(--ease), width 0.25s var(--ease);
+  }
+  .carousel-dot[aria-selected="true"] {
+    background: var(--primary);
+    width: 22px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
    Mobile sticky CTA bar — pinned to viewport bottom on small screens
    ═══════════════════════════════════════════════════════════════════ */
 .mobile-cta-bar {

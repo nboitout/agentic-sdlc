@@ -133,6 +133,81 @@ export function ClientEnhancements({
     return () => links.forEach((link) => link.removeEventListener('click', handleClick));
   }, [currentLanguage]);
 
+  // Wire mobile carousels: sync dot indicators with scroll position,
+  // and let dot taps scroll the matching slide into view.
+  useEffect(() => {
+    const tracks = Array.from(document.querySelectorAll<HTMLElement>('[data-carousel="track"]'));
+    const cleanups: Array<() => void> = [];
+
+    tracks.forEach((track) => {
+      const dotsHost = track.parentElement?.querySelector<HTMLElement>('[data-carousel="dots"]');
+      if (!dotsHost) return;
+      const dots = Array.from(dotsHost.querySelectorAll<HTMLButtonElement>('.carousel-dot'));
+      const slides = Array.from(track.querySelectorAll<HTMLElement>('[data-carousel-slide]'));
+      if (dots.length === 0 || slides.length === 0) return;
+
+      const setActive = (idx: number) => {
+        dots.forEach((d, i) => d.setAttribute('aria-selected', i === idx ? 'true' : 'false'));
+      };
+
+      // IntersectionObserver fires reliably for both user-driven and
+      // programmatic scrolls. We pick the slide with the highest visible
+      // ratio inside the track's own viewport.
+      const ratios = new Map<Element, number>();
+      slides.forEach((s) => ratios.set(s, 0));
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            ratios.set(entry.target, entry.intersectionRatio);
+          });
+          let bestIdx = 0;
+          let bestRatio = -1;
+          slides.forEach((slide, i) => {
+            const r = ratios.get(slide) ?? 0;
+            if (r > bestRatio) {
+              bestRatio = r;
+              bestIdx = i;
+            }
+          });
+          setActive(bestIdx);
+        },
+        {
+          root: track,
+          threshold: [0, 0.25, 0.5, 0.75, 1],
+        },
+      );
+
+      slides.forEach((slide) => io.observe(slide));
+
+      const dotHandlers: Array<[HTMLButtonElement, () => void]> = dots.map((dot, i) => {
+        const handler = () => {
+          const slide = slides[i];
+          if (!slide) return;
+          // offsetLeft is relative to the offsetParent; slides inside the
+          // track share the same offsetParent, so the difference gives the
+          // scroll-left needed to bring this slide into view.
+          const target = slide.offsetLeft - track.offsetLeft;
+          track.scrollTo({ left: target, behavior: 'smooth' });
+          // Optimistically reflect the user's intent — IO will re-confirm
+          // once the scroll settles.
+          setActive(i);
+        };
+        dot.addEventListener('click', handler);
+        return [dot, handler];
+      });
+
+      cleanups.push(() => {
+        io.disconnect();
+        dotHandlers.forEach(([dot, handler]) => dot.removeEventListener('click', handler));
+      });
+    });
+
+    return () => {
+      cleanups.forEach((fn) => fn());
+    };
+  }, [currentLanguage]);
+
   return (
     <>
       <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="afterInteractive" />

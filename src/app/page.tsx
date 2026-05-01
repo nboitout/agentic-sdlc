@@ -370,15 +370,43 @@ export default function HomePage() {
 
           <div className="sprint-steps-block" data-reveal="">
             <span className="sprint-steps-label">{t.engagement.combinesLabel}</span>
-            <ol className="sprint-steps" data-reveal-stagger="">
-              {t.engagement.steps.map((step) => (
-                <li key={step.num} className="sprint-step">
+            <ol
+              className="sprint-steps"
+              data-reveal-stagger=""
+              data-carousel="track"
+              aria-label="Sprint steps"
+            >
+              {t.engagement.steps.map((step, i) => (
+                <li
+                  key={step.num}
+                  className="sprint-step"
+                  data-carousel-slide={i}
+                >
                   <span className="sprint-step-num" aria-hidden="true">{step.num}</span>
                   <h3 className="sprint-step-title">{step.title}</h3>
                   <p className="sprint-step-text">{step.text}</p>
                 </li>
               ))}
             </ol>
+            <div
+              className="carousel-dots"
+              data-carousel="dots"
+              role="tablist"
+              aria-label="Sprint step navigation"
+            >
+              {t.engagement.steps.map((step, i) => (
+                <button
+                  key={step.num}
+                  type="button"
+                  className="carousel-dot"
+                  data-dot-index={i}
+                  role="tab"
+                  aria-label={`Go to step ${i + 1}: ${step.title}`}
+                  aria-selected={i === 0}
+                  tabIndex={-1}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>

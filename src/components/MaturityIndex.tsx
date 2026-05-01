@@ -125,9 +125,9 @@ export function MaturityIndex() {
         </div>
 
         {/* Node row */}
-        <div className="mi-nodes" data-reveal="" role="tablist" aria-label="AI Engineering Maturity Levels">
+        <div className="mi-nodes" data-reveal="" role="tablist" aria-label="AI Engineering Maturity Levels" data-carousel="track">
           {LEVELS.map((level, i) => (
-            <div key={level.id} className="mi-node-wrap">
+            <div key={level.id} className="mi-node-wrap" data-carousel-slide={i}>
               <button
                 role="tab"
                 aria-selected={i === selected}
@@ -163,6 +163,27 @@ export function MaturityIndex() {
                     </div>
               )}
             </div>
+          ))}
+        </div>
+
+        {/* Carousel dots — visible on mobile only */}
+        <div
+          className="carousel-dots mi-dots"
+          data-carousel="dots"
+          role="tablist"
+          aria-label="Maturity level navigation"
+        >
+          {LEVELS.map((level, i) => (
+            <button
+              key={level.id}
+              type="button"
+              className="carousel-dot"
+              data-dot-index={i}
+              role="tab"
+              aria-label={`Go to ${level.id}: ${level.name}`}
+              aria-selected={i === selected}
+              tabIndex={-1}
+            />
           ))}
         </div>
 
