@@ -155,11 +155,78 @@ const LEVELS_FR: Level[] = [
   },
 ];
 
+const LEVELS_RO: Level[] = [
+  {
+    id: 'L1', name: 'Ad Hoc', status: 'Baseline',
+    mult: '1×', multDesc: 'baseline developer', timeframe: 'Punct de start',
+    accentColor: '#6B7280', lightBg: '#F9FAFB', badgeBg: '#E5E7EB', badgeText: '#374151',
+    desc: 'Persoane care copiaza-lipesc din ChatGPT. Niciun workflow comun, nicio guvernanta, utilizare pur reactiva a AI. AI este o curiozitate, nu un workflow.',
+    focus: ['Chat + Copy-Paste', 'Review manual', 'Utilizare individuala', 'Fara guvernanta'],
+    whatChanges: 'Inca nimic — acesta este stadiul implicit al majoritatii echipelor. AI este o curiozitate, nu un workflow.',
+    toAdvance: [
+      'Standardizati pe un editor asistat de AI (Copilot, Cursor)',
+      'Stabiliti pattern-uri de prompt partajate in echipa',
+      'Urmariti metrici de baza ale contributiei AI inca din primul sprint',
+    ],
+  },
+  {
+    id: 'L2', name: 'Augmented', status: 'Industry Avg',
+    mult: '1.1×', multDesc: 'productie developer', timeframe: '~1 luna pentru stabilizare',
+    accentColor: '#D97706', lightBg: '#FFFBEB', badgeBg: '#FDE68A', badgeText: '#92400E',
+    desc: 'Echipe care folosesc Copilot sau Cursor. Oamenii scriu si editeaza cod sincron. AI este un autocomplete rapid, nu un agent autonom. Bottleneck-ul ramane capacitatea de executie umana.',
+    focus: ['AI-assisted editing', 'Inline suggestions', 'Prompt-driven snippets', 'Synchronous review'],
+    whatChanges: 'Viteza creste marginal. Oamenii raman in calea critica pentru fiecare linie de cod. Castigurile sunt reale, dar limitate de handoff-urile sincrone.',
+    toAdvance: [
+      'Dezvoltati intuitie privind modurile de esec: cand trebuie sa aveti incredere in agenti si cand trebuie sa interveniti.',
+      'Incepeti sa delegati task-uri complete catre coding agents, nu doar linii de cod.',
+      'Instrumentati review-urile de PR pentru a masura procentul contributiei AI.',
+    ],
+  },
+  {
+    id: 'L3', name: 'Harnessed', status: 'Urmatorul pas',
+    mult: '2×', multDesc: 'productie developer', timeframe: '4–6 luni pentru a stapani',
+    accentColor: '#4648D4', lightBg: '#EEF2FF', badgeBg: '#C7D2FE', badgeText: '#3730A3',
+    desc: 'Agentii scriu cod autonom; oamenii revizuiesc PR-urile. Modelul de supervizare este explicit: agentii propun, oamenii valideaza. Intuitia privind modurile de esec este abilitatea critica la acest stadiu.',
+    focus: ['Coding agents', 'Supervizare la nivel PR', 'Intuitie moduri de esec', 'Gates de review explicite'],
+    whatChanges: 'Rolul uman trece de la scriitor la reviewer. Productia se dubleaza, dar necesita workflow-uri disciplinate de supervizare. Calitatea se degradeaza fara disciplina de review.',
+    toAdvance: [
+      'Integrati gates de calitate automatizate in pipeline-urile CI/CD',
+      'Treceti la validarea decuplata a agentilor (nu review linie cu linie)',
+      'Stabiliti un guardrail mesh inainte de a extinde autonomia agentilor',
+    ],
+  },
+  {
+    id: 'L4', name: 'Autonomous', extra: '(Symphony)', status: 'Starea tinta',
+    mult: '5×', multDesc: 'productie developer', timeframe: '3+ luni pentru stabilizare',
+    accentColor: '#059669', lightBg: '#ECFDF5', badgeBg: '#A7F3D0', badgeText: '#065F46',
+    desc: 'Agentii scriu, testeaza si fac merge. Oamenii proiecteaza specs si arhitectura. Pipeline-ul CI/CD ruleaza autonom cu guvernanta umana doar la margini.',
+    focus: ['Pipeline-uri autonome', 'Design specs & arhitectura', 'Guardrail mesh', 'Guvernanta la margini'],
+    whatChanges: 'Oamenii devin proiectanti de sisteme, nu scriitori de cod. Supervizarea se muta complet catre decizii de arhitectura si protocoale de escaladare.',
+    toAdvance: [
+      'Coordonati echipe de agenti specializati care ruleaza in flux-uri paralele',
+      'Imbunatatiti infrastructura sistemului in loc sa monitorizati output-ul individual al agentilor',
+      'Stabiliti protocoale de comunicare inter-agenti si rutare de task-uri',
+    ],
+  },
+  {
+    id: 'L5', name: 'Orchestrated', extra: '(Fleet)', status: 'Frontiera',
+    mult: '10×', multDesc: 'productie developer', timeframe: 'Evolutie sistemica continua',
+    accentColor: '#7C3AED', lightBg: '#F5F3FF', badgeBg: '#DDD6FE', badgeText: '#4C1D95',
+    desc: 'Sisteme multi-agent coordoneaza echipe specializate in paralel. Oamenii guverneaza doar arhitectura si guardrail-urile. Scalarea se face prin design de sisteme, nu prin headcount. Organizatia devine ea insasi un sistem de executie programabil.',
+    focus: ['Orchestrare multi-agent', 'Scalare sistemica', 'Guvernanta flotei', 'Oameni doar pentru arhitectura'],
+    whatChanges: 'Strategia este umana; executia este la scara flotei. Efectul de parghie este arhitectural: imbunatatirea sistemului multiplica simultan toti agentii.',
+    toAdvance: [
+      'Aceasta este frontiera — domeniul inca defineste ce urmeaza.',
+      'Contribuiti la standardele emergente pentru guvernanta multi-agent si protocoalele inter-agenti.',
+    ],
+  },
+];
+
 const CURRENT_IDX = 1;
 
 export function MaturityIndex({ language = 'en' }: { language?: LanguageCode }) {
   const [selected, setSelected] = useState(CURRENT_IDX);
-  const levels = language === 'fr' ? LEVELS_FR : LEVELS;
+  const levels = language === 'fr' ? LEVELS_FR : language === 'ro' ? LEVELS_RO : LEVELS;
   const lv = levels[selected];
   const m = copy[language]?.maturity ?? copy.en.maturity!;
   const showTrap = selected >= 3;
