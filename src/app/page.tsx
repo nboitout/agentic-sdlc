@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState, type CSSProperties } from 'react';
-import { ClientEnhancements } from '@/components/ClientEnhancements';
+import { ClientEnhancements, LanguageSelector } from '@/components/ClientEnhancements';
 import { HeroDashboard } from '@/components/HeroDashboard';
 import { MaturityIndex } from '@/components/MaturityIndex';
 import { MobileCtaBar } from '@/components/MobileCtaBar';
@@ -47,6 +47,11 @@ export default function HomePage() {
               {t.nav.blog}
             </a>
           </nav>
+          <LanguageSelector
+            currentLanguage={language}
+            onLanguageChange={setLanguage}
+            label={t.nav.language}
+          />
         </header>
 
         <div className="hero-body">
@@ -109,7 +114,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <MaturityIndex />
+      <MaturityIndex language={language} />
 
       <section className="section s-white btm-shell" id="sandbox-factory" aria-labelledby="comparison-heading">
         <div className="section-inner btm-inner">

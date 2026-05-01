@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { copy, type LanguageCode } from '@/lib/i18n';
 
 type Level = {
   id: string;
@@ -87,11 +88,80 @@ const LEVELS: Level[] = [
   },
 ];
 
+const LEVELS_FR: Level[] = [
+  {
+    id: 'L1', name: 'Ad Hoc', status: 'Baseline',
+    mult: '1×', multDesc: 'base développeur', timeframe: 'Point de départ',
+    accentColor: '#6B7280', lightBg: '#F9FAFB', badgeBg: '#E5E7EB', badgeText: '#374151',
+    desc: "Individus copiant-collant depuis ChatGPT. Pas de workflows partagés, pas de gouvernance, usage purement réactif de l'IA. L'IA est une curiosité, pas un workflow.",
+    focus: ['Chat + Copier-Coller', 'Revue manuelle', 'Usage individuel', 'Pas de gouvernance'],
+    whatChanges: "Rien encore — c'est l'état par défaut de la plupart des équipes. L'IA est une curiosité, pas un workflow.",
+    toAdvance: [
+      "Standardiser sur un éditeur assisté par IA (Copilot, Cursor)",
+      "Établir des patterns de prompts partagés dans l'équipe",
+      "Suivre des métriques de contribution IA basiques dès le premier sprint",
+    ],
+  },
+  {
+    id: 'L2', name: 'Augmented', status: 'Moyenne du marché',
+    mult: '1,1×', multDesc: 'production développeur', timeframe: 'Environ 1 mois pour établir',
+    accentColor: '#D97706', lightBg: '#FFFBEB', badgeBg: '#FDE68A', badgeText: '#92400E',
+    desc: "Équipes utilisant Copilot ou Cursor. Les humains écrivent et modifient le code de manière synchrone. L'IA agit comme un autocomplete rapide, pas comme un agent autonome. Le goulet d'étranglement reste le débit humain.",
+    focus: ['Édition assistée par IA', 'Suggestions inline', 'Snippets pilotés par prompt', 'Revue synchrone'],
+    whatChanges: "La vitesse augmente à la marge. Les humains restent dans le chemin critique pour chaque ligne de code. Les gains sont réels, mais limités par les handoffs synchrones.",
+    toAdvance: [
+      "Développer une intuition des modes de défaillance : savoir quand faire confiance aux agents et quand reprendre la main.",
+      "Commencer à déléguer des tâches complètes aux agents de codage, et non plus seulement des lignes de code.",
+      "Instrumenter les revues de PR pour mesurer le pourcentage de contribution IA.",
+    ],
+  },
+  {
+    id: 'L3', name: 'Harnessed', status: 'Prochaine étape',
+    mult: '2×', multDesc: 'production développeur', timeframe: '4–6 mois pour maîtriser',
+    accentColor: '#4648D4', lightBg: '#EEF2FF', badgeBg: '#C7D2FE', badgeText: '#3730A3',
+    desc: "Les agents écrivent du code de manière autonome ; les humains revuent les PR. Le modèle de supervision est explicite : les agents proposent, les humains valident. L'intuition des modes de défaillance est la compétence critique à ce stade.",
+    focus: ['Agents de codage', 'Supervision au niveau PR', 'Intuition des modes de défaillance', 'Gates de revue explicites'],
+    whatChanges: "Le rôle humain passe de rédacteur à réviseur. La production double mais nécessite des workflows de supervision disciplinés. La qualité se dégrade sans discipline de revue.",
+    toAdvance: [
+      "Intégrer des gates de qualité automatisés dans les pipelines CI/CD",
+      "Passer à la validation découplée des agents (pas de revue ligne par ligne)",
+      "Établir un maillage de garde-fous avant d'étendre davantage l'autonomie des agents",
+    ],
+  },
+  {
+    id: 'L4', name: 'Autonomous', extra: '(Symphony)', status: 'État cible',
+    mult: '5×', multDesc: 'production développeur', timeframe: '3+ mois pour stabiliser',
+    accentColor: '#059669', lightBg: '#ECFDF5', badgeBg: '#A7F3D0', badgeText: '#065F46',
+    desc: "Les agents écrivent, testent et fusionnent. Les humains conçoivent les specs et l'architecture. Le pipeline CI/CD s'exécute de manière autonome avec une gouvernance humaine uniquement aux bords.",
+    focus: ['Pipelines autonomes', 'Conception de specs & architecture', 'Maillage de garde-fous', 'Gouvernance aux bords'],
+    whatChanges: "Les humains deviennent des concepteurs de systèmes, pas des rédacteurs de code. La supervision se déplace entièrement vers les décisions d'architecture et les protocoles d'escalade.",
+    toAdvance: [
+      "Coordonner des équipes d'agents spécialisés en flux parallèles",
+      "Améliorer l'infrastructure système plutôt que surveiller les outputs individuels des agents",
+      "Établir des protocoles de communication inter-agents et de routage des tâches",
+    ],
+  },
+  {
+    id: 'L5', name: 'Orchestrated', extra: '(Fleet)', status: 'Frontière',
+    mult: '10×', multDesc: 'production développeur', timeframe: 'Évolution systémique continue',
+    accentColor: '#7C3AED', lightBg: '#F5F3FF', badgeBg: '#DDD6FE', badgeText: '#4C1D95',
+    desc: "Des systèmes multi-agents coordonnent des équipes spécialisées en parallèle. Les humains gouvernent uniquement l'architecture et les garde-fous. La mise à l'échelle se fait par la conception de systèmes, pas par les effectifs. L'organisation devient elle-même un système d'exécution programmable.",
+    focus: ["Orchestration multi-agents", "Mise à l'échelle systémique", "Gouvernance de flotte", "Humains uniquement pour l'architecture"],
+    whatChanges: "La stratégie est humaine ; l'exécution est à l'échelle de la flotte. L'effet de levier est architectural : améliorer le système multiplie simultanément tous les agents.",
+    toAdvance: [
+      "C'est la frontière — le domaine définit encore ce qui vient ensuite.",
+      "Contribuer aux standards émergents pour la gouvernance multi-agents et les protocoles inter-agents.",
+    ],
+  },
+];
+
 const CURRENT_IDX = 1;
 
-export function MaturityIndex() {
+export function MaturityIndex({ language = 'en' }: { language?: LanguageCode }) {
   const [selected, setSelected] = useState(CURRENT_IDX);
-  const lv = LEVELS[selected];
+  const levels = language === 'fr' ? LEVELS_FR : LEVELS;
+  const lv = levels[selected];
+  const m = copy[language]?.maturity ?? copy.en.maturity!;
   const showTrap = selected >= 3;
 
   return (
@@ -101,32 +171,29 @@ export function MaturityIndex() {
         {/* Header */}
         <div className="mi-head" data-reveal="">
           <div className="mi-head-left">
-            <span className="eyebrow">AI Engineering Maturity Scale</span>
+            <span className="eyebrow">{m.eyebrow}</span>
             <div className="mi-heading-row">
-              <h2 id="mi-heading" className="mi-heading">Where does your team stand?</h2>
+              <h2 id="mi-heading" className="mi-heading">{m.heading}</h2>
               <a
                 href="https://nboitout.github.io/Blog-Agentic-SDLC/en/executive-self-assessment/"
                 className="btn btn-ghost mi-cta"
                 target="_blank"
                 rel="noreferrer"
               >
-                Self-Assessment for Executives
+                {m.ctaLabel}
               </a>
             </div>
-            <p className="mi-sub">
-              5 stages from ad-hoc AI usage to full fleet orchestration.
-              Click any level to explore what it means and how to advance.
-            </p>
+            <p className="mi-sub">{m.sub}</p>
           </div>
           <div className="mi-kpi" aria-live="polite" aria-atomic="true">
             <strong className="mi-kpi-val" style={{ color: lv.accentColor }}>{lv.id}</strong>
-            <span className="mi-kpi-label">selected level</span>
+            <span className="mi-kpi-label">{m.selectedLevel}</span>
           </div>
         </div>
 
         {/* Node row */}
         <div className="mi-nodes" data-reveal="" role="tablist" aria-label="AI Engineering Maturity Levels" data-carousel="track">
-          {LEVELS.map((level, i) => (
+          {levels.map((level, i) => (
             <div key={level.id} className="mi-node-wrap" data-carousel-slide={i}>
               <button
                 role="tab"
@@ -146,7 +213,7 @@ export function MaturityIndex() {
                 {i === CURRENT_IDX && (
                   <span className="mi-here">
                     <span className="mi-here-dot" />
-                    you are here
+                    {m.youAreHere}
                   </span>
                 )}
               </button>
@@ -173,7 +240,7 @@ export function MaturityIndex() {
           role="tablist"
           aria-label="Maturity level navigation"
         >
-          {LEVELS.map((level, i) => (
+          {levels.map((level, i) => (
             <button
               key={level.id}
               type="button"
@@ -192,11 +259,8 @@ export function MaturityIndex() {
           <div className="mi-trap" role="alert">
             <span className="mi-trap-icon" aria-hidden="true">⚠</span>
             <div>
-              <div className="mi-trap-title">The Shortcut Trap</div>
-              <p className="mi-trap-body">
-                Jumping from L2 → L4 without mastering L3 leads to brittle systems and supervision failures.
-                L3 failure-mode intuition is non-negotiable infrastructure — not a nice-to-have. Don&apos;t go too fast.
-              </p>
+              <div className="mi-trap-title">{m.shortcutTrapTitle}</div>
+              <p className="mi-trap-body">{m.shortcutTrapBody}</p>
             </div>
           </div>
         )}
@@ -233,7 +297,7 @@ export function MaturityIndex() {
 
           <div className="mi-detail-cols">
             <div>
-              <span className="mi-section-label">Focus areas</span>
+              <span className="mi-section-label">{m.focusAreas}</span>
               <div className="mi-tags">
                 {lv.focus.map(f => (
                   <span
@@ -245,12 +309,12 @@ export function MaturityIndex() {
                   </span>
                 ))}
               </div>
-              <span className="mi-section-label" style={{ marginTop: '16px' }}>What changes</span>
+              <span className="mi-section-label" style={{ marginTop: '16px' }}>{m.whatChanges}</span>
               <p className="mi-what">{lv.whatChanges}</p>
             </div>
             <div>
               <span className="mi-section-label">
-                {selected < 4 ? `To advance to ${LEVELS[selected + 1].id}` : 'At the frontier'}
+                {selected < 4 ? `${m.toAdvanceTo} ${levels[selected + 1].id}` : m.atFrontier}
               </span>
               <ul className="mi-advance">
                 {lv.toAdvance.map(t => <li key={t}>{t}</li>)}
@@ -261,8 +325,7 @@ export function MaturityIndex() {
 
         {/* Takeaway */}
         <p className="mi-takeaway">
-          <strong>Key takeaway:</strong> AI maturity is not defined by the tools you buy,
-          but by the autonomy of your CI/CD pipelines and the discipline of your supervision model.
+          <strong>{m.keyTakeaway}</strong> {m.keyTakeawayText}
         </p>
 
       </div>
