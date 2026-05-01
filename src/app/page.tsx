@@ -205,17 +205,10 @@ export default function HomePage() {
           <div className="btm-prose" data-reveal="">
             <p>{t.beyond.postEquationLead}</p>
             <p className="btm-emphasis">{t.beyond.disclaimer}</p>
-            <p>{t.beyond.implication}</p>
             <p className="btm-prose-lede">{t.beyond.challengeIntro}</p>
           </div>
 
           <p className="btm-strategic-callout" data-reveal="">{t.beyond.strategicCallout}</p>
-
-          <div className="btm-prose" data-reveal="">
-            <p>{t.beyond.challengeBody}</p>
-            <p className="btm-emphasis">{t.beyond.answerLead}</p>
-            <p>{t.beyond.answerBody}</p>
-          </div>
 
           <p className="btm-close" data-reveal="">{t.beyond.closing}</p>
         </div>
