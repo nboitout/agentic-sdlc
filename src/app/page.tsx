@@ -164,7 +164,7 @@ export default function HomePage() {
             <a href="#maturity">Maturity</a>
             <a href="#metrics">Metrics</a>
             <a href="#programs">Programs</a>
-            <a href="/beyond-tm">Beyond T&amp;M</a>
+            <a href="/beyond-tm">IT Services</a>
             <a
               href="https://nboitout.github.io/Blog-Agentic-SDLC/en/"
               className="btn btn-blog header-blog-btn"
@@ -576,7 +576,7 @@ export default function HomePage() {
             <a href="#maturity">Maturity</a>
             <a href="#metrics">Metrics</a>
             <a href="#programs">Programs</a>
-            <a href="/beyond-tm">Beyond T&amp;M</a>
+            <a href="/beyond-tm">IT Services</a>
             <a href="mailto:nicolas@agentic-sdlc.com">{t.contact.email}</a>
           </nav>
           <p className="footer-copy">&copy; {new Date().getFullYear()} Agentic SDLC</p>
