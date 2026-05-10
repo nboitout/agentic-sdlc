@@ -197,6 +197,57 @@ export type SiteCopy = {
     keyTakeaway: string;
     keyTakeawayText: string;
   };
+  problem?: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    questionsIntro: string;
+    questions: string[];
+    closing: string;
+    contrastHeader: [string, string];
+    contrast: { left: string; right: string }[];
+  };
+  sprint?: {
+    eyebrow: string;
+    heading: string;
+    subtitle: string;
+    body: string;
+    deliverables: { num: string; title: string; text: string }[];
+    primaryCta: string;
+    secondaryCta: string;
+    outcomeLabel: string;
+  };
+  framework?: {
+    eyebrow: string;
+    heading: string;
+    intro: string;
+    answersLabel: string;
+    layers: { title: string; subtitle: string; text: string; question: string; owner: string }[];
+  };
+  engineering?: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    fromLabel: string;
+    toLabel: string;
+    transformations: { from: string; to: string }[];
+  };
+  programs?: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    items: { title: string; text: string }[];
+  };
+  contactReassurance?: string;
+  nav2?: {
+    problem: string;
+    offer: string;
+    maturity: string;
+    metrics: string;
+    programs: string;
+    itServices: string;
+  };
+  heroTrustStrip?: string;
 };
 
 type DeepPartial<T> = {
@@ -537,6 +588,163 @@ export const copy = {
       keyTakeaway: 'Key takeaway:',
       keyTakeawayText: 'AI maturity is not defined by the tools you buy, but by the autonomy of your CI/CD pipelines and the discipline of your supervision model.',
     },
+    problem: {
+      eyebrow: 'The core gap',
+      heading: 'AI tool adoption is not a delivery model.',
+      paragraphs: [
+        'Most organizations start with licenses: GitHub Copilot, Cursor, Claude Code, Gemini, Codex/ChatGPT Enterprise, or internal assistants.',
+        'That creates local productivity gains. But it does not answer the questions that matter at scale:',
+      ],
+      questionsIntro: 'But it does not answer the questions that matter at scale:',
+      questions: [
+        'What should engineers delegate to AI?',
+        'What must humans review?',
+        'How do teams measure AI contribution?',
+        'How is quality protected?',
+        'How do managers know whether delivery is improving?',
+        'How do organizations avoid uncontrolled experimentation?',
+      ],
+      closing: 'Agentic SDLC closes the gap between individual AI usage and reliable software delivery.',
+      contrastHeader: ['AI tool adoption', 'Agentic SDLC'],
+      contrast: [
+        { left: 'Individual usage', right: 'Team workflows' },
+        { left: 'Prompting', right: 'Delegation patterns' },
+        { left: 'Output generation', right: 'Review and validation' },
+        { left: 'Anecdotal productivity', right: 'Measured delivery impact' },
+        { left: 'Informal experimentation', right: 'Governed execution' },
+      ],
+    },
+    sprint: {
+      eyebrow: 'The offer',
+      heading: 'One sprint to design your AI-enabled delivery model.',
+      subtitle: 'A focused engagement to help your organization move from scattered AI coding experiments to a governed Agentic SDLC operating model.',
+      body: 'In one sprint, we work with your leadership, engineering, product, and platform teams to assess where AI is already being used, define the right operating model, train key roles, and design the first measurable delivery pilots.',
+      deliverables: [
+        {
+          num: '01',
+          title: 'Current-state assessment',
+          text: 'Understand how AI coding tools are already used across teams, where value is emerging, and where risks appear.',
+        },
+        {
+          num: '02',
+          title: 'AI Engineering Maturity diagnosis',
+          text: 'Position teams on a practical maturity scale, from ad-hoc usage to orchestrated agentic workflows.',
+        },
+        {
+          num: '03',
+          title: 'Operating model blueprint',
+          text: 'Define how AI-assisted delivery should work across roles, workflows, supervision, review, quality, and governance.',
+        },
+        {
+          num: '04',
+          title: 'Training for key roles',
+          text: 'Align engineers, tech leads, product managers, QA, platform teams, and delivery managers on how work changes.',
+        },
+        {
+          num: '05',
+          title: 'Metrics and control tower design',
+          text: 'Define the signals needed to measure adoption, AI contribution, quality, rework, velocity, cost, and team confidence.',
+        },
+        {
+          num: '06',
+          title: '30/60/90-day roadmap',
+          text: 'Leave with a pragmatic implementation plan and the first pilots to launch.',
+        },
+      ],
+      primaryCta: 'Book an intro call',
+      secondaryCta: 'See the maturity scale',
+      outcomeLabel: 'Sprint outcome: your Agentic SDLC blueprint',
+    },
+    framework: {
+      eyebrow: 'The model',
+      heading: 'Three layers of AI-enabled software delivery',
+      intro: 'Agentic SDLC separates the operating model, the engineering practices, and the technical harness needed to make AI reliable.',
+      answersLabel: 'It answers:',
+      layers: [
+        {
+          title: 'Agentic SDLC',
+          subtitle: 'How software delivery changes.',
+          text: 'The operating model: roles, workflows, governance, metrics, supervision, and accountability.',
+          question: 'How should teams deliver software when AI agents participate in the work?',
+          owner: 'Engineering leadership',
+        },
+        {
+          title: 'Agentic Engineering',
+          subtitle: 'How engineers work inside that model.',
+          text: 'The practice layer: specification, delegation, review, testing, refactoring, and validation.',
+          question: 'How do engineers move from writing every line of code to supervising AI-assisted workflows?',
+          owner: 'Engineers and tech leads',
+        },
+        {
+          title: 'Harness Engineering',
+          subtitle: 'How agents are made reliable enough to participate.',
+          text: 'The reliability layer: context, tools, tests, policies, evaluations, CI/CD integration, and guardrails.',
+          question: 'What infrastructure and controls make AI-generated work safe enough for production delivery?',
+          owner: 'Platform and tooling teams',
+        },
+      ],
+    },
+    engineering: {
+      eyebrow: 'The role shift',
+      heading: 'The role of the engineer changes.',
+      paragraphs: [
+        'AI does not remove engineering discipline. It increases the need for it.',
+        'In an Agentic SDLC, engineers do not simply “write code faster.” They learn to structure work so that AI systems can contribute safely: clearer specifications, smaller tasks, stronger tests, explicit review loops, and better context. The engineer becomes less of a line-by-line producer and more of a designer, reviewer, validator, and supervisor of software work.',
+      ],
+      fromLabel: 'From',
+      toLabel: 'To',
+      transformations: [
+        { from: 'Coding everything manually', to: 'Delegating well-scoped work' },
+        { from: 'Prompting casually', to: 'Writing executable specifications' },
+        { from: 'Reviewing only human code', to: 'Reviewing AI-generated changes' },
+        { from: 'Trusting output', to: 'Validating behavior through tests and evaluations' },
+        { from: 'Local productivity', to: 'Measurable delivery improvement' },
+      ],
+    },
+    programs: {
+      eyebrow: 'Next steps',
+      heading: 'From first sprint to scaled adoption',
+      paragraphs: [
+        'The first sprint creates the blueprint. The next step is implementation through pilots, training, and operating metrics.',
+        'After the initial sprint, organizations can move into targeted adoption programs: team pilots, role-based training, workflow redesign, metrics instrumentation, and governance support.',
+      ],
+      items: [
+        {
+          title: 'Pilot team enablement',
+          text: 'Select one or two engineering teams and redesign their delivery workflow around AI-assisted execution.',
+        },
+        {
+          title: 'Role-based training',
+          text: 'Train developers, tech leads, product managers, QA, platform teams, and delivery managers on how their work changes.',
+        },
+        {
+          title: 'Workflow redesign',
+          text: 'Define repeatable patterns for specification, coding, testing, review, documentation, migration, refactoring, and maintenance.',
+        },
+        {
+          title: 'Platform and tooling alignment',
+          text: 'Connect AI coding tools with repositories, documentation, CI/CD, policy checks, and internal engineering standards.',
+        },
+        {
+          title: 'Metrics instrumentation',
+          text: 'Track adoption, quality, velocity, AI contribution, rework, cost, and human confidence.',
+        },
+        {
+          title: 'Governance and supervision',
+          text: 'Create practical rules for what AI can do, what humans must review, and how accountability is preserved.',
+        },
+      ],
+    },
+    contactReassurance: 'No generic AI evangelism. No tool-only training. The focus is delivery: workflows, quality, supervision, metrics, and adoption.',
+    nav2: {
+      problem: 'Problem',
+      offer: 'Offer',
+      maturity: 'Maturity',
+      metrics: 'Metrics',
+      programs: 'Programs',
+      itServices: 'IT Services',
+    },
+    heroTrustStrip: 'For engineering leaders · platform teams · product organizations · software delivery teams',
   },
   fr: {
     meta: {
@@ -848,6 +1056,163 @@ export const copy = {
       keyTakeaway: "À retenir :",
       keyTakeawayText: "la maturité IA ne se définit pas par les outils achetés, mais par le degré d'autonomie des pipelines CI/CD et par la discipline du modèle de supervision.",
     },
+    problem: {
+      eyebrow: "L'écart fondamental",
+      heading: "L'adoption d'outils IA n'est pas un modèle de delivery.",
+      paragraphs: [
+        "La plupart des organisations commencent par des licences : GitHub Copilot, Cursor, Claude Code, Gemini, Codex/ChatGPT Enterprise, ou des assistants internes.",
+        "Cela génère des gains de productivité locaux. Mais cela ne répond pas aux questions qui comptent à l'échelle :",
+      ],
+      questionsIntro: "Mais cela ne répond pas aux questions qui comptent à l'échelle :",
+      questions: [
+        "Que doivent déléguer les ingénieurs à l'IA ?",
+        "Que les humains doivent-ils impérativement revoir ?",
+        "Comment les équipes mesurent-elles la contribution de l'IA ?",
+        "Comment la qualité est-elle protégée ?",
+        "Comment les managers savent-ils si le delivery s'améliore ?",
+        "Comment les organisations évitent-elles l'expérimentation non contrôlée ?",
+      ],
+      closing: "Agentic SDLC comble l'écart entre l'usage individuel de l'IA et un delivery logiciel fiable.",
+      contrastHeader: ["Adoption d'outils IA", "Agentic SDLC"],
+      contrast: [
+        { left: "Usage individuel", right: "Workflows d'équipe" },
+        { left: "Prompting", right: "Patterns de délégation" },
+        { left: "Génération d'output", right: "Revue et validation" },
+        { left: "Productivité anecdotique", right: "Impact de delivery mesuré" },
+        { left: "Expérimentation informelle", right: "Exécution gouvernée" },
+      ],
+    },
+    sprint: {
+      eyebrow: "L'offre",
+      heading: "Un sprint pour concevoir votre modèle de delivery activé par l'IA.",
+      subtitle: "Une mission focalisée pour aider votre organisation à passer d'expérimentations de codage IA dispersées à un modèle opérationnel Agentic SDLC gouverné.",
+      body: "En un sprint, nous travaillons avec vos équipes dirigeantes, engineering, produit et plateforme pour évaluer où l'IA est déjà utilisée, définir le bon modèle opérationnel, former les rôles clés et concevoir les premiers pilotes de delivery mesurables.",
+      deliverables: [
+        {
+          num: "01",
+          title: "Évaluation de l'état actuel",
+          text: "Comprendre comment les outils de codage IA sont déjà utilisés dans les équipes, où la valeur émerge et où les risques apparaissent.",
+        },
+        {
+          num: "02",
+          title: "Diagnostic de maturité AI Engineering",
+          text: "Positionner les équipes sur une échelle de maturité pratique, de l'usage ad hoc aux workflows agentiques orchestrés.",
+        },
+        {
+          num: "03",
+          title: "Blueprint du modèle opérationnel",
+          text: "Définir comment le delivery assisté par IA doit fonctionner à travers les rôles, workflows, supervision, revue, qualité et gouvernance.",
+        },
+        {
+          num: "04",
+          title: "Formation des rôles clés",
+          text: "Aligner ingénieurs, tech leads, product managers, QA, équipes plateforme et delivery managers sur la façon dont le travail évolue.",
+        },
+        {
+          num: "05",
+          title: "Métriques et design de la tour de contrôle",
+          text: "Définir les signaux nécessaires pour mesurer l'adoption, la contribution IA, la qualité, les retouches, la vélocité, le coût et la confiance des équipes.",
+        },
+        {
+          num: "06",
+          title: "Roadmap 30/60/90 jours",
+          text: "Repartir avec un plan d'implémentation pragmatique et les premiers pilotes à lancer.",
+        },
+      ],
+      primaryCta: "Réserver un appel d'introduction",
+      secondaryCta: "Voir l'échelle de maturité",
+      outcomeLabel: "Résultat du sprint : votre blueprint Agentic SDLC",
+    },
+    framework: {
+      eyebrow: "Le modèle",
+      heading: "Trois couches du delivery logiciel activé par l'IA",
+      intro: "Agentic SDLC sépare le modèle opérationnel, les pratiques engineering et le harness technique nécessaire pour rendre l'IA fiable.",
+      answersLabel: "Il répond à :",
+      layers: [
+        {
+          title: "Agentic SDLC",
+          subtitle: "Comment le delivery logiciel évolue.",
+          text: "Le modèle opérationnel : rôles, workflows, gouvernance, métriques, supervision et responsabilité.",
+          question: "Comment les équipes doivent-elles livrer des logiciels lorsque des agents IA participent au travail ?",
+          owner: "Leadership engineering",
+        },
+        {
+          title: "Agentic Engineering",
+          subtitle: "Comment les ingénieurs travaillent dans ce modèle.",
+          text: "La couche pratique : spécification, délégation, revue, tests, refactoring et validation.",
+          question: "Comment les ingénieurs passent-ils de l'écriture de chaque ligne de code à la supervision de workflows assistés par IA ?",
+          owner: "Ingénieurs et tech leads",
+        },
+        {
+          title: "Harness Engineering",
+          subtitle: "Comment rendre les agents suffisamment fiables pour participer.",
+          text: "La couche de fiabilité : contexte, outils, tests, politiques, évaluations, intégration CI/CD et garde-fous.",
+          question: "Quelle infrastructure et quels contrôles rendent le travail généré par IA suffisamment sûr pour un delivery en production ?",
+          owner: "Équipes plateforme et outillage",
+        },
+      ],
+    },
+    engineering: {
+      eyebrow: "L'évolution du rôle",
+      heading: "Le rôle de l'ingénieur se transforme.",
+      paragraphs: [
+        "L'IA ne supprime pas la discipline engineering. Elle en accroît le besoin.",
+        "Dans un Agentic SDLC, les ingénieurs ne se contentent pas d'« écrire du code plus vite ». Ils apprennent à structurer le travail pour que les systèmes IA puissent y contribuer en toute sécurité : spécifications plus claires, tâches plus petites, tests plus solides, boucles de revue explicites et meilleur contexte. L'ingénieur devient moins un producteur ligne par ligne et davantage un concepteur, relecteur, validateur et superviseur du travail logiciel.",
+      ],
+      fromLabel: "Depuis",
+      toLabel: "Vers",
+      transformations: [
+        { from: "Tout coder manuellement", to: "Déléguer un travail bien délimité" },
+        { from: "Prompter de manière informelle", to: "Rédiger des spécifications exécutables" },
+        { from: "Revoir uniquement le code humain", to: "Revoir les changements générés par IA" },
+        { from: "Faire confiance à l'output", to: "Valider le comportement via des tests et évaluations" },
+        { from: "Productivité locale", to: "Amélioration de delivery mesurable" },
+      ],
+    },
+    programs: {
+      eyebrow: "Prochaines étapes",
+      heading: "Du premier sprint à l'adoption à grande échelle",
+      paragraphs: [
+        "Le premier sprint crée le blueprint. L'étape suivante est l'implémentation à travers des pilotes, de la formation et des métriques opérationnelles.",
+        "Après le sprint initial, les organisations peuvent s'engager dans des programmes d'adoption ciblés : pilotes d'équipe, formation par rôle, refonte des workflows, instrumentation des métriques et support à la gouvernance.",
+      ],
+      items: [
+        {
+          title: "Activation d'une équipe pilote",
+          text: "Sélectionner une ou deux équipes engineering et repenser leur workflow de delivery autour de l'exécution assistée par IA.",
+        },
+        {
+          title: "Formation par rôle",
+          text: "Former les développeurs, tech leads, product managers, QA, équipes plateforme et delivery managers sur l'évolution de leur travail.",
+        },
+        {
+          title: "Refonte des workflows",
+          text: "Définir des patterns reproductibles pour la spécification, le codage, les tests, la revue, la documentation, la migration, le refactoring et la maintenance.",
+        },
+        {
+          title: "Alignement plateforme et outillage",
+          text: "Connecter les outils de codage IA aux dépôts, à la documentation, au CI/CD, aux contrôles de politique et aux standards engineering internes.",
+        },
+        {
+          title: "Instrumentation des métriques",
+          text: "Suivre l'adoption, la qualité, la vélocité, la contribution IA, les retouches, le coût et la confiance des équipes.",
+        },
+        {
+          title: "Gouvernance et supervision",
+          text: "Créer des règles pratiques sur ce que l'IA peut faire, ce que les humains doivent revoir et comment la responsabilité est préservée.",
+        },
+      ],
+    },
+    contactReassurance: "Pas d'évangélisme IA générique. Pas de formation limitée aux outils. Le focus est le delivery : workflows, qualité, supervision, métriques et adoption.",
+    nav2: {
+      problem: "Problème",
+      offer: "Offre",
+      maturity: "Maturité",
+      metrics: "Métriques",
+      programs: "Programmes",
+      itServices: "Services IT",
+    },
+    heroTrustStrip: "Pour les leaders engineering · équipes plateforme · organisations produit · équipes de delivery logiciel",
   },
   ro: {
     meta: {
