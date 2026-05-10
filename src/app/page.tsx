@@ -160,7 +160,7 @@ export default function HomePage() {
           </a>
           <nav className="header-nav" aria-label="Primary navigation">
             <a href="#problem">Problem</a>
-            <a href="#sprint">Sprint</a>
+            <a href="#sprint">Offer</a>
             <a href="#maturity">Maturity</a>
             <a href="#metrics">Metrics</a>
             <a href="#programs">Programs</a>
@@ -612,7 +612,7 @@ export default function HomePage() {
           </div>
           <nav className="footer-links" aria-label="Footer">
             <a href="#problem">Problem</a>
-            <a href="#sprint">Sprint</a>
+            <a href="#sprint">Offer</a>
             <a href="#maturity">Maturity</a>
             <a href="#metrics">Metrics</a>
             <a href="#programs">Programs</a>
