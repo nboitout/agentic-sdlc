@@ -104,11 +104,11 @@ const LEVELS_FR: Level[] = [
   },
   {
     id: 'L2', name: 'Augmented', status: 'Moyenne du marché',
-    mult: '1,1×', multDesc: 'production développeur', timeframe: 'Environ 1 mois pour établir',
+    mult: '1,1×', multDesc: 'output développeur', timeframe: "Environ 1 mois pour l'établir",
     accentColor: '#D97706', lightBg: '#FFFBEB', badgeBg: '#FDE68A', badgeText: '#92400E',
-    desc: "Équipes utilisant Copilot ou Cursor. Les humains écrivent et modifient le code de manière synchrone. L'IA agit comme un autocomplete rapide, pas comme un agent autonome. Le goulet d'étranglement reste le débit humain.",
+    desc: "Les équipes utilisent Copilot ou Cursor. Les développeurs écrivent et modifient encore le code de manière synchrone. L'IA agit surtout comme un autocomplete accéléré, pas comme un agent autonome. Le goulet d'étranglement reste le débit humain.",
     focus: ['Édition assistée par IA', 'Suggestions inline', 'Snippets pilotés par prompt', 'Revue synchrone'],
-    whatChanges: "La vitesse augmente à la marge. Les humains restent dans le chemin critique pour chaque ligne de code. Les gains sont réels, mais limités par les handoffs synchrones.",
+    whatChanges: "La vitesse augmente, mais à la marge. Les humains restent dans le chemin critique de chaque changement. Les gains sont réels, mais restent limités par des boucles de travail synchrones.",
     toAdvance: [
       "Développer une intuition des modes de défaillance : savoir quand faire confiance aux agents et quand reprendre la main.",
       "Commencer à déléguer des tâches complètes aux agents de codage, et non plus seulement des lignes de code.",
@@ -117,7 +117,7 @@ const LEVELS_FR: Level[] = [
   },
   {
     id: 'L3', name: 'Harnessed', status: 'Prochaine étape',
-    mult: '2×', multDesc: 'production développeur', timeframe: '4–6 mois pour maîtriser',
+    mult: '2×', multDesc: 'output développeur', timeframe: '4–6 mois pour maîtriser',
     accentColor: '#4648D4', lightBg: '#EEF2FF', badgeBg: '#C7D2FE', badgeText: '#3730A3',
     desc: "Les agents écrivent du code de manière autonome ; les humains revuent les PR. Le modèle de supervision est explicite : les agents proposent, les humains valident. L'intuition des modes de défaillance est la compétence critique à ce stade.",
     focus: ['Agents de codage', 'Supervision au niveau PR', 'Intuition des modes de défaillance', 'Gates de revue explicites'],
@@ -130,7 +130,7 @@ const LEVELS_FR: Level[] = [
   },
   {
     id: 'L4', name: 'Autonomous', extra: '(Symphony)', status: 'État cible',
-    mult: '5×', multDesc: 'production développeur', timeframe: '3+ mois pour stabiliser',
+    mult: '5×', multDesc: 'output développeur', timeframe: '3+ mois pour stabiliser',
     accentColor: '#059669', lightBg: '#ECFDF5', badgeBg: '#A7F3D0', badgeText: '#065F46',
     desc: "Les agents écrivent, testent et fusionnent. Les humains conçoivent les specs et l'architecture. Le pipeline CI/CD s'exécute de manière autonome avec une gouvernance humaine uniquement aux bords.",
     focus: ['Pipelines autonomes', 'Conception de specs & architecture', 'Maillage de garde-fous', 'Gouvernance aux bords'],
@@ -143,7 +143,7 @@ const LEVELS_FR: Level[] = [
   },
   {
     id: 'L5', name: 'Orchestrated', extra: '(Fleet)', status: 'Frontière',
-    mult: '10×', multDesc: 'production développeur', timeframe: 'Évolution systémique continue',
+    mult: '10×', multDesc: 'output développeur', timeframe: 'Évolution systémique continue',
     accentColor: '#7C3AED', lightBg: '#F5F3FF', badgeBg: '#DDD6FE', badgeText: '#4C1D95',
     desc: "Des systèmes multi-agents coordonnent des équipes spécialisées en parallèle. Les humains gouvernent uniquement l'architecture et les garde-fous. La mise à l'échelle se fait par la conception de systèmes, pas par les effectifs. L'organisation devient elle-même un système d'exécution programmable.",
     focus: ["Orchestration multi-agents", "Mise à l'échelle systémique", "Gouvernance de flotte", "Humains uniquement pour l'architecture"],
