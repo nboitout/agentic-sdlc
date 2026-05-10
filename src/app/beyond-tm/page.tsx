@@ -4,26 +4,10 @@ import { MobileCtaBar } from '@/components/MobileCtaBar';
 import { ClientEnhancements } from '@/components/ClientEnhancements';
 
 const cards = [
-  {
-    num: '01',
-    title: 'Divisible',
-    text: 'Execution splits into targeted streams: migration, testing, refactoring.',
-  },
-  {
-    num: '02',
-    title: 'Time-compressed',
-    text: 'Work lands in weeks, not in multi-year staffing cycles.',
-  },
-  {
-    num: '03',
-    title: 'Elastic',
-    text: 'Ramp up fast, shut down cleanly, restart when priorities change.',
-  },
-  {
-    num: '04',
-    title: 'Schedulable',
-    text: 'Execution is routed across priorities, not statically assigned to teams.',
-  },
+  { num: '01', title: 'Divisible', text: 'Execution splits into targeted streams: migration, testing, refactoring.' },
+  { num: '02', title: 'Time-compressed', text: 'Work lands in weeks, not in multi-year staffing cycles.' },
+  { num: '03', title: 'Elastic', text: 'Ramp up fast, shut down cleanly, restart when priorities change.' },
+  { num: '04', title: 'Schedulable', text: 'Execution is routed across priorities, not statically assigned to teams.' },
 ];
 
 const bullets = [
@@ -37,6 +21,12 @@ const paragraphs = [
   'Classical team augmentation was built for a world where execution was scarce and projects consumed years. You staffed teams, sold billable days, and scaled with headcount.',
   'With coding agents, productivity rises, delivery compresses, and parallelism increases. Clients can absorb more execution internally, which means people are no longer allocated to projects in the same static way.',
   'External teams do not disappear. But they stop being long staffing commitments. They become short, targeted execution bursts.',
+];
+
+const annotations = [
+  'Assumes execution is scarce.',
+  'Requires stable, long-term staffing.',
+  'Sells time, not results.',
 ];
 
 export default function BeyondTMPage() {
@@ -56,7 +46,7 @@ export default function BeyondTMPage() {
             <a href="/#maturity">Maturity</a>
             <a href="/#metrics">Metrics</a>
             <a href="/#programs">Programs</a>
-            <a href="/beyond-tm" className="header-nav-active">Beyond T&amp;M</a>
+            <a href="/beyond-tm" className="header-nav-active">IT Services</a>
             <a
               href="https://calendly.com/nicolasboitout/new-meeting"
               className="btn btn-blog header-blog-btn"
@@ -72,7 +62,7 @@ export default function BeyondTMPage() {
       <section className="section s-dark" aria-labelledby="btm-hero-heading">
         <div className="section-inner">
           <div data-reveal="">
-            <span className="eyebrow eyebrow-dark">Strategic implication</span>
+            <span className="eyebrow eyebrow-dark">For IT services firms</span>
             <h1 id="btm-hero-heading" className="btm-page-hero-heading">
               Beyond Time &amp; Materials
             </h1>
@@ -130,6 +120,114 @@ export default function BeyondTMPage() {
         </div>
       </section>
 
+      {/* ── Legacy Equation ────────────────────────────────────────── */}
+      <section className="section s-white btm-shell" aria-labelledby="equation-heading">
+        <div className="section-inner btm-inner">
+          <div className="legacy-equation" data-reveal="" aria-labelledby="equation-heading">
+            <header className="legacy-equation-head">
+              <span className="eyebrow">Bench management is now critical</span>
+              <h2 id="equation-heading" className="legacy-equation-heading">
+                The Legacy Equation of Classical Augmentation
+              </h2>
+            </header>
+
+            <div
+              className="legacy-equation-row"
+              role="img"
+              aria-label="Headcount times Billable Months equals Legacy Capacity"
+            >
+              <div className="legacy-term legacy-term-input">
+                <span className="legacy-bracket legacy-bracket-left" aria-hidden="true" />
+                <div className="legacy-term-body">
+                  <span className="legacy-term-label">Term 01</span>
+                  <span className="legacy-term-word">Headcount</span>
+                </div>
+                <span className="legacy-bracket legacy-bracket-right" aria-hidden="true" />
+              </div>
+
+              <span className="legacy-op" aria-hidden="true">×</span>
+
+              <div className="legacy-term legacy-term-input">
+                <span className="legacy-bracket legacy-bracket-left" aria-hidden="true" />
+                <div className="legacy-term-body">
+                  <span className="legacy-term-label">Term 02</span>
+                  <span className="legacy-term-word">Billable Months</span>
+                </div>
+                <span className="legacy-bracket legacy-bracket-right" aria-hidden="true" />
+              </div>
+
+              <span className="legacy-op" aria-hidden="true">=</span>
+
+              <div className="legacy-term legacy-term-result">
+                <div className="legacy-term-body">
+                  <span className="legacy-term-label">Result</span>
+                  <span className="legacy-term-word">Legacy Capacity</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="legacy-callouts" data-reveal-stagger="">
+              {annotations.map((annotation, idx) => (
+                <div key={annotation} className="legacy-callout" data-callout={idx}>
+                  <span className="legacy-callout-connector" aria-hidden="true" />
+                  <p>{annotation}</p>
+                </div>
+              ))}
+
+              <div className="legacy-chart-card">
+                <svg
+                  className="legacy-chart-svg"
+                  viewBox="0 0 220 140"
+                  role="img"
+                  aria-label="Linear scaling"
+                >
+                  <defs>
+                    <pattern id="legacyGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeOpacity="0.08" strokeWidth="1" />
+                    </pattern>
+                    <marker id="legacyArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                      <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
+                    </marker>
+                  </defs>
+                  <rect x="24" y="10" width="186" height="106" fill="url(#legacyGrid)" />
+                  <line x1="24" y1="116" x2="214" y2="116" stroke="currentColor" strokeOpacity="0.45" strokeWidth="1.25" markerEnd="url(#legacyArrow)" />
+                  <line x1="24" y1="116" x2="24" y2="6" stroke="currentColor" strokeOpacity="0.45" strokeWidth="1.25" markerEnd="url(#legacyArrow)" />
+                  <line x1="32" y1="106" x2="200" y2="60" stroke="var(--legacy-accent)" strokeWidth="3.5" strokeLinecap="round" />
+                  <text x="206" y="132" textAnchor="end" fontSize="9" fill="currentColor" opacity="0.55">headcount</text>
+                  <text x="14" y="14" fontSize="9" fill="currentColor" opacity="0.55">capacity</text>
+                </svg>
+                <span className="legacy-chart-caption">Linear scaling</span>
+              </div>
+
+              <p className="legacy-chart-note">
+                Scaling delivery relies entirely on adding headcount or more billable months.
+              </p>
+            </div>
+          </div>
+
+          {/* Post-equation */}
+          <div className="btm-prose" data-reveal="" style={{ marginTop: '40px' }}>
+            <p>
+              Coding agents compress delivery cycles. The same scope can increasingly be delivered
+              faster, by smaller teams, with stronger automation.
+            </p>
+            <p className="btm-emphasis">
+              Clients will not stop using external teams — but they will increasingly expect them
+              to deliver measurable outcomes, not simply provide capacity.
+            </p>
+            <p className="btm-prose-lede">This creates a new constraint for IT services firms:</p>
+          </div>
+
+          <p className="btm-strategic-callout" data-reveal="">
+            Faster delivery means faster rotation.
+          </p>
+
+          <p className="btm-close" data-reveal="">
+            That is where a dedicated Software Engineering Practice becomes critical.
+          </p>
+        </div>
+      </section>
+
       {/* ── What changes for clients ───────────────────────────────── */}
       <section className="section s-canvas" aria-labelledby="clients-heading">
         <div className="section-inner">
@@ -150,7 +248,11 @@ export default function BeyondTMPage() {
             </div>
           </div>
 
-          <div className="card-grid card-grid-3" data-reveal-stagger="" style={{ gridTemplateColumns: 'repeat(2, minmax(0,1fr))' }}>
+          <div
+            className="card-grid"
+            data-reveal-stagger=""
+            style={{ gridTemplateColumns: 'repeat(2, minmax(0,1fr))' }}
+          >
             {cards.map((card) => (
               <article key={card.num} className="card deliverable-card">
                 <span className="deliverable-num" aria-hidden="true">{card.num}</span>
@@ -162,7 +264,7 @@ export default function BeyondTMPage() {
         </div>
       </section>
 
-      {/* ── Closing + CTA ──────────────────────────────────────────── */}
+      {/* ── CTA ────────────────────────────────────────────────────── */}
       <section className="section s-dark" id="contact" aria-labelledby="btm-cta-heading">
         <div className="section-inner">
           <div className="cta-inner" data-reveal="">
