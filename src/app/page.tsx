@@ -115,7 +115,7 @@ const defaultAdoptionPrograms = [
   },
 ];
 
-const audienceCards = [
+const defaultAudienceCards = [
   {
     icon: 'apartment',
     title: 'Engineering leaders',
@@ -147,6 +147,7 @@ export default function HomePage() {
   const frameworkLayers: { title: string; subtitle: string; text: string; question: string; owner: string }[] = t.framework?.layers ?? defaultFrameworkLayers;
   const transformations: { from: string; to: string }[] = t.engineering?.transformations ?? defaultTransformations;
   const adoptionPrograms: { title: string; text: string }[] = t.programs?.items ?? defaultAdoptionPrograms;
+  const audienceCards = t.audience2?.cards ?? defaultAudienceCards;
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -500,13 +501,13 @@ export default function HomePage() {
         <div className="section-inner">
           <div className="section-intro" data-reveal="">
             <div className="intro-heading-col">
-              <span className="eyebrow">Audience</span>
+              <span className="eyebrow">{t.audience2?.eyebrow ?? 'Audience'}</span>
               <h2 id="audience-heading" className="section-heading">
-                Who Agentic SDLC is for
+                {t.audience2?.heading ?? 'Who Agentic SDLC is for'}
               </h2>
             </div>
             <div className="intro-text-col">
-              <p>Built for organizations that need AI speed with delivery accountability.</p>
+              <p>{t.audience2?.sub ?? 'Built for organizations that need AI speed with delivery accountability.'}</p>
             </div>
           </div>
 
