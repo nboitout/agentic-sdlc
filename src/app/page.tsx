@@ -183,12 +183,10 @@ export default function HomePage() {
         <div className="hero-body">
           <div
             className="hero-left"
-            style={{ '--hero-eyebrow': '"AGENTIC SDLC"' } as CSSProperties}
+            style={{ '--hero-eyebrow': '"THE NEW SOFTWARE ENGINEERING"' } as CSSProperties}
           >
             <h1 className="hero-h1">
-              The operating model for
-              <br />
-              <span className="hero-h1-accent">AI-enabled software delivery.</span>
+              The operating model for <span className="hero-h1-accent">AI-enabled software delivery.</span>
             </h1>
             <p className="hero-support">
               AI coding tools are spreading fast across engineering teams. But adoption alone does not
@@ -236,17 +234,19 @@ export default function HomePage() {
               <div className="why-now-prose">
                 <p>
                   Most organizations start with licenses: GitHub Copilot, Cursor, Claude Code,
-                  Gemini, ChatGPT, or internal assistants.
+                  Gemini, Codex/ChatGPT Enterprise, or internal assistants.
                 </p>
                 <p>That creates local productivity gains. But it does not answer the questions that matter at scale:</p>
-                <ul className="problem-questions">
-                  <li>What should engineers delegate to AI?</li>
-                  <li>What must humans review?</li>
-                  <li>How do teams measure AI contribution?</li>
-                  <li>How is quality protected?</li>
-                  <li>How do managers know whether delivery is improving?</li>
-                  <li>How do organizations avoid uncontrolled experimentation?</li>
-                </ul>
+                <div className="problem-questions-block">
+                  <ul className="problem-questions">
+                    <li>What should engineers delegate to AI?</li>
+                    <li>What must humans review?</li>
+                    <li>How do teams measure AI contribution?</li>
+                    <li>How is quality protected?</li>
+                    <li>How do managers know whether delivery is improving?</li>
+                    <li>How do organizations avoid uncontrolled experimentation?</li>
+                  </ul>
+                </div>
                 <p className="problem-closing">
                   Agentic SDLC closes the gap between individual AI usage and reliable software delivery.
                 </p>
