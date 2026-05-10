@@ -184,24 +184,19 @@ export default function HomePage() {
         <div className="hero-body">
           <div
             className="hero-left"
-            style={{ '--hero-eyebrow': '"THE NEW SOFTWARE ENGINEERING"' } as CSSProperties}
+            style={{ '--hero-eyebrow': `"${t.hero.eyebrow}"` } as CSSProperties}
           >
             <h1 className="hero-h1">
-              The operating model for <span className="hero-h1-accent">AI-enabled software delivery.</span>
+              {t.hero.h1Prefix} <span className="hero-h1-accent">{t.hero.h1Rest}</span>
             </h1>
-            <p className="hero-support">
-              AI coding tools are spreading fast across engineering teams. But adoption alone does not
-              create reliable delivery. We help engineering organizations turn AI coding usage into
-              governed workflows, measurable productivity, and delivery systems that teams and
-              stakeholders can trust.
-            </p>
+            <p className="hero-support">{t.hero.subtitle}</p>
             <div className="hero-actions">
-              <a
+              <
                 href="https://calendly.com/nicolasboitout/new-meeting"
                 className="btn btn-primary"
                 data-calendly-link="true"
               >
-                Book an intro call
+                {t.hero.primaryCta}
               </a>
               <a
                 href="https://nboitout.github.io/Blog-Agentic-SDLC/en/executive-self-assessment/"
@@ -209,7 +204,7 @@ export default function HomePage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Run the executive self-assessment
+                {t.hero.secondaryCta}
               </a>
             </div>
             <p className="hero-trust-strip">
@@ -531,21 +526,16 @@ export default function HomePage() {
       <section className="section s-dark" id="contact" aria-labelledby="contact-heading">
         <div className="section-inner">
           <div className="cta-inner" data-reveal="">
-            <span className="eyebrow eyebrow-brass">Start the conversation</span>
-            <h2 id="contact-heading" className="cta-heading">
-              Ready to move beyond AI tool adoption?
-            </h2>
-            <p className="cta-sub">
-              Start with a focused sprint to assess your current maturity, define your operating
-              model, and design the first measurable AI-enabled delivery pilots.
-            </p>
+            <span className="eyebrow eyebrow-brass">{t.contact.eyebrow}</span>
+            <h2 id="contact-heading" className="cta-heading">{t.contact.heading}</h2>
+            <p className="cta-sub">{t.contact.body}</p>
             <div className="cta-actions">
               <a
                 href="https://calendly.com/nicolasboitout/new-meeting"
                 className="btn btn-dark"
                 data-calendly-link="true"
               >
-                Book an intro call
+                {t.contact.cta}
               </a>
               <a
                 href="https://nboitout.github.io/Blog-Agentic-SDLC/en/executive-self-assessment/"
@@ -553,7 +543,7 @@ export default function HomePage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Run the executive self-assessment
+                {t.hero.secondaryCta}
               </a>
             </div>
             <p className="cta-reassurance">
@@ -584,9 +574,9 @@ export default function HomePage() {
       </footer>
 
       <MobileCtaBar
-        primaryLabel="Book an intro call"
+        primaryLabel={t.hero.primaryCta}
         primaryHref="https://calendly.com/nicolasboitout/new-meeting"
-        secondaryLabel="Run the executive self-assessment"
+        secondaryLabel={t.hero.secondaryCta}
         secondaryHref="https://nboitout.github.io/Blog-Agentic-SDLC/en/executive-self-assessment/"
       />
 
