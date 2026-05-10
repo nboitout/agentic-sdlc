@@ -658,13 +658,13 @@ export const copy = {
       ],
     },
     metrics: {
-      eyebrow: 'Metrics',
+      eyebrow: 'Métriques',
       heading: "Sans métriques, il n'y a pas de transformation.",
       body: "Le delivery agentique ne peut pas être piloté à partir d'anecdotes. L'adoption ne passe à l'échelle que lorsque deux plans sont mesurés : ce que les agents de codage produisent dans le système de delivery, et la manière dont les ingénieurs vivent le changement en travaillant avec eux. Nous mettons en place et opérons cette couche de monitoring pour vous : un flux continu de métriques de production liées aux agents, combiné à une enquête récurrente auprès des collaborateurs. L'objectif est simple : piloter le modèle opérationnel par la donnée, pas par les impressions.",
       measuredLabel: "Ce qu'il faut mesurer",
       items: [
         { name: "Contribution IA", desc: "Part du travail rédigée par des coding agents à chaque sprint" },
-        { name: "Rework", desc: "PR qui repassent sur des portions de code déjà revues" },
+        { name: "Retouches", desc: "PR qui repassent sur des portions de code déjà revues" },
         { name: "Qualité", desc: "Score de couverture, taux de passage du lint et santé des tests" },
         { name: "Supervision", desc: "Couverture de revue humaine sur toutes les PR fusionnées par des agents" },
       ],
@@ -718,20 +718,20 @@ export const copy = {
           branches: [
             {
               icon: "code",
-              title: "Développeurs · Branche côté code",
-              count: "Côté code",
+              title: "Développeur",
+              count: "Branche côté code",
               summary: "Couvre la manière dont l'IA intervient dans la boucle quotidienne du développeur, de l'écriture à la vérification, ainsi que l'adoption des outils agentiques.",
             },
             {
               icon: "rule",
               title: "QA · Automatisation · Qualité de release",
-              count: "Côté qualité",
+              count: "Branche côté qualité",
               summary: "Couvre l'usage de l'IA dans le cycle de test : génération de scénarios, maintenance, flakiness et décisions de readiness avant release.",
             },
             {
               icon: "lan",
-              title: "PM · PO · BA · Ops · Branche delivery",
-              count: "Côté delivery",
+              title: "PM · PO · BA · Ops",
+              count: "Branche côté delivery",
               summary: "Couvre l'IA dans la planification, la documentation, le reporting, le risque et les signaux opérationnels — tout le travail autour du code.",
             },
           ],

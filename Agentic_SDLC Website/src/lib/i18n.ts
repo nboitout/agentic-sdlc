@@ -466,7 +466,7 @@ export const copy = {
       velocityTitle: 'Vitesse sous contrôle',
       velocityText: 'Les boucles agentiques ne livrent plus vite que lorsque supervision, revue et escalade sont mesurées dans le même run.',
       traceability: 'Traçabilité',
-      unreviewedMerges: 'Fusion non revue',
+      unreviewedMerges: 'Fusions non revues',
       charts: {
         sandboxEyebrow: 'Aujourd’hui — Mode bac à sable',
         sandboxTitle: 'Où va réellement le temps développeur',
