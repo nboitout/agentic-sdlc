@@ -191,7 +191,7 @@ export default function HomePage() {
             </h1>
             <p className="hero-support">{t.hero.subtitle}</p>
             <div className="hero-actions">
-              <
+              <a
                 href="https://calendly.com/nicolasboitout/new-meeting"
                 className="btn btn-primary"
                 data-calendly-link="true"
