@@ -245,6 +245,52 @@ export type SiteCopy = {
     sub: string;
     cards: { icon: string; title: string; text: string }[];
   };
+  beyondPage?: {
+    heroEyebrow: string;
+    heroHeading: string;
+    heroLead: string;
+    shiftEyebrow: string;
+    shiftHeading: string;
+    paragraphs: string[];
+    before: string;
+    beforeValue: string;
+    beforeCaption: string;
+    now: string;
+    nowValue: string;
+    nowCaption: string;
+    exampleLeftLabel: string;
+    exampleLeftValue: string;
+    exampleRightLabel: string;
+    exampleRightValue: string;
+    equationEyebrow: string;
+    equationHeading: string;
+    termOneLabel: string;
+    termOne: string;
+    termTwoLabel: string;
+    termTwo: string;
+    equationResult: string;
+    annotations: string[];
+    chartCaption: string;
+    chartNote: string;
+    postParagraph1: string;
+    postParagraph2: string;
+    constraintIntro: string;
+    strategicCallout: string;
+    closing: string;
+    clientsEyebrow: string;
+    clientsHeading: string;
+    clientsIntro: string;
+    bullets: string[];
+    cards: { num: string; title: string; text: string }[];
+    ctaEyebrow: string;
+    ctaHeading: string;
+    ctaBody: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    navBookCall: string;
+    footerTagline: string;
+    mobileSecondary: string;
+  };
   nav2?: {
     problem: string;
     offer: string;
@@ -753,6 +799,70 @@ export const copy = {
         { icon: 'handshake', title: 'Software delivery organizations', text: 'You need to prepare for a shift from staffing-based delivery to measurable AI-enabled execution.' },
       ],
     },
+    beyondPage: {
+      heroEyebrow: 'For IT services firms',
+      heroHeading: 'Beyond Time & Materials',
+      heroLead: 'Staffing sold time. The next model sells execution bursts.',
+      shiftEyebrow: 'Bench management becomes critical',
+      shiftHeading: 'Coding agents change the economics of delivery.',
+      paragraphs: [
+        'Classical team augmentation was built for a world where execution was scarce and projects consumed years. You staffed teams, sold billable days, and scaled with headcount.',
+        'With coding agents, productivity rises, delivery compresses, and parallelism increases. Clients can absorb more execution internally, which means people are no longer allocated to projects in the same static way.',
+        'External teams do not disappear. But they stop being long staffing commitments. They become short, targeted execution bursts.',
+      ],
+      before: 'Before',
+      beforeValue: 'people × time',
+      beforeCaption: 'billable days · stable staffing · long projects',
+      now: 'Now',
+      nowValue: 'execution bursts',
+      nowCaption: 'parallel streams · short cycles · dynamic allocation',
+      exampleLeftLabel: 'Classical T&M',
+      exampleLeftValue: '5 engineers for 18 months',
+      exampleRightLabel: 'Programmable execution',
+      exampleRightValue: '3 execution streams for 4–6 weeks',
+      equationEyebrow: 'Bench management is now critical',
+      equationHeading: 'The Legacy Equation of Classical Augmentation',
+      termOneLabel: 'Term 01',
+      termOne: 'Headcount',
+      termTwoLabel: 'Term 02',
+      termTwo: 'Billable Months',
+      equationResult: 'Legacy Capacity',
+      annotations: [
+        'Assumes execution is scarce.',
+        'Requires stable, long-term staffing.',
+        'Sells time, not results.',
+      ],
+      chartCaption: 'Linear scaling',
+      chartNote: 'Scaling delivery relies entirely on adding headcount or more billable months.',
+      postParagraph1: 'Coding agents compress delivery cycles. The same scope can increasingly be delivered faster, by smaller teams, with stronger automation.',
+      postParagraph2: 'Clients will not stop using external teams — but they will increasingly expect them to deliver measurable outcomes, not simply provide capacity.',
+      constraintIntro: 'This creates a new constraint for IT services firms:',
+      strategicCallout: 'Faster delivery means faster rotation.',
+      closing: 'That is where a dedicated Software Engineering Practice becomes critical.',
+      clientsEyebrow: 'What changes for clients',
+      clientsHeading: 'The decision is no longer how many people to staff for how many months.',
+      clientsIntro: 'Clients will still need engineering partners. But they will increasingly ask different questions:',
+      bullets: [
+        'How much execution should we inject right now?',
+        'Which initiatives deserve short bursts of acceleration?',
+        'Where do we need parallel streams instead of more billable days?',
+        'When should capacity ramp up, shut down, or restart?',
+      ],
+      cards: [
+        { num: '01', title: 'Divisible', text: 'Execution splits into targeted streams: migration, testing, refactoring.' },
+        { num: '02', title: 'Time-compressed', text: 'Work lands in weeks, not in multi-year staffing cycles.' },
+        { num: '03', title: 'Elastic', text: 'Ramp up fast, shut down cleanly, restart when priorities change.' },
+        { num: '04', title: 'Schedulable', text: 'Execution is routed across priorities, not statically assigned to teams.' },
+      ],
+      ctaEyebrow: 'Start the conversation',
+      ctaHeading: 'Projects used to consume billable days.\nNow they consume execution bursts.',
+      ctaBody: 'Agentic SDLC provides the operating model behind that shift — make AI-enabled delivery reliable inside your engineering organization first.',
+      ctaPrimary: 'Book an intro call',
+      ctaSecondary: 'Back to overview',
+      navBookCall: 'Book a Call',
+      footerTagline: 'AI-enabled software delivery transformation',
+      mobileSecondary: 'Back to overview',
+    },
     nav2: {
       problem: 'Problem',
       offer: 'Offer',
@@ -1231,6 +1341,70 @@ export const copy = {
         { icon: 'schedule', title: 'Directions produit et delivery', text: "Vous devez comprendre comment l'IA transforme la planification, l'estimation, la revue, la qualité et la prévisibilité du delivery." },
         { icon: 'handshake', title: 'ESN et organisations de delivery logiciel', text: "Vous devez préparer le passage d'un delivery fondé sur la Régie à une exécution mesurable augmentée par l'IA, sans renoncer au Forfait lorsque le contexte s'y prête." },
       ],
+    },
+    beyondPage: {
+      heroEyebrow: 'Pour les ESN et cabinets de conseil IT',
+      heroHeading: 'Au-delà du Time & Materials',
+      heroLead: "Le staffing vendait du temps. Le prochain modèle vend des bursts d'exécution.",
+      shiftEyebrow: 'La gestion du bench devient critique',
+      shiftHeading: "Les coding agents changent l'économie du delivery.",
+      paragraphs: [
+        "L'augmentation d'équipe classique était conçue pour un monde où l'exécution était rare et les projets consommaient des années. On staffait des équipes, on vendait des jours facturables, on scalait avec les effectifs.",
+        "Avec les coding agents, la productivité augmente, le delivery se comprime et le parallélisme s'intensifie. Les clients peuvent absorber davantage d'exécution en interne, ce qui signifie que les personnes ne sont plus allouées aux projets de la même manière statique.",
+        "Les équipes externes ne disparaissent pas. Mais elles cessent d'être de longs engagements de staffing. Elles deviennent de courts bursts d'exécution ciblés.",
+      ],
+      before: 'Avant',
+      beforeValue: 'personnes × temps',
+      beforeCaption: 'jours facturables · staffing stable · projets longs',
+      now: 'Maintenant',
+      nowValue: "bursts d'exécution",
+      nowCaption: 'flux parallèles · cycles courts · allocation dynamique',
+      exampleLeftLabel: 'T&M classique',
+      exampleLeftValue: '5 ingénieurs pendant 18 mois',
+      exampleRightLabel: 'Exécution programmable',
+      exampleRightValue: "3 flux d'exécution pendant 4–6 semaines",
+      equationEyebrow: 'La gestion du bench est désormais critique',
+      equationHeading: "L'équation historique de l'augmentation d'équipe classique",
+      termOneLabel: 'Terme 01',
+      termOne: 'Effectifs',
+      termTwoLabel: 'Terme 02',
+      termTwo: 'Mois facturables',
+      equationResult: 'Capacité historique',
+      annotations: [
+        "Suppose que l'exécution est rare.",
+        'Exige un staffing stable et long terme.',
+        'Vend du temps, pas des résultats.',
+      ],
+      chartCaption: 'Scaling linéaire',
+      chartNote: "La montée en capacité repose entièrement sur l'ajout d'effectifs ou sur davantage de mois facturables.",
+      postParagraph1: 'Les coding agents compressent les cycles de delivery. Un même périmètre peut de plus en plus être livré plus vite, par des équipes plus petites, avec une automatisation plus forte.',
+      postParagraph2: "Les clients ne cesseront pas de faire appel à des équipes externes — mais ils attendront de plus en plus des résultats mesurables, et non une simple capacité additionnelle.",
+      constraintIntro: 'Cela crée une nouvelle contrainte pour les entreprises de services IT :',
+      strategicCallout: 'Un delivery plus rapide implique une rotation plus rapide.',
+      closing: "C'est précisément là qu'une Software Engineering Practice dédiée devient critique.",
+      clientsEyebrow: 'Ce qui change pour les clients',
+      clientsHeading: "La décision n'est plus de savoir combien de personnes staffer pour combien de mois.",
+      clientsIntro: 'Les clients continueront à avoir besoin de partenaires engineering. Mais ils poseront de plus en plus des questions différentes :',
+      bullets: [
+        "Quelle quantité d'exécution devons-nous injecter maintenant ?",
+        "Quelles initiatives méritent de courts bursts d'accélération ?",
+        "Où avons-nous besoin de flux parallèles plutôt que de plus de jours facturables ?",
+        'Quand la capacité doit-elle augmenter, s\'arrêter ou redémarrer ?',
+      ],
+      cards: [
+        { num: '01', title: 'Divisible', text: "L'exécution se divise en flux ciblés : migration, tests, refactoring." },
+        { num: '02', title: 'Comprimé dans le temps', text: 'Le travail se livre en semaines, pas en cycles de staffing pluriannuels.' },
+        { num: '03', title: 'Élastique', text: "Montée en charge rapide, arrêt propre, redémarrage quand les priorités changent." },
+        { num: '04', title: 'Planifiable', text: "L'exécution est routée selon les priorités, pas assignée statiquement aux équipes." },
+      ],
+      ctaEyebrow: 'Démarrer la conversation',
+      ctaHeading: "Les projets consommaient des jours facturables.\nMaintenant, ils consomment des bursts d'exécution.",
+      ctaBody: "Agentic SDLC fournit le modèle opérationnel derrière ce changement — rendez le delivery augmenté par l'IA fiable au sein de votre organisation engineering d'abord.",
+      ctaPrimary: "Réserver un appel d'introduction",
+      ctaSecondary: "Retour à l'aperçu",
+      navBookCall: 'Réserver un appel',
+      footerTagline: "Transformation du delivery logiciel activée par l'IA",
+      mobileSecondary: "Retour à l'aperçu",
     },
     nav2: {
       problem: "Problème",
