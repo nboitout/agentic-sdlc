@@ -164,6 +164,7 @@ export default function HomePage() {
             <a href="#maturity">Maturity</a>
             <a href="#metrics">Metrics</a>
             <a href="#programs">Programs</a>
+            <a href="/beyond-tm">Beyond T&amp;M</a>
             <a
               href="https://nboitout.github.io/Blog-Agentic-SDLC/en/"
               className="btn btn-blog header-blog-btn"
@@ -497,48 +498,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Section 9: Beyond T&M — Strategic implication ─────────── */}
-      <section className="section s-white btm-shell" id="beyond-tm" aria-labelledby="beyond-heading">
-        <div className="section-inner btm-inner">
-          <div className="btm-head" data-reveal="">
-            <span className="strategic-implication-label">Strategic implication</span>
-            <span className="eyebrow">{t.beyond.eyebrow}</span>
-            <h2 id="beyond-heading" className="btm-heading">
-              For software delivery organizations, the commercial model will also change.
-            </h2>
-            <p className="btm-subtitle">
-              AI-enabled delivery does not only affect engineering work. It also changes how
-              delivery capacity is packaged, measured, and sold.
-            </p>
-          </div>
-
-          <div className="btm-prose" data-reveal="">
-            <p>
-              As AI coding workflows mature, the classic Time &amp; Materials model will come under
-              pressure. Clients will still need engineering partners. But they will increasingly
-              expect shorter cycles, clearer outcomes, more measurable productivity, and flexible
-              delivery capacity.
-            </p>
-            <p>
-              For IT services firms, this creates a strategic question: How do you move from
-              selling time to selling reliable execution bandwidth?
-            </p>
-          </div>
-
-          <ul className="btm-triplet" data-reveal-stagger="">
-            <li>Long static staffing commitments become harder to defend.</li>
-            <li>Delivery teams need to demonstrate measurable AI-enabled productivity.</li>
-            <li>Reusable delivery patterns become strategic assets.</li>
-          </ul>
-
-          <p className="btm-close" data-reveal="">
-            Agentic SDLC provides the operating model behind that shift — but the first step is
-            the same: make AI-enabled delivery reliable inside the engineering organization.
-          </p>
-        </div>
-      </section>
-
-      {/* ── Section 10: Who this is for ────────────────────────────── */}
+      {/* ── Section 9: Who this is for ─────────────────────────────── */}
       <section className="section s-canvas" id="who-its-for" aria-labelledby="audience-heading">
         <div className="section-inner">
           <div className="section-intro" data-reveal="">
@@ -616,6 +576,7 @@ export default function HomePage() {
             <a href="#maturity">Maturity</a>
             <a href="#metrics">Metrics</a>
             <a href="#programs">Programs</a>
+            <a href="/beyond-tm">Beyond T&amp;M</a>
             <a href="mailto:nicolas@agentic-sdlc.com">{t.contact.email}</a>
           </nav>
           <p className="footer-copy">&copy; {new Date().getFullYear()} Agentic SDLC</p>
