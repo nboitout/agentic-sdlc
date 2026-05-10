@@ -587,7 +587,7 @@ export const copy = {
     beyond: {
       eyebrow: 'Dincolo de Time & Materials',
       heading: 'Managementul bench-ului devine critic',
-      lead: 'Modelul clasic vindea timp. Următorul model vinde capacitate de execuție.',
+      lead: 'Modelul clasic vindea timp. Următorul model vinde burst-uri de execuție.',
       paragraphs: [
         'Staff augmentation a fost conceput pentru o lume în care execuția era rară și proiectele durau ani. Echipele erau alocate, zilele facturabile erau vândute, iar creșterea însemna mai mulți oameni.',
         'Cu coding agents, productivitatea crește, ciclurile de livrare se comprimă, iar paralelismul crește. Clienții pot absorbi mai multă execuție intern, ceea ce înseamnă că alocarea oamenilor devine mai dinamică.',
@@ -640,7 +640,7 @@ export const copy = {
         { name: 'Calitate', desc: 'Scor de coverage, rată de trecere lint și sănătatea testelor' },
         { name: 'Supraveghere', desc: 'Acoperirea review-ului uman pentru toate PR-urile fuzionate de agenți' },
       ],
-      statement: 'Măsurare înainte de anecdote.',
+      statement: 'Măsurare, nu anecdote.',
       statementBody: 'Ceea ce este măsurat poate fi guvernat. Fabrica rulează pe cifre, nu pe narațiune.',
       supervisionCoverage: 'Acoperire supraveghere',
       reworkReduction: 'Reducere a refacerilor',
