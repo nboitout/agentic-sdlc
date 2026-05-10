@@ -4074,3 +4074,275 @@ a { color: inherit; text-decoration: none; }
     text-align: center;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   HOMEPAGE REDESIGN — new section components
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Hero trust strip ───────────────────────────────────────────── */
+.hero-trust-strip {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--outline);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── Problem section: question list ────────────────────────────── */
+.problem-questions {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.problem-questions li {
+  color: var(--dark-muted);
+  font-size: .97rem;
+  line-height: 1.55;
+  padding-left: 18px;
+  position: relative;
+}
+.problem-questions li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--primary-fixed-dim);
+  font-weight: 700;
+}
+.problem-closing {
+  margin-top: 20px !important;
+  color: var(--primary-fixed-dim) !important;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/* ── Problem contrast table ─────────────────────────────────────── */
+.problem-contrast-table {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--dark-border);
+  border-radius: var(--r-card);
+  overflow: hidden;
+  align-self: start;
+  background: rgba(255,255,255,.04);
+}
+.contrast-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 14px 20px;
+  background: rgba(255,255,255,.08);
+  border-bottom: 1px solid var(--dark-border);
+}
+.contrast-header span {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--dark-muted);
+}
+.contrast-header span:last-child { text-align: right; }
+.contrast-row {
+  display: grid;
+  grid-template-columns: 1fr 28px 1fr;
+  align-items: center;
+  gap: 0;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--dark-border);
+}
+.contrast-row:last-child { border-bottom: none; }
+.contrast-left {
+  font-size: .92rem;
+  color: var(--dark-muted);
+  line-height: 1.4;
+}
+.contrast-arrow {
+  text-align: center;
+  color: var(--primary-fixed-dim);
+  font-size: 1rem;
+  font-weight: 600;
+}
+.contrast-right {
+  font-size: .92rem;
+  color: var(--dark-ink);
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: right;
+}
+
+/* ── Sprint / Offer section ─────────────────────────────────────── */
+.sprint-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 60ch;
+  margin-top: 12px;
+}
+.sprint-body {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--body);
+  max-width: 72ch;
+}
+.deliverable-card {
+  position: relative;
+  padding-top: 44px !important;
+}
+.deliverable-num {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: var(--display);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  color: var(--primary);
+  background: var(--primary-fixed);
+  padding: 3px 9px;
+  border-radius: var(--r-pill);
+}
+.sprint-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+.sprint-outcome-label {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--outline);
+  margin: 0;
+}
+
+/* ── Framework layer cards ──────────────────────────────────────── */
+.framework-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px !important;
+}
+.framework-subtitle {
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+  line-height: 1.3;
+}
+.framework-question {
+  font-size: .9rem;
+  color: var(--muted);
+  line-height: 1.5;
+  font-style: italic;
+  margin: 0;
+}
+.framework-owner {
+  display: inline-flex;
+  align-items: center;
+  margin-top: auto;
+  padding: 4px 12px;
+  border-radius: var(--r-pill);
+  background: var(--surface-container-low);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--primary);
+}
+
+/* ── From / To transformation cards ────────────────────────────── */
+.from-to-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+.from-to-card {
+  display: grid;
+  grid-template-columns: 44px 1fr 24px 44px 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--r-card);
+  background: var(--white);
+}
+.from-label,
+.to-label {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.from-label { color: var(--outline); }
+.to-label   { color: var(--primary); }
+.from-text {
+  font-size: .92rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.to-text {
+  font-size: .92rem;
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.4;
+}
+.from-to-arrow {
+  text-align: center;
+  color: var(--primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* ── Strategic implication label (Beyond T&M) ───────────────────── */
+.strategic-implication-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--outline-variant);
+  background: var(--surface-container-low);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--outline);
+  margin-bottom: 8px;
+}
+
+/* ── Final CTA reassurance note ─────────────────────────────────── */
+.cta-reassurance {
+  margin-top: 20px !important;
+  font-size: .88rem;
+  color: var(--dark-muted);
+  max-width: 58ch;
+  line-height: 1.6;
+}
+
+/* ── Audience grid (2×2) override ───────────────────────────────── */
+.audience-grid-2x2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+/* ── Responsive: new sections ───────────────────────────────────── */
+@media (max-width: 720px) {
+  .problem-contrast-table { margin-top: 32px; }
+  .contrast-row { grid-template-columns: 1fr; gap: 4px; }
+  .contrast-arrow { display: none; }
+  .contrast-right { text-align: left; }
+  .contrast-header { grid-template-columns: 1fr; }
+  .contrast-header span:last-child { text-align: left; }
+  .from-to-card {
+    grid-template-columns: 44px 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .from-to-arrow { display: none; }
+  .from-to-grid { grid-template-columns: 1fr; }
+  .audience-grid-2x2 { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 600px) {
+  .deliverables-grid { grid-template-columns: 1fr !important; }
+}
