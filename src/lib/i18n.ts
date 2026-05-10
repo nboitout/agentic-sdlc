@@ -197,6 +197,57 @@ export type SiteCopy = {
     keyTakeaway: string;
     keyTakeawayText: string;
   };
+  problem?: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    questionsIntro: string;
+    questions: string[];
+    closing: string;
+    contrastHeader: [string, string];
+    contrast: { left: string; right: string }[];
+  };
+  sprint?: {
+    eyebrow: string;
+    heading: string;
+    subtitle: string;
+    body: string;
+    deliverables: { num: string; title: string; text: string }[];
+    primaryCta: string;
+    secondaryCta: string;
+    outcomeLabel: string;
+  };
+  framework?: {
+    eyebrow: string;
+    heading: string;
+    intro: string;
+    answersLabel: string;
+    layers: { title: string; subtitle: string; text: string; question: string; owner: string }[];
+  };
+  engineering?: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    fromLabel: string;
+    toLabel: string;
+    transformations: { from: string; to: string }[];
+  };
+  programs?: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    items: { title: string; text: string }[];
+  };
+  contactReassurance?: string;
+  nav2?: {
+    problem: string;
+    offer: string;
+    maturity: string;
+    metrics: string;
+    programs: string;
+    itServices: string;
+  };
+  heroTrustStrip?: string;
 };
 
 type DeepPartial<T> = {
@@ -241,12 +292,12 @@ export const copy = {
       language: 'Language',
     },
     hero: {
-      eyebrow: 'THE FUTURE OF SOFTWARE ENGINEERING',
-      h1Prefix: 'Agentic SDLC:',
-      h1Rest: 'From AI coding tools to reliable delivery systems.',
-      subtitle: 'Move from AI experimentation to a delivery model your clients can trust.',
+      eyebrow: 'THE NEW SOFTWARE ENGINEERING',
+      h1Prefix: 'The operating model for',
+      h1Rest: 'AI-enabled software delivery.',
+      subtitle: 'AI coding tools are spreading fast across engineering teams. But adoption alone does not create reliable delivery. We help engineering organizations turn AI coding usage into governed workflows, measurable productivity, and delivery systems that teams and stakeholders can trust.',
       primaryCta: 'Book an intro call',
-      secondaryCta: 'Self-Assessment for Executives',
+      secondaryCta: 'Run the executive self-assessment',
       liveLabel: 'Control LIVE · Agentic SDLC',
       pipeline: 'Delivery pipeline',
       steps: ['Plan', 'Build', 'Review', 'Ship', 'Measure'],
@@ -512,8 +563,8 @@ export const copy = {
     },
     contact: {
       eyebrow: 'Start the conversation',
-      heading: 'Still in sandbox mode?',
-      body: 'If AI is already entering your delivery workflows, the next step is not more experimentation. It is control, supervision, and measurable execution.',
+      heading: 'Ready to move beyond AI tool adoption?',
+      body: 'Start with a focused sprint to assess your current maturity, define your operating model, and design the first measurable AI-enabled delivery pilots.',
       cta: 'Book an intro call',
       email: 'nicolas@agentic-sdlc.com',
     },
@@ -537,6 +588,163 @@ export const copy = {
       keyTakeaway: 'Key takeaway:',
       keyTakeawayText: 'AI maturity is not defined by the tools you buy, but by the autonomy of your CI/CD pipelines and the discipline of your supervision model.',
     },
+    problem: {
+      eyebrow: 'The core gap',
+      heading: 'AI tool adoption is not a delivery model.',
+      paragraphs: [
+        'Most organizations start with licenses: GitHub Copilot, Cursor, Claude Code, Gemini, Codex/ChatGPT Enterprise, or internal assistants.',
+        'That creates local productivity gains. But it does not answer the questions that matter at scale:',
+      ],
+      questionsIntro: 'But it does not answer the questions that matter at scale:',
+      questions: [
+        'What should engineers delegate to AI?',
+        'What must humans review?',
+        'How do teams measure AI contribution?',
+        'How is quality protected?',
+        'How do managers know whether delivery is improving?',
+        'How do organizations avoid uncontrolled experimentation?',
+      ],
+      closing: 'Agentic SDLC closes the gap between individual AI usage and reliable software delivery.',
+      contrastHeader: ['AI tool adoption', 'Agentic SDLC'],
+      contrast: [
+        { left: 'Individual usage', right: 'Team workflows' },
+        { left: 'Prompting', right: 'Delegation patterns' },
+        { left: 'Output generation', right: 'Review and validation' },
+        { left: 'Anecdotal productivity', right: 'Measured delivery impact' },
+        { left: 'Informal experimentation', right: 'Governed execution' },
+      ],
+    },
+    sprint: {
+      eyebrow: 'The offer',
+      heading: 'One sprint to design your AI-enabled delivery model.',
+      subtitle: 'A focused engagement to help your organization move from scattered AI coding experiments to a governed Agentic SDLC operating model.',
+      body: 'In one sprint, we work with your leadership, engineering, product, and platform teams to assess where AI is already being used, define the right operating model, train key roles, and design the first measurable delivery pilots.',
+      deliverables: [
+        {
+          num: '01',
+          title: 'Current-state assessment',
+          text: 'Understand how AI coding tools are already used across teams, where value is emerging, and where risks appear.',
+        },
+        {
+          num: '02',
+          title: 'AI Engineering Maturity diagnosis',
+          text: 'Position teams on a practical maturity scale, from ad-hoc usage to orchestrated agentic workflows.',
+        },
+        {
+          num: '03',
+          title: 'Operating model blueprint',
+          text: 'Define how AI-assisted delivery should work across roles, workflows, supervision, review, quality, and governance.',
+        },
+        {
+          num: '04',
+          title: 'Training for key roles',
+          text: 'Align engineers, tech leads, product managers, QA, platform teams, and delivery managers on how work changes.',
+        },
+        {
+          num: '05',
+          title: 'Metrics and control tower design',
+          text: 'Define the signals needed to measure adoption, AI contribution, quality, rework, velocity, cost, and team confidence.',
+        },
+        {
+          num: '06',
+          title: '30/60/90-day roadmap',
+          text: 'Leave with a pragmatic implementation plan and the first pilots to launch.',
+        },
+      ],
+      primaryCta: 'Book an intro call',
+      secondaryCta: 'See the maturity scale',
+      outcomeLabel: 'Sprint outcome: your Agentic SDLC blueprint',
+    },
+    framework: {
+      eyebrow: 'The model',
+      heading: 'Three layers of AI-enabled software delivery',
+      intro: 'Agentic SDLC separates the operating model, the engineering practices, and the technical harness needed to make AI reliable.',
+      answersLabel: 'It answers:',
+      layers: [
+        {
+          title: 'Agentic SDLC',
+          subtitle: 'How software delivery changes.',
+          text: 'The operating model: roles, workflows, governance, metrics, supervision, and accountability.',
+          question: 'How should teams deliver software when AI agents participate in the work?',
+          owner: 'Engineering leadership',
+        },
+        {
+          title: 'Agentic Engineering',
+          subtitle: 'How engineers work inside that model.',
+          text: 'The practice layer: specification, delegation, review, testing, refactoring, and validation.',
+          question: 'How do engineers move from writing every line of code to supervising AI-assisted workflows?',
+          owner: 'Engineers and tech leads',
+        },
+        {
+          title: 'Harness Engineering',
+          subtitle: 'How agents are made reliable enough to participate.',
+          text: 'The reliability layer: context, tools, tests, policies, evaluations, CI/CD integration, and guardrails.',
+          question: 'What infrastructure and controls make AI-generated work safe enough for production delivery?',
+          owner: 'Platform and tooling teams',
+        },
+      ],
+    },
+    engineering: {
+      eyebrow: 'The role shift',
+      heading: 'The role of the engineer changes.',
+      paragraphs: [
+        'AI does not remove engineering discipline. It increases the need for it.',
+        'In an Agentic SDLC, engineers do not simply “write code faster.” They learn to structure work so that AI systems can contribute safely: clearer specifications, smaller tasks, stronger tests, explicit review loops, and better context. The engineer becomes less of a line-by-line producer and more of a designer, reviewer, validator, and supervisor of software work.',
+      ],
+      fromLabel: 'From',
+      toLabel: 'To',
+      transformations: [
+        { from: 'Coding everything manually', to: 'Delegating well-scoped work' },
+        { from: 'Prompting casually', to: 'Writing executable specifications' },
+        { from: 'Reviewing only human code', to: 'Reviewing AI-generated changes' },
+        { from: 'Trusting output', to: 'Validating behavior through tests and evaluations' },
+        { from: 'Local productivity', to: 'Measurable delivery improvement' },
+      ],
+    },
+    programs: {
+      eyebrow: 'Next steps',
+      heading: 'From first sprint to scaled adoption',
+      paragraphs: [
+        'The first sprint creates the blueprint. The next step is implementation through pilots, training, and operating metrics.',
+        'After the initial sprint, organizations can move into targeted adoption programs: team pilots, role-based training, workflow redesign, metrics instrumentation, and governance support.',
+      ],
+      items: [
+        {
+          title: 'Pilot team enablement',
+          text: 'Select one or two engineering teams and redesign their delivery workflow around AI-assisted execution.',
+        },
+        {
+          title: 'Role-based training',
+          text: 'Train developers, tech leads, product managers, QA, platform teams, and delivery managers on how their work changes.',
+        },
+        {
+          title: 'Workflow redesign',
+          text: 'Define repeatable patterns for specification, coding, testing, review, documentation, migration, refactoring, and maintenance.',
+        },
+        {
+          title: 'Platform and tooling alignment',
+          text: 'Connect AI coding tools with repositories, documentation, CI/CD, policy checks, and internal engineering standards.',
+        },
+        {
+          title: 'Metrics instrumentation',
+          text: 'Track adoption, quality, velocity, AI contribution, rework, cost, and human confidence.',
+        },
+        {
+          title: 'Governance and supervision',
+          text: 'Create practical rules for what AI can do, what humans must review, and how accountability is preserved.',
+        },
+      ],
+    },
+    contactReassurance: 'No generic AI evangelism. No tool-only training. The focus is delivery: workflows, quality, supervision, metrics, and adoption.',
+    nav2: {
+      problem: 'Problem',
+      offer: 'Offer',
+      maturity: 'Maturity',
+      metrics: 'Metrics',
+      programs: 'Programs',
+      itServices: 'IT Services',
+    },
+    heroTrustStrip: 'For engineering leaders · platform teams · product organizations · software delivery teams',
   },
   fr: {
     meta: {
@@ -552,12 +760,12 @@ export const copy = {
       language: 'Langue',
     },
     hero: {
-      eyebrow: 'LE FUTUR DU SOFTWARE ENGINEERING',
-      h1Prefix: 'Agentic SDLC :',
-      h1Rest: 'Des outils de codage IA aux systèmes de delivery fiables.',
-      subtitle: "Passez de l'expérimentation IA à un modèle de delivery auquel vos clients peuvent faire confiance.",
+      eyebrow: 'LE NOUVEAU SOFTWARE ENGINEERING',
+      h1Prefix: 'Le modèle opérationnel pour',
+      h1Rest: 'un delivery logiciel fiable.',
+      subtitle: "Les outils de codage IA se répandent rapidement dans les équipes engineering. Mais l'adoption seule ne crée pas un delivery fiable. Nous aidons les organisations engineering à transformer l'usage IA en workflows gouvernés, productivité mesurable et systèmes de delivery auxquels les équipes et les clients peuvent faire confiance.",
       primaryCta: "Réserver un appel d'introduction",
-      secondaryCta: 'Auto-évaluation pour dirigeants',
+      secondaryCta: "Lancer l'auto-évaluation pour dirigeants",
       liveLabel: 'CONTRÔLE EN DIRECT · Agentic SDLC',
       pipeline: 'Pipeline de delivery',
       steps: ['Planifier', 'Construire', 'Revoir', 'Livrer', 'Mesurer'],
@@ -823,8 +1031,8 @@ export const copy = {
     },
     contact: {
       eyebrow: 'Démarrer la conversation',
-      heading: 'Toujours en mode sandbox ?',
-      body: "Si l'IA entre déjà dans vos workflows de delivery, l'étape suivante n'est pas plus d'expérimentation. C'est le contrôle, la supervision et une exécution mesurable.",
+      heading: "Prêt à dépasser la simple adoption d'outils IA ?",
+      body: "Commencez par un sprint focalisé pour évaluer votre maturité actuelle, définir votre modèle opérationnel et concevoir les premiers pilotes de delivery IA mesurables.",
       cta: "Réserver un appel d'introduction",
       email: 'nicolas@agentic-sdlc.com',
     },
@@ -848,6 +1056,163 @@ export const copy = {
       keyTakeaway: "À retenir :",
       keyTakeawayText: "la maturité IA ne se définit pas par les outils achetés, mais par le degré d'autonomie des pipelines CI/CD et par la discipline du modèle de supervision.",
     },
+    problem: {
+      eyebrow: "L'écart fondamental",
+      heading: "L'adoption d'outils IA n'est pas un modèle de delivery.",
+      paragraphs: [
+        "La plupart des organisations commencent par des licences : GitHub Copilot, Cursor, Claude Code, Gemini, Codex/ChatGPT Enterprise, ou des assistants internes.",
+        "Cela génère des gains de productivité locaux. Mais cela ne répond pas aux questions qui comptent à l'échelle :",
+      ],
+      questionsIntro: "Mais cela ne répond pas aux questions qui comptent à l'échelle :",
+      questions: [
+        "Que doivent déléguer les ingénieurs à l'IA ?",
+        "Que les humains doivent-ils impérativement revoir ?",
+        "Comment les équipes mesurent-elles la contribution de l'IA ?",
+        "Comment la qualité est-elle protégée ?",
+        "Comment les managers savent-ils si le delivery s'améliore ?",
+        "Comment les organisations évitent-elles l'expérimentation non contrôlée ?",
+      ],
+      closing: "Agentic SDLC comble l'écart entre l'usage individuel de l'IA et un delivery logiciel fiable.",
+      contrastHeader: ["Adoption d'outils IA", "Agentic SDLC"],
+      contrast: [
+        { left: "Usage individuel", right: "Workflows d'équipe" },
+        { left: "Prompting", right: "Patterns de délégation" },
+        { left: "Génération d'output", right: "Revue et validation" },
+        { left: "Productivité anecdotique", right: "Impact de delivery mesuré" },
+        { left: "Expérimentation informelle", right: "Exécution gouvernée" },
+      ],
+    },
+    sprint: {
+      eyebrow: "L'offre",
+      heading: "Un sprint pour concevoir votre modèle de delivery activé par l'IA.",
+      subtitle: "Une mission focalisée pour aider votre organisation à passer d'expérimentations de codage IA dispersées à un modèle opérationnel Agentic SDLC gouverné.",
+      body: "En un sprint, nous travaillons avec vos équipes dirigeantes, engineering, produit et plateforme pour évaluer où l'IA est déjà utilisée, définir le bon modèle opérationnel, former les rôles clés et concevoir les premiers pilotes de delivery mesurables.",
+      deliverables: [
+        {
+          num: "01",
+          title: "Évaluation de l'état actuel",
+          text: "Comprendre comment les outils de codage IA sont déjà utilisés dans les équipes, où la valeur émerge et où les risques apparaissent.",
+        },
+        {
+          num: "02",
+          title: "Diagnostic de maturité AI Engineering",
+          text: "Positionner les équipes sur une échelle de maturité pratique, de l'usage ad hoc aux workflows agentiques orchestrés.",
+        },
+        {
+          num: "03",
+          title: "Blueprint du modèle opérationnel",
+          text: "Définir comment le delivery assisté par IA doit fonctionner à travers les rôles, workflows, supervision, revue, qualité et gouvernance.",
+        },
+        {
+          num: "04",
+          title: "Formation des rôles clés",
+          text: "Aligner ingénieurs, tech leads, product managers, QA, équipes plateforme et delivery managers sur la façon dont le travail évolue.",
+        },
+        {
+          num: "05",
+          title: "Métriques et design de la tour de contrôle",
+          text: "Définir les signaux nécessaires pour mesurer l'adoption, la contribution IA, la qualité, les retouches, la vélocité, le coût et la confiance des équipes.",
+        },
+        {
+          num: "06",
+          title: "Roadmap 30/60/90 jours",
+          text: "Repartir avec un plan d'implémentation pragmatique et les premiers pilotes à lancer.",
+        },
+      ],
+      primaryCta: "Réserver un appel d'introduction",
+      secondaryCta: "Voir l'échelle de maturité",
+      outcomeLabel: "Résultat du sprint : votre blueprint Agentic SDLC",
+    },
+    framework: {
+      eyebrow: "Le modèle",
+      heading: "Trois couches du delivery logiciel activé par l'IA",
+      intro: "Agentic SDLC sépare le modèle opérationnel, les pratiques engineering et le harness technique nécessaire pour rendre l'IA fiable.",
+      answersLabel: "Il répond à :",
+      layers: [
+        {
+          title: "Agentic SDLC",
+          subtitle: "Comment le delivery logiciel évolue.",
+          text: "Le modèle opérationnel : rôles, workflows, gouvernance, métriques, supervision et responsabilité.",
+          question: "Comment les équipes doivent-elles livrer des logiciels lorsque des agents IA participent au travail ?",
+          owner: "Leadership engineering",
+        },
+        {
+          title: "Agentic Engineering",
+          subtitle: "Comment les ingénieurs travaillent dans ce modèle.",
+          text: "La couche pratique : spécification, délégation, revue, tests, refactoring et validation.",
+          question: "Comment les ingénieurs passent-ils de l'écriture de chaque ligne de code à la supervision de workflows assistés par IA ?",
+          owner: "Ingénieurs et tech leads",
+        },
+        {
+          title: "Harness Engineering",
+          subtitle: "Comment rendre les agents suffisamment fiables pour participer.",
+          text: "La couche de fiabilité : contexte, outils, tests, politiques, évaluations, intégration CI/CD et garde-fous.",
+          question: "Quelle infrastructure et quels contrôles rendent le travail généré par IA suffisamment sûr pour un delivery en production ?",
+          owner: "Équipes plateforme et outillage",
+        },
+      ],
+    },
+    engineering: {
+      eyebrow: "L'évolution du rôle",
+      heading: "Le rôle de l'ingénieur se transforme.",
+      paragraphs: [
+        "L'IA ne supprime pas la discipline engineering. Elle en accroît le besoin.",
+        "Dans un Agentic SDLC, les ingénieurs ne se contentent pas d'« écrire du code plus vite ». Ils apprennent à structurer le travail pour que les systèmes IA puissent y contribuer en toute sécurité : spécifications plus claires, tâches plus petites, tests plus solides, boucles de revue explicites et meilleur contexte. L'ingénieur devient moins un producteur ligne par ligne et davantage un concepteur, relecteur, validateur et superviseur du travail logiciel.",
+      ],
+      fromLabel: "Depuis",
+      toLabel: "Vers",
+      transformations: [
+        { from: "Tout coder manuellement", to: "Déléguer un travail bien délimité" },
+        { from: "Prompter de manière informelle", to: "Rédiger des spécifications exécutables" },
+        { from: "Revoir uniquement le code humain", to: "Revoir les changements générés par IA" },
+        { from: "Faire confiance à l'output", to: "Valider le comportement via des tests et évaluations" },
+        { from: "Productivité locale", to: "Amélioration de delivery mesurable" },
+      ],
+    },
+    programs: {
+      eyebrow: "Prochaines étapes",
+      heading: "Du premier sprint à l'adoption à grande échelle",
+      paragraphs: [
+        "Le premier sprint crée le blueprint. L'étape suivante est l'implémentation à travers des pilotes, de la formation et des métriques opérationnelles.",
+        "Après le sprint initial, les organisations peuvent s'engager dans des programmes d'adoption ciblés : pilotes d'équipe, formation par rôle, refonte des workflows, instrumentation des métriques et support à la gouvernance.",
+      ],
+      items: [
+        {
+          title: "Activation d'une équipe pilote",
+          text: "Sélectionner une ou deux équipes engineering et repenser leur workflow de delivery autour de l'exécution assistée par IA.",
+        },
+        {
+          title: "Formation par rôle",
+          text: "Former les développeurs, tech leads, product managers, QA, équipes plateforme et delivery managers sur l'évolution de leur travail.",
+        },
+        {
+          title: "Refonte des workflows",
+          text: "Définir des patterns reproductibles pour la spécification, le codage, les tests, la revue, la documentation, la migration, le refactoring et la maintenance.",
+        },
+        {
+          title: "Alignement plateforme et outillage",
+          text: "Connecter les outils de codage IA aux dépôts, à la documentation, au CI/CD, aux contrôles de politique et aux standards engineering internes.",
+        },
+        {
+          title: "Instrumentation des métriques",
+          text: "Suivre l'adoption, la qualité, la vélocité, la contribution IA, les retouches, le coût et la confiance des équipes.",
+        },
+        {
+          title: "Gouvernance et supervision",
+          text: "Créer des règles pratiques sur ce que l'IA peut faire, ce que les humains doivent revoir et comment la responsabilité est préservée.",
+        },
+      ],
+    },
+    contactReassurance: "Pas d'évangélisme IA générique. Pas de formation limitée aux outils. Le focus est le delivery : workflows, qualité, supervision, métriques et adoption.",
+    nav2: {
+      problem: "Problème",
+      offer: "Offre",
+      maturity: "Maturité",
+      metrics: "Métriques",
+      programs: "Programmes",
+      itServices: "Services IT",
+    },
+    heroTrustStrip: "Pour les leaders engineering · équipes plateforme · organisations produit · équipes de delivery logiciel",
   },
   ro: {
     meta: {
@@ -863,12 +1228,12 @@ export const copy = {
       language: 'Limbă',
     },
     hero: {
-      eyebrow: 'VIITORUL SOFTWARE ENGINEERING',
-      h1Prefix: 'Agentic SDLC:',
-      h1Rest: 'De la instrumente AI pentru dezvoltare la sisteme fiabile de livrare software.',
-      subtitle: 'Treci de la experimentare AI la un model de livrare în care clienții pot avea încredere.',
+      eyebrow: 'NOUL SOFTWARE ENGINEERING',
+      h1Prefix: 'Modelul operațional pentru',
+      h1Rest: 'livrarea software fiabilă.',
+      subtitle: 'Instrumentele AI de coding se răspândesc rapid în echipele de engineering. Dar simpla adoptare nu creează un delivery fiabil. Ajutăm organizațiile de engineering să transforme utilizarea AI în fluxuri de lucru guvernate, productivitate măsurabilă și sisteme de livrare în care echipele și clienții pot avea încredere.',
       primaryCta: 'Programează o discuție',
-      secondaryCta: 'Auto-evaluare pentru executivi',
+      secondaryCta: 'Rulează auto-evaluarea pentru executivi',
       liveLabel: 'Control LIVE · Agentic SDLC',
       pipeline: 'Pipeline de livrare',
       steps: ['Planificare', 'Construire', 'Revizuire', 'Livrare', 'Măsurare'],
@@ -893,9 +1258,9 @@ export const copy = {
       connectorRightDesc: 'Burst-uri scurte, fluxuri paralele, alocare dinamică.',
     },
     beyond: {
-      eyebrow: 'Bench Management becomed critical',
+      eyebrow: 'Managementul bench-ului devine critic',
       heading: 'Dincolo de Time & Materials',
-      lead: 'Modelul clasic vindea timp. Următorul model vinde capacitate de execuție.',
+      lead: 'Modelul clasic vindea timp. Următorul model vinde burst-uri de execuție.',
       paragraphs: [
         'Staff augmentation a fost conceput pentru o lume în care execuția era rară și proiectele durau ani. Echipele erau alocate, zilele facturabile erau vândute, iar creșterea însemna mai mulți oameni.',
         'Cu coding agents, productivitatea crește, ciclurile de livrare se comprimă, iar paralelismul crește. Clienții pot absorbi mai multă execuție intern, ceea ce înseamnă că alocarea oamenilor devine mai dinamică.',
@@ -948,7 +1313,7 @@ export const copy = {
         { name: 'Calitate', desc: 'Scor de coverage, rată de trecere lint și sănătatea testelor' },
         { name: 'Supraveghere', desc: 'Acoperirea review-ului uman pentru toate PR-urile fuzionate de agenți' },
       ],
-      statement: 'Măsurare înainte de anecdote.',
+      statement: 'Măsurare, nu anecdote.',
       statementBody: 'Ceea ce este măsurat poate fi guvernat. Fabrica rulează pe cifre, nu pe narațiune.',
       supervisionCoverage: 'Acoperire supraveghere',
       reworkReduction: 'Reducere a refacerilor',
@@ -1020,8 +1385,8 @@ export const copy = {
     },
     contact: {
       eyebrow: 'Începe conversația',
-      heading: 'Încă în mod sandbox?',
-      body: 'Dacă AI intră deja în workflow-urile tale de delivery, următorul pas nu este mai multă experimentare. Este control, supraveghere și execuție măsurabilă.',
+      heading: 'Ești pregătit să mergi mai departe de adoptarea instrumentelor AI?',
+      body: 'Începe cu un sprint focalizat pentru a evalua maturitatea actuală, a defini modelul operațional și a concepe primele piloturi de livrare măsurabile.',
       cta: 'Programează o discuție',
       email: 'nicolas@agentic-sdlc.com',
     },
@@ -2122,270 +2487,270 @@ Object.assign(copy, {
   ro: mergeCopy(copy.en, {
     meta: { title: 'Agentic SDLC | De la instrumente AI la sisteme de livrare software fiabile' },
     nav: {
-      primaryLabel: 'Navigatie principala',
+      primaryLabel: 'Navigare principală',
       beyond: 'Dincolo de T&M',
       blueprint: 'Blueprint',
-      metrics: 'Metrics',
+      metrics: 'Metrici',
       contact: 'Contact',
-      blog: 'Blogul nostru: Invata & Proiecteaza',
-      language: 'Limba',
+      blog: 'Blogul nostru: Învață & Proiectează',
+      language: 'Limbă',
     },
     hero: {
-      eyebrow: 'VIITORUL SOFTWARE ENGINEERING',
-      h1Prefix: 'Agentic SDLC',
-      h1Rest: 'De la instrumente de AI coding la sisteme de livrare software fiabile.',
-      subtitle: 'Treceti de la experimentarea cu AI la un model de livrare in care clientii pot avea incredere.',
-      primaryCta: 'Programeaza un call introductiv',
-      secondaryCta: 'Self-Assessment pentru Executivi',
-      liveLabel: 'CONTROL · LIVE Agentic SDLC',
-      pipeline: 'Delivery pipeline',
-      steps: ['Plan', 'Build', 'Review', 'Ship', 'Measure'],
-      eventsLabel: 'Live events streaming',
+      eyebrow: 'NOUL SOFTWARE ENGINEERING',
+      h1Prefix: 'Modelul operațional pentru',
+      h1Rest: 'livrarea software fiabilă.',
+      subtitle: 'Instrumentele AI de coding se răspândesc rapid în echipele de engineering. Dar simpla adoptare nu creează un delivery fiabil. Ajutăm organizațiile de engineering să transforme utilizarea AI în fluxuri de lucru guvernate, productivitate măsurabilă și sisteme de livrare în care echipele și clienții pot avea încredere.',
+      primaryCta: 'Programează o discuție',
+      secondaryCta: 'Rulează auto-evaluarea pentru executivi',
+      liveLabel: 'Control LIVE · Agentic SDLC',
+      pipeline: 'Pipeline de livrare',
+      steps: ['Planificare', 'Construire', 'Revizuire', 'Livrare', 'Măsurare'],
+      eventsLabel: 'Evenimente live',
       events: [
-        { time: '14:02', message: 'agent-04 · PR #182 merged', status: 'ok' },
-        { time: '14:01', message: 'review queue · 2 elemente', status: 'warn' },
-        { time: '13:57', message: 'policy check · passed', status: 'ok' },
-        { time: '13:54', message: 'agent-02 · modul scaffolded', status: 'ok' },
+        { time: '14:02', message: 'agent-04 · PR #182 fuzionat', status: 'ok' },
+        { time: '14:01', message: 'coadă de review · 2 elemente', status: 'warn' },
+        { time: '13:57', message: 'verificare politici · validat', status: 'ok' },
+        { time: '13:54', message: 'agent-02 · modul generat', status: 'ok' },
       ],
-      supervision: 'Supervision last 24h',
-      coverage: 'Coverage',
-      aiContribution: 'AI contribution',
-      rework: 'Rework',
-      quality: 'Quality',
-      agentPool: 'Agent pool',
-      agentPoolStatus: 'online · 0 blocat',
+      supervision: 'Supraveghere',
+      coverage: 'acoperire',
+      aiContribution: 'Contribuție AI',
+      rework: 'Refaceri',
+      quality: 'Calitate',
+      agentPool: 'Pool de agenți',
+      agentPoolStatus: 'online · 0 blocați',
       connectorLeftLabel: 'T&M clasic',
       connectorLeftDesc: 'Body shopping, zile facturabile, cicluri lungi de staffing.',
-      connectorCenter: 'Agentic SDLC schimba si modelul economic al livrarii software',
-      connectorRightLabel: 'Executie programabila',
-      connectorRightDesc: 'Burst-uri scurte, fluxuri paralele, alocare dinamica.',
+      connectorCenter: 'Agentic SDLC schimbă și modelul economic al livrării software',
+      connectorRightLabel: 'Execuție programabilă',
+      connectorRightDesc: 'Burst-uri scurte, fluxuri paralele, alocare dinamică.',
     },
     beyond: {
       eyebrow: 'Bench Management devine critic',
       heading: 'Dincolo de Time & Materials: de la staffing la outcome delivery',
-      lead: 'Staffing-ul vindea timp. Urmatorul model vinde rezultate.',
+      lead: 'Staffing-ul vindea timp. Următorul model vinde rezultate.',
       paragraphs: [
-        'Modelul clasic de team augmentation scala prin headcount si luni facturabile.',
+        'Modelul clasic de team augmentation scala prin headcount și luni facturabile.',
       ],
       triplet: [
-        'Vindeati profiluri.',
-        'Facturati timp.',
-        'Cresteati prin adaugare de headcount.',
+        'Vindeați profiluri.',
+        'Facturați timp.',
+        'Creșteați prin adăugare de headcount.',
       ],
-      bridge: 'Livrarea software agentica schimba aceasta ecuatie.',
-      postEquationLead: 'Coding agents comprima ciclurile de livrare. Acelasi scope poate fi livrat tot mai rapid, de echipe mai mici, cu automatizare mai puternica.',
-      disclaimer: 'Clientii nu vor inceta sa foloseasca echipe externe — dar vor astepta tot mai mult ca acestea sa livreze rezultate masurabile, nu doar capacitate.',
+      bridge: 'Livrarea software agentică schimbă această ecuație.',
+      postEquationLead: 'Coding agents comprimă ciclurile de livrare. Același scope poate fi livrat tot mai rapid, de echipe mai mici, cu automatizare mai puternică.',
+      disclaimer: 'Clienții nu vor înceta să folosească echipe externe — dar vor aștepta tot mai mult ca acestea să livreze rezultate măsurabile, nu doar capacitate.',
       implication: '',
-      challengeIntro: 'Aceasta creeaza o noua constrangere pentru firmele de servicii IT:',
-      strategicCallout: 'Livrarea mai rapida inseamna rotatie mai rapida.',
-      closing: 'Aici devine critica o Software Engineering Practice dedicata.',
-      before: 'Inainte',
+      challengeIntro: 'Aceasta creează o nouă constrângere pentru firmele de servicii IT:',
+      strategicCallout: 'Livrarea mai rapidă înseamnă rotație mai rapidă.',
+      closing: 'Aici devine critică o Software Engineering Practice dedicată.',
+      before: 'Înainte',
       beforeValue: 'oameni × timp',
       beforeCaption: 'zile facturabile · staffing stabil · proiecte lungi',
       now: 'Acum',
       nowValue: 'outcome pods',
-      nowCaption: 'fluxuri paralele · cicluri scurte · alocare dinamica',
+      nowCaption: 'fluxuri paralele · cicluri scurte · alocare dinamică',
       exampleLeftLabel: 'T&M clasic',
       exampleLeftValue: '5 ingineri timp de 18 luni',
       exampleRightLabel: 'Outcome delivery',
-      exampleRightValue: '1 pod embedded pentru 4-6 saptamani',
-      clientsEyebrow: 'Ce se schimba pentru clienti',
-      clientsTitle: 'Decizia nu mai este cati oameni sa fie staffati pentru cate luni.',
+      exampleRightValue: '1 pod embedded pentru 4-6 săptămâni',
+      clientsEyebrow: 'Ce se schimbă pentru clienți',
+      clientsTitle: 'Decizia nu mai este câți oameni să fie staffați pentru câte luni.',
       bullets: [
-        'Ce workflow de business sa transformam primul?',
-        'Ce rezultat trebuie sa fie responsabilitatea pod-ului?',
-        'Ce workflow-uri agentice pot trece in productie in siguranta?',
-        'Ce guvernanta, supervizare si metrici sunt necesare din prima zi?',
-        'Cand trebuie sa crestem, sa reducem sau sa repornim capacitatea?',
+        'Ce workflow de business să transformăm primul?',
+        'Ce rezultat trebuie să fie responsabilitatea pod-ului?',
+        'Ce workflow-uri agentice pot trece în producție în siguranță?',
+        'Ce guvernanță, supervizare și metrici sunt necesare din prima zi?',
+        'Când trebuie să creștem, să reducem sau să repornim capacitatea?',
       ],
       cards: [
-        { title: 'Embedded', text: 'Livrarea se apropie de workflow-urile reale ale clientului, de sistemele, datele si constrangerile operationale ale acestuia.', num: '01' },
-        { title: 'Cross-functional', text: 'Unitatea de lucru nu mai este un profil izolat. Este un pod care combina engineering, product, cloud, date, integrare si guvernanta.', num: '02' },
-        { title: 'Production-oriented', text: 'Obiectivul nu este un demo sau un proof of concept. Obiectivul este un sistem utilizabil conectat la workflow-uri reale, cu supervizare, observabilitate si cai de escaladare.', num: '03' },
-        { title: 'Outcome-measured', text: 'Succesul este masurat prin impact de business, adoptare, calitate, cycle time, reducerea riscului si fiabilitate operationala, nu doar zile facturabile consumate.', num: '04' },
+        { title: 'Embedded', text: 'Livrarea se apropie de workflow-urile reale ale clientului, de sistemele, datele și constrângerile operaționale ale acestuia.', num: '01' },
+        { title: 'Cross-functional', text: 'Unitatea de lucru nu mai este un profil izolat. Este un pod care combină engineering, product, cloud, date, integrare și guvernanță.', num: '02' },
+        { title: 'Production-oriented', text: 'Obiectivul nu este un demo sau un proof of concept. Obiectivul este un sistem utilizabil conectat la workflow-uri reale, cu supervizare, observabilitate și căi de escaladare.', num: '03' },
+        { title: 'Outcome-measured', text: 'Succesul este măsurat prin impact de business, adoptare, calitate, cycle time, reducerea riscului și fiabilitate operațională, nu doar zile facturabile consumate.', num: '04' },
       ],
       equation: {
         eyebrow: 'Bench Management este acum critic',
-        heading: 'Ecuatia mostenita a augmentarii clasice',
+        heading: 'Ecuația moștenită a augmentării clasice',
         termOneLabel: 'Termen 01',
         termOne: 'Headcount',
         termTwoLabel: 'Termen 02',
         termTwo: 'Luni facturabile',
         result: 'Capacitate legacy',
         annotations: [
-          'Presupune ca executia este resursa rara.',
-          'Necesita staffing stabil, pe termen lung.',
+          'Presupune că execuția este o resursă rară.',
+          'Necesită staffing stabil, pe termen lung.',
           'Vinde timp, nu rezultate.',
         ],
-        chartLabel: 'Scalare liniara',
+        chartLabel: 'Scalare liniară',
         chartXLabel: 'headcount',
         chartYLabel: 'capacitate',
-        note: 'Scalarea livrarii depinde complet de adaugarea de headcount sau de cresterea numarului de luni facturabile.',
+        note: 'Scalarea livrării depinde complet de adăugarea de headcount sau de creșterea numărului de luni facturabile.',
       },
     },
     core: {
-      eyebrow: 'Schimbarea fundamentala',
-      heading: 'Schimbarea fundamentala a rolului developerului.',
-      body: 'Pe masura ce coding agents preiau mai multa munca, developerii nu dispar. Rolul lor se schimba. Noua provocare este supervizarea: ce delegam, ce revizuim, ce validam si ce nu automatizam orbeste.',
+      eyebrow: 'Schimbarea fundamentală',
+      heading: 'Schimbarea fundamentală a rolului developerului.',
+      body: 'Pe măsură ce coding agents preiau mai multă muncă, developerii nu dispar. Rolul lor se schimbă. Noua provocare este supervizarea: ce delegăm, ce revizuim, ce validăm și ce nu automatizăm orbește.',
       cards: [
-        { icon: 'hub', title: 'Ce delegam', text: 'Decidem unde coding agents pot avansa rapid fara sa creeze datorie operationala ascunsa.' },
-        { icon: 'fact_check', title: 'Ce revizuim', text: 'Facem supervizarea explicita, astfel incat validarea, aprobarea si escaladarea sa fie integrate direct in workflow.' },
-        { icon: 'shield_person', title: 'Ce nu automatizam orbeste', text: 'Protejam calitatea, responsabilitatea si increderea clientului acolo unde judecata umana ramane esentiala.' },
+        { icon: 'hub', title: 'Ce delegăm', text: 'Decidem unde coding agents pot avansa rapid fără să creeze datorie operațională ascunsă.' },
+        { icon: 'fact_check', title: 'Ce revizuim', text: 'Facem supervizarea explicită, astfel încât validarea, aprobarea și escaladarea să fie integrate direct în workflow.' },
+        { icon: 'shield_person', title: 'Ce nu automatizăm orbește', text: 'Protejăm calitatea, responsabilitatea și încrederea clientului acolo unde judecata umană rămâne esențială.' },
       ],
     },
     metrics: {
-      eyebrow: 'Metrics',
-      heading: 'Fara metrici, nu exista transformare.',
-      body: 'Livrarea agentica nu poate fi gestionata prin anecdote. Adoptarea scaleaza doar atunci cand masuram doua planuri: ce produc coding agents in sistemul de livrare si cum experimenteaza inginerii schimbarea in timp ce lucreaza cu acesti agenti.\n\nNoi configuram si operam acest strat de monitorizare pentru voi: un flux continuu de metrici de productie legate de agenti, combinat cu un survey recurent al angajatilor.\n\nScopul este simplu: modelul operational trebuie ghidat prin date, nu prin impresii.',
-      measuredLabel: 'Ce trebuie masurat',
-      statement: 'Masurare, nu anecdote.',
-      statementBody: 'Ce se masoara poate fi guvernat. Fabrica functioneaza pe cifre, nu pe povesti.',
+      eyebrow: 'Metrici',
+      heading: 'Fără metrici, nu există transformare.',
+      body: 'Livrarea agentică nu poate fi gestionată prin anecdote. Adoptarea scalează doar atunci când măsurăm două planuri: ce produc coding agents în sistemul de livrare și cum experimentează inginerii schimbarea în timp ce lucrează cu acești agenți.\n\nNoi configurăm și operăm acest strat de monitorizare pentru voi: un flux continuu de metrici de producție legate de agenți, combinat cu un survey recurent al angajaților.\n\nScopul este simplu: modelul operațional trebuie ghidat prin date, nu prin impresii.',
+      measuredLabel: 'Ce trebuie măsurat',
+      statement: 'Măsurare, nu anecdote.',
+      statementBody: 'Ce se măsoară poate fi guvernat. Fabrica funcționează pe cifre, nu pe povești.',
       supervisionCoverage: 'Acoperire supervizare',
       reworkReduction: 'Reducere rework',
-      velocityTitle: 'Viteza cu control',
-      velocityText: 'Buclele de agenti livreaza mai rapid doar cand supervizarea, review-ul si escaladarea sunt masurate in aceeasi rulare.',
+      velocityTitle: 'Viteză cu control',
+      velocityText: 'Buclele de agenți livrează mai rapid doar când supervizarea, review-ul și escaladarea sunt măsurate în aceeași rulare.',
       traceability: 'Trasabilitate',
       unreviewedMerges: 'Merge-uri neverificate',
       planes: {
         quant: {
           tag: 'Planul 01 · Cantitativ · Continuu',
           title: 'Ce produce sistemul',
-          body: 'Telemetrie de productie din workflow-ul de livrare agentica. Cinci familii de semnale sunt instrumentate in pipeline si actualizate la fiecare rulare.',
+          body: 'Telemetrie de producție din workflow-ul de livrare agentică. Cinci familii de semnale sunt instrumentate în pipeline și actualizate la fiecare rulare.',
           familiesLabel: 'Familii de semnale',
           families: [
             {
               num: '01',
               title: 'Adoption Surface',
-              summary: 'Cine foloseste AI, unde si cat de des.',
-              signals: ['Utilizatori activi', 'Rata de adoptie a instrumentelor'],
+              summary: 'Cine folosește AI, unde și cât de des.',
+              signals: ['Utilizatori activi', 'Rata de adopție a instrumentelor'],
             },
             {
               num: '02',
               title: 'Acceptance & Quality',
-              summary: 'Daca output-ul este suficient de de incredere pentru a fi livrat.',
-              signals: ['Rata de acceptare', 'Rata defectelor', 'Variatia coverage-ului'],
+              summary: 'Dacă output-ul este suficient de de încredere pentru a fi livrat.',
+              signals: ['Rata de acceptare', 'Rata defectelor', 'Variația coverage-ului'],
             },
             {
               num: '03',
               title: 'Velocity',
-              summary: 'Metrici DORA, segmentate dupa implicarea agentilor.',
-              signals: ['Lead time', 'Frecventa deployment-urilor', 'Change failure rate'],
+              summary: 'Metrici DORA, segmentate după implicarea agenților.',
+              signals: ['Lead time', 'Frecvența deployment-urilor', 'Change failure rate'],
             },
             {
               num: '04',
               title: 'Agent Behavior',
-              summary: 'Cat de bine opereaza agentii in interiorul guardrail-urilor.',
-              signals: ['Calitatea escaladarii', 'Efortul de supervizare', 'Finalizarea obiectivelor'],
+              summary: 'Cât de bine operează agenții în interiorul guardrail-urilor.',
+              signals: ['Calitatea escaladării', 'Efortul de supervizare', 'Finalizarea obiectivelor'],
             },
             {
               num: '05',
               title: 'Cost & Return',
-              summary: 'Daca economia sistemului se imbunatateste.',
-              signals: ['Costul tokenilor', 'Cost per schimbare acceptata'],
+              summary: 'Dacă economia sistemului se îmbunătățește.',
+              signals: ['Costul tokenilor', 'Cost per schimbare acceptată'],
             },
           ],
         },
         perception: {
-          tag: 'Planul 02 · Perceptie · Trimestrial',
-          title: 'Ce experimenteaza oamenii',
-          body: 'Un survey trimestrial proprietar. Un baseline comun pentru toti respondentii, apoi o ramura specifica rolului, rutata automat.',
-          baselineLabel: 'Common baseline',
+          tag: 'Planul 02 · Percepție · Trimestrial',
+          title: 'Ce experimentează oamenii',
+          body: 'Un survey trimestrial proprietar. Un baseline comun pentru toți respondenții, apoi o ramură specifică rolului, rutată automat.',
+          baselineLabel: 'Baseline comun',
           baselineCount: 'Pentru fiecare respondent',
-          baselineSummary: 'Calibreaza rolul, modelul de engagement, frecventa utilizarii AI, nivelul de autonomie si postura de invatare — contextul prin care toate celelalte raspunsuri sunt interpretate.',
+          baselineSummary: 'Calibrează rolul, modelul de engagement, frecvența utilizării AI, nivelul de autonomie și postura de învățare — contextul prin care toate celelalte răspunsuri sunt interpretate.',
           branchesLabel: 'Ramuri pe rol',
           branches: [
             {
               icon: 'code',
               title: 'Developer',
-              count: 'Coding-side branch',
-              summary: 'Acopera modul in care AI apare in bucla zilnica a developerului, de la authoring la verificare, si modul in care tooling-ul agentic este adoptat.',
+              count: 'Ramura coding',
+              summary: 'Acoperă modul în care AI apare în bucla zilnică a developerului, de la authoring la verificare, și modul în care tooling-ul agentic este adoptat.',
             },
             {
               icon: 'rule',
               title: 'QA · Automation · Release Quality',
-              count: 'Quality-side branch',
-              summary: 'Acopera utilizarea AI in ciclul de testare: de la generarea scenariilor pana la mentenanta, flaky tests si deciziile de release-readiness.',
+              count: 'Ramura calitate',
+              summary: 'Acoperă utilizarea AI în ciclul de testare: de la generarea scenariilor până la mentenanță, flaky tests și deciziile de release-readiness.',
             },
             {
               icon: 'lan',
               title: 'PM · PO · BA · Ops',
-              count: 'Delivery-side branch',
-              summary: 'Acopera utilizarea AI in planning, documentatie, reporting, risk management si semnale operationale — munca din jurul codului.',
+              count: 'Ramura livrare',
+              summary: 'Acoperă utilizarea AI în planning, documentație, reporting, risk management și semnale operaționale — munca din jurul codului.',
             },
           ],
-          note: 'Instrumentul de survey este proprietar. Setul de intrebari este partajat in cadrul engagement-ului.',
+          note: 'Instrumentul de survey este proprietar. Setul de întrebări este partajat în cadrul engagement-ului.',
         },
       },
     },
     audience: {
       eyebrow: 'Pentru cine este construit',
-      heading: 'Pentru echipe care au nevoie de viteza AI, dar si de responsabilitate in livrare.',
-      body: 'Acest engagement este destinat organizatiilor care experimenteaza deja cu instrumente de AI coding si cauta acum un model operational durabil.',
+      heading: 'Pentru echipe care au nevoie de viteza AI, dar și de responsabilitate în livrare.',
+      body: 'Acest engagement este destinat organizațiilor care experimentează deja cu instrumente de AI coding și caută acum un model operațional durabil.',
       cards: [
-        { icon: 'apartment', title: 'Engineering leaders', text: 'Echipe care trec de la utilizarea ad-hoc a AI la livrare guvernata, cu rezultate masurabile.' },
-        { icon: 'terminal', title: 'Product & platform teams', text: 'Organizatii care standardizeaza workflow-uri asistate de AI de-a lungul etapelor de planning, build, review si release.' },
-        { icon: 'handshake', title: 'Consultancies & service firms', text: 'Grupuri de delivery care au nevoie de castiguri de viteza fara a sacrifica supervizarea, calitatea sau responsabilitatea.' },
+        { icon: 'apartment', title: 'Lideri de engineering', text: 'Echipe care trec de la utilizarea ad-hoc a AI la livrare guvernată, cu rezultate măsurabile.' },
+        { icon: 'terminal', title: 'Echipe de produs și platformă', text: 'Organizații care standardizează workflow-uri asistate de AI de-a lungul etapelor de planning, build, review și release.' },
+        { icon: 'handshake', title: 'Consultanțe și firme de servicii', text: 'Grupuri de delivery care au nevoie de câștiguri de viteză fără a sacrifica supervizarea, calitatea sau responsabilitatea.' },
       ],
     },
     blueprint: {
       eyebrow: 'Blueprint',
       heading: 'Adoptarea instrumentelor AI nu este un model de livrare.',
       paragraphs: [
-        'Cumpararea de licente si lansarea unor coding assistants nu ii spune unei companii cum sa livreze software diferit. Adevarata provocare este transformarea cresterii de productivitate si a comprimarii timpului intr-un nou model operational.',
-        'Pe masura ce ciclurile de livrare devin mai scurte, alocarea oamenilor devine mai dinamica. Intrebarea nu mai este cine ramane pe un proiect timp de 18 luni. Intrebarea devine: ce tip de sistem de executie construim, de fapt?',
+        'Cumpărarea de licențe și lansarea unor coding assistants nu îi spune unei companii cum să livreze software diferit. Adevărata provocare este transformarea creșterii de productivitate și a comprimării timpului într-un nou model operațional.',
+        'Pe măsură ce ciclurile de livrare devin mai scurte, alocarea oamenilor devine mai dinamică. Întrebarea nu mai este cine rămâne pe un proiect timp de 18 luni. Întrebarea devine: ce tip de sistem de execuție construim, de fapt?',
       ],
       levelsLabel: 'Trei niveluri',
       levels: [
-        { title: 'Agentic SDLC', text: 'Cum se schimba livrarea software.' },
-        { title: 'Agentic Engineering', text: 'Cum lucreaza inginerii in interiorul acestui model.' },
-        { title: 'Harness Engineering', text: 'Cum sunt facuti agentii suficient de fiabili pentru a participa la livrare.' },
+        { title: 'Agentic SDLC', text: 'Cum se schimbă livrarea software.' },
+        { title: 'Agentic Engineering', text: 'Cum lucrează inginerii în interiorul acestui model.' },
+        { title: 'Harness Engineering', text: 'Cum sunt făcuți agenții suficient de fiabili pentru a participa la livrare.' },
       ],
     },
     engagement: {
       eyebrow: 'Engagement',
       heading: 'Un sprint pentru lansarea AI–Software Engineering Practice.',
-      body: 'Intr-un sprint concentrat de lucru, aliniem leadership-ul si engineering-ul in jurul unui pas urmator concret, cu prioritati clare, guvernanta si masurare.',
-      quote: 'Un engagement concentrat pentru a defini realitatea, prioritatile si regulile operative care fac reala supervizarea AI.',
-      leadPrimary: 'AI nu schimba doar productivitatea in software engineering.',
-      leadSecondary: 'Schimba economia serviciilor IT.',
-      pressure: 'Pentru firmele construite pe team augmentation, Time & Materials si cicluri lungi de staffing, coding agents aduc o noua provocare: cicluri mai scurte, rotatie mai mare, presiune crescuta pe bench management si cerere tot mai puternica din partea clientilor pentru rezultate masurabile.',
-      bridge: 'Acest sprint concentrat ajuta echipele de leadership, commercial si engineering sa treaca de la experimentare AI dispersata la o AI–Software Engineering Practice structurata.',
-      combinesLabel: 'Sprintul combina',
+      body: 'Într-un sprint concentrat de lucru, aliniem leadership-ul și engineering-ul în jurul unui pas următor concret, cu priorități clare, guvernanță și măsurare.',
+      quote: 'Un engagement concentrat pentru a defini realitatea, prioritățile și regulile operative care fac reală supervizarea AI.',
+      leadPrimary: 'AI nu schimbă doar productivitatea în software engineering.',
+      leadSecondary: 'Schimbă economia serviciilor IT.',
+      pressure: 'Pentru firmele construite pe team augmentation, Time & Materials și cicluri lungi de staffing, coding agents aduc o nouă provocare: cicluri mai scurte, rotație mai mare, presiune crescută pe bench management și cerere tot mai puternică din partea clienților pentru rezultate măsurabile.',
+      bridge: 'Acest sprint concentrat ajută echipele de leadership, commercial și engineering să treacă de la experimentare AI dispersată la o AI–Software Engineering Practice structurată.',
+      combinesLabel: 'Sprintul combină',
       steps: [
-        { num: '01', title: 'Maturity assessment', text: 'Survey si interviuri pentru a cartografia utilizarea curenta a AI, practicile de engineering, tooling-ul, blocajele si nivelul de readiness pe roluri si echipe.' },
-        { num: '02', title: 'Leadership alignment', text: 'Clarificarea ambitiei strategice: productivitate, diferentiere in delivery, oferte noi, optimizarea bench-ului sau transformare AI orientata catre clienti.' },
-        { num: '03', title: 'Training & awareness', text: 'Sesiuni practice pentru ingineri, tech leads, QA, PMs si delivery managers despre Agentic SDLC, harness engineering si bucle de validare.' },
-        { num: '04', title: 'Practice design', text: 'Scope, roluri, standarde, guvernanta, comunitate de experti, asset-uri reutilizabile si pattern-uri de delivery pentru target operating model.' },
-        { num: '05', title: 'Offer & pilot design', text: 'Primele oferte outcome-based, segmente prioritare de clienti, modele de pod-uri, metrici de succes si misiuni pilot.' },
-        { num: '06', title: 'Roadmap 30 / 60 / 90 zile', text: 'O cale clara de la experimentare la o capabilitate de livrare repetabila.' },
+        { num: '01', title: 'Maturity assessment', text: 'Survey și interviuri pentru a cartografia utilizarea curentă a AI, practicile de engineering, tooling-ul, blocajele și nivelul de readiness pe roluri și echipe.' },
+        { num: '02', title: 'Leadership alignment', text: 'Clarificarea ambiției strategice: productivitate, diferențiere în delivery, oferte noi, optimizarea bench-ului sau transformare AI orientată către clienți.' },
+        { num: '03', title: 'Training & awareness', text: 'Sesiuni practice pentru ingineri, tech leads, QA, PMs și delivery managers despre Agentic SDLC, harness engineering și bucle de validare.' },
+        { num: '04', title: 'Practice design', text: 'Scope, roluri, standarde, guvernanță, comunitate de experți, asset-uri reutilizabile și pattern-uri de delivery pentru target operating model.' },
+        { num: '05', title: 'Offer & pilot design', text: 'Primele oferte outcome-based, segmente prioritare de clienți, modele de pod-uri, metrici de succes și misiuni pilot.' },
+        { num: '06', title: 'Roadmap 30 / 60 / 90 zile', text: 'O cale clară de la experimentare la o capabilitate de livrare repetabilă.' },
       ],
     },
     contact: {
-      eyebrow: 'Start the conversation',
-      heading: 'Inca in sandbox mode?',
-      body: 'Daca AI intra deja in workflow-urile voastre de delivery, urmatorul pas nu este mai multa experimentare. Este control, supervizare si executie masurabil.',
-      cta: 'Programeaza un call introductiv',
+      eyebrow: 'Începe conversația',
+      heading: 'Ești pregătit să mergi mai departe de adoptarea instrumentelor AI?',
+      body: 'Începe cu un sprint focalizat pentru a evalua maturitatea actuală, a defini modelul operațional și a concepe primele piloturi de livrare măsurabile.',
+      cta: 'Programează o discuție',
       email: 'nicolas@agentic-sdlc.com',
     },
     footer: {
       brand: 'Agentic SDLC',
-      tagline: 'AI-enabled software delivery transformation',
+      tagline: 'Transformarea livrării software cu AI',
     },
     maturity: {
-      eyebrow: 'Scala de Maturitate AI Engineering',
-      heading: 'Unde se afla echipa ta?',
-      sub: '5 etape de la utilizarea ad-hoc a AI pana la orchestrarea completa a unei flote de agenti. Click pe orice nivel pentru a explora ce inseamna si cum se poate avansa.',
-      ctaLabel: 'Self-Assessment pentru Executivi',
+      eyebrow: 'Scala de maturitate AI Engineering',
+      heading: 'Unde se află echipa ta?',
+      sub: '5 etape de la utilizarea ad-hoc a AI până la orchestrarea completă a unei flote de agenți. Click pe orice nivel pentru a explora ce înseamnă și cum se poate avansa.',
+      ctaLabel: 'Auto-evaluare pentru executivi',
       selectedLevel: 'nivel selectat',
-      focusAreas: 'Focus areas',
-      whatChanges: 'Ce se schimba',
+      focusAreas: 'Arii de focus',
+      whatChanges: 'Ce se schimbă',
       toAdvanceTo: 'Pentru a avansa la',
-      atFrontier: 'La frontiera',
-      youAreHere: 'esti aici',
-      shortcutTrapTitle: 'Capcana scurtaturii',
-      shortcutTrapBody: 'Saltul de la L2 la L4 fara a stapani L3 duce la sisteme fragile si esecuri de supervizare. Intuitia privind modurile de esec de la L3 este infrastructura non-negociabila — nu un nice-to-have. Nu mergi prea repede.',
+      atFrontier: 'La frontieră',
+      youAreHere: 'ești aici',
+      shortcutTrapTitle: 'Capcana scurtăturii',
+      shortcutTrapBody: 'Saltul de la L2 la L4 fără a stăpâni L3 duce la sisteme fragile și eșecuri de supervizare. Intuiția privind modurile de eșec de la L3 este infrastructură non-negociabilă — nu un nice-to-have. Nu merge prea repede.',
       keyTakeaway: 'Ideea-cheie:',
-      keyTakeawayText: 'Maturitatea AI nu este definita de instrumentele cumparate, ci de autonomia pipeline-urilor CI/CD si de disciplina modelului de supervizare.',
+      keyTakeawayText: 'Maturitatea AI nu este definită de instrumentele cumpărate, ci de autonomia pipeline-urilor CI/CD și de disciplina modelului de supervizare.',
     },
   }),
   it: mergeCopy(copy.en, {
