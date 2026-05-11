@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useMemo, useState, type CSSProperties } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { ClientEnhancements, LanguageSelector } from '@/components/ClientEnhancements';
 import { HeroDashboard } from '@/components/HeroDashboard';
 import { MaturityIndex } from '@/components/MaturityIndex';
 import { MobileCtaBar } from '@/components/MobileCtaBar';
-import { copy, defaultLanguage, languages, type LanguageCode } from '@/lib/i18n';
+import { defaultLanguage, en, languages, loadTranslation, type LanguageCode, type SiteCopy } from '@/lib/i18n';
 
 const storageKey = 'agentic-sdlc-language';
 
@@ -15,139 +15,15 @@ function getInitialLanguage(): LanguageCode {
   return languages.some((l) => l.code === stored) ? (stored as LanguageCode) : defaultLanguage;
 }
 
-const defaultProblemContrast = [
-  { left: 'Individual usage', right: 'Team workflows' },
-  { left: 'Prompting', right: 'Delegation patterns' },
-  { left: 'Output generation', right: 'Review and validation' },
-  { left: 'Anecdotal productivity', right: 'Measured delivery impact' },
-  { left: 'Informal experimentation', right: 'Governed execution' },
-];
-
-const defaultSprintDeliverables = [
-  {
-    num: '01',
-    title: 'Current-state assessment',
-    text: 'Understand how AI coding tools are already used across teams, where value is emerging, and where risks appear.',
-  },
-  {
-    num: '02',
-    title: 'AI Engineering Maturity diagnosis',
-    text: 'Position teams on a practical maturity scale, from ad-hoc usage to orchestrated agentic workflows.',
-  },
-  {
-    num: '03',
-    title: 'Operating model blueprint',
-    text: 'Define how AI-assisted delivery should work across roles, workflows, supervision, review, quality, and governance.',
-  },
-  {
-    num: '04',
-    title: 'Training for key roles',
-    text: 'Align engineers, tech leads, product managers, QA, platform teams, and delivery managers on how work changes.',
-  },
-  {
-    num: '05',
-    title: 'Metrics and control tower design',
-    text: 'Define the signals needed to measure adoption, AI contribution, quality, rework, velocity, cost, and team confidence.',
-  },
-  {
-    num: '06',
-    title: '30/60/90-day roadmap',
-    text: 'Leave with a pragmatic implementation plan and the first pilots to launch.',
-  },
-];
-
-const defaultFrameworkLayers = [
-  {
-    title: 'Agentic SDLC',
-    subtitle: 'How software delivery changes.',
-    text: 'The operating model: roles, workflows, governance, metrics, supervision, and accountability.',
-    question: 'How should teams deliver software when AI agents participate in the work?',
-    owner: 'Engineering leadership',
-  },
-  {
-    title: 'Agentic Engineering',
-    subtitle: 'How engineers work inside that model.',
-    text: 'The practice layer: specification, delegation, review, testing, refactoring, and validation.',
-    question: 'How do engineers move from writing every line of code to supervising AI-assisted workflows?',
-    owner: 'Engineers and tech leads',
-  },
-  {
-    title: 'Harness Engineering',
-    subtitle: 'How agents are made reliable enough to participate.',
-    text: 'The reliability layer: context, tools, tests, policies, evaluations, CI/CD integration, and guardrails.',
-    question: 'What infrastructure and controls make AI-generated work safe enough for production delivery?',
-    owner: 'Platform and tooling teams',
-  },
-];
-
-const defaultTransformations = [
-  { from: 'Coding everything manually', to: 'Delegating well-scoped work' },
-  { from: 'Prompting casually', to: 'Writing executable specifications' },
-  { from: 'Reviewing only human code', to: 'Reviewing AI-generated changes' },
-  { from: 'Trusting output', to: 'Validating behavior through tests and evaluations' },
-  { from: 'Local productivity', to: 'Measurable delivery improvement' },
-];
-
-const defaultAdoptionPrograms = [
-  {
-    title: 'Pilot team enablement',
-    text: 'Select one or two engineering teams and redesign their delivery workflow around AI-assisted execution.',
-  },
-  {
-    title: 'Role-based training',
-    text: 'Train developers, tech leads, product managers, QA, platform teams, and delivery managers on how their work changes.',
-  },
-  {
-    title: 'Workflow redesign',
-    text: 'Define repeatable patterns for specification, coding, testing, review, documentation, migration, refactoring, and maintenance.',
-  },
-  {
-    title: 'Platform and tooling alignment',
-    text: 'Connect AI coding tools with repositories, documentation, CI/CD, policy checks, and internal engineering standards.',
-  },
-  {
-    title: 'Metrics instrumentation',
-    text: 'Track adoption, quality, velocity, AI contribution, rework, cost, and human confidence.',
-  },
-  {
-    title: 'Governance and supervision',
-    text: 'Create practical rules for what AI can do, what humans must review, and how accountability is preserved.',
-  },
-];
-
-const defaultAudienceCards = [
-  {
-    icon: 'apartment',
-    title: 'Engineering leaders',
-    text: 'You need to understand whether AI coding tools are creating real productivity, where risks are emerging, and how to scale adoption safely.',
-  },
-  {
-    icon: 'terminal',
-    title: 'Platform and tooling teams',
-    text: 'You need to integrate AI tools into the engineering environment: repositories, CI/CD, documentation, identity, policies, and internal standards.',
-  },
-  {
-    icon: 'schedule',
-    title: 'Product and delivery leaders',
-    text: 'You need to understand how AI changes planning, estimation, review, quality, and stakeholder predictability.',
-  },
-  {
-    icon: 'handshake',
-    title: 'Software delivery organizations',
-    text: 'You need to prepare for a shift from staffing-based delivery to measurable AI-enabled execution.',
-  },
-];
-
 export default function HomePage() {
   const [language, setLanguage] = useState<LanguageCode>(getInitialLanguage);
-  const t = useMemo(() => copy[language], [language]);
+  const [t, setT] = useState<SiteCopy>(en);
 
-  const problemContrast: { left: string; right: string }[] = t.problem?.contrast ?? defaultProblemContrast;
-  const sprintDeliverables: { num: string; title: string; text: string }[] = t.sprint?.deliverables ?? defaultSprintDeliverables;
-  const frameworkLayers: { title: string; subtitle: string; text: string; question: string; owner: string }[] = t.framework?.layers ?? defaultFrameworkLayers;
-  const transformations: { from: string; to: string }[] = t.engineering?.transformations ?? defaultTransformations;
-  const adoptionPrograms: { title: string; text: string }[] = t.programs?.items ?? defaultAdoptionPrograms;
-  const audienceCards = t.audience2?.cards ?? defaultAudienceCards;
+  useEffect(() => {
+    let active = true;
+    loadTranslation(language).then((copy) => { if (active) setT(copy); });
+    return () => { active = false; };
+  }, [language]);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -166,12 +42,12 @@ export default function HomePage() {
             <span className="logo-name">Agentic SDLC</span>
           </a>
           <nav className="header-nav" aria-label="Primary navigation">
-            <a href="#problem">{t.nav2?.problem ?? 'Problem'}</a>
-            <a href="#sprint">{t.nav2?.offer ?? 'Offer'}</a>
-            <a href="#maturity">{t.nav2?.maturity ?? 'Maturity'}</a>
-            <a href="#metrics">{t.nav2?.metrics ?? 'Metrics'}</a>
-            <a href="#programs">{t.nav2?.programs ?? 'Programs'}</a>
-            <a href="/beyond-tm">{t.nav2?.itServices ?? 'IT Services'}</a>
+            <a href="#problem">{t.nav2.problem}</a>
+            <a href="#sprint">{t.nav2.offer}</a>
+            <a href="#maturity">{t.nav2.maturity}</a>
+            <a href="#metrics">{t.nav2.metrics}</a>
+            <a href="#programs">{t.nav2.programs}</a>
+            <a href="/beyond-tm">{t.nav2.itServices}</a>
             <a
               href="https://nboitout.github.io/Blog-Agentic-SDLC/en/"
               className="btn btn-blog header-blog-btn"
@@ -214,9 +90,7 @@ export default function HomePage() {
                 {t.hero.secondaryCta}
               </a>
             </div>
-            <p className="hero-trust-strip">
-              {t.heroTrustStrip ?? 'For engineering leaders · platform teams · product organizations · software delivery teams'}
-            </p>
+            <p className="hero-trust-strip">{t.heroTrustStrip}</p>
           </div>
 
           <div className="hero-right">
@@ -230,43 +104,31 @@ export default function HomePage() {
         <div className="section-inner">
           <div className="why-now-grid why-now-grid-wide">
             <div data-reveal="">
-              <span className="eyebrow eyebrow-dark">{t.problem?.eyebrow ?? 'The core gap'}</span>
+              <span className="eyebrow eyebrow-dark">{t.problem.eyebrow}</span>
               <h2 id="problem-heading" className="why-now-heading why-now-heading-wide">
-                {t.problem?.heading ?? 'AI tool adoption is not a delivery model.'}
+                {t.problem.heading}
               </h2>
               <div className="why-now-prose">
-                {(t.problem?.paragraphs ?? [
-                  'Most organizations start with licenses: GitHub Copilot, Cursor, Claude Code, Gemini, Codex/ChatGPT Enterprise, or internal assistants.',
-                  'That creates local productivity gains. But it does not answer the questions that matter at scale:',
-                ] as string[]).map((p: string, i: number) => (
+                {t.problem.paragraphs.map((p: string, i: number) => (
                   <p key={i}>{p}</p>
                 ))}
                 <div className="problem-questions-block">
                   <ul className="problem-questions">
-                    {(t.problem?.questions ?? [
-                      'What should engineers delegate to AI?',
-                      'What must humans review?',
-                      'How do teams measure AI contribution?',
-                      'How is quality protected?',
-                      'How do managers know whether delivery is improving?',
-                      'How do organizations avoid uncontrolled experimentation?',
-                    ] as string[]).map((q: string) => (
+                    {t.problem.questions.map((q: string) => (
                       <li key={q}>{q}</li>
                     ))}
                   </ul>
                 </div>
-                <p className="problem-closing">
-                  {t.problem?.closing ?? 'Agentic SDLC closes the gap between individual AI usage and reliable software delivery.'}
-                </p>
+                <p className="problem-closing">{t.problem.closing}</p>
               </div>
             </div>
 
             <div className="problem-contrast-table" data-reveal="">
               <div className="contrast-header">
-                <span>{t.problem?.contrastHeader?.[0] ?? 'AI tool adoption'}</span>
-                <span>{t.problem?.contrastHeader?.[1] ?? 'Agentic SDLC'}</span>
+                <span>{t.problem.contrastHeader[0]}</span>
+                <span>{t.problem.contrastHeader[1]}</span>
               </div>
-              {problemContrast.map((row) => (
+              {t.problem.contrast.map((row) => (
                 <div key={row.left} className="contrast-row">
                   <span className="contrast-left">{row.left}</span>
                   <span className="contrast-arrow" aria-hidden="true">→</span>
@@ -282,21 +144,17 @@ export default function HomePage() {
       <section className="section s-white" id="sprint" aria-labelledby="sprint-offer-heading">
         <div className="section-inner sprint-inner">
           <div className="sprint-head" data-reveal="">
-            <span className="eyebrow">{t.sprint?.eyebrow ?? 'The offer'}</span>
+            <span className="eyebrow">{t.sprint.eyebrow}</span>
             <h2 id="sprint-offer-heading" className="sprint-heading">
-              {t.sprint?.heading ?? 'One sprint to design your AI-enabled delivery model.'}
+              {t.sprint.heading}
             </h2>
-            <p className="sprint-subtitle">
-              {t.sprint?.subtitle ?? 'A focused engagement to help your organization move from scattered AI coding experiments to a governed Agentic SDLC operating model.'}
-            </p>
+            <p className="sprint-subtitle">{t.sprint.subtitle}</p>
           </div>
 
-          <p className="sprint-body" data-reveal="">
-            {t.sprint?.body ?? 'In one sprint, we work with your leadership, engineering, product, and platform teams to assess where AI is already being used, define the right operating model, train key roles, and design the first measurable delivery pilots.'}
-          </p>
+          <p className="sprint-body" data-reveal="">{t.sprint.body}</p>
 
           <div className="card-grid card-grid-3 deliverables-grid" data-reveal-stagger="">
-            {sprintDeliverables.map((d) => (
+            {t.sprint.deliverables.map((d) => (
               <article key={d.num} className="card card-accent deliverable-card">
                 <span className="deliverable-num" aria-hidden="true">{d.num}</span>
                 <h3>{d.title}</h3>
@@ -311,21 +169,19 @@ export default function HomePage() {
               className="btn btn-primary"
               data-calendly-link="true"
             >
-              {t.sprint?.primaryCta ?? 'Book an intro call'}
+              {t.sprint.primaryCta}
             </a>
             <a href="#maturity" className="btn btn-ghost">
-              {t.sprint?.secondaryCta ?? 'See the maturity scale'}
+              {t.sprint.secondaryCta}
             </a>
           </div>
-          <p className="sprint-outcome-label" data-reveal="">
-            {t.sprint?.outcomeLabel ?? 'Sprint outcome: your Agentic SDLC blueprint'}
-          </p>
+          <p className="sprint-outcome-label" data-reveal="">{t.sprint.outcomeLabel}</p>
         </div>
       </section>
 
       {/* ── Section 4: AI Engineering Maturity Scale ───────────────── */}
       <div id="maturity">
-        <MaturityIndex language={language} />
+        <MaturityIndex language={language} maturity={t.maturity} />
       </div>
 
       {/* ── Section 5: Three-layer framework ───────────────────────── */}
@@ -333,25 +189,23 @@ export default function HomePage() {
         <div className="section-inner">
           <div className="section-intro" data-reveal="">
             <div className="intro-heading-col">
-              <span className="eyebrow">{t.framework?.eyebrow ?? 'The model'}</span>
+              <span className="eyebrow">{t.framework.eyebrow}</span>
               <h2 id="framework-heading" className="section-heading">
-                {t.framework?.heading ?? 'Three layers of AI-enabled software delivery'}
+                {t.framework.heading}
               </h2>
             </div>
             <div className="intro-text-col">
-              <p>
-                {t.framework?.intro ?? 'Agentic SDLC separates the operating model, the engineering practices, and the technical harness needed to make AI reliable.'}
-              </p>
+              <p>{t.framework.intro}</p>
             </div>
           </div>
 
           <div className="card-grid card-grid-3" data-reveal-stagger="">
-            {frameworkLayers.map((layer) => (
+            {t.framework.layers.map((layer) => (
               <article key={layer.title} className="card card-accent framework-card">
                 <h3>{layer.title}</h3>
                 <p className="framework-subtitle">{layer.subtitle}</p>
                 <p>{layer.text}</p>
-                <p className="framework-question">{t.framework?.answersLabel ?? 'It answers:'} {layer.question}</p>
+                <p className="framework-question">{t.framework.answersLabel} {layer.question}</p>
                 <span className="framework-owner">{layer.owner}</span>
               </article>
             ))}
@@ -364,28 +218,25 @@ export default function HomePage() {
         <div className="section-inner">
           <div className="section-intro" data-reveal="">
             <div className="intro-heading-col">
-              <span className="eyebrow">{t.engineering?.eyebrow ?? 'The role shift'}</span>
+              <span className="eyebrow">{t.engineering.eyebrow}</span>
               <h2 id="engineering-heading" className="section-heading">
-                {t.engineering?.heading ?? 'The role of the engineer changes.'}
+                {t.engineering.heading}
               </h2>
             </div>
             <div className="intro-text-col">
-              {(t.engineering?.paragraphs ?? [
-                'AI does not remove engineering discipline. It increases the need for it.',
-                'In an Agentic SDLC, engineers do not simply “write code faster.” They learn to structure work so that AI systems can contribute safely: clearer specifications, smaller tasks, stronger tests, explicit review loops, and better context. The engineer becomes less of a line-by-line producer and more of a designer, reviewer, validator, and supervisor of software work.',
-              ] as string[]).map((p: string, i: number) => (
+              {t.engineering.paragraphs.map((p: string, i: number) => (
                 <p key={i} style={i > 0 ? { marginTop: '12px' } : undefined}>{p}</p>
               ))}
             </div>
           </div>
 
           <div className="from-to-grid" data-reveal-stagger="">
-            {transformations.map((item) => (
+            {t.engineering.transformations.map((item) => (
               <div key={item.from} className="from-to-card">
-                <span className="from-label">{t.engineering?.fromLabel ?? 'From'}</span>
+                <span className="from-label">{t.engineering.fromLabel}</span>
                 <span className="from-text">{item.from}</span>
                 <span className="from-to-arrow" aria-hidden="true">→</span>
-                <span className="to-label">{t.engineering?.toLabel ?? 'To'}</span>
+                <span className="to-label">{t.engineering.toLabel}</span>
                 <span className="to-text">{item.to}</span>
               </div>
             ))}
@@ -470,23 +321,20 @@ export default function HomePage() {
         <div className="section-inner">
           <div className="section-intro" data-reveal="">
             <div className="intro-heading-col">
-              <span className="eyebrow">{t.programs?.eyebrow ?? 'Next steps'}</span>
+              <span className="eyebrow">{t.programs.eyebrow}</span>
               <h2 id="programs-heading" className="section-heading">
-                {t.programs?.heading ?? 'From first sprint to scaled adoption'}
+                {t.programs.heading}
               </h2>
             </div>
             <div className="intro-text-col">
-              {(t.programs?.paragraphs ?? [
-                'The first sprint creates the blueprint. The next step is implementation through pilots, training, and operating metrics.',
-                'After the initial sprint, organizations can move into targeted adoption programs: team pilots, role-based training, workflow redesign, metrics instrumentation, and governance support.',
-              ] as string[]).map((p: string, i: number) => (
+              {t.programs.paragraphs.map((p: string, i: number) => (
                 <p key={i} style={i > 0 ? { marginTop: '12px' } : undefined}>{p}</p>
               ))}
             </div>
           </div>
 
           <div className="card-grid card-grid-3" data-reveal-stagger="">
-            {adoptionPrograms.map((program) => (
+            {t.programs.items.map((program) => (
               <article key={program.title} className="card card-accent">
                 <h3>{program.title}</h3>
                 <p>{program.text}</p>
@@ -501,18 +349,18 @@ export default function HomePage() {
         <div className="section-inner">
           <div className="section-intro" data-reveal="">
             <div className="intro-heading-col">
-              <span className="eyebrow">{t.audience2?.eyebrow ?? 'Audience'}</span>
+              <span className="eyebrow">{t.audience2.eyebrow}</span>
               <h2 id="audience-heading" className="section-heading">
-                {t.audience2?.heading ?? 'Who Agentic SDLC is for'}
+                {t.audience2.heading}
               </h2>
             </div>
             <div className="intro-text-col">
-              <p>{t.audience2?.sub ?? 'Built for organizations that need AI speed with delivery accountability.'}</p>
+              <p>{t.audience2.sub}</p>
             </div>
           </div>
 
           <div className="card-grid audience-grid-2x2" data-reveal-stagger="">
-            {audienceCards.map((card) => (
+            {t.audience2.cards.map((card) => (
               <article key={card.title} className="card card-accent">
                 <div className="icon-tile" aria-hidden="true">
                   <span className="material-symbols-outlined">{card.icon}</span>
@@ -549,9 +397,7 @@ export default function HomePage() {
                 {t.hero.secondaryCta}
               </a>
             </div>
-            <p className="cta-reassurance">
-              {t.contactReassurance ?? 'No generic AI evangelism. No tool-only training. The focus is delivery: workflows, quality, supervision, metrics, and adoption.'}
-            </p>
+            <p className="cta-reassurance">{t.contactReassurance}</p>
           </div>
         </div>
       </section>
@@ -563,12 +409,12 @@ export default function HomePage() {
             <p className="footer-tagline">{t.footer.tagline}</p>
           </div>
           <nav className="footer-links" aria-label="Footer">
-            <a href="#problem">{t.nav2?.problem ?? 'Problem'}</a>
-            <a href="#sprint">{t.nav2?.offer ?? 'Offer'}</a>
-            <a href="#maturity">{t.nav2?.maturity ?? 'Maturity'}</a>
-            <a href="#metrics">{t.nav2?.metrics ?? 'Metrics'}</a>
-            <a href="#programs">{t.nav2?.programs ?? 'Programs'}</a>
-            <a href="/beyond-tm">{t.nav2?.itServices ?? 'IT Services'}</a>
+            <a href="#problem">{t.nav2.problem}</a>
+            <a href="#sprint">{t.nav2.offer}</a>
+            <a href="#maturity">{t.nav2.maturity}</a>
+            <a href="#metrics">{t.nav2.metrics}</a>
+            <a href="#programs">{t.nav2.programs}</a>
+            <a href="/beyond-tm">{t.nav2.itServices}</a>
             <a href="mailto:nicolas@agentic-sdlc.com">{t.contact.email}</a>
           </nav>
           <p className="footer-copy">&copy; {new Date().getFullYear()} Agentic SDLC</p>
