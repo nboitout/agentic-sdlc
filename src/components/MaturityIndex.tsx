@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { copy, type LanguageCode } from '@/lib/i18n';
+import type { LanguageCode, SiteCopy } from '@/lib/i18n';
 
 type Level = {
   id: string;
@@ -224,11 +224,17 @@ const LEVELS_RO: Level[] = [
 
 const CURRENT_IDX = 1;
 
-export function MaturityIndex({ language = 'en' }: { language?: LanguageCode }) {
+export function MaturityIndex({
+  language = 'en',
+  maturity,
+}: {
+  language?: LanguageCode;
+  maturity: SiteCopy['maturity'];
+}) {
   const [selected, setSelected] = useState(CURRENT_IDX);
   const levels = language === 'fr' ? LEVELS_FR : language === 'ro' ? LEVELS_RO : LEVELS;
   const lv = levels[selected];
-  const m = copy[language]?.maturity ?? copy.en.maturity!;
+  const m = maturity;
   const showTrap = selected >= 3;
 
   return (
