@@ -5,6 +5,7 @@ import { ClientEnhancements, LanguageSelector } from '@/components/ClientEnhance
 import { HeroDashboard } from '@/components/HeroDashboard';
 import { MaturityIndex } from '@/components/MaturityIndex';
 import { MobileCtaBar } from '@/components/MobileCtaBar';
+import { NewsBanner } from '@/components/NewsBanner';
 import { defaultLanguage, en, languages, loadTranslation, type LanguageCode, type SiteCopy } from '@/lib/i18n';
 
 const storageKey = 'agentic-sdlc-language';
@@ -33,6 +34,8 @@ export default function HomePage() {
 
   return (
     <main id="top">
+
+      <NewsBanner />
 
       {/* ── Section 1: Hero ────────────────────────────────────────── */}
       <section className="s-hero">
