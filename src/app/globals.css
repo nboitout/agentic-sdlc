@@ -2665,21 +2665,61 @@ a { color: inherit; text-decoration: none; }
   border-radius: 22px;
   background: linear-gradient(180deg, #fff 0%, var(--surface-container-low) 100%);
   box-shadow: 0 10px 24px rgba(20,27,43,.05);
+  display: flex;
+  flex-direction: column;
 }
-.btm-shift-card p {
+.btm-shift-value {
+  display: block;
   margin-top: 8px;
   font-family: var(--display);
   font-size: clamp(1.6rem, 2.8vw, 2.35rem);
   line-height: 1.02;
   letter-spacing: -.04em;
   color: var(--ink);
+  font-weight: 700;
 }
-.btm-shift-card span:last-child {
+.btm-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 16px;
+}
+.btm-bar {
+  height: 7px;
+  border-radius: 4px;
   display: block;
-  margin-top: 10px;
-  font-size: .98rem;
-  line-height: 1.5;
+}
+.btm-bar-mono {
+  width: 92%;
+  background: linear-gradient(90deg, var(--outline-variant), rgba(199,196,215,.30));
+}
+.btm-bar-s1 { width: 30%; background: rgba(255,255,255,.90); }
+.btm-bar-s2 { width: 46%; background: rgba(255,255,255,.65); }
+.btm-bar-s3 { width: 22%; background: rgba(255,255,255,.45); }
+.btm-shift-traits {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.btm-shift-traits li {
+  font-size: .88rem;
+  line-height: 1.55;
   color: var(--muted);
+  padding-left: 14px;
+  position: relative;
+}
+.btm-shift-traits li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .6em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--outline-variant);
 }
 .btm-shift-card-accent {
   border-color: rgba(70,72,212,.25);
@@ -2702,20 +2742,34 @@ a { color: inherit; text-decoration: none; }
 }
 .btm-example {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 18px;
+  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+  align-items: center;
+  gap: 16px;
   padding: 18px;
   border-radius: 24px;
   border: 1px solid rgba(70,72,212,.14);
   background: linear-gradient(90deg, rgba(241,243,255,.65), rgba(225,224,255,.65));
 }
-.btm-example > div {
+.btm-example-cell {
   padding: 18px 20px;
   border-radius: 18px;
   background: rgba(255,255,255,.78);
   border: 1px solid rgba(199,196,215,.62);
 }
-.btm-example strong {
+.btm-example-cell-now {
+  border-color: rgba(70,72,212,.25);
+  background: rgba(70,72,212,.05);
+}
+.btm-example-arrow {
+  align-self: center;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  color: var(--primary);
+  flex-shrink: 0;
+  line-height: 1;
+}
+.btm-example strong,
+.btm-example-cell strong {
   display: block;
   margin-top: 10px;
   font-family: var(--display);
@@ -3018,6 +3072,10 @@ a { color: inherit; text-decoration: none; }
   .btm-example {
     grid-template-columns: 1fr;
   }
+  .btm-example-arrow {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
   .btm-grid {
     grid-template-columns: repeat(2, minmax(0,1fr));
   }
@@ -3040,7 +3098,7 @@ a { color: inherit; text-decoration: none; }
   .btm-clients,
   .btm-card,
   .btm-shift-card,
-  .btm-example > div {
+  .btm-example-cell {
     padding: 20px;
   }
   .btm-grid {
@@ -3086,21 +3144,11 @@ a { color: inherit; text-decoration: none; }
 .btm-shift-card-before {
   background: var(--surface-container-low);
   border-color: var(--outline-variant);
-  opacity: 0.72;
+  opacity: 0.80;
 }
 .btm-shift-card-before .btm-shift-label { color: var(--outline); }
-.btm-shift-card-before p              { color: var(--muted) !important; }
-.btm-shift-card-before span:last-child { color: var(--outline) !important; }
-
-/* "Before" card gets a single muted bar showing long single-thread work */
-.btm-shift-card-before::after {
-  content: '';
-  display: block;
-  margin-top: 18px;
-  height: 6px;
-  border-radius: 3px;
-  background: linear-gradient(90deg, var(--outline-variant) 0 100%, transparent 100%);
-}
+.btm-shift-card-before .btm-shift-value { color: var(--ink); opacity: .65; }
+.btm-shift-card-before .btm-shift-traits li { color: var(--muted); }
 
 /* ── BTM: "Now" shift card — full indigo with white text ─────────── */
 .btm-shift-card-accent {
@@ -3109,40 +3157,10 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 20px 48px rgba(70,72,212,.30);
 }
 .btm-shift-card-accent .btm-shift-label { color: rgba(255,255,255,.68); }
-.btm-shift-card-accent p               { color: #fff !important; }
-.btm-shift-card-accent span:last-child  { color: rgba(255,255,255,.76) !important; }
+.btm-shift-card-accent .btm-shift-value { color: #fff; }
+.btm-shift-card-accent .btm-shift-traits li { color: rgba(255,255,255,.76); }
+.btm-shift-card-accent .btm-shift-traits li::before { background: rgba(255,255,255,.45); }
 
-/* "Now" card gets 3 parallel shorter bars to show concurrent streams */
-.btm-shift-card-accent::after {
-  content: '';
-  display: block;
-  margin-top: 18px;
-  height: 20px;
-  background:
-    linear-gradient(90deg, rgba(255,255,255,.88) 28%, transparent 28%) 0    0  / 100% 6px no-repeat,
-    linear-gradient(90deg, rgba(255,255,255,.62) 34%, transparent 34%) 0    7px / 100% 6px no-repeat,
-    linear-gradient(90deg, rgba(255,255,255,.42) 22%, transparent 22%) 0   14px / 100% 6px no-repeat;
-}
-
-/* ── BTM: Example section capacity-track bars ────────────────────── */
-.btm-capacity-track {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: 16px;
-}
-.btm-capacity-bar {
-  height: 7px;
-  border-radius: 4px;
-}
-.btm-capacity-bar-before {
-  width: 100%;
-  background: linear-gradient(90deg, var(--outline-variant), rgba(199,196,215,.35));
-}
-.btm-capacity-stream       { background: var(--primary); }
-.btm-capacity-stream:nth-child(1) { width: 30%; opacity: 0.95; }
-.btm-capacity-stream:nth-child(2) { width: 36%; opacity: 0.70; }
-.btm-capacity-stream:nth-child(3) { width: 24%; opacity: 0.50; }
 
 /* ── BTM: Property cards — left accent border + step number ─────── */
 .btm-card {

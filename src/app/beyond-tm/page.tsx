@@ -93,27 +93,43 @@ export default function BeyondTMPage() {
 
           {/* Before / Now comparison */}
           <div className="btm-shift" data-reveal="">
-            <div className="btm-shift-card">
-              <span>{bp.before}</span>
-              <strong>{bp.beforeValue}</strong>
-              <p>{bp.beforeCaption}</p>
+            <div className="btm-shift-card btm-shift-card-before">
+              <span className="btm-shift-label">{bp.before}</span>
+              <strong className="btm-shift-value">{bp.beforeValue}</strong>
+              <div className="btm-bars" aria-hidden="true">
+                <span className="btm-bar btm-bar-mono" />
+              </div>
+              <ul className="btm-shift-traits">
+                {bp.beforeCaption.split(' · ').map((trait: string, i: number) => (
+                  <li key={i}>{trait}</li>
+                ))}
+              </ul>
             </div>
             <span className="btm-shift-arrow" aria-hidden="true">→</span>
             <div className="btm-shift-card btm-shift-card-accent">
-              <span>{bp.now}</span>
-              <strong>{bp.nowValue}</strong>
-              <p>{bp.nowCaption}</p>
+              <span className="btm-shift-label">{bp.now}</span>
+              <strong className="btm-shift-value">{bp.nowValue}</strong>
+              <div className="btm-bars" aria-hidden="true">
+                <span className="btm-bar btm-bar-s1" />
+                <span className="btm-bar btm-bar-s2" />
+                <span className="btm-bar btm-bar-s3" />
+              </div>
+              <ul className="btm-shift-traits">
+                {bp.nowCaption.split(' · ').map((trait: string, i: number) => (
+                  <li key={i}>{trait}</li>
+                ))}
+              </ul>
             </div>
           </div>
 
-          {/* Example */}
+          {/* Concrete example comparison */}
           <div className="btm-example" data-reveal="">
-            <div>
+            <div className="btm-example-cell">
               <span className="btm-example-label">{bp.exampleLeftLabel}</span>
               <strong>{bp.exampleLeftValue}</strong>
             </div>
-            <span className="btm-shift-arrow" aria-hidden="true">→</span>
-            <div>
+            <div className="btm-example-arrow" aria-hidden="true">→</div>
+            <div className="btm-example-cell btm-example-cell-now">
               <span className="btm-example-label">{bp.exampleRightLabel}</span>
               <strong>{bp.exampleRightValue}</strong>
             </div>
