@@ -321,26 +321,28 @@ a { color: inherit; text-decoration: none; }
 .header-nav a:hover { color: var(--primary); border-bottom-color: var(--primary); }
 
 .btn-blog {
-  height: 42px;
-  padding: 0 20px;
+  height: 38px;
+  padding: 0 18px;
   font-size: .86rem;
-  font-weight: 700;
-  color: #fff;
-  border-color: transparent;
-  background: var(--primary);
-  border-radius: 10px;
+  font-weight: 600;
+  color: var(--primary);
+  background: transparent;
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
 }
 .btn-blog:hover {
-  background: var(--primary-light);
-  border-color: transparent;
-  box-shadow: 0 10px 24px rgba(70,72,212,.28);
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 4px 14px rgba(70,72,212,.22);
 }
 .header-nav a.header-blog-btn {
   border-bottom: none;
   text-transform: none;
   letter-spacing: 0;
   padding-bottom: 0;
-  color: #fff;
+  color: var(--primary);
 }
 .header-nav a.header-blog-btn:hover {
   color: #fff;
