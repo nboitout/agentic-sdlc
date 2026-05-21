@@ -52,7 +52,7 @@ export default function HomePage() {
             <a href="#programs">{t.nav2.programs}</a>
             <a href="/beyond-tm">{t.nav2.itServices}</a>
             <a
-              href="https://nboitout.github.io/Blog-Agentic-SDLC/en/"
+              href="https://nboitout.github.io/Blog-Agentic-SDLC/en/lectures/lecture-01-why-traditional-sdlc-breaks/"
               className="btn btn-blog header-blog-btn"
               target="_blank"
               rel="noreferrer"
