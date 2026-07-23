@@ -32,16 +32,20 @@ export interface EventRow {
   referer: string;
 }
 
-export interface BrochureLeadRow {
+export interface LeadRow {
   timestamp: string;
+  readerId: string;
+  sessionId: string;
+  status: string;
   firstName: string;
   familyName: string;
-  name: string;
   email: string;
   consent: string;
   source: string;
+  country: string;
   pageUrl: string;
   userAgent: string;
+  referer: string;
 }
 
 // ---- In-memory cache ----
@@ -207,21 +211,22 @@ function rowsToEvents(rows: string[][]): EventRow[] {
   }));
 }
 
-// Existing brochure-signup Sheet1 tab, written by the pre-existing (unrelated)
-// Apps Script behind BROCHURE_SHEET_URL — see docs/google-sheets-brochure-webhook.md.
-// Columns: timestamp | first_name | family_name | name | email | consent | source | page_url | user_agent
-function rowsToBrochureLeads(rows: string[][]): BrochureLeadRow[] {
+function rowsToLeads(rows: string[][]): LeadRow[] {
   if (rows.length < 2) return [];
   return rows.slice(1).map((r) => ({
     timestamp: r[0] ?? '',
-    firstName: r[1] ?? '',
-    familyName: r[2] ?? '',
-    name: r[3] ?? '',
-    email: r[4] ?? '',
-    consent: r[5] ?? '',
-    source: r[6] ?? '',
-    pageUrl: r[7] ?? '',
-    userAgent: r[8] ?? '',
+    readerId: r[1] ?? '',
+    sessionId: r[2] ?? '',
+    status: r[3] ?? '',
+    firstName: r[4] ?? '',
+    familyName: r[5] ?? '',
+    email: r[6] ?? '',
+    consent: r[7] ?? '',
+    source: r[8] ?? '',
+    country: r[9] ?? '',
+    pageUrl: r[10] ?? '',
+    userAgent: r[11] ?? '',
+    referer: r[12] ?? '',
   }));
 }
 
@@ -245,24 +250,28 @@ async function fetchSheetSafe(spreadsheetId: string, sheetName: string): Promise
 export async function fetchAllSheets(): Promise<{
   visits: VisitRow[];
   events: EventRow[];
+  leads: LeadRow[];
   errors: Record<string, string>;
 }> {
   const spreadsheetId = extractSpreadsheetId(process.env.GOOGLE_SHEETS_ID ?? '');
   if (!spreadsheetId) throw new Error('Missing GOOGLE_SHEETS_ID environment variable.');
 
-  const [visitsResult, eventsResult] = await Promise.all([
+  const [visitsResult, eventsResult, leadsResult] = await Promise.all([
     fetchSheetSafe(spreadsheetId, 'Visits'),
     fetchSheetSafe(spreadsheetId, 'Events'),
+    fetchSheetSafe(spreadsheetId, 'Leads'),
   ]);
 
   const errors: Record<string, string> = {};
   if (visitsResult.error) errors['Visits'] = visitsResult.error;
   if (eventsResult.error) errors['Events'] = eventsResult.error;
+  if (leadsResult.error) errors['Leads'] = leadsResult.error;
 
   const excludedReaderIds = excludedSet(process.env.EXCLUDED_READER_IDS);
 
   const allVisits = rowsToVisits(visitsResult.rows).filter((v) => !v.page.includes('/admin'));
   const allEvents = rowsToEvents(eventsResult.rows);
+  const allLeads = rowsToLeads(leadsResult.rows);
 
   const BOT_UA = /bot|crawl|spider|slurp|mediapartners|bingpreview|headless|phantomjs|python-requests|curl|wget|httpclient|go-http-client|java\/|okhttp|axios|node-fetch|libwww|scrapy/i;
 
@@ -270,14 +279,7 @@ export async function fetchAllSheets(): Promise<{
     (v) => !excludedReaderIds.has(v.readerId.toLowerCase()) && !BOT_UA.test(v.userAgent ?? '')
   );
   const events = allEvents.filter((e) => !excludedReaderIds.has(e.readerId.toLowerCase()));
+  const leads = allLeads.filter((l) => !excludedReaderIds.has(l.readerId.toLowerCase()));
 
-  return { visits, events, errors };
-}
-
-export async function fetchBrochureLeads(): Promise<{ leads: BrochureLeadRow[]; error: string | null }> {
-  const raw = process.env.GOOGLE_BROCHURE_SHEET_ID;
-  if (!raw) return { leads: [], error: null };
-  const spreadsheetId = extractSpreadsheetId(raw);
-  const { rows, error } = await fetchSheetSafe(spreadsheetId, 'Sheet1');
-  return { leads: rowsToBrochureLeads(rows), error };
+  return { visits, events, leads, errors };
 }

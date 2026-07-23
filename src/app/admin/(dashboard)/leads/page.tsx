@@ -1,4 +1,4 @@
-import { fetchBrochureLeads } from '@/lib/sheets';
+import { fetchAllSheets } from '@/lib/sheets';
 import Scorecard from '@/components/admin/Scorecard';
 import { fmtParis, parisDate } from '@/lib/adminFormat';
 
@@ -21,9 +21,9 @@ function isProfessionalEmail(email: string): boolean {
 }
 
 export default async function AdminLeadsPage() {
-  let leads, error;
+  let leads, errors;
   try {
-    ({ leads, error } = await fetchBrochureLeads());
+    ({ leads, errors } = await fetchAllSheets());
   } catch (err) {
     return (
       <main className="adm-page">
@@ -35,13 +35,17 @@ export default async function AdminLeadsPage() {
     );
   }
 
-  const notConfigured = !process.env.GOOGLE_BROCHURE_SHEET_ID;
+  const errorEntries = Object.entries(errors ?? {}).filter(([sheet]) => sheet === 'Leads');
   const todayParis = parisDate(new Date());
 
-  const totalLeads = leads.length;
-  const uniquePeople = new Set(leads.map((l) => l.email.toLowerCase()).filter(Boolean)).size;
-  const todayLeads = leads.filter((l) => parisDate(l.timestamp) === todayParis).length;
-  const professionalLeads = leads.filter((l) => isProfessionalEmail(l.email)).length;
+  // "complete" leads finished the form; "partial" only entered an email
+  // before closing the modal. Both are useful, but scorecards focus on
+  // completed submissions — the real, actionable leads.
+  const completed = leads.filter((l) => l.status === 'complete');
+  const totalLeads = completed.length;
+  const uniquePeople = new Set(completed.map((l) => l.email.toLowerCase()).filter(Boolean)).size;
+  const todayLeads = completed.filter((l) => parisDate(l.timestamp) === todayParis).length;
+  const professionalLeads = completed.filter((l) => isProfessionalEmail(l.email)).length;
 
   const sorted = [...leads].sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1));
 
@@ -55,28 +59,26 @@ export default async function AdminLeadsPage() {
         </div>
       </div>
 
-      {notConfigured && (
+      {errorEntries.length > 0 && (
         <div className="adm-error-box">
-          <p>GOOGLE_BROCHURE_SHEET_ID not set</p>
-          <pre>Point it at the spreadsheet backing BROCHURE_SHEET_URL (see docs/google-sheets-brochure-webhook.md) and share it with the service account as Viewer.</pre>
-        </div>
-      )}
-
-      {error && (
-        <div className="adm-error-box">
-          <p>Sheet loading error</p>
-          <pre>{error}</pre>
+          <p>Sheet loading errors</p>
+          {errorEntries.map(([sheet, msg]) => (
+            <pre key={sheet}>{sheet}: {msg}</pre>
+          ))}
         </div>
       )}
 
       <div className="adm-scorecards">
-        <Scorecard label="Total Signups" value={totalLeads.toLocaleString()} />
+        <Scorecard label="Completed Signups" value={totalLeads.toLocaleString()} />
         <Scorecard label="Unique People" value={uniquePeople.toLocaleString()} />
         <Scorecard label="Today" value={todayLeads.toLocaleString()} />
         <Scorecard label="Professional Emails" value={professionalLeads.toLocaleString()} subtitle="non-personal domain" />
       </div>
 
       <p className="adm-section-title">All signups</p>
+      <p className="adm-page-sub" style={{ marginTop: -8, marginBottom: 12 }}>
+        Includes partial rows — a visitor typed their email but closed the form before submitting.
+      </p>
       <div className="adm-leads-table-wrap">
         <table className="adm-table">
           <thead>
@@ -84,6 +86,7 @@ export default async function AdminLeadsPage() {
               <th>Time</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Status</th>
               <th>Source</th>
               <th>Consent</th>
             </tr>
@@ -92,15 +95,16 @@ export default async function AdminLeadsPage() {
             {sorted.map((l, i) => (
               <tr key={`${l.email}-${l.timestamp}-${i}`}>
                 <td>{fmtParis(l.timestamp)}</td>
-                <td>{l.name || `${l.firstName} ${l.familyName}`.trim() || '—'}</td>
+                <td>{`${l.firstName} ${l.familyName}`.trim() || '—'}</td>
                 <td>{l.email || '—'}</td>
+                <td className="muted">{l.status || '—'}</td>
                 <td className="muted">{l.source || '—'}</td>
-                <td className="muted">{l.consent === 'true' ? 'Yes' : 'No'}</td>
+                <td className="muted">{l.consent === 'TRUE' ? 'Yes' : 'No'}</td>
               </tr>
             ))}
             {sorted.length === 0 && (
               <tr>
-                <td colSpan={5} className="muted">No signups yet</td>
+                <td colSpan={6} className="muted">No signups yet</td>
               </tr>
             )}
           </tbody>

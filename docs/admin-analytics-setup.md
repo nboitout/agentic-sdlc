@@ -1,13 +1,22 @@
-# /admin dashboard + visitor analytics — setup
+# /admin dashboard + visitor analytics + leads — setup
 
-A password-gated `/admin` dashboard with a self-hosted visitor-analytics
-pipeline, adapted from the same pattern used on the ROP site. Two independent
+A password-gated `/admin` dashboard backed by a single self-hosted Google
+Sheet, adapted from the same pattern used on the ROP site. Two independent
 connections to Google:
 
-- **Write path:** browser → `/api/visit` / `/api/track` → Google Apps Script
-  web app → Google Sheet (`Visits` / `Events` tabs).
+- **Write path:** browser → `/api/visit` / `/api/track` / `/api/lead` →
+  Google Apps Script web app → Google Sheet (`Visits` / `Events` / `Leads`
+  tabs). The brochure signup modal (`BrochureSignup.tsx`) posts through
+  `/api/lead` into the `Leads` tab — this is the same pipeline, not a
+  separate one.
 - **Read path:** `/admin` server pages → Sheets API v4, authenticated with a
   service-account JWT → same Google Sheet.
+
+Note: this replaces an earlier, incomplete brochure-signup pipeline
+(`BROCHURE_SHEET_URL` / `NEXT_PUBLIC_BROCHURE_WEBHOOK_URL`) that was wired up
+in the code in April but never actually finished — no Sheet or Apps Script
+was ever created for it, so every signup silently went nowhere. Both env
+vars are now unused and can be removed from Vercel.
 
 This requires a Node server runtime (API routes, cookies, `after()`), so the
 site must be deployed somewhere that runs Next.js server-side — **Vercel**,
@@ -17,8 +26,9 @@ deploy it going forward.
 
 ## 1. One-time Google setup
 
-1. **Create a Google Sheet** for analytics — note its id from the URL
-   (`/d/<ID>/edit`). Tabs (`Visits`, `Events`) are auto-created on first write.
+1. **Create a Google Sheet** — note its id from the URL (`/d/<ID>/edit`).
+   Tabs (`Visits`, `Events`, `Leads`) are auto-created on first write, so an
+   empty new sheet is fine.
 2. **Apps Script** — in that sheet, Extensions → Apps Script, paste in
    `scripts/apps-script/Code.gs`. Deploy → New deployment → Web app:
    - Execute as: **Me**
@@ -31,15 +41,8 @@ deploy it going forward.
    - `client_email` → `GOOGLE_SERVICE_ACCOUNT_EMAIL`
    - base64 the `private_key` → `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY_BASE64`
      (`node -e "console.log(Buffer.from(require('./key.json').private_key).toString('base64'))"`)
-4. **Share the analytics Sheet** with the service account's `client_email` as
+4. **Share the Sheet** with the service account's `client_email` as
    **Viewer** — otherwise the read path 403s.
-5. **Optional — Leads page:** `/admin/leads` reads the *existing* brochure
-   signup spreadsheet (the one behind `BROCHURE_SHEET_URL`) read-only. Share
-   that spreadsheet with the same service account as Viewer, and set
-   `GOOGLE_BROCHURE_SHEET_ID` to its id/URL. Its tab must be named `Sheet1`
-   with columns `timestamp | first_name | family_name | name | email | consent
-   | source | page_url | user_agent` (already the case per
-   `docs/google-sheets-brochure-webhook.md`).
 
 ## 2. Environment variables
 
@@ -56,6 +59,8 @@ build that's already running.
   {"ok":true,"tab":"Visits"}`.
 - Visit `/admin` signed out → redirected to `/admin/login`. Wrong password →
   error shown. Correct password → dashboard renders.
+- Submit the brochure modal in incognito → a `complete` row appears in the
+  `Leads` tab; `/admin/leads` shows it.
 - Health-check the Apps Script `/exec` URL directly in a browser →
   `{"ok":true,...}`.
 

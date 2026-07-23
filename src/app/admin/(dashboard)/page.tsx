@@ -34,9 +34,9 @@ export default async function AdminOverviewPage({
   searchParams: Promise<{ day?: string }>;
 }) {
   const { day } = await searchParams;
-  let visits, errors;
+  let visits, leads, errors;
   try {
-    ({ visits, errors } = await fetchAllSheets());
+    ({ visits, leads, errors } = await fetchAllSheets());
   } catch (err) {
     return (
       <main className="adm-page">
@@ -59,6 +59,11 @@ export default async function AdminOverviewPage({
   // --- Unique visitors (distinct readerId in page_visit events) ---
   const uniqueVisitors = new Set(pageVisits.map((v) => v.readerId).filter(Boolean)).size;
 
+  // --- Conversion rate: completed brochure signups / unique visitors ---
+  const completedLeads = leads.filter((l) => l.status === 'complete');
+  const totalLeads = new Set(completedLeads.map((l) => l.email.toLowerCase()).filter(Boolean)).size;
+  const convRate = uniqueVisitors > 0 ? (totalLeads / uniqueVisitors) * 100 : 0;
+
   // --- Return visitor rate: distinct visitors seen on more than one distinct date ---
   const visitorDates = new Map<string, Set<string>>();
   pageVisits.forEach((v) => {
@@ -78,9 +83,6 @@ export default async function AdminOverviewPage({
       return p === '/' || p === '';
     })
   );
-
-  // --- Avg session dwell (all pages) ---
-  const avgAll = avgDuration(visits.filter((v) => v.event === 'page_leave'));
 
   // --- Stacked bar: unique visitors per day, stacked by country (top 10 + Other) ---
   const countryVisitors = new Map<string, Set<string>>();
@@ -212,10 +214,10 @@ export default async function AdminOverviewPage({
 
       <div className="adm-scorecards">
         <Scorecard label="Unique Visitors" value={uniqueVisitors.toLocaleString()} />
+        <Scorecard label="Total Leads" value={totalLeads.toLocaleString()} subtitle="completed brochure signups" />
+        <Scorecard label="Conversion Rate" value={formatPct(convRate)} subtitle="visitors → leads" />
         <Scorecard label="Return Visitor Rate" value={formatPct(returnRate)} subtitle="came back on a later day" />
         <Scorecard label="Avg Time — Homepage" value={fmtDuration(avgHome)} subtitle="page_leave events" />
-        <Scorecard label="Avg Time — Any Page" value={fmtDuration(avgAll)} subtitle="page_leave events" />
-        <Scorecard label="Countries Reached" value={countryRows.length.toLocaleString()} />
       </div>
 
       <p className="adm-section-title">Visitors by day and country</p>

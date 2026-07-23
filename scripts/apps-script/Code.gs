@@ -17,6 +17,8 @@ var HEADERS = {
            'utm_term', 'userAgent', 'referer'],
   Events: ['timestamp', 'readerId', 'sessionId', 'context', 'event', 'data', 'country',
            'userAgent', 'referer'],
+  Leads: ['timestamp', 'readerId', 'sessionId', 'status', 'firstName', 'familyName', 'email',
+          'consent', 'source', 'country', 'pageUrl', 'userAgent', 'referer'],
 };
 
 function getSheet(tabName) {
@@ -38,8 +40,8 @@ function doPost(e) {
   lock.waitLock(30000);
   try {
     var p = JSON.parse(e.postData.contents);
-    var type = p.type; // 'visit' | 'event'
-    var tab = { visit: 'Visits', event: 'Events' }[type];
+    var type = p.type; // 'visit' | 'event' | 'lead'
+    var tab = { visit: 'Visits', event: 'Events', lead: 'Leads' }[type];
     if (!tab) return json({ ok: false, error: 'Unknown type: ' + type });
 
     var row = HEADERS[tab].map(function (key) {

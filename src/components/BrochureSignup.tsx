@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { getSessionId } from '@/lib/session';
 
 /* ── Email helpers ─────────────────────────────────────────────────── */
 
@@ -32,28 +33,28 @@ function isProfessionalEmail(email: string) {
   return true;
 }
 
-/* ── Sheet types & helpers ─────────────────────────────────────────── */
+/* ── Lead capture ─────────────────────────────────────────────────── */
 
-interface SheetPayload {
-  first_name:   string;
-  family_name:  string;
-  email:        string;
-  status:       'partial' | 'complete';
-  consent:      boolean;
-  source:       string;
-  submitted_at: string;
-  page_url:     string;
+interface LeadPayload {
+  firstName:  string;
+  familyName: string;
+  email:      string;
+  status:     'partial' | 'complete';
+  consent:    boolean;
+  source:     string;
+  sessionId:  string;
+  pageUrl:    string;
 }
 
 /**
  * Fire-and-forget POST to the Next.js API proxy route.
  * Never throws — sheet writes are best-effort and must not block the UX.
- * The API route (app/api/brochure-sheet/route.ts) forwards the payload
- * server-side to the Google Apps Script web app, avoiding CORS entirely.
+ * The API route (app/api/lead/route.ts) forwards the payload server-side to
+ * the same Google Apps Script / Sheet the admin dashboard reads from.
  */
-async function sendToSheet(payload: SheetPayload): Promise<void> {
+async function sendLead(payload: LeadPayload): Promise<void> {
   try {
-    await fetch('/api/brochure-sheet', {
+    await fetch('/api/lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
@@ -69,16 +70,16 @@ function buildPayload(
   email: string,
   consent: boolean,
   status: 'partial' | 'complete',
-): SheetPayload {
+): LeadPayload {
   return {
-    first_name:   firstName.trim(),
-    family_name:  familyName.trim(),
-    email:        email.trim().toLowerCase(),
+    firstName:  firstName.trim(),
+    familyName: familyName.trim(),
+    email:      email.trim().toLowerCase(),
     status,
     consent,
-    source:       'agenticsdlc-homepage-brochure-modal',
-    submitted_at: new Date().toISOString(),
-    page_url:     typeof window !== 'undefined' ? window.location.href : '',
+    source:     'agenticsdlc-homepage-brochure-modal',
+    sessionId:  getSessionId(),
+    pageUrl:    typeof window !== 'undefined' ? window.location.href : '',
   };
 }
 
@@ -139,7 +140,7 @@ export function BrochureSignup() {
 
     if (hasEmail && !sheetSentRef.current) {
       sheetSentRef.current = true;
-      void sendToSheet(buildPayload(firstName, familyName, email, consent, 'partial'));
+      void sendLead(buildPayload(firstName, familyName, email, consent, 'partial'));
     }
 
     setIsOpen(false);
@@ -170,40 +171,13 @@ export function BrochureSignup() {
     ) return;
 
     setIsSubmitting(true);
-    const submittedAt = new Date().toISOString();
 
     /* 1 ─ Sheet write: complete status.
           Mark guard so handleClose does NOT send a duplicate partial row. */
     sheetSentRef.current = true;
-    void sendToSheet(buildPayload(firstName, familyName, email, consent, 'complete'));
+    void sendLead(buildPayload(firstName, familyName, email, consent, 'complete'));
 
-    /* 2 ─ Existing webhook (unchanged behaviour) */
-    const webhookUrl = process.env.NEXT_PUBLIC_BROCHURE_WEBHOOK_URL;
-    if (webhookUrl) {
-      try {
-        await fetch(webhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            first_name:   firstName.trim(),
-            family_name:  familyName.trim(),
-            name:         `${firstName.trim()} ${familyName.trim()}`.trim(),
-            email:        email.trim().toLowerCase(),
-            consent:      true,
-            form_name:    'brochure_download',
-            source:       'agenticsdlc-homepage-brochure-modal',
-            submitted_at: submittedAt,
-            requested_at: submittedAt,
-            page_url:     window.location.href,
-            user_agent:   navigator.userAgent,
-          }),
-        });
-      } catch {
-        // Keep mailto fallback even if webhook is unavailable.
-      }
-    }
-
-    /* 3 ─ Mailto fallback (unchanged) */
+    /* 2 ─ Mailto fallback (unchanged) */
     const subject = encodeURIComponent('Agentic SDLC brochure request');
     const body    = encodeURIComponent(
       `Please send the Agentic SDLC brochure to:\n${email.trim()}\n\n` +
