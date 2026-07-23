@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Instrument_Sans, Manrope } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
+import VisitTracker from '@/components/VisitTracker';
 import './globals.css';
 
 const manrope = Manrope({
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${manrope.variable} ${instrumentSans.variable}`}>
         {children}
         <Analytics />
+        <VisitTracker />
       </body>
     </html>
   );
