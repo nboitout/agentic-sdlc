@@ -344,7 +344,7 @@ export const copy = {
     },
     engagement: {
       eyebrow: 'Engagement',
-      heading: 'One sprint to define the operating model.',
+      heading: '2 sprints to design your AI-enabled delivery model.',
       body: 'In a focused working sprint, we align leadership and engineering around a practical next step with clear priorities, governance, and measurement.',
       quote: 'One focused engagement to define the ground truth, the priorities, and the operating rules that make AI supervision real.',
     },

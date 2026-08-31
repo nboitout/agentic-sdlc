@@ -13,7 +13,13 @@
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
       "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); text=data[0]['text']; lines=text.split\\('\\\\n'\\); old_key=sum\\(1 for l in lines if 'agent-04 · merged PR #182' in l or 'policy check · passed' in l\\); hydration=sum\\(1 for l in lines if 'Hydration' in l or 'hydration' in l\\); other=[l for l in lines if l.strip\\(\\) and 'agent-04' not in l and 'policy check' not in l and 'unique' not in l.lower\\(\\)]; print\\(f'total_lines={len\\(lines\\)}'\\); print\\(f'legacy_key_warnings={old_key}'\\); print\\(f'hydration_errors={hydration}'\\); print\\(f'other_lines_count={len\\(other\\)}'\\); print\\('---other---'\\); [print\\(l[:200]\\) for l in other[:30]]\")",
-      "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); text=data[0]['text']; lines=text.split\\('\\\\n'\\); print\\('TOTAL_LINES_IN_TAIL=', len\\(lines\\)\\); print\\('legacy_key_msg=', sum\\(1 for l in lines if 'agent-04 · merged PR #182' in l or 'policy check · passed' in l\\)\\); print\\('two_children_same_key=', sum\\(1 for l in lines if 'Encountered two children with the same key' in l\\)\\); print\\('unique_key_prop=', sum\\(1 for l in lines if 'unique \\\\\"key\\\\\" prop' in l or \\\\\"unique 'key' prop\\\\\" in l\\)\\); print\\('hydration=', sum\\(1 for l in lines if 'ydration' in l\\)\\); print\\('check_render=', sum\\(1 for l in lines if 'Check the render method' in l\\)\\); print\\('---first 10 lines---'\\); [print\\(repr\\(l[:180]\\)\\) for l in lines[:10]]; print\\('---last 10 lines---'\\); [print\\(repr\\(l[:180]\\)\\) for l in lines[-10:]]\")"
+      "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); text=data[0]['text']; lines=text.split\\('\\\\n'\\); print\\('TOTAL_LINES_IN_TAIL=', len\\(lines\\)\\); print\\('legacy_key_msg=', sum\\(1 for l in lines if 'agent-04 · merged PR #182' in l or 'policy check · passed' in l\\)\\); print\\('two_children_same_key=', sum\\(1 for l in lines if 'Encountered two children with the same key' in l\\)\\); print\\('unique_key_prop=', sum\\(1 for l in lines if 'unique \\\\\"key\\\\\" prop' in l or \\\\\"unique 'key' prop\\\\\" in l\\)\\); print\\('hydration=', sum\\(1 for l in lines if 'ydration' in l\\)\\); print\\('check_render=', sum\\(1 for l in lines if 'Check the render method' in l\\)\\); print\\('---first 10 lines---'\\); [print\\(repr\\(l[:180]\\)\\) for l in lines[:10]]; print\\('---last 10 lines---'\\); [print\\(repr\\(l[:180]\\)\\) for l in lines[-10:]]\")",
+      "Bash(awk '/fr: \\\\{/,/^ *\\\\},/' src/lib/i18n.ts)",
+      "Bash(awk 'NR!=1 {print $2}')",
+      "Bash(xargs kill *)",
+      "Bash(python -c ' *)",
+      "Bash(node -e ' *)",
+      "Bash(timeout 15 npx next build)"
     ]
   }
 }
