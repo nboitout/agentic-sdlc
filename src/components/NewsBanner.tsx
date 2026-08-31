@@ -10,15 +10,17 @@ export function NewsBanner() {
         <div className="news-banner-icon">📄</div>
         <div className="news-banner-body">
           <div className="news-banner-eyebrow">
-            <span className="news-banner-pill">New</span>
-            <span className="news-banner-date">Effective June 15, 2026 - now in effect</span>
+            <span className="news-banner-pill">Status</span>
+            <span className="news-banner-date">Current as of August 31, 2026</span>
           </div>
           <div className="news-banner-title">
-            Anthropic billing is changing: interactive vs. programmatic usage will be billed separately
+            Anthropic paused the planned June 15 separation of subscription-authenticated
+            programmatic usage
           </div>
           <div className="news-banner-desc">
-            See exactly where your AI-native SDLC spend moves - interactive Claude Code stays on
-            subscription, Agent SDK runs move to a separate credit. Animated diagram, 7 steps.
+            For now, Agent SDK, claude -p, third-party Agent SDK apps, and GitHub Actions authenticated
+            through a Claude subscription continue to draw from subscription usage limits. API-key and
+            cloud-provider usage remains separately metered.
           </div>
         </div>
         <span className="news-banner-cta">See the diagram -&gt;</span>
